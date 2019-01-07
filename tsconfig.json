@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-logger": [
+        "dist/ng-logger"
+      ],
+      "ng-logger/*": [
+        "dist/ng-logger/*"
+      ]
+    }
   }
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pleiads-ng-utils": {
+    "ng-tools": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pleiads-ng-utils",
+            "outputPath": "dist/ng-tools",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pleiads-ng-utils:build"
+            "browserTarget": "ng-tools:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pleiads-ng-utils:build:production"
+              "browserTarget": "ng-tools:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pleiads-ng-utils:build"
+            "browserTarget": "ng-tools:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "pleiads-ng-utils-e2e": {
+    "ng-tools-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pleiads-ng-utils:serve"
+            "devServerTarget": "ng-tools:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pleiads-ng-utils:serve:production"
+              "devServerTarget": "ng-tools:serve:production"
             }
           }
         },
@@ -133,7 +133,42 @@
           }
         }
       }
+    },
+    "ng-logger": {
+      "root": "projects/ng-logger",
+      "sourceRoot": "projects/ng-logger/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-logger/tsconfig.lib.json",
+            "project": "projects/ng-logger/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-logger/src/test.ts",
+            "tsConfig": "projects/ng-logger/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-logger/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-logger/tsconfig.lib.json",
+              "projects/ng-logger/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "pleiads-ng-utils"
+  "defaultProject": "ng-tools"
 }
