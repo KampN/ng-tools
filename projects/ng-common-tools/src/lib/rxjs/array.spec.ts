@@ -35,8 +35,8 @@ describe('RxJS : Array', () => {
                 arrayFirst(),
                 first()
             ).subscribe(spy);
-            expect(spy).toHaveBeenCalledWith(null);
             subject.next(null);
+            expect(spy).toHaveBeenCalledWith(null);
         });
     });
 

@@ -71,7 +71,6 @@ describe('RxJS : RxCleaner', () => {
 
             subject.next();
 
-            console.log(rcStream);
             expect(spy).toHaveBeenCalledTimes(1);
             expect(rcStream.isStopped).toBeTruthy();
         });
