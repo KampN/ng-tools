@@ -3,9 +3,9 @@ import {memoize} from '../decorators/memoize';
 
 export class UrlParser {
 
-    static a: HTMLAnchorElement;
+    static a: HTMLAnchorElement = null;
 
-    static getAnchor(href: string = '') {
+    static getAnchor(href: string = ''): HTMLAnchorElement {
         const location = this.a || (this.a = document.createElement('a'));
         location.href = /^\w+:\/\/.+/.test(href) ? href : `http://${href}`;
         if (location.host === '') location.href = location.href; // IE hack
@@ -13,16 +13,19 @@ export class UrlParser {
     }
 
     static hostname(url: string = '') {
-        return this.getAnchor(url).hostname;
+        const a: HTMLAnchorElement = this.getAnchor(url);
+        return a.hostname;
     }
 
     static search(url: string = '') {
-        return this.getAnchor(url).search;
+        const a: HTMLAnchorElement = this.getAnchor(url);
+        return a.search;
     }
 
     @memoize
     static decodedHostname(url: string = '') {
-        return decodeURIComponent(this.hostname(url));
+        const hostname: string = this.hostname(url);
+        return decodeURIComponent(hostname);
     }
 
     static extractSearchParams(url: string = '') {
