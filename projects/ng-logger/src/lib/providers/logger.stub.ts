@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 @Injectable({providedIn: 'root'})
 export class LoggerServiceStub implements Logger {
 
-    public logStack: LogMessage[];
+    public logStack: LogMessage[] = [];
 
     exception(e: Error) {
         this.error(e.message || 'Unknown Error', {exception: e});
@@ -25,6 +25,10 @@ export class LoggerServiceStub implements Logger {
 
     warn(msg: string, data: any = {}) {
         this.logStack.push({message: msg, data, level: LogLevel.Warning});
+    }
+
+    clear() {
+        this.logStack = [];
     }
 
 }
