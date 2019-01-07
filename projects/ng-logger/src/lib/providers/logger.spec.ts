@@ -8,10 +8,7 @@ describe('Providers : LoggerService', () => {
     let logStreamMock: any;
 
     beforeEach(async(() => {
-
-        logStreamMock = {push() {}};
-        spyOn(logStreamMock, 'push');
-
+        logStreamMock = {push: jasmine.createSpy('push')};
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -30,7 +27,7 @@ describe('Providers : LoggerService', () => {
                 expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
                     message: 'log message',
                     level: LogLevel.Debug,
-                    data: {}
+                    data: null
                 } as LogMessage));
 
                 logger.debug('another log message', {content: 123});
@@ -53,7 +50,7 @@ describe('Providers : LoggerService', () => {
                 expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
                     message: 'log message',
                     level: LogLevel.Info,
-                    data: {}
+                    data: null
                 } as LogMessage));
 
                 logger.info('another log message', {content: 123});
@@ -77,7 +74,7 @@ describe('Providers : LoggerService', () => {
                 expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
                     message: 'log message',
                     level: LogLevel.Error,
-                    data: {}
+                    data: null
                 } as LogMessage));
 
                 logger.error('another log message', {content: 123});
@@ -101,7 +98,7 @@ describe('Providers : LoggerService', () => {
                 expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
                     message: 'log message',
                     level: LogLevel.Warning,
-                    data: {}
+                    data: null
                 } as LogMessage));
 
                 logger.warn('another log message', {content: 123});

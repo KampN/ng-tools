@@ -21,7 +21,8 @@ export class LogDisplay {
 
     /* istanbul ignore next */
     showLog(text: string, color: string, data: any) {
-        console.log(`%c${text}`, `color: ${color}`, data);
+        if (text) console.log(`%c${text}`, `color: ${color}`, data);
+        else console.log(data);
     }
 
     protected handleLog(log: LogMessage) {
