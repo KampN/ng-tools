@@ -24,6 +24,12 @@
       ],
       "ng-logger/*": [
         "dist/ng-logger/*"
+      ],
+      "ng-common-tools": [
+        "dist/ng-tools"
+      ],
+      "ng-common-tools/*": [
+        "dist/ng-common-tools/*"
       ]
     }
   }

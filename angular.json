@@ -168,6 +168,41 @@
           }
         }
       }
+    },
+    "ng-common-tools": {
+      "root": "projects/ng-tools",
+      "sourceRoot": "projects/ng-common-tools/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-common-tools/tsconfig.lib.json",
+            "project": "projects/ng-common-tools/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-common-tools/src/test.ts",
+            "tsConfig": "projects/ng-common-tools/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-common-tools/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-common-tools/tsconfig.lib.json",
+              "projects/ng-common-tools/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "kampn-ng-tools"
