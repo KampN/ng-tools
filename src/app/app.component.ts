@@ -7,7 +7,7 @@ import {LoggerService} from 'ng-logger';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'ng-tools';
+    title = 'kampn-ng-tools';
 
     constructor(logger: LoggerService) {
         logger.info('hello world', 'hihiii');
