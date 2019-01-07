@@ -170,7 +170,7 @@
       }
     },
     "ng-common-tools": {
-      "root": "projects/ng-tools",
+      "root": "projects/ng-common-tools",
       "sourceRoot": "projects/ng-common-tools/src",
       "projectType": "library",
       "prefix": "lib",

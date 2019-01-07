@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-tools
+ * Public API Surface of ng-common-tools
  */
 
 export * from './lib/decorators/memoize';
