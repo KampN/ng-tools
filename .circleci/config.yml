@@ -32,7 +32,7 @@ jobs:
   unit_test:
     <<: *defaults
     docker:
-    - image: circleci/node:10-browsers
+    - image: circleci/node:10
     description: Start the unit tests for the given project
     parameters:
       project:
@@ -40,23 +40,51 @@ jobs:
         type: string
     steps:
     - checkout
+    - attach_workspace:
+        at: ~/app
     - run:
         name: Run unit tests
-        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false
+        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false --code-coverage
+    - store_test_results:
+        path: ./junit
+    - store_artifacts:
+        path: ./coverage
+
+  build:
+    <<: *defaults
+    docker:
+    - image: circleci/node:10-browsers
+    description: Build an angular project
+    parameters:
+      project:
+        description: angular project's name
+        type: string
+    steps:
+    - checkout
+    - attach_workspace:
+        at: ~/app
+    - run:
+        name: Build app
+        command: npm build -- "<< parameters.project >>"
 
 
 workflows:
+
   ci:
     jobs:
     - install_dependencies:
         <<: *workflow_branch_only_filter
+
     - unit_test:
         <<: *workflow_branch_only_filter
+        name: ng-common-tools
         project: ng-common-tools
         requires:
         - install_dependencies
+
     - unit_test:
         <<: *workflow_branch_only_filter
+        name: ng-logger
         project: ng-logger
         requires:
         - install_dependencies
