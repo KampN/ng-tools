@@ -11,7 +11,7 @@ jobs:
   install_dependencies:
     <<: *defaults
     docker:
-    - image: circleci/node:10
+    - image: circleci/node:11
     steps:
     - checkout
     - attach_workspace:
@@ -32,7 +32,7 @@ jobs:
   unit_test:
     <<: *defaults
     docker:
-    - image: circleci/node:10-browsers
+    - image: circleci/node:11-browsers
     description: Start the unit tests for the given project
     parameters:
       project:
@@ -44,7 +44,7 @@ jobs:
         at: ~/app
     - run:
         name: Run unit tests
-        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false --code-coverage
+        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false --code-coverage --progress=false
     - store_test_results:
         path: ./junit
     - store_artifacts:
@@ -53,7 +53,7 @@ jobs:
   build:
     <<: *defaults
     docker:
-    - image: circleci/node:10
+    - image: circleci/node:11
     description: Build an angular project
     parameters:
       project:
