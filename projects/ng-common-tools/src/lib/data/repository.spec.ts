@@ -11,7 +11,7 @@ import {DataStoreStub} from '../storage/datastore.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {RepositoryLoadQuery} from '../interfaces/repository';
 
-describe('Helpers : Repository', () => {
+describe('Data : Repository', () => {
 
     const namespace: string = `namespace`;
     const invalidIdStoreKey: string = `cache_repo_store:invalid_ids:${namespace}`;

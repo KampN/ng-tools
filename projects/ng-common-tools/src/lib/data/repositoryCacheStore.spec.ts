@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {DummyMockFactory} from '../mockFactories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 
-describe('Helpers : RepositoryCacheStore', () => {
+describe('Data : RepositoryCacheStore', () => {
 
     const namespace: string = 'namespace';
     const storeKey: string = `cache_repo_store:${namespace}`;

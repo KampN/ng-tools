@@ -1,7 +1,7 @@
 import {RepositoryInvalidIdCacheStore} from './repositoryInvalidIdCacheStore';
 import {DataStoreStub} from '../storage/datastore.stub';
 
-describe('Helpers : RepositoryInvalidIdCacheStore', () => {
+describe('Data : RepositoryInvalidIdCacheStore', () => {
 
     const namespace: string = 'namespace';
     const storeKey: string = `cache_repo_store:invalid_ids:${namespace}`;
