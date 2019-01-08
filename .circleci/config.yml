@@ -7,48 +7,53 @@ jobs:
   install_dependencies:
     <<: *defaults
     docker:
-      - image: circleci/node:10
+    - image: circleci/node:10
     steps:
-      - checkout
-      - attach_workspace:
-          at: ~/app
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Setup Dependencies
-          command: npm install --silent
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - persist_to_workspace:
-          root: .
-          paths: node_modules
+    - checkout
+    - attach_workspace:
+        at: ~/app
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: Setup Dependencies
+        command: npm install --silent
+    - save_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+        paths:
+        - ./node_modules
+    - persist_to_workspace:
+        root: .
+        paths: node_modules
 
   unit_test:
     <<: *defaults
     docker:
-      - image: circleci/node:10-browsers
+    - image: circleci/node:10-browsers
     description: Start the unit tests for the given project
     parameters:
       project:
         description: angular project's name
         type: string
     steps:
-      - checkout
-      - attach_workspace:
-          at: ~/app
-      - run:
-          name: Run unit tests
-          command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false
-      - store_artifacts:
-          path: ./coverage
+    - checkout
+    - attach_workspace:
+        at: ~/app
+    - run:
+        name: Run unit tests
+        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false
+    - store_artifacts:
+        path: ./coverage
 
 
 workflows:
   ci:
     jobs:
-      - unit_test:
-          project: ng-common-tools
-      - unit_test:
-          project: ng-logger
+    - install_dependencies:
+    - unit_test:
+        project: ng-common-tools
+        requires:
+        - install_dependencies
+    - unit_test:
+        project: ng-logger
+        requires:
+        - install_dependencies
