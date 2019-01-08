@@ -1,3 +1,4 @@
+// @dynamic
 export class ArrayHelper {
 
     static uniq(array: any[]) {

@@ -4,10 +4,12 @@ import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
 import {catchError, map, shareReplay, switchMap, tap} from 'rxjs/operators';
 import {RepositoryInvalidIdCacheStore} from './repositoryInvalidIdCacheStore';
 import {Perishable, PerishableTTL, RepositoryLoadQuery, Timestamp} from '../interfaces/repository';
-import * as moment from 'moment';
+import * as _moment from 'moment';
 import {memoizeStream} from '../decorators/memoizeStream';
 import {Normalizer} from '../helpers/normalizer';
 import {Check} from '../helpers/check';
+
+const moment = _moment;
 
 export enum UpdateCacheStrategy {
     Replace, Merge
