@@ -2,6 +2,10 @@ version: 2.1
 
 defaults: &defaults
   working_directory: ~/app
+anchor_2: &workflow_branch_only_filter
+  filters:
+    tags:
+      ignore: /.*/
 
 jobs:
   install_dependencies:
@@ -36,24 +40,23 @@ jobs:
         type: string
     steps:
     - checkout
-    - attach_workspace:
-        at: ~/app
     - run:
         name: Run unit tests
         command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false
-    - store_artifacts:
-        path: ./coverage
 
 
 workflows:
   ci:
     jobs:
-    - install_dependencies
+    - install_dependencies:
+        <<: *workflow_branch_only_filter
     - unit_test:
+        <<: *workflow_branch_only_filter
         project: ng-common-tools
         requires:
         - install_dependencies
     - unit_test:
+        <<: *workflow_branch_only_filter
         project: ng-logger
         requires:
         - install_dependencies
