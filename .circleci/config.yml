@@ -1,17 +1,25 @@
 version: 2.1
 
-defaults: &defaults
+anchor_1: &wdir
   working_directory: ~/app
 anchor_2: &workflow_branch_only_filter
   filters:
     tags:
       ignore: /.*/
 
+executors:
+  node:
+    <<: *wdir
+    docker:
+    - image: circleci/node:10
+  node-browsers:
+    <<: *wdir
+    docker:
+    - image: circleci/node:10-browsers
+
 jobs:
   install_dependencies:
-    <<: *defaults
-    docker:
-    - image: circleci/node:11
+    executor: node
     steps:
     - checkout
     - attach_workspace:
@@ -30,9 +38,7 @@ jobs:
         paths: node_modules
 
   unit_test:
-    <<: *defaults
-    docker:
-    - image: circleci/node:11-browsers
+    executor: node-browsers
     description: Start the unit tests for the given project
     parameters:
       project:
@@ -51,9 +57,7 @@ jobs:
         path: ./coverage
 
   build:
-    <<: *defaults
-    docker:
-    - image: circleci/node:11
+    executor: node
     description: Build an angular project
     parameters:
       project:
@@ -65,7 +69,7 @@ jobs:
         at: ~/app
     - run:
         name: Build app
-        command: npm build -- "<< parameters.project >>"
+        command: npm run build -- "<< parameters.project >>"
 
 
 workflows:
