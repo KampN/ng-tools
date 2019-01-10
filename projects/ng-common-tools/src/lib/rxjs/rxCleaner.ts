@@ -1,5 +1,5 @@
 import {filter, takeUntil} from 'rxjs/operators';
-import {Observable, Subject} from 'rxjs';
+import {MonoTypeOperatorFunction, Observable, Subject} from 'rxjs';
 
 export class RxCleaner {
 
@@ -13,7 +13,7 @@ export class RxCleaner {
         this.stream.next(null);
     }
 
-    takeUntil(namespace: string = null) {
+    takeUntil(namespace: string = null): MonoTypeOperatorFunction<any> {
         const obs: Observable<string> = this.stream.pipe(
             filter((ns: string) => ns === null || namespace === ns)
         );
