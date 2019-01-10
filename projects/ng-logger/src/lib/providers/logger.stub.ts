@@ -7,8 +7,11 @@ export class LoggerServiceStub implements Logger {
 
     public logStack: LogMessage[] = [];
 
-    exception(e: any, data: any = {}) {
-        this.error(e instanceof Error ? e.message : 'Unknown Error', Object.assign(data, {exception: e}));
+    exception(e: any, data: { message?: string; [prop: string]: any } = {}) {
+        let {message, ...obj} = data;
+        if (!message) message = e instanceof Error ? e.message : 'Unknown Error';
+        obj = Object.assign({}, obj, {exception: e});
+        this.error(message, obj);
     }
 
     debug(msg: string, data?: any);

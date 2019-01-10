@@ -130,6 +130,21 @@ describe('Providers : LoggerService', () => {
             })
         );
 
+        it('should override the error message',
+            inject([LoggerService], (logger: LoggerService) => {
+
+                const e = new Error('error message');
+                logger.exception(e, {message: 'log message'});
+
+                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                    message: 'log message',
+                    level: LogLevel.Error,
+                    data: {exception: e}
+                } as LogMessage));
+
+            })
+        );
+
         it('should push a default error log when invalid error given',
             inject([LoggerService], (logger: LoggerService) => {
 
