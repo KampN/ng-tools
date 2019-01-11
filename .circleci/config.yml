@@ -86,7 +86,10 @@ jobs:
     - attach_workspace:
         at: ~/app
     - run:
-        name: Build app
+        name: Authenticate with registry
+        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+    - run:
+        name: Publish package
         command: sh bin/npm_publish.sh << parameters.project >>
 
 workflows:
@@ -124,6 +127,7 @@ workflows:
 
     - publish:
         <<: *workflow_branch_only_filter
+        context: "open source"
         name: "publish [ng-common-tools]"
         project: ng-common-tools
         requires:
@@ -131,6 +135,7 @@ workflows:
         - "build [ng-common-tools]"
     - publish:
         <<: *workflow_branch_only_filter
+        context: "open source"
         name: "publish [ng-logger]"
         project: ng-logger
         requires:
