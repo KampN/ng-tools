@@ -70,7 +70,24 @@ jobs:
     - run:
         name: Build app
         command: npm run build -- "<< parameters.project >>"
+    - persist_to_workspace:
+        root: .
+        paths: dist
 
+  publish:
+    executor: node
+    description: Npm publish if the local & remote's versions mismatch
+    parameters:
+      project:
+        description: angular project's name
+        type: string
+    steps:
+    - checkout
+    - attach_workspace:
+        at: ~/app
+    - run:
+        name: Build app
+        command: sh bin/npm_publish.sh << parameters.project >>
 
 workflows:
 
@@ -81,14 +98,28 @@ workflows:
 
     - unit_test:
         <<: *workflow_branch_only_filter
-        name: ng-common-tools
+        name: "test [ng-common-tools]"
         project: ng-common-tools
         requires:
         - install_dependencies
 
     - unit_test:
         <<: *workflow_branch_only_filter
-        name: ng-logger
+        name: "test [ng-logger]"
         project: ng-logger
         requires:
         - install_dependencies
+
+    - publish:
+        <<: *workflow_branch_only_filter
+        name: "publish [ng-common-tools]"
+        project: ng-common-tools
+        requires:
+        - "test [ng-common-tools]"
+
+    - publish:
+        <<: *workflow_branch_only_filter
+        name: "publish [ng-logger]"
+        project: ng-logger
+        requires:
+        - "test [ng-logger]"
