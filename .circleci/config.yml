@@ -87,7 +87,7 @@ jobs:
         at: ~/app
     - run:
         name: Authenticate with registry
-        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/app/.npmrc
     - run:
         name: Publish package
         command: sh bin/npm_publish.sh << parameters.project >>
