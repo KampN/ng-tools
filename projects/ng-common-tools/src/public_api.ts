@@ -28,3 +28,5 @@ export * from './lib/mockFactories/jwt';
 
 export * from './lib/rxjs/array';
 export * from './lib/rxjs/rxCleaner';
+
+export * from './lib/pipes/index';
