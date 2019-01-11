@@ -6,6 +6,9 @@ dir=$(pwd)
 wdir=$dir/dist/$project
 basedir=$(dirname "$0")
 
+ls -lah $dir
+ls -lah $dir/dist
+
 if [ ! -d "$wdir" ];
 then
 	echo ERROR: project $project doesn\'t exists
