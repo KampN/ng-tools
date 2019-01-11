@@ -29,4 +29,12 @@ export * from './lib/mockFactories/jwt';
 export * from './lib/rxjs/array';
 export * from './lib/rxjs/rxCleaner';
 
-export * from './lib/pipes/index';
+export * from './lib/pipes/ucfirst';
+export * from './lib/pipes/prepend';
+export * from './lib/pipes/append';
+export * from './lib/pipes/coalesce';
+export * from './lib/pipes/padEnd';
+export * from './lib/pipes/padStart';
+export * from './lib/pipes/shortNumber';
+
+export * from './lib/module';
