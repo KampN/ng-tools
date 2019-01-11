@@ -6,16 +6,19 @@ describe('RxJS : RxCleaner', () => {
     let rc: RxCleaner;
     let subject: Subject<any>;
 
-    beforeAll(() => {
+    beforeEach(() => {
         rc = new RxCleaner();
         subject = new Subject();
     });
 
-    afterAll(() => subject.complete());
+    afterEach(() => {
+        subject.complete();
+        rc.complete();
+    });
 
     describe('unsubscribeAll()', () => {
         it('should complete the observables', () => {
-            const spy = jasmine.createSpy('listen');
+            const spy = jasmine.createSpy('subscribeFn');
 
             subject.pipe(
                 rc.takeUntil()
@@ -34,7 +37,7 @@ describe('RxJS : RxCleaner', () => {
 
     describe('unsubscribe()', () => {
         it('should filter the subjects to complete using the namespace', () => {
-            const spy = jasmine.createSpy('listen');
+            const spy = jasmine.createSpy('subscribeFn');
 
             subject.pipe(
                 rc.takeUntil('ns')
@@ -54,7 +57,7 @@ describe('RxJS : RxCleaner', () => {
 
     describe('complete()', () => {
         it('should unsubscribe all subjects and complete the RxCleaner stream', () => {
-            const spy = jasmine.createSpy('listen');
+            const spy = jasmine.createSpy('subscribeFn');
             const subject2 = new Subject();
             const rcStream: Subject<any> = (rc as any)['stream'];
 
@@ -73,6 +76,7 @@ describe('RxJS : RxCleaner', () => {
 
             expect(spy).toHaveBeenCalledTimes(1);
             expect(rcStream.isStopped).toBeTruthy();
+
         });
     });
 

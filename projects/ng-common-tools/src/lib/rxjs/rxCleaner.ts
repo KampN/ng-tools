@@ -15,7 +15,7 @@ export class RxCleaner {
 
     takeUntil(namespace: string = null): MonoTypeOperatorFunction<any> {
         const obs: Observable<string> = this.stream.pipe(
-            filter((ns: string) => ns === null || namespace === ns)
+            filter((ns: string) => ns === null || namespace === ns),
         );
         return takeUntil(obs);
     }
