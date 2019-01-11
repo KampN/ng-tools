@@ -6,9 +6,6 @@ dir=$(pwd)
 wdir=$dir/dist/$project
 basedir=$(dirname "$0")
 
-ls -lah $dir
-ls -lah $dir/dist
-
 if [ ! -d "$wdir" ];
 then
 	echo ERROR: project $project doesn\'t exists
@@ -26,8 +23,8 @@ echo "npm version : $npm_version"
 
 if [ "$pkg_version" != "$npm_version" ];
 then
-#	npm publish $wdir
-	echo "[updated]"
+	npm publish $wdir
+	echo "$pkg_name@$pkg_version [updated]"
 else
-	echo "[up_to_date]"
+	echo "$pkg_name@$pkg_version [up_to_date]"
 fi
