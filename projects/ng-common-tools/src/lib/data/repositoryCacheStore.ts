@@ -23,7 +23,7 @@ export class RepositoryCacheStore<T extends Perishable> {
     }
 
     public observeCache(): Observable<CacheStore<T>> {
-        return this.store.observe(this.storeKey);
+        return this.store.observe(this.storeKey).pipe(map((cache: CacheStore<T>) => cache || {}));
     }
 
     public observe(ids?: any | any[]): Observable<T[]> {
