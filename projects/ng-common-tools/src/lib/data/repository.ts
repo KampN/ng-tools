@@ -91,7 +91,8 @@ export abstract class Repository<T extends Perishable> {
         if (items.length === 0) return null;
         let item: T = strategy === UpdateCacheStrategy.Replace ? data : Object.assign({} as any, items[0], data) as T;
         if (refreshTTL) item = this.setItemTTL(item);
-        return this.cache.pushItem(id, item);
+        this.cache.set(id, item);
+        return item;
     }
 
     public removeCachedItem(id: any): T {

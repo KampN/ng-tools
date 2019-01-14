@@ -175,13 +175,6 @@ describe('Data : RepositoryCacheStore', () => {
         expect(missingIds.sort()).toEqual(['2']);
     });
 
-    it('should push an item with a custom id', () => {
-        const item: DummyObject = dummyFactory.seed();
-        cache.pushItem('customId', item);
-        const items: any[] = cache.pull('customId');
-        expect(items).toEqual([item]);
-    });
-
     it('should remove an item from the cache', () => {
         const [obj1, obj2] = dummyFactory.sperm(2);
         store.push(storeKey, {
