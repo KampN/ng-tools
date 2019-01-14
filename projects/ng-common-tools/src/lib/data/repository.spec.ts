@@ -446,6 +446,18 @@ describe('Data : Repository', () => {
         expect(cache[client2.id].expiryDate).toEqual(expiryDate);
     });
 
+    it('should remove the cached item', () => {
+        const client = dummyFactory.seed({id: 1, name: 'Foo bar', expiryDate: 123});
+
+        store.push(storeKey, {[client.id]: client});
+        const removed = repository.removeCachedItem(client.id);
+
+        const cache = store.pull(storeKey);
+        expect(cache[client.id]).toBeUndefined();
+        expect(removed.name).toEqual('Foo bar');
+        expect(removed.id).toEqual(client.id);
+    });
+
     it('should update the cached item with the given data', () => {
         const client = dummyFactory.seed({id: 1, name: 'Foo bar', expiryDate: 123});
 

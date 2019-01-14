@@ -1,7 +1,7 @@
 import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
 import {CacheStore} from '../interfaces/repository';
 import {Observable} from 'rxjs';
-import {DummyMockFactory} from '../mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 
 describe('Data : RepositoryCacheStore', () => {
@@ -173,6 +173,25 @@ describe('Data : RepositoryCacheStore', () => {
         });
         const missingIds: any[] = cache.getOutdatedCachedIdentifiers();
         expect(missingIds.sort()).toEqual(['2']);
+    });
+
+    it('should push an item with a custom id', () => {
+        const item: DummyObject = dummyFactory.seed();
+        cache.pushItem('customId', item);
+        const items: any[] = cache.pull('customId');
+        expect(items).toEqual([item]);
+    });
+
+    it('should remove an item from the cache', () => {
+        const [obj1, obj2] = dummyFactory.sperm(2);
+        store.push(storeKey, {
+            '1': obj1,
+            '2': obj2
+        });
+
+        cache.removeItem('1');
+        const items: DummyObject[] = cache.pull();
+        expect(items).toEqual([obj2]);
     });
 
 });

@@ -48,6 +48,24 @@ export class RepositoryCacheStore<T extends Perishable> {
         return data;
     }
 
+    public pushItem(id: any, item: T): T {
+        const toStore: any = Object.assign({}, this.getCache(), {[id]: item});
+        this.store.push(this.storeKey, toStore);
+        return item;
+    }
+
+    public removeItem(id: any): T {
+        const currentCache: CacheStore<T> = this.getCache();
+        const item = currentCache[id];
+
+        if (!item) return null;
+        const toStore: any = Object.assign({}, currentCache);
+        delete toStore[id];
+
+        this.store.push(this.storeKey, toStore);
+        return item;
+    }
+
     public dataToIdentifier(data: T): any {
         return this.extractIdentifierFn(data);
     }
