@@ -53,15 +53,9 @@ export abstract class Repository<T extends Perishable> {
         return this.loadByIds(ids).pipe(map(() => this.cache.pull(ids)));
     }
 
-    @memoizeStream
     public load(query?: RepositoryLoadQuery, observeResults: boolean = false): Observable<T[]> {
-        const ob: Observable<T[]> = this.queryData(query).pipe(
-            map((data: any) => this.cacheItems(data)),
-            catchError((exception) => of([])),
-            shareReplay()
-        );
+        const ob: Observable<T[]> = this._load(query);
         if (!observeResults) return ob;
-
         return ob.pipe(
             switchMap((data: T[]) => {
                 if (data.length === 0) return of([]);
@@ -103,6 +97,15 @@ export abstract class Repository<T extends Perishable> {
         const now: Timestamp = moment().unix();
         const items: T[] = Normalizer.asArray(data).map((item: any) => this.setItemTTL(item, now));
         return this.cache.push(items, strategy);
+    }
+
+    @memoizeStream
+    protected _load(query?: RepositoryLoadQuery): Observable<T[]> {
+        return this.queryData(query).pipe(
+            map((data: any) => this.cacheItems(data)),
+            catchError((exception) => of([])),
+            shareReplay()
+        );
     }
 
     protected setItemTTL(data: any, time: Timestamp = moment().unix()): T {
