@@ -19,17 +19,23 @@
       "dom"
     ],
     "paths": {
-      "ng-logger": [
+      "@kamp-n/ng-logger": [
         "dist/ng-logger"
       ],
-      "ng-logger/*": [
+      "@kamp-n/ng-logger/*": [
         "dist/ng-logger/*"
       ],
-      "ng-common-tools": [
+      "@kamp-n/ng-common-tools": [
         "dist/ng-common-tools"
       ],
-      "ng-common-tools/*": [
+      "@kamp-n/ng-common-tools/*": [
         "dist/ng-common-tools/*"
+      ],
+      "@kamp-n/ng-common-form": [
+        "dist/ng-common-form"
+      ],
+      "@kamp-n/ng-common-form/*": [
+        "dist/ng-common-form/*"
       ]
     }
   }

@@ -2,7 +2,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {LoggerModule} from 'ng-logger';
+import {LoggerModule} from '@kamp-n/ng-logger';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+//import {CommonFormModule} from '@kamp-n/ng-common-form';
 
 @NgModule({
     declarations: [
@@ -10,6 +12,9 @@ import {LoggerModule} from 'ng-logger';
     ],
     imports: [
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        //CommonFormModule,
         LoggerModule.forRoot()
     ],
     providers: [],

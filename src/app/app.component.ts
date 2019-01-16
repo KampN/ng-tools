@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {LoggerService} from 'ng-logger';
+import {LoggerService} from '@kamp-n/ng-logger';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -8,9 +9,14 @@ import {LoggerService} from 'ng-logger';
 })
 export class AppComponent {
     title = 'kampn-ng-tools';
+    form: FormGroup;
 
-    constructor(logger: LoggerService) {
+    constructor(logger: LoggerService, fb: FormBuilder) {
         logger.info('hello world', 'hihiii');
+
+        this.form = fb.group({
+            email: fb.control('email@foo.com', [Validators.required, Validators.email] )
+        });
     }
 
 }
