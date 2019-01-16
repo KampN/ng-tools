@@ -1,20 +1,19 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppComponent} from './app.component';
+import {AppComponent, ErrorDisplayComponent} from './app.component';
 import {LoggerModule} from '@kamp-n/ng-logger';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-//import {CommonFormModule} from '@kamp-n/ng-common-form';
+
+import {CommonFormModule} from '@kamp-n/ng-common-form';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ErrorDisplayComponent
     ],
     imports: [
         BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        //CommonFormModule,
+        CommonFormModule,
         LoggerModule.forRoot()
     ],
     providers: [],

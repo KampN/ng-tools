@@ -1,12 +1,12 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {Components} from './components/index';
+import {Directives} from './directives/index';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-    imports: [CommonModule, FormsModule],
-    exports: [...Components],
-    declarations: [...Components],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    exports: [...Directives, FormsModule, ReactiveFormsModule],
+    declarations: [...Directives],
     providers: [],
 })
 export class CommonFormModule {

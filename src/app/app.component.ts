@@ -1,6 +1,24 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {LoggerService} from '@kamp-n/ng-logger';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+@Component({
+    selector: 'error-display',
+    styles: [`:host {
+		display: block;
+	}`],
+    template: `
+		<ng-container [ngSwitch]="errorType">
+			<label class="error" *ngSwitchDefault>
+				Error: {{errorType}} {{error|json}}
+			</label>
+		</ng-container>
+    `,
+})
+export class ErrorDisplayComponent {
+    @Input() errorType: string;
+    @Input() error: string;
+}
 
 @Component({
     selector: 'app-root',
@@ -15,7 +33,7 @@ export class AppComponent {
         logger.info('hello world', 'hihiii');
 
         this.form = fb.group({
-            email: fb.control('email@foo.com', [Validators.required, Validators.email] )
+            email: fb.control('email@foo.com', [Validators.required, Validators.email])
         });
     }
 
