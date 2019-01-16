@@ -18,6 +18,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ErrorDisplayComponent {
     @Input() errorType: string;
     @Input() error: string;
+
+    constructor() {
+    }
 }
 
 @Component({
@@ -29,11 +32,13 @@ export class AppComponent {
     title = 'kampn-ng-tools';
     form: FormGroup;
 
+    show: boolean = false;
+
     constructor(logger: LoggerService, fb: FormBuilder) {
         logger.info('hello world', 'hihiii');
 
         this.form = fb.group({
-            email: fb.control('email@foo.com', [Validators.required, Validators.email])
+            email: fb.control('em', [Validators.required, Validators.email])
         });
     }
 

@@ -1,8 +1,12 @@
 <form [formGroup]="form">
 	<input type="email" formControlName="email">
-	<div *controlError="let error of 'email'">{{error}}</div>
-	<error-display *controlError="let errorName of 'email'; let data=$errors " [errorType]="errorName" [error]="data"></error-display>
+	<ng-container *ngIf="show">
+		<div *controlError="let error of 'email'">{{error}}</div>
+	</ng-container>
+	<!--<error-display *controlError="let errorName of 'email'; let data=$errors " [errorType]="errorName" [error]="data"></error-display>-->
 </form>
 
+<button (click)="show = !show">show</button>
 
-<div *controlError="let error of form.get('email')">{{error}}</div>
+
+<!--<div *controlError="let error of form.get('email')">{{error}}</div>-->

@@ -9,14 +9,6 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 
 export class ControlErrorDirectiveExceptions {
 
-    static invalidOfParameter(): void {
-        throw new Error(`*controlError needs a FormControl as parameter. 
-Use one of the following syntaxes :
-<span *controlError="let error of 'controlName'">{{error}}</span>
-<span *controlError="let error of form.get('controlName')">{{error}}</span>
-`);
-    }
-
     static controlNotFound(controlName?: string): void {
         throw new Error(`*controlError must be used with a valid FormControl. Control "${controlName}" not found.`);
     }
@@ -51,7 +43,8 @@ export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
     protected rc: RxCleaner = new RxCleaner();
 
     constructor(protected vContainer: ViewContainerRef, protected template: TemplateRef<ControlErrorContext>,
-                @Optional() @Host() @SkipSelf() protected parent: ControlContainer) {}
+                @Optional() @Host() @SkipSelf() protected parent: ControlContainer) {
+    }
 
     ngOnInit(): void {
         this.errorStream.pipe(
@@ -92,7 +85,7 @@ export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     protected setUpControl() {
-        if (!this.controlErrorOf) ControlErrorDirectiveExceptions.invalidOfParameter();
+        if (!this.controlErrorOf) return null;
         let control = null;
 
         if (this.isFormControl(this.controlErrorOf)) control = this.controlErrorOf as AbstractControl;
