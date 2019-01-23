@@ -1,12 +1,18 @@
-<form [formGroup]="form">
-	<input type="email" formControlName="email">
-	<ng-container *ngIf="show">
-		<div *controlError="let error of 'email'">{{error}}</div>
-	</ng-container>
-	<!--<error-display *controlError="let errorName of 'email'; let data=$errors " [errorType]="errorName" [error]="data"></error-display>-->
+<form [formGroup]="form" (ngSubmit)="pushItemToScheme()">
+	<div>
+		<input type="number" formControlName="x" placeholder="x">
+		<input type="number" formControlName="y" placeholder="y">
+	</div>
+	<div>
+		<input type="number" formControlName="w" placeholder="w">
+		<input type="number" formControlName="h" placeholder="h">
+	</div>
+	<button type="submit">ajouter</button>
 </form>
 
-<button (click)="show = !show">show</button>
 
+<div grid-layout [scheme]="scheme">
+	<grid-block *gridBlockDef="let block" cdkDrag>{{block|json}}</grid-block>
+</div>
 
-<!--<div *controlError="let error of form.get('email')">{{error}}</div>-->
+<pre>{{scheme|json}}</pre>

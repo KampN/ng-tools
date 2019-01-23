@@ -1,20 +1,22 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppComponent, ErrorDisplayComponent} from './app.component';
+import {AppComponent, toDeclare} from './app.component';
 import {LoggerModule} from '@kamp-n/ng-logger';
 
 import {CommonFormModule} from '@kamp-n/ng-common-form';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ErrorDisplayComponent
+        ...toDeclare
     ],
     imports: [
         BrowserModule,
         CommonFormModule,
-        LoggerModule.forRoot()
+        LoggerModule.forRoot(),
+        DragDropModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
