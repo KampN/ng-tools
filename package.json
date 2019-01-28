@@ -35,6 +35,7 @@
 		"@angular/language-service": "^7.2.1",
 		"@kamp-n/ng-common-form": "latest",
 		"@kamp-n/ng-common-tools": "latest",
+		"@kamp-n/ng-common-fs": "latest",
 		"@kamp-n/ng-logger": "latest",
 		"@types/faker": "^4.1.5",
 		"@types/jasmine": "^3.3.7",
