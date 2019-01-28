@@ -113,6 +113,12 @@ workflows:
         - install_dependencies
     - unit_test:
         <<: *workflow_branch_only_filter
+        name: "test [ng-logger-fs]"
+        project: ng-logger-fs
+        requires:
+        - install_dependencies
+    - unit_test:
+        <<: *workflow_branch_only_filter
         name: "test [ng-common-form]"
         project: ng-common-form
         requires:
@@ -128,6 +134,12 @@ workflows:
         <<: *workflow_branch_only_filter
         name: "build [ng-logger]"
         project: ng-logger
+        requires:
+        - install_dependencies
+    - build:
+        <<: *workflow_branch_only_filter
+        name: "build [ng-logger-fs]"
+        project: ng-logger-fs
         requires:
         - install_dependencies
     - build:
@@ -153,6 +165,14 @@ workflows:
         requires:
         - "test [ng-logger]"
         - "build [ng-logger]"
+    - publish:
+        <<: *workflow_branch_only_filter
+        context: "open source"
+        name: "publish [ng-logger-fs]"
+        project: ng-logger-fs
+        requires:
+        - "test [ng-logger-fs]"
+        - "build [ng-logger-fs]"
     - publish:
         <<: *workflow_branch_only_filter
         context: "open source"
