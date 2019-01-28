@@ -10,7 +10,7 @@ export enum FSLogLevel {
 }
 
 export interface FullStory {
-    log(level: FSLogLevel, ...args: any): void;
+    log(level: FSLogLevel, ...args: any[]): void;
 
     log(msg: any): void;
 
