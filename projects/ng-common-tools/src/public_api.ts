@@ -18,6 +18,7 @@ export * from './lib/helpers/urlParser';
 export * from './lib/helpers/check';
 export * from './lib/helpers/array';
 export * from './lib/helpers/normalizer';
+export * from './lib/helpers/stateManager';
 
 export * from './lib/storage/datastore.stub';
 export * from './lib/storage/datastore';
