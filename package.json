@@ -20,17 +20,14 @@
 		"@angular/platform-browser": "^7.2.1",
 		"@angular/platform-browser-dynamic": "^7.2.1",
 		"@angular/router": "^7.2.1",
-		"angular-gridster2": "^7.1.0",
 		"core-js": "^2.6.2",
-		"draggabilly": "^2.2.0",
 		"moment": "^2.23.0",
-		"packery": "^2.1.2",
-		"pino": "^5.10.8",
 		"rxjs": "~6.3.3",
 		"tslib": "^1.9.0",
 		"zone.js": "^0.8.28"
 	},
 	"devDependencies": {
+		"angular-gridster2": "^7.1.0",
 		"@angular-devkit/build-angular": "^0.12.2",
 		"@angular-devkit/build-ng-packagr": "^0.12.2",
 		"@angular/cli": "^7.2.2",
