@@ -5,7 +5,7 @@ import {AppComponent, toDeclare} from './app.component';
 import {LoggerModule} from '@kamp-n/ng-logger';
 
 import {CommonFormModule} from '@kamp-n/ng-common-form';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import {GridsterModule} from 'angular-gridster2';
 
 @NgModule({
     declarations: [
@@ -16,7 +16,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
         BrowserModule,
         CommonFormModule,
         LoggerModule.forRoot(),
-        DragDropModule,
+        //DragDropModule,
+        GridsterModule
     ],
     providers: [],
     bootstrap: [AppComponent]

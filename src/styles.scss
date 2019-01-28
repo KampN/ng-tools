@@ -5,3 +5,13 @@ html, body {
 	padding: 0;
 	margin: 0;
 }
+
+
+.packery-drop-placeholder {
+	outline: 3px dashed #444;
+	outline-offset: -6px;
+	/* transition position changing */
+	-webkit-transition: -webkit-transform 0.2s;
+	transition: transform 0.2s;
+	pointer-events: none;
+}

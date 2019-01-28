@@ -238,6 +238,41 @@
           }
         }
       }
+    },
+    "ng-logger-fs": {
+      "root": "projects/ng-logger-fs",
+      "sourceRoot": "projects/ng-logger-fs/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-logger-fs/tsconfig.lib.json",
+            "project": "projects/ng-logger-fs/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-logger-fs/src/test.ts",
+            "tsConfig": "projects/ng-logger-fs/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-logger-fs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-logger-fs/tsconfig.lib.json",
+              "projects/ng-logger-fs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "kampn-ng-tools"

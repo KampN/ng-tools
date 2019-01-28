@@ -1,18 +1,36 @@
-<form [formGroup]="form" (ngSubmit)="pushItemToScheme()">
-	<div>
-		<input type="number" formControlName="x" placeholder="x">
-		<input type="number" formControlName="y" placeholder="y">
-	</div>
-	<div>
-		<input type="number" formControlName="w" placeholder="w">
-		<input type="number" formControlName="h" placeholder="h">
-	</div>
-	<button type="submit">ajouter</button>
-</form>
+<!--<form [formGroup]="form" (ngSubmit)="pushItemToScheme()">-->
+<!--<div>-->
+<!--<label for="x">X: </label>-->
+<!--<input id="x" type="number" formControlName="x" placeholder="x">-->
+<!--</div>-->
+<!--<div>-->
+<!--<label for="y">Y: </label>-->
+<!--<input id="y" type="number" formControlName="y" placeholder="y">-->
+<!--</div>-->
+<!--<div>-->
+<!--<label for="width">Width: </label>-->
+<!--<input id="width" type="number" formControlName="w" placeholder="w">-->
+<!--</div>-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;<label for="height">Height: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;<input id="height" type="number" formControlName="h" placeholder="h">&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<button type="submit">ajouter</button>-->
+<!--</form>-->
 
 
-<div grid-layout [scheme]="scheme">
-	<grid-block *gridBlockDef="let block" cdkDrag>{{block|json}}</grid-block>
-</div>
+<!--<div grid-layout [scheme]="scheme" #grid="gridLayout">-->
+<!--<grid-block *gridBlockDef="let block; movable:true" class="grid-w-{{block.w}} grid-h-{{block.h}}">-->
+<!--<pre>{{block|json}}</pre>-->
+<!--</grid-block>-->
+<!--</div>-->
 
-<pre>{{scheme|json}}</pre>
+<!--<pre>{{scheme|json}}</pre>-->
+<div><button (click)="addItem()">add</button></div>
+<gridster [options]="options">
+	<gridster-item [item]="item" *ngFor="let item of dashboard">
+		<!-- your content here -->
+		hello world
+		<draw-counter></draw-counter>
+	</gridster-item>
+</gridster>
