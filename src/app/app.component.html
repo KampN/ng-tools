@@ -25,12 +25,16 @@
 <!--</grid-block>-->
 <!--</div>-->
 
+<form >
+	<input type="text">
+	<input type="text">
+	<button type="submit"></button>
+</form>
 <!--<pre>{{scheme|json}}</pre>-->
 <div><button (click)="addItem()">add</button></div>
 <gridster [options]="options">
 	<gridster-item [item]="item" *ngFor="let item of dashboard">
 		<!-- your content here -->
 		hello world
-		<draw-counter></draw-counter>
 	</gridster-item>
 </gridster>

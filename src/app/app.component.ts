@@ -12,11 +12,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     dashboard: Array<GridsterItem>;
 
     static itemChange(item, itemComponent) {
-        console.info('itemChanged', item, itemComponent);
+        //console.info('itemChanged', item, itemComponent);
     }
 
     static itemResize(item, itemComponent) {
-        console.info('itemResized', item, itemComponent);
+        //console.info('itemResized', item, itemComponent);
     }
 
     ngOnInit() {
