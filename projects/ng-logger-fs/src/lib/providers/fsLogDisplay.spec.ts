@@ -1,5 +1,5 @@
 import {async, inject, TestBed} from '@angular/core/testing';
-import {FSLogDisplay} from './fSLogDisplay';
+import {FSLogDisplay} from './fsLogDisplay';
 import {DefaultConfiguration, LogDisplay, LoggerConfiguration, LoggerModule, LogLevel, LogMessage, LogStream} from '@kamp-n/ng-logger';
 import {FSLogLevel, FULLSTORY, FullStory} from '../accessors/fullstory';
 
