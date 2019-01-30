@@ -31,6 +31,10 @@ export abstract class Repository<T extends Perishable> {
         return this.cache.observe(ids);
     }
 
+    public dataToIdentifiers(data: T[]): any[] {
+        return data.map((datum: T) => this.cache.dataToIdentifier(datum));
+    }
+
     public get(ids: any | any[], refreshOutdated: boolean = true): Observable<T[]> {
         const missingIds: any[] = this.cache.getMissingIdentifiers(ids, refreshOutdated);
 

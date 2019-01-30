@@ -292,6 +292,13 @@ describe('Data : Repository', () => {
         });
     });
 
+    it('should return ids for the given items', () => {
+
+        const items: any[] = [dummyFactory.seed({id: 1}), dummyFactory.seed({id: 2})];
+
+        expect(repository.dataToIdentifiers(items)).toEqual([1, 2]);
+    });
+
     it('should return the queried item', () => {
 
         const items: any[] = [dummyFactory.seed({id: 1}), dummyFactory.seed({id: 2})];
