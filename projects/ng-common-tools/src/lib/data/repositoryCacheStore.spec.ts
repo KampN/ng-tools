@@ -3,6 +3,7 @@ import {CacheStore} from '../interfaces/repository';
 import {Observable} from 'rxjs';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
+import {first} from 'rxjs/operators';
 
 describe('Data : RepositoryCacheStore', () => {
 
@@ -35,27 +36,53 @@ describe('Data : RepositoryCacheStore', () => {
         });
     });
 
-    it('should return an observable of empty array when empty array given', () => {
-        const spy = jasmine.createSpy('subscription');
+    describe('observe()', () => {
 
-        const obs = cache.observe([]);
-        expect(obs instanceof Observable).toBeTruthy();
+        it('should return an observable of empty array when empty array given', () => {
+            const spy = jasmine.createSpy('subscription');
 
-        const sub = obs.subscribe(spy);
-        expect(spy).toHaveBeenCalledWith([]);
-        sub.unsubscribe();
-    });
+            const obs = cache.observe([]);
+            expect(obs instanceof Observable).toBeTruthy();
 
-    it('should return an observable of item list', () => {
-        const mock = {
-            1: dummyFactory.seed({id: 1}),
-            2: dummyFactory.seed({id: 2})
-        };
-        store.push(storeKey, mock);
-        const result = cache.observe([1]);
+            obs.pipe(first()).subscribe(spy);
+            expect(spy).toHaveBeenCalledWith([]);
+        });
 
-        expect(result instanceof Observable).toBeTruthy();
-        result.subscribe((cache: any[]) => expect(cache).toEqual([mock[1]]));
+        it('should return an observable of item list', () => {
+            const spy = jasmine.createSpy('subscription');
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2})
+            };
+            store.push(storeKey, mock);
+
+            const obs = cache.observe([1]);
+            obs.pipe(first()).subscribe(spy);
+            expect(spy).toHaveBeenCalledWith([mock[1]]);
+        });
+
+        it('should trigger change only if the observed data changed', () => {
+            const spy = jasmine.createSpy('subscription');
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2})
+            };
+            store.push(storeKey, mock);
+
+            const obs = cache.observe([1]);
+            const sub = obs.subscribe(spy);
+
+            cache.push({id: 2, name: 'hello'});
+
+            expect(spy).toHaveBeenCalledWith([mock[1]]);
+            expect(spy).toHaveBeenCalledTimes(1);
+
+            cache.push({id: 1, name: 'bouh'});
+            expect(spy).toHaveBeenCalledTimes(2);
+            expect(spy).not.toHaveBeenCalledWith([mock[2]]);
+
+            sub.unsubscribe();
+        });
     });
 
     it('should replace the extractIdFn with the given fn', () => {
