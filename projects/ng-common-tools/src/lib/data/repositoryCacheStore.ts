@@ -1,9 +1,10 @@
 import {DataStore} from '../interfaces/datastore';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {CacheStore, Perishable, Timestamp} from '../interfaces/repository';
 import {map} from 'rxjs/operators';
 import {Normalizer} from '../helpers/normalizer';
 import * as _moment from 'moment';
+import {ArrayHelper} from '../helpers/array';
 
 const moment = _moment;
 
@@ -27,6 +28,7 @@ export class RepositoryCacheStore<T extends Perishable> {
     }
 
     public observe(ids?: any | any[]): Observable<T[]> {
+        if (ArrayHelper.isArrayOf(ids, 0)) return of([]);
         ids = Normalizer.asArray(ids);
         return this.observeCache().pipe(
             map((cache: CacheStore<T>) => this.cacheToList(cache, ids))

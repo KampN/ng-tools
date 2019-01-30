@@ -35,6 +35,17 @@ describe('Data : RepositoryCacheStore', () => {
         });
     });
 
+    it('should return an observable of empty array when empty array given', () => {
+        const spy = jasmine.createSpy('subscription');
+
+        const obs = cache.observe([]);
+        expect(obs instanceof Observable).toBeTruthy();
+
+        const sub = obs.subscribe(spy);
+        expect(spy).toHaveBeenCalledWith([]);
+        sub.unsubscribe();
+    });
+
     it('should return an observable of item list', () => {
         const mock = {
             1: dummyFactory.seed({id: 1}),

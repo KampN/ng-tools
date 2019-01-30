@@ -22,6 +22,7 @@ describe('Helpers : ArrayHelper', () => {
             expect(ArrayHelper.isArrayOf(1, 0)).toBeFalsy();
             expect(ArrayHelper.isArrayOf('', 0)).toBeFalsy();
             expect(ArrayHelper.isArrayOf('string', 6)).toBeFalsy();
+            expect(ArrayHelper.isArrayOf(null, 1)).toBeFalsy();
         });
 
     });

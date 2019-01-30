@@ -8,4 +8,5 @@ export class ArrayHelper {
     static isArrayOf(subject: any, expectedLength: number) {
         return Array.isArray(subject) && subject.length === expectedLength;
     }
+
 }
