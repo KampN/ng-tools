@@ -8,6 +8,11 @@ export * from './lib/decorators/memoizeStream';
 export * from './lib/data/repository';
 export * from './lib/data/repositoryCacheStore';
 export * from './lib/data/repositoryInvalidIdCacheStore';
+
+export * from './lib/dataSource/fetchedDataSource';
+export * from './lib/dataSource/paginatedFetchDataSource';
+
+export * from './lib/interfaces/datasource';
 export * from './lib/interfaces/repository';
 export * from './lib/interfaces/datastore';
 
