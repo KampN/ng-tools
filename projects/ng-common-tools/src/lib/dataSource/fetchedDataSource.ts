@@ -19,6 +19,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     protected readonly renderData = new BehaviorSubject<T[]>([]);
     protected readonly paginationChange = new ReplaySubject<FetchQueryPagination>();
     protected readonly filtersChange = new Subject<FetchQueryFilters>();
+    protected readonly _reload = new Subject<void>();
     protected readonly sortChange = new Subject<FetchQuerySort>();
     protected readonly rc: RxCleaner = new RxCleaner();
 
@@ -60,6 +61,10 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
     get totalLoaded() { return this.store.length; }
 
+    reload() {
+        this._reload.next();
+    }
+
     updatePagination(pagination: { page?: number, limit?: number }) {
         this.pagination = Object.assign({}, this.pagination, pagination);
     }
@@ -77,12 +82,13 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this.renderData.complete();
         this.paginationChange.complete();
         this.filtersChange.complete();
+        this._reload.complete();
         this.sortChange.complete();
         this.rc.complete();
     }
 
     protected updateDataChangeSubscription() {
-        const stream = merge(this.sortChange, this.filtersChange)
+        const stream = merge(this.sortChange, this.filtersChange, this._reload)
             .pipe(
                 tap(() => {
                     this._pagination = {...this._pagination, page: 0};
