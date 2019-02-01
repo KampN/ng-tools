@@ -329,19 +329,52 @@ describe('Data : Repository', () => {
 
     });
 
-    it('should return an observable of item list', () => {
+    describe('observe', () => {
 
-        const mock = {
-            1: dummyFactory.seed({id: 1}),
-            2: dummyFactory.seed({id: 2})
-        };
-        store.push(storeKey, mock);
+        it('should observe an item of the list', () => {
 
-        const result: Observable<any> = repository.observe([1]);
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2})
+            };
+            store.push(storeKey, mock);
 
-        expect(result instanceof Observable).toBeTruthy();
-        result.subscribe((cache: any[]) => expect(cache).toEqual([mock[1]]));
+            const result: Observable<any> = repository.observe([1]);
 
+            expect(result instanceof Observable).toBeTruthy();
+            result.subscribe((cache: any[]) => expect(cache).toEqual([mock[1]]));
+
+        });
+
+        it('should observe every items', () => {
+
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2})
+            };
+            store.push(storeKey, mock);
+
+            const result: Observable<any> = repository.observe();
+
+            expect(result instanceof Observable).toBeTruthy();
+            result.subscribe((cache: any[]) => expect(cache).toEqual(jasmine.arrayWithExactContents([mock[1], mock[2]])));
+
+        });
+
+        it('shouldn\'t observe any items', () => {
+
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2})
+            };
+            store.push(storeKey, mock);
+
+            const result: Observable<any> = repository.observe([]);
+
+            expect(result instanceof Observable).toBeTruthy();
+            result.subscribe((cache: any[]) => expect(cache).toEqual([]));
+
+        });
     });
 
     describe('refresh', () => {
