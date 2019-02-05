@@ -1,6 +1,6 @@
 import {filter, map, shareReplay, startWith} from 'rxjs/operators';
 import {Observable, ReplaySubject} from 'rxjs';
-import {DataStore} from '../interfaces/datastore';
+import {DataStore, Storage} from '../interfaces/datastore';
 import {Check} from '../helpers/check';
 
 /**
@@ -9,33 +9,33 @@ import {Check} from '../helpers/check';
 export class DataStoreStub implements DataStore {
 
     readonly changeStream: ReplaySubject<void> = new ReplaySubject();
-    public storage: any = {};
+    public storage: Storage = new Map();
 
-    clear(key: string) {
-        delete this.storage[key];
+    clear(key: any) {
+        this.storage.delete(key);
         this.changeStream.next();
     }
 
     clearAll() {
-        this.storage = {};
+        this.storage.clear();
         this.changeStream.next();
     }
 
-    observe(key: string): Observable<any> {
+    observe(key: any): Observable<any> {
         return this.changeStream.pipe(
             startWith(() => null),
-            map(() => this.storage[key]),
+            map(() => this.pull(key)),
             filter((value: any) => Check.isDefined(value, true)),
             shareReplay()
         );
     }
 
-    pull(key: string): any {
-        return this.storage[key];
+    pull(key: any): any {
+        return this.storage.get(key);
     }
 
-    push(key: string, value: any): any {
-        this.storage[key] = value;
+    push(key: any, value: any): any {
+        this.storage.set(key, value);
         this.changeStream.next();
         return value;
     }
