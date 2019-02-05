@@ -10,12 +10,10 @@ export interface FetchedDataSourceConfig {
     pagination?: { page?: number, limit?: number };
     sort?: FetchQuerySort;
     filters?: FetchQueryFilters;
-    total?: number;
 }
 
 export class FetchedDataSource<T> extends DataSource<T> {
 
-    readonly totalChange: BehaviorSubject<number>;
     protected readonly _fetching = new BehaviorSubject<boolean>(false);
     protected readonly renderData = new BehaviorSubject<T[]>([]);
     protected readonly paginationChange = new ReplaySubject<FetchQueryPagination>();
@@ -24,9 +22,8 @@ export class FetchedDataSource<T> extends DataSource<T> {
     protected readonly sortChange = new Subject<FetchQuerySort>();
     protected readonly rc: RxCleaner = new RxCleaner();
 
-    constructor(protected store: SourceStore<T>, {pagination, sort, filters, total}: FetchedDataSourceConfig = {}) {
+    constructor(protected store: SourceStore<T>, {pagination, sort, filters}: FetchedDataSourceConfig = {}) {
         super();
-        this.totalChange = new BehaviorSubject<number>(total || 0);
         this.pagination = Object.assign({limit: 10, page: 0}, pagination);
         if (sort) this._sort = sort;
         if (filters) this._filters = filters;
@@ -56,9 +53,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
     get fetching(): Observable<boolean> { return this._fetching.asObservable(); }
 
-    get total(): number { return this.totalChange.value; }
-
-    set total(value: number) { this.totalChange.next(value); }
+    get total(): number { return this.store.total; }
 
     get totalLoaded() { return this.store.length; }
 
@@ -78,7 +73,6 @@ export class FetchedDataSource<T> extends DataSource<T> {
     }
 
     destroy() {
-        this.totalChange.complete();
         this._fetching.complete();
         this.renderData.complete();
         this.paginationChange.complete();
@@ -114,9 +108,8 @@ export class FetchedDataSource<T> extends DataSource<T> {
         merge(stream, fetchOutOfBound).pipe(
             tap(() => this._fetching.next(true)),
             switchMap(() => this.fetchData()),
-            tap(() => this._fetching.next(false)),
             this.rc.takeUntil('store_change')
-        ).subscribe(({total}) => this.total = total);
+        ).subscribe(() => this._fetching.next(false));
     }
 
     protected updateRenderChangeSubscription() {

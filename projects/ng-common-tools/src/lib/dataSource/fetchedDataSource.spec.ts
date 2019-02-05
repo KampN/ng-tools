@@ -230,7 +230,6 @@ describe('DataSource : FetchedDataSource', () => {
 
         dataSource.destroy();
 
-        expect(dataSource['totalChange'].isStopped).toBeTruthy();
         expect(dataSource['_fetching'].isStopped).toBeTruthy();
         expect(dataSource['renderData'].isStopped).toBeTruthy();
         expect(dataSource['paginationChange'].isStopped).toBeTruthy();

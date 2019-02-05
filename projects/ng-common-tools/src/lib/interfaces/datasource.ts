@@ -22,6 +22,7 @@ export interface SourceStore<T> {
 
     storeChange: Observable<void>;
     length: number;
+    total: number;
 
     isChunkLoaded(start: number, end: number): boolean;
 
