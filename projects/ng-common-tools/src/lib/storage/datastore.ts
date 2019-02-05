@@ -6,7 +6,7 @@ import {filter, map, startWith} from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class DataStoreService implements DataStore {
 
-    protected storage: Storage = new Map();
+    protected storage: Storage<any, any> = new Map();
     protected eventStream: Subject<DispatchEvent> = new Subject();
 
     public clear(key: any) {

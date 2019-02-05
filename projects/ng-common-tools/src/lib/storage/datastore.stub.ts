@@ -9,7 +9,7 @@ import {Check} from '../helpers/check';
 export class DataStoreStub implements DataStore {
 
     readonly changeStream: ReplaySubject<void> = new ReplaySubject();
-    public storage: Storage = new Map();
+    public storage: Storage<any, any> = new Map();
 
     clear(key: any) {
         this.storage.delete(key);

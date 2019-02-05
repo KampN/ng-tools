@@ -5,7 +5,7 @@ export interface DispatchEvent {
     key: any;
 }
 
-export type Storage = Map<any, any>;
+export type Storage<Key, Value> = Map<Key, Value>;
 
 export interface DataStore {
     push(key: any, value: any): any;
