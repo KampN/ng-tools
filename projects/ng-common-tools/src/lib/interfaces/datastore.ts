@@ -2,21 +2,19 @@ import {Observable} from 'rxjs';
 
 export interface DispatchEvent {
     data: any;
-    key: string;
+    key: any;
 }
 
-export interface Storage {
-    [prop: string]: any;
-}
+export type Storage = Map<any, any>;
 
 export interface DataStore {
-    push(key: string, value: any): any;
+    push(key: any, value: any): any;
 
-    pull(key: string): any;
+    pull(key: any): any;
 
-    observe(key: string): Observable<any>;
+    observe(key: any): Observable<any>;
 
-    clear(key: string);
+    clear(key: any);
 
     clearAll();
 }

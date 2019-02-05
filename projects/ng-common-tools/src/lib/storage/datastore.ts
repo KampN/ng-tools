@@ -6,39 +6,40 @@ import {filter, map, startWith} from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class DataStoreService implements DataStore {
 
-    protected storage: Storage = {};
+    protected storage: Storage = new Map();
     protected eventStream: Subject<DispatchEvent> = new Subject();
 
-    public clear(key) {
+    public clear(key: any) {
         this.dispatch({key, data: null});
     }
 
     public clearAll() {
-        const keys = Object.keys(this.storage).filter((key) => this.storage[key] !== null);
-        for (const key of keys) this.clear(key);
+        this.storage.forEach((value, key) => {
+            if (value !== null) this.clear(key);
+        });
     }
 
-    public pull(key: string) {
-        return this.storage[key];
+    public pull(key: any) {
+        return this.storage.get(key);
     }
 
-    public push(key: string, data: any = null) {
+    public push(key: any, data: any = null) {
         this.dispatch({key, data});
         return data;
     }
 
-    public observe(toObserve: string) {
+    public observe(toObserve: any) {
         return this.eventStream.pipe(
             startWith({key: toObserve}),
-            filter(({key}) => key === toObserve && key in this.storage),
-            map(({key}) => this.storage[key]),
+            filter(({key}) => key === toObserve && this.storage.has(key)),
+            map(({key}) => this.pull(key)),
             filter((value) => value !== undefined)
         );
     }
 
     protected dispatch(event: DispatchEvent) {
         const {key, data} = event;
-        this.storage = Object.assign({}, this.storage, {[key]: data});
+        this.storage.set(key, data);
         this.eventStream.next(event);
     }
 
