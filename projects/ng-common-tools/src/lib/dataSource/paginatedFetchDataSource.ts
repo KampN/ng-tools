@@ -1,6 +1,7 @@
 import {distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
 import {FetchedDataSource} from './fetchedDataSource';
 import {merge} from 'rxjs';
+import {Check} from '../helpers/check';
 
 export class PaginatedFetchedDataSource<T> extends FetchedDataSource<T> {
 
@@ -8,7 +9,7 @@ export class PaginatedFetchedDataSource<T> extends FetchedDataSource<T> {
         this.rc.unsubscribe('render_change');
 
         const paginationChange = this.paginationChange.pipe(
-            distinctUntilChanged((a, b) => a.limit === b.limit && b.page === a.page),
+            distinctUntilChanged(Check.isEqual),
             filter(({page, limit}) => this.store.isChunkLoaded(page * limit, page * limit + limit))
         );
 

@@ -1,9 +1,10 @@
 import {DataSource} from '@angular/cdk/table';
 import {BehaviorSubject, merge, Observable, ReplaySubject, Subject} from 'rxjs';
-import {filter, switchMap, tap} from 'rxjs/operators';
+import {distinctUntilChanged, filter, switchMap, tap} from 'rxjs/operators';
 import {FetchQueryFilters, FetchQueryPagination, FetchQuerySort, SourceStore} from '../interfaces/datasource';
 import {RxCleaner} from '../rxjs/rxCleaner';
 import {CollectionViewer} from '@angular/cdk/collections';
+import {Check} from '../helpers/check';
 
 export interface FetchedDataSourceConfig {
     pagination?: { page?: number, limit?: number };
@@ -35,7 +36,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
     protected _filters: FetchQueryFilters;
 
-    get filters(): FetchQueryFilters { return this._filters; }
+    get filters(): FetchQueryFilters { return this._filters || {}; }
 
     set filters(filters: FetchQueryFilters) { this.filtersChange.next(this._filters = filters); }
 
@@ -88,7 +89,16 @@ export class FetchedDataSource<T> extends DataSource<T> {
     }
 
     protected updateDataChangeSubscription() {
-        const stream = merge(this.sortChange, this.filtersChange, this._reload)
+
+        const filterChange = this.filtersChange.pipe(
+            distinctUntilChanged(Check.isEqual)
+        );
+
+        const sortChange = this.sortChange.pipe(
+            distinctUntilChanged(Check.isEqual)
+        );
+
+        const stream = merge(sortChange, filterChange, this._reload)
             .pipe(
                 tap(() => {
                     this._pagination = {...this._pagination, page: 0};

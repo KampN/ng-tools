@@ -136,6 +136,8 @@ describe('DataSource : FetchedDataSource', () => {
         ).subscribe(spy);
 
         dataSource.filters = {foo: 'bar'};
+        dataSource.filters = {foo: 'bar'}; // noop, trigger only if filter changed
+
         expect(spy).toHaveBeenCalledWith(sourceStore.store.slice(0, 10));
         expect(spy).toHaveBeenCalledWith(sourceStore.store.slice(0, 5));
         expect(spy).toHaveBeenCalledTimes(2);
@@ -149,6 +151,34 @@ describe('DataSource : FetchedDataSource', () => {
     });
 
     it('should clear store, reset page and fetch missing data when sort change', () => {
+
+        const oldData = dummyFactory.sperm(5);
+        const newData = dummyFactory.sperm(5);
+        sourceStore.setDatabase(newData);
+        sourceStore.setStore(oldData);
+        spyOn(sourceStore, 'fetch').and.callThrough();
+        spyOn(sourceStore, 'clear').and.callThrough();
+
+        const spy = jasmine.createSpy('subscription');
+        const dataSource = new FetchedDataSource(sourceStore, {pagination: {page: 0, limit: 5}});
+
+        expect(sourceStore.fetch).not.toHaveBeenCalledWith(); // Already fetched by the SetStore call
+
+        dataSource.connect(null).pipe(
+            rc.takeUntil()
+        ).subscribe(spy);
+
+        dataSource.sort = {operand: 'operand'};
+        dataSource.sort = {operand: 'operand'}; // noop, trigger only if sort changed
+
+        expect(spy).toHaveBeenCalledWith(oldData);
+        expect(spy).toHaveBeenCalledWith(newData);
+        expect(spy).toHaveBeenCalledTimes(2);
+        expect(sourceStore.clear).toHaveBeenCalled();
+        expect(sourceStore.fetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('should clear store, reset page and fetch missing data on reload', () => {
 
         const oldData = dummyFactory.sperm(5);
         const newData = dummyFactory.sperm(5);
