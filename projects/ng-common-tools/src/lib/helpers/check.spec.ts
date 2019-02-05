@@ -31,4 +31,37 @@ describe('Helpers : Check', () => {
         expect(Check.propertyExists(data, 'name')).toBeFalsy();
     });
 
+    describe('isEqual()', () => {
+
+        it('should test equality of simple data types', () => {
+
+            expect(Check.isEqual('data', 'data')).toBeTruthy();
+            expect(Check.isEqual('data1', 'data2')).toBeFalsy();
+
+            expect(Check.isEqual(1, 1)).toBeTruthy();
+            expect(Check.isEqual(1, '1')).toBeFalsy();
+            expect(Check.isEqual(1, 2)).toBeFalsy();
+        });
+
+        it('should test equality of arrays', () => {
+
+            expect(Check.isEqual([1], [1])).toBeTruthy();
+            expect(Check.isEqual([1], [1, 2])).toBeFalsy();
+            expect(Check.isEqual([1], ['1'])).toBeFalsy();
+            expect(Check.isEqual([{}], [{}])).toBeFalsy();
+
+        });
+
+        it('should test equality of objects', () => {
+
+            expect(Check.isEqual({value: 1}, {value: 1})).toBeTruthy();
+            expect(Check.isEqual({value: 1, value2: '2'}, {value: 1, value2: '2'})).toBeTruthy();
+            expect(Check.isEqual({value: 1}, {value: '1'})).toBeFalsy();
+            expect(Check.isEqual({value: 1, value2: 2}, {value: 1, value2: '2'})).toBeFalsy();
+            expect(Check.isEqual({value: 1}, {value: 1, value2: 2})).toBeFalsy();
+
+        });
+
+    });
+
 });
