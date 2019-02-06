@@ -27,8 +27,16 @@ export abstract class Repository<T extends Perishable> {
 
     abstract queryData(query?: RepositoryLoadQuery): Observable<T[]>;
 
+    public getCache(): RepositoryCacheStore<T> {
+        return this.cache;
+    }
+
     public observe(ids?: any | any[]): Observable<T[]> {
         return this.cache.observe(ids);
+    }
+
+    public dataToIdentifier(datum: T): any {
+        return this.cache.dataToIdentifier(datum);
     }
 
     public dataToIdentifiers(data: T[]): any[] {

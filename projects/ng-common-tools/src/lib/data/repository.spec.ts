@@ -5,7 +5,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {DataStore} from '../interfaces/datastore';
 import {HttpClient} from '@angular/common/http';
 import * as _moment from 'moment';
-import {StoreStrategy} from './repositoryCacheStore';
+import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
 import {first, last} from 'rxjs/operators';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
@@ -297,6 +297,14 @@ describe('Data : Repository', () => {
         const items: any[] = [dummyFactory.seed({id: 1}), dummyFactory.seed({id: 2})];
 
         expect(repository.dataToIdentifiers(items)).toEqual([1, 2]);
+    });
+
+    it('should return id for the given item', () => {
+        expect(repository.dataToIdentifier(dummyFactory.seed({id: 1}))).toEqual(1);
+    });
+
+    it('should return the cache store instance', () => {
+        expect(repository.getCache() instanceof RepositoryCacheStore).toBeTruthy();
     });
 
     it('should return the queried item', () => {
