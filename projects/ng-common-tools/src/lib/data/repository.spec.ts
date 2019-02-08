@@ -292,6 +292,33 @@ describe('Data : Repository', () => {
         });
     });
 
+    describe('pull', () => {
+
+        it('should retrieve all the cached items as an array', () => {
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2})
+            };
+            const mockList = Object.values(mock).sort((a, b) => a.id - b.id);
+            store.push(storeKey, mock);
+
+            const items: any[] = repository.pull();
+            expect(items.sort((a, b) => a.id - b.id)).toEqual(mockList);
+        });
+
+        it('should retrieve the cached items by their ids', () => {
+            const mock = {
+                1: dummyFactory.seed({id: 1}),
+                2: dummyFactory.seed({id: 2}),
+                3: dummyFactory.seed({id: 3}),
+            };
+            const mockList = Object.values(mock).sort((a, b) => a.id - b.id);
+            store.push(storeKey, mock);
+
+            const items: any[] = repository.pull([1, 2]);
+            expect(items.sort((a, b) => a.id - b.id)).toEqual(mockList.slice(0, 2));
+        });
+    });
     it('should return ids for the given items', () => {
 
         const items: any[] = [dummyFactory.seed({id: 1}), dummyFactory.seed({id: 2})];

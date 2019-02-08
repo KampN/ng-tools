@@ -31,6 +31,10 @@ export abstract class Repository<T extends Perishable> {
         return this.cache;
     }
 
+    public pull(ids?: any | any[]): T[] {
+        return this.cache.pull(ids);
+    }
+
     public observe(ids?: any | any[]): Observable<T[]> {
         return this.cache.observe(ids);
     }
