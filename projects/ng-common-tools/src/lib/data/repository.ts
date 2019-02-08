@@ -1,7 +1,7 @@
 import {Observable, of} from 'rxjs';
 import {DataStore} from '../interfaces/datastore';
 import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
-import {catchError, map, shareReplay, switchMap, tap} from 'rxjs/operators';
+import {catchError, first, map, shareReplay, switchMap, tap} from 'rxjs/operators';
 import {RepositoryInvalidIdCacheStore} from './repositoryInvalidIdCacheStore';
 import {Perishable, PerishableTTL, RepositoryLoadQuery, Timestamp} from '../interfaces/repository';
 import * as _moment from 'moment';
@@ -48,7 +48,8 @@ export abstract class Repository<T extends Perishable> {
 
         const obs: Observable<T[]> = missingIds.length > 0 ? this.loadByIds(missingIds) : of(null);
         return obs.pipe(
-            map(() => this.cache.pull(ids))
+            map(() => this.cache.pull(ids)),
+            first()
         );
     }
 
