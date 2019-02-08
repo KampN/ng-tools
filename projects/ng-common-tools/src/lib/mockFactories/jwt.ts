@@ -15,7 +15,7 @@ export interface JWTOptions {
 
 export const DefaultJWTSecret = 'default_secret';
 
-export class JWTMockFactory extends MockFactory<JWT> {
+export class JWTMockFactory extends MockFactory<JWT, JWTOptions> {
 
     seed(data: any = {}, opt?: JWTOptions): JWT {
         const {alg, secret, kid} = Object.assign({}, {
