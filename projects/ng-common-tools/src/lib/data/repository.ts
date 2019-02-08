@@ -15,7 +15,7 @@ export enum UpdateCacheStrategy {
     Replace, Merge
 }
 
-export abstract class Repository<T extends Perishable> {
+export abstract class Repository<T extends Perishable, SearchQuery = any> {
 
     protected cache: RepositoryCacheStore<T>;
     protected invalidIdCache: RepositoryInvalidIdCacheStore;
@@ -25,7 +25,7 @@ export abstract class Repository<T extends Perishable> {
         this.invalidIdCache = new RepositoryInvalidIdCacheStore(this.namespace, store);
     }
 
-    abstract queryData(query?: RepositoryLoadQuery): Observable<T[]>;
+    abstract queryData(query?: SearchQuery & RepositoryLoadQuery): Observable<T[]>;
 
     public getCache(): RepositoryCacheStore<T> {
         return this.cache;
@@ -70,7 +70,7 @@ export abstract class Repository<T extends Perishable> {
         return this.loadByIds(ids).pipe(map(() => this.cache.pull(ids)));
     }
 
-    public load(query?: RepositoryLoadQuery, observeResults: boolean = false): Observable<T[]> {
+    public load(query?: SearchQuery & RepositoryLoadQuery, observeResults: boolean = false): Observable<T[]> {
         const ob: Observable<T[]> = this._load(query);
         if (!observeResults) return ob;
         return ob.pipe(
@@ -117,7 +117,7 @@ export abstract class Repository<T extends Perishable> {
     }
 
     @memoizeStream
-    protected _load(query?: RepositoryLoadQuery): Observable<T[]> {
+    protected _load(query?: SearchQuery & RepositoryLoadQuery): Observable<T[]> {
         return this.queryData(query).pipe(
             map((data: any) => this.cacheItems(data)),
             catchError((exception) => of([])),
