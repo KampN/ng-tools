@@ -25,10 +25,14 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
         this.invalidIdCache = new RepositoryInvalidIdCacheStore(this.namespace, store);
     }
 
+    get cacheStore(): RepositoryCacheStore<T> {
+        return this.cache;
+    }
+
     abstract queryData(query?: SearchQuery & RepositoryLoadQuery): Observable<T[]>;
 
-    public getCache(): RepositoryCacheStore<T> {
-        return this.cache;
+    public isOutdated(id: any): boolean {
+        return this.cache.isOutdated(id);
     }
 
     public pull(ids?: any | any[]): T[] {

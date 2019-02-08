@@ -5,6 +5,7 @@ import {distinctUntilChanged, map} from 'rxjs/operators';
 import {Normalizer} from '../helpers/normalizer';
 import * as _moment from 'moment';
 import {ArrayHelper} from '../helpers/array';
+import {Check} from '../helpers/check';
 
 const moment = _moment;
 
@@ -97,11 +98,12 @@ export class RepositoryCacheStore<T extends Perishable> {
         return Object.keys(cache).filter((id: any) => this.isOutdated(cache[id], now));
     }
 
-    protected extractIdentifierFn: (T) => any = (item: T) => item.id;
-
-    protected isOutdated(datum: T, time: Timestamp) {
+    public isOutdated(datum: T, time?: Timestamp) {
+        if (!Check.isDefined(time)) time = moment().unix();
         return datum && datum.expiryDate !== undefined && datum.expiryDate !== 0 && datum.expiryDate < time;
     }
+
+    protected extractIdentifierFn: (T) => any = (item: T) => item.id;
 
     protected cacheToList(store: CacheStore<T>, ids?: any[]): T[] {
         if (ids.length === 0) ids = Object.keys(store);

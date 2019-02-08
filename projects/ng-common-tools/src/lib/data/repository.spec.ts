@@ -331,7 +331,7 @@ describe('Data : Repository', () => {
     });
 
     it('should return the cache store instance', () => {
-        expect(repository.getCache() instanceof RepositoryCacheStore).toBeTruthy();
+        expect(repository.cacheStore instanceof RepositoryCacheStore).toBeTruthy();
     });
 
     it('should return the queried item', () => {
