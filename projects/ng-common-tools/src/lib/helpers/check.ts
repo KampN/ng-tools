@@ -4,15 +4,30 @@ export class Check {
         return (allowNull || val !== null) && val !== undefined;
     }
 
-    static propertyExists(data, property) {
+    static everyDefined(val: any[], allowNull: boolean = false) {
+        return val.every((v) => Check.isDefined(v, allowNull));
+    }
+
+    static someDefined(val: any[], allowNull: boolean = false) {
+        return val.some((v) => Check.isDefined(v, allowNull));
+    }
+
+    static propertyExists(data: any, property: PropertyKey) {
         return data && data.hasOwnProperty(property);
     }
 
-    static isEqual(itemA, itemB) {
+    static isEqual(itemA: any, itemB: any) {
         if (!(itemB instanceof Object) || !(itemA instanceof Object)) return itemA === itemB;
         const keys = Object.keys(itemB);
         if (keys.length !== Object.keys(itemA).length) return false;
         return keys.every((key) => itemA[key] === itemB[key]);
+    }
+
+    static isEmpty(val: string | any[] | object) {
+        if (!val) return true;
+        if (typeof val === 'string' || val instanceof Array) return val.length === 0;
+        if (val instanceof Object) return Object.keys(val).length === 0;
+        return false;
     }
 
 }
