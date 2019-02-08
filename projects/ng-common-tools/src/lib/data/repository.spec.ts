@@ -548,12 +548,11 @@ describe('Data : Repository', () => {
         const client = dummyFactory.seed({id: 1, name: 'Foo bar', expiryDate: 123});
 
         store.push(storeKey, {[client.id]: client});
-        const removed = repository.removeCachedItem(client.id);
+        const removed = repository.removeCachedItems(client.id);
 
         const cache = store.pull(storeKey);
         expect(cache[client.id]).toBeUndefined();
-        expect(removed.name).toEqual('Foo bar');
-        expect(removed.id).toEqual(client.id);
+        expect(removed[0]).toEqual(jasmine.objectContaining(client));
     });
 
     it('should update the cached item with the given data', () => {

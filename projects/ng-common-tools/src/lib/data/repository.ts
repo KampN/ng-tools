@@ -113,11 +113,11 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
         return item;
     }
 
-    public removeCachedItem(id: any): T {
-        return this.cache.removeItem(id);
+    public removeCachedItems(ids: any | any[]): T[] {
+        return this.cache.removeItems(ids);
     }
 
-    public cacheItems(data: any | any[], strategy: StoreStrategy = StoreStrategy.Merge): T[] {
+    public cacheItems(data: T | T[], strategy: StoreStrategy = StoreStrategy.Merge): T[] {
         const now: Timestamp = moment().unix();
         const items: T[] = Normalizer.asArray(data).map((item: any) => this.setItemTTL(item, now));
         return this.cache.push(items, strategy);

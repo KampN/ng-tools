@@ -266,7 +266,8 @@ describe('Data : RepositoryCacheStore', () => {
             '2': obj2
         });
 
-        cache.removeItem('1');
+        const removed = cache.removeItems(['1']);
+        expect(removed).toEqual([obj1]);
         const items: DummyObject[] = cache.pull();
         expect(items).toEqual([obj2]);
     });

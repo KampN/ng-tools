@@ -56,16 +56,18 @@ export class RepositoryCacheStore<T extends Perishable> {
         return data;
     }
 
-    public removeItem(id: any): T {
-        const currentCache: CacheStore<T> = this.getCache();
-        const item = currentCache[id];
+    public removeItems(ids: any | any[]): T[] {
+        ids = Normalizer.asArray(ids);
+        const cache: CacheStore<T> = {...this.getCache()};
 
-        if (!item) return null;
-        const toStore: any = Object.assign({}, currentCache);
-        delete toStore[id];
+        const items = ids.map((id) => {
+            const item = cache[id];
+            delete cache[id];
+            return item;
+        }).filter((item) => !!item);
 
-        this.store.push(this.storeKey, toStore);
-        return item;
+        this.store.push(this.storeKey, cache);
+        return items;
     }
 
     public dataToIdentifier(data: T): any {
