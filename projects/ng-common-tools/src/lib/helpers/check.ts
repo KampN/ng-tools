@@ -1,3 +1,4 @@
+// @dynamic
 export class Check {
 
     static isDefined(val: any, allowNull: boolean = false) {
