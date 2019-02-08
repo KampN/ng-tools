@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {first} from 'rxjs/operators';
+import * as moment from 'moment';
 
 describe('Data : RepositoryCacheStore', () => {
 
@@ -156,6 +157,51 @@ describe('Data : RepositoryCacheStore', () => {
         expect(stored).toEqual({
             'foo': item,
         });
+    });
+
+    it('should verify if the given id is missing', () => {
+        const items = [
+            dummyFactory.seed({id: 1}),
+        ];
+        cache.push(items);
+        expect(cache.isMissingIdentifier(1)).toBeFalsy();
+        expect(cache.isMissingIdentifier(2)).toBeTruthy();
+    });
+
+    it('should verify if the given item is outdated', () => {
+        const items = [
+            dummyFactory.seed({id: 1}),
+        ];
+        cache.push(items);
+        expect(cache.isMissingIdentifier(1)).toBeFalsy();
+        expect(cache.isMissingIdentifier(2)).toBeTruthy();
+    });
+
+    describe('isOutdated()', () => {
+
+        it('should return false if the data doesnt have an expiryDate', () => {
+            const item = dummyFactory.seed({id: 1});
+            expect(cache.isOutdated(item)).toBeFalsy();
+        });
+
+        it('should return false if the data has an expiry date set to 0 (infinite ttl)', () => {
+            const item = dummyFactory.seed({id: 1, expiryDate: 0});
+            expect(cache.isOutdated(item)).toBeFalsy();
+        });
+
+        it('should compare the given expirydate with the current date and determine if an item is outdated', () => {
+            const beforeNow = moment().subtract(10, 'd').unix();
+            const afterNow = moment().add(10, 'd').unix();
+            const now = moment().unix();
+
+            expect(cache.isOutdated({expiryDate: beforeNow})).toBeTruthy();
+            expect(cache.isOutdated({expiryDate: afterNow})).toBeFalsy();
+
+            expect(cache.isOutdated({expiryDate: now}, afterNow)).toBeTruthy();
+            expect(cache.isOutdated({expiryDate: now}, beforeNow)).toBeFalsy();
+
+        });
+
     });
 
     it('should replace the cached items by the given items', () => {

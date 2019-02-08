@@ -98,6 +98,11 @@ export class RepositoryCacheStore<T extends Perishable> {
         return Object.keys(cache).filter((id: any) => this.isOutdated(cache[id], now));
     }
 
+    public isMissingIdentifier(id: any): boolean {
+        const cache = this.getCache();
+        return !cache[id];
+    }
+
     public isOutdated(datum: T, time?: Timestamp) {
         if (!Check.isDefined(time)) time = moment().unix();
         return datum && datum.expiryDate !== undefined && datum.expiryDate !== 0 && datum.expiryDate < time;

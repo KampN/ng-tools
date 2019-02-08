@@ -334,6 +334,29 @@ describe('Data : Repository', () => {
         expect(repository.cacheStore instanceof RepositoryCacheStore).toBeTruthy();
     });
 
+    it('should verify if an item is outdated by its id', () => {
+        const beforeNow = moment().subtract(1, 'd').unix();
+        const afterNow = moment().add(1, 'd').unix();
+        const items: any[] = [
+            dummyFactory.seed({id: 1, expiryDate: 0}),
+            dummyFactory.seed({id: 2, expiryDate: beforeNow}),
+            dummyFactory.seed({id: 3, expiryDate: afterNow}),
+            dummyFactory.seed({id: 4, expiryDate: afterNow}),
+        ];
+        store.push(storeKey, {
+            1: items[0],
+            2: items[1],
+            3: items[2],
+        });
+
+        expect(repository.isOutdated(1)).toBeFalsy();
+        expect(repository.isOutdated(2)).toBeTruthy();
+        expect(repository.isOutdated(3)).toBeFalsy();
+
+        expect(repository.isOutdated(4)).toBeFalsy();
+        expect(repository.isOutdated(4, true)).toBeTruthy();
+    });
+
     it('should return the queried item', () => {
 
         const items: any[] = [dummyFactory.seed({id: 1}), dummyFactory.seed({id: 2})];

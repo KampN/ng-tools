@@ -31,8 +31,11 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
 
     abstract queryData(query?: SearchQuery & RepositoryLoadQuery): Observable<T[]>;
 
-    public isOutdated(id: any): boolean {
-        return this.cache.isOutdated(id);
+    public isOutdated(id: any, missingAsOutdated: boolean = false): boolean {
+        const missing: boolean = this.cache.isMissingIdentifier(id);
+        if (missing) return missingAsOutdated;
+        const item = this.cache.pull(id)[0];
+        return this.cache.isOutdated(item);
     }
 
     public pull(ids?: any | any[]): T[] {
