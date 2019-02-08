@@ -1,21 +1,20 @@
 import {MonoTypeOperatorFunction, Observable, ReplaySubject, Subject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
-export type State = any;
-export type StateMap = Map<State, boolean>;
-export type StateMapSource = StateMap | Iterable<[State, boolean]> | [State, boolean][];
+export type StateMap<State> = Map<State, boolean>;
+export type StateMapSource<State> = StateMap<State> | Iterable<[State, boolean]> | [State, boolean][];
 
-export interface StateChangeEvent {
+export interface StateChangeEvent<State = any> {
     state: State;
     value: boolean;
 }
 
-export class StateManager {
+export class StateManager<State = any> {
 
-    protected states: StateMap;
-    protected baseStates: StateMap;
+    protected states: StateMap<State>;
+    protected baseStates: StateMap<State>;
 
-    constructor(states?: StateMapSource) {
+    constructor(states?: StateMapSource<State>) {
         this.baseStates = new Map(states);
         this.states = new Map(this.baseStates);
     }
@@ -62,7 +61,7 @@ export class StateManager {
         return filter(() => this.not(state));
     }
 
-    reset(states: StateMapSource = this.baseStates) {
+    reset(states: StateMapSource<State> = this.baseStates) {
         this.states = new Map(states);
         this._stateChange.complete();
         this._stateChange = new ReplaySubject(1);
