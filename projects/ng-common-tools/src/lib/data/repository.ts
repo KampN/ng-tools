@@ -133,7 +133,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
 
     protected loadByIds(ids: any[]): Observable<T[]> {
         ids = this.invalidIdCache.filterInvalidIds(ids);
-        return this.load({ids}).pipe(
+        return this.load({ids} as any).pipe(
             tap(() => {
                 const notLoaded: any[] = this.cache.getMissingIdentifiers(ids);
                 if (notLoaded.length > 0) this.invalidIdCache.add(notLoaded);
