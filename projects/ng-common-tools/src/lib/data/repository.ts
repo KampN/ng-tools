@@ -20,7 +20,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
     protected cache: RepositoryCacheStore<T>;
     protected invalidIdCache: RepositoryInvalidIdCacheStore;
 
-    constructor(readonly namespace: string, store: DataStore) {
+    constructor(readonly namespace: string, store: DataStore, protected ttl: number = PerishableTTL) {
         this.cache = new RepositoryCacheStore(this.namespace, store);
         this.invalidIdCache = new RepositoryInvalidIdCacheStore(this.namespace, store);
     }
@@ -147,7 +147,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
     protected setItemTTL(data: any, time: Timestamp = moment().unix()): T {
         // An expiry date of 0 means that the item will never expire
         if (data.expiryDate === 0) return data;
-        return Object.assign(data, {expiryDate: time + PerishableTTL});
+        return Object.assign(data, {expiryDate: time + this.ttl});
     }
 
     protected loadByIds(ids: any[]): Observable<T[]> {
