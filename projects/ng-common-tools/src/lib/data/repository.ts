@@ -15,12 +15,22 @@ export enum UpdateCacheStrategy {
     Replace, Merge
 }
 
+export interface RepositoryOptions {
+    /**
+     * item time to live, the repository triggers queryData if the data's outdated
+     * 0 means infinite ttl
+     */
+    itemTTL?: number;
+}
+
 export abstract class Repository<T extends Perishable, SearchQuery = any> {
 
     protected cache: RepositoryCacheStore<T>;
     protected invalidIdCache: RepositoryInvalidIdCacheStore;
+    protected options: RepositoryOptions;
 
-    constructor(readonly namespace: string, store: DataStore, protected ttl: number = PerishableTTL) {
+    constructor(readonly namespace: string, store: DataStore, options: RepositoryOptions = {}) {
+        this.options = {...options, itemTTL: PerishableTTL};
         this.cache = new RepositoryCacheStore(this.namespace, store);
         this.invalidIdCache = new RepositoryInvalidIdCacheStore(this.namespace, store);
     }
@@ -147,7 +157,8 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
     protected setItemTTL(data: any, time: Timestamp = moment().unix()): T {
         // An expiry date of 0 means that the item will never expire
         if (data.expiryDate === 0) return data;
-        return Object.assign(data, {expiryDate: time + this.ttl});
+        const expiryDate = this.options.itemTTL > 0 ? time + this.options.itemTTL : 0;
+        return Object.assign(data, {expiryDate});
     }
 
     protected loadByIds(ids: any[]): Observable<T[]> {
