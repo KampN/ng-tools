@@ -10,11 +10,13 @@ import {first, last} from 'rxjs/operators';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {RepositoryLoadQuery} from '../interfaces/repository';
+import {RxCleaner} from '@kamp-n/ng-common-tools';
 
 const moment = _moment;
 
 describe('Data : Repository', () => {
 
+    const rc: RxCleaner = new RxCleaner();
     const namespace: string = `namespace`;
     const invalidIdStoreKey: string = `cache_repo_store:invalid_ids:${namespace}`;
     const storeKey: string = `cache_repo_store:${namespace}`;
@@ -48,7 +50,12 @@ describe('Data : Repository', () => {
     afterEach(inject([HttpTestingController], (httpMock: HttpTestingController) => {
         httpMock.verify();
         store.changeStream.complete();
+        rc.unsubscribeAll();
     }));
+
+    afterAll(() => {
+        rc.complete();
+    });
 
     describe('load', () => {
 
@@ -201,6 +208,68 @@ describe('Data : Repository', () => {
                     expect(item.id).toEqual(1);
                     expect(item.name).toEqual('updated name');
                 });
+            })
+        );
+
+    });
+
+    describe('reload', () => {
+
+        it('should clear the stored data and load the query result into the datastore', inject(
+            [HttpTestingController, HttpClient],
+            (httpMock: HttpTestingController, http: HttpClient) => {
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+
+                const spy = jasmine.createSpy('subscribe');
+
+                repository.cacheItems([dummyFactory.seed({id: 3})]);
+
+                const client = dummyFactory.seed({id: 1});
+                const response: any[] = [client];
+
+                repository.reload().pipe(rc.takeUntil()).subscribe(spy);
+
+                const req = httpMock.expectOne('/fake_endpoint');
+                req.flush(response);
+
+                expect(repository.queryData).toHaveBeenCalledTimes(1);
+                expect(store.pull(storeKey)).toEqual({
+                    [client.id]: client
+                });
+                expect(spy).toHaveBeenCalledWith([
+                    jasmine.objectContaining({id: 1})
+                ]);
+            })
+        );
+
+        it('should observe changes of the loaded data', inject(
+            [HttpTestingController, HttpClient],
+            (httpMock: HttpTestingController, http: HttpClient) => {
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+
+                const spy = jasmine.createSpy('subscribe');
+
+                const client = dummyFactory.seed({id: 1, name: 'name'});
+                const response: any[] = [client];
+
+                const ob: Observable<DummyObject[]> = repository.reload({}, true);
+
+                ob.pipe(rc.takeUntil()).subscribe(spy);
+
+                const req = httpMock.expectOne('/fake_endpoint');
+                req.flush(response);
+
+                expect(repository.queryData).toHaveBeenCalledTimes(1);
+                expect(store.pull(storeKey)).toEqual({
+                    [client.id]: client
+                });
+
+                expect(spy).toHaveBeenCalledTimes(1);
+                expect(spy).toHaveBeenCalledWith([jasmine.objectContaining({id: 1, name: 'name'})]);
+
+                repository.updateCachedItem(client.id, {name: 'updated name'});
+
+                expect(spy).toHaveBeenCalledWith([jasmine.objectContaining({id: 1, name: 'updated name'})]);
             })
         );
 

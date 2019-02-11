@@ -89,6 +89,18 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
         );
     }
 
+    public reload(query?: SearchQuery & RepositoryLoadQuery, observeResults: boolean = false): Observable<T[]> {
+        const ob: Observable<T[]> = this._load(query, StoreStrategy.Replace);
+        if (!observeResults) return ob;
+        return ob.pipe(
+            switchMap((data: T[]) => {
+                if (data.length === 0) return of([]);
+                const ids: any[] = data.map((datum: T) => this.cache.dataToIdentifier(datum));
+                return this.observe(ids);
+            })
+        );
+    }
+
     public clear(): void {
         this.cache.clear();
     }
@@ -124,9 +136,9 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
     }
 
     @memoizeStream
-    protected _load(query?: SearchQuery & RepositoryLoadQuery): Observable<T[]> {
+    protected _load(query?: SearchQuery & RepositoryLoadQuery, strategy?: StoreStrategy): Observable<T[]> {
         return this.queryData(query).pipe(
-            map((data: any) => this.cacheItems(data)),
+            map((data: any) => this.cacheItems(data, strategy)),
             catchError((exception) => of([])),
             shareReplay()
         );
