@@ -129,7 +129,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
     public updateCachedItem(id: any, data: any, refreshTTL: boolean = true, strategy: UpdateCacheStrategy = UpdateCacheStrategy.Merge): T {
         const items: any[] = this.cache.pull(id);
         if (items.length === 0) return null;
-        let item: T = strategy === UpdateCacheStrategy.Replace ? data : Object.assign({} as any, items[0], data) as T;
+        let item: T = strategy === UpdateCacheStrategy.Replace ? data : this.mergeItem(items[0], data);
         if (refreshTTL) item = this.setItemTTL(item);
         this.cache.set(id, item);
         return item;
@@ -169,6 +169,10 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
                 if (notLoaded.length > 0) this.invalidIdCache.add(notLoaded);
             })
         );
+    }
+
+    protected mergeItem(item: T, data: any): T {
+        return Object.assign({}, item, data);
     }
 
 }
