@@ -15,7 +15,7 @@ import {GridsterModule} from 'angular-gridster2';
         BrowserModule,
         CommonFormModule,
         LoggerModule.forRoot(),
-        GridsterModule
+        //GridsterModule
     ],
     providers: [],
     bootstrap: [AppComponent]
