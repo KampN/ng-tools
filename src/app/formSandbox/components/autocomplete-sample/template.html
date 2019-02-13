@@ -2,13 +2,21 @@
 	Autocomplete
 </mat-toolbar>
 
-<form>
+<form [formGroup]="form">
 	<mat-form-field>
-		<input type="text" placeholder="name" matInput [formControl]="control" [matAutocomplete]="auto">
+		<input type="text" placeholder="user" matInput formControlName="user" [matAutocomplete]="auto">
+		<mat-progress-spinner matSuffix diameter="16" mode="indeterminate" *ngIf="isQueryingUsers"></mat-progress-spinner>
+		<mat-error *controlError="let error of 'user'">
+			{{error}}
+		</mat-error>
 		<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
 			<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
 				{{option.name}}
 			</mat-option>
 		</mat-autocomplete>
 	</mat-form-field>
+	<div>
+		<div>valid : {{form.valid}}</div>
+		<pre>{{form.value|json}}</pre>
+	</div>
 </form>

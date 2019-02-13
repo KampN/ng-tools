@@ -1,11 +1,15 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Observable, of} from 'rxjs';
+import {delay, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
+import {CommonValidators} from '@kamp-n/ng-common-form';
 
 export interface User {
     name: string;
 }
+
+const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'object', 'invalid_user');
 
 @Component({
     selector: 'autocomplete-sample',
@@ -14,33 +18,64 @@ export interface User {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AutocompleteSampleComponent implements OnInit {
-    control = new FormControl();
+export class AutocompleteSampleComponent implements OnInit, OnDestroy {
+    form: FormGroup;
     options: User[] = [
         {name: 'Mary'},
+        {name: 'Marianne'},
         {name: 'Shelley'},
-        {name: 'Igor'}
+        {name: 'Igor'},
+        {name: 'Isabelle'},
     ];
     filteredOptions: Observable<User[]>;
+    protected rc: RxCleaner = new RxCleaner();
+    protected states: StateManager = new StateManager();
 
-    constructor() { }
+    constructor(protected fb: FormBuilder, protected cdr: ChangeDetectorRef) { }
+
+    get isQueryingUsers(): boolean {
+        return this.states.is('loading');
+    }
 
     ngOnInit() {
-        this.filteredOptions = this.control.valueChanges
-            .pipe(
-                startWith<string | User>(''),
-                map(value => typeof value === 'string' ? value : value.name),
-                map(name => name ? this._filter(name) : this.options.slice())
-            );
+        this.initForm();
+
+        this.states.stateChange.subscribe((state) => this.cdr.markForCheck());
+    }
+
+    ngOnDestroy(): void {
+        this.rc.complete();
+        this.states.destroy();
     }
 
     displayFn(user?: User): string | undefined {
         return user ? user.name : undefined;
     }
 
-    private _filter(name: string): User[] {
-        const filterValue = name.toLowerCase();
+    protected initForm() {
+        this.form = this.fb.group({
+            user: this.fb.control(null, [Validators.required, isUserValidator])
+        });
+        this.filteredOptions = this.form.get('user')
+            .valueChanges.pipe(
+                startWith<string | User>(''),
+                map(value => typeof value === 'string' ? value : value.name),
+                switchMap(name => this.queryUsers(name)),
+                this.rc.takeUntil('form')
+            );
+    }
 
+    protected queryUsers(name: string): Observable<User[]> {
+        this.states.active('loading');
+        return of(name ? this.filter(name) : this.options.slice())
+            .pipe(
+                delay(2000),
+                tap(() => this.states.deactive('loading'))
+            );
+    }
+
+    protected filter(name: string): User[] {
+        const filterValue = name.toLowerCase();
         return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
     }
 }
