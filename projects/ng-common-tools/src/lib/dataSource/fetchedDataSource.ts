@@ -61,6 +61,10 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this._reload.next();
     }
 
+    addFilters(filters: FetchQueryFilters) {
+        this.filters = Object.assign({}, this._filters, filters);
+    }
+
     updatePagination(pagination: { page?: number, limit?: number }) {
         this.pagination = Object.assign({}, this.pagination, pagination);
     }

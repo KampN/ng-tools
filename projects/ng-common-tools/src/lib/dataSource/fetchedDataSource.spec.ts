@@ -119,6 +119,36 @@ describe('DataSource : FetchedDataSource', () => {
         });
     });
 
+    fit('should add filters keeping previous one ', () => {
+
+        sourceStore.setDatabase(dummyFactory.sperm(15));
+        spyOn(sourceStore, 'fetch').and.callThrough();
+
+        const spy = jasmine.createSpy('subscription');
+        const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}, filters: {foo: 'bar'}});
+
+        expect(sourceStore.fetch).toHaveBeenCalledWith({
+            sort: undefined,
+            filters: {foo: 'bar'},
+            pagination: {limit: 5, page: 0}
+        });
+
+        dataSource.connect(null).pipe(
+            rc.takeUntil()
+        ).subscribe(spy);
+
+        dataSource.addFilters({foo2: 'bar2'});
+
+        expect(dataSource.filters).toEqual({foo: 'bar', foo2: 'bar2'});
+        expect(spy).toHaveBeenCalledTimes(2);
+        expect(sourceStore.fetch).toHaveBeenCalledTimes(2);
+        expect(sourceStore.fetch).toHaveBeenCalledWith({
+            sort: undefined,
+            filters: {foo: 'bar', foo2: 'bar2'},
+            pagination: {limit: 5, page: 0}
+        });
+    });
+
     it('should clear store, reset page and fetch missing data when filter change', () => {
 
         sourceStore.setDatabase(dummyFactory.sperm(15));

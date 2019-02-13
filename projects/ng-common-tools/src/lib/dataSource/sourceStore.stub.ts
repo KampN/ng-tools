@@ -8,10 +8,15 @@ import {Check} from '../helpers/check';
 export class SourceStoreStub<T> implements SourceStore<T> {
 
     // array used as fetching source
-    DATABASE: T[] = [];
+    DATABASE: T[];
 
     total = 0;
     store: T[] = [];
+
+    constructor(data: T[] = []) {
+        this.setDatabase(data);
+    }
+
     _storeChange: ReplaySubject<void> = new ReplaySubject();
 
     get storeChange(): Observable<void> {
