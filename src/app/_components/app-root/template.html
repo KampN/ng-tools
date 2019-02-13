@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+	<span>Sandbox</span>
+</mat-toolbar>
+<mat-drawer-container class="app-container">
+	<mat-drawer class="app-navigation" mode="side" opened>
+		<mat-toolbar></mat-toolbar>
+		<mat-list>
+			<mat-action-list>
+				<button mat-list-item [routerLink]="['/', 'forms']" routerLinkActive="active">
+					Forms
+				</button>
+			</mat-action-list>
+		</mat-list>
+	</mat-drawer>
+	<mat-drawer-content>
+		<router-outlet></router-outlet>
+	</mat-drawer-content>
+</mat-drawer-container>
+
