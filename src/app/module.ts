@@ -8,6 +8,7 @@ import {SharedModule} from './shared/module';
 import {MaterialModule} from './material/module';
 import {Routing} from './routing';
 import {Components} from './_components';
+import {NavigationRouteProvider} from './navigation';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,7 @@ import {Components} from './_components';
         MaterialModule.forRoot(),
         LoggerModule.forRoot(),
     ],
-    providers: [],
+    providers: [NavigationRouteProvider],
     bootstrap: [AppRootComponent]
 })
 export class AppModule {}

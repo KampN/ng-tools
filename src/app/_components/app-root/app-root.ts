@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, ViewEncapsulation} from '@angular/core';
+import {NAVIGATION_ROUTES, NavigationRoutes} from '../../navigation';
 
 @Component({
     selector: 'app-root',
@@ -8,4 +9,5 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     encapsulation: ViewEncapsulation.None
 })
 export class AppRootComponent {
+    constructor(@Inject(NAVIGATION_ROUTES) readonly navigation: NavigationRoutes) {}
 }

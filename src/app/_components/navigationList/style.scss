@@ -1,0 +1,21 @@
+navigation-list {
+
+	a[mat-list-item].active {
+		position: relative;
+		background: rgba(0, 0, 0, .04);
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			left: 0;
+			top: 0;
+
+			width: .25rem;
+			height: 100%;
+
+			background: #673ab7;
+		}
+
+	}
+}
