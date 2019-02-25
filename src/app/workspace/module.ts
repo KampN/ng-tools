@@ -1,23 +1,17 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {SharedModule} from '../shared/module';
 import {Components} from './components';
-import {Routing} from './routing';
-import {WorkspaceModule} from '../workspace/module';
 
 @NgModule({
-    imports: [
-        SharedModule,
-        Routing,
-        WorkspaceModule
-    ],
-    exports: [],
+    imports: [SharedModule],
+    exports: [...Components],
     declarations: [...Components],
     providers: [],
 })
-export class FormSandboxModule {
+export class WorkspaceModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: FormSandboxModule,
+            ngModule: WorkspaceModule,
             providers: []
         };
     }

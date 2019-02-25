@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
-import {delay, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
 import {CommonValidators} from '@kamp-n/ng-common-form';
 
@@ -59,8 +59,8 @@ export class AutocompleteSampleComponent implements OnInit, OnDestroy {
         this.filteredOptions = this.form.get('user')
             .valueChanges.pipe(
                 startWith<string | User>(''),
-                map(value => typeof value === 'string' ? value : value.name),
-                switchMap(name => this.queryUsers(name)),
+                filter((value: string | User) => typeof value === 'string'),
+                switchMap((name: string) => this.queryUsers(name)),
                 this.rc.takeUntil('form')
             );
     }
