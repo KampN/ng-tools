@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import {AutocompleteSampleComponent} from './components/autocomplete-sample/autocomplete-sample';
-import {MultiSelectSampleComponent} from './components/picker-section-sample/picker-section-sample';
+import {PickerSectionSampleComponent} from './components/picker-section-sample/picker-section-sample';
 
 export const ROUTES: Routes = [
     {
@@ -9,8 +9,8 @@ export const ROUTES: Routes = [
         component: AutocompleteSampleComponent
     },
     {
-        path: 'multi-select',
-        component: MultiSelectSampleComponent
+        path: 'picker-section',
+        component: PickerSectionSampleComponent
     },
     {
         path: '**',

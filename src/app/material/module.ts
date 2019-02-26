@@ -1,7 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {
-    MatAutocompleteModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule,
-    MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule
+    MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule,
+    MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatTreeModule
 } from '@angular/material';
 
 @NgModule({
@@ -16,7 +16,9 @@ import {
         MatInputModule,
         MatFormFieldModule,
         MatAutocompleteModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatTreeModule,
+        MatCheckboxModule
     ],
 })
 export class MaterialModule {
