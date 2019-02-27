@@ -5,7 +5,7 @@ import {ControlErrorDirective} from './controlError';
 import {FormControlMockFactory} from '../mockFactories/formControl';
 import {By} from '@angular/platform-browser';
 
-describe('Components : FormErrorHint', () => {
+describe('Directives : FormErrorHint', () => {
 
     @Component({
         template: `
