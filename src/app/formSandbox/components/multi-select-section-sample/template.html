@@ -1,0 +1,21 @@
+<mat-toolbar>
+	Multi-select
+</mat-toolbar>
+
+<form [formGroup]="form">
+	<div formControlName="states" formSelectGroup>
+		<div>
+			<mat-checkbox formSelectControl="A">A</mat-checkbox>
+		</div>
+		<div>
+			<mat-checkbox formSelectControl="B">B</mat-checkbox>
+		</div>
+		<div>
+			<mat-slide-toggle formSelectControl="B">B</mat-slide-toggle>
+		</div>
+	</div>
+	<div>
+		<div>valid : {{form.valid}}</div>
+		<pre>{{form.value|json}}</pre>
+	</div>
+</form>
