@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
-import {CommonFormModule} from '@kamp-n/ng-common-form';
+import {CommonFormModule} from '../projects';
 import {CommonModule} from '@angular/common';
 
 @NgModule({

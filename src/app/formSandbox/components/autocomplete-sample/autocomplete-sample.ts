@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
-import {CommonValidators} from '@kamp-n/ng-common-form';
+import {CommonValidators} from '../../../projects';
 
 export interface User {
     name: string;
@@ -16,7 +16,7 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
     templateUrl: './template.html',
     styleUrls: ['./style.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteSampleComponent implements OnInit, OnDestroy {
     form: FormGroup;

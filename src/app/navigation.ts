@@ -24,8 +24,8 @@ export const NavigationRouteProvider: ValueProvider = {
                     route: ['/', 'forms', 'autocomplete']
                 },
                 {
-                    title: 'picker section',
-                    route: ['/', 'forms', 'picker-section']
+                    title: 'multi select',
+                    route: ['/', 'forms', 'multi-select']
                 }
             ]
         },
