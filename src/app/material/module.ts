@@ -1,7 +1,8 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {
-    MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule,
-    MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatSlideToggleModule, MatToolbarModule, MatTreeModule
+    MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatIconModule,
+    MatInputModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatSlideToggleModule, MatTableModule, MatToolbarModule,
+    MatTreeModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +20,9 @@ import {
         MatProgressSpinnerModule,
         MatTreeModule,
         MatCheckboxModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatExpansionModule,
+        MatTableModule
     ],
 })
 export class MaterialModule {

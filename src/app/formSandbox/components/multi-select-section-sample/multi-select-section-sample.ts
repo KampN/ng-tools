@@ -18,7 +18,7 @@ export class MultiSelectSectionSampleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.form = this.fb.group({
-            states: this.fb.control(['A'])
+            states: this.fb.control(['A']),
         });
     }
 
