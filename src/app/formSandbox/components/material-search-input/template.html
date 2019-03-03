@@ -1,0 +1,15 @@
+<div class="input-container">
+	<label>
+		<input [disabled]="disabled" type="text" [value]="search" (input)="valueChange.next($event.target.value)" #input [placeholder]="placeholder">
+		<material-underline [active]="focused"></material-underline>
+	</label>
+	<button mat-icon-button disableRipple class="noop" *ngIf="!showClearBtn; else clearInputBtn">
+		<mat-icon>search</mat-icon>
+	</button>
+</div>
+
+<ng-template #clearInputBtn>
+	<button [disabled]="disabled" mat-icon-button disableRipple (click)="valueChange.next('')">
+		<mat-icon>remove_circle_outline</mat-icon>
+	</button>
+</ng-template>

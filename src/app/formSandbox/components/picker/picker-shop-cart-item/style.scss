@@ -1,0 +1,16 @@
+picker-shop-cart-item {
+	display: block;
+
+	.picker-shop-cart-item-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 .5rem;
+	}
+
+	.picker-shop-cart-item-content {
+		flex: 1 1 auto;
+	}
+
+	box-shadow: inset 0 -1px 0 var(--divider-color);
+}

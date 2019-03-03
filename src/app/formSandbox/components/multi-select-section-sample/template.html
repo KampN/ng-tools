@@ -14,9 +14,53 @@
 				<mat-slide-toggle formSelectControl="B">B</mat-slide-toggle>
 			</div>
 		</div>
+
+		<picker class="ggl-scrollbar" formControlName="elements">
+			<picker-section *pickerSectionDef="let model">
+				<picker-header *pickerHeaderDef>
+					<material-search-input formControlName="search" placeholder="Rechercher"></material-search-input>
+				</picker-header>
+				<table mat-table [dataSource]="dataSource">
+					<ng-container matColumnDef="selector">
+						<th mat-header-cell *matHeaderCellDef></th>
+						<td mat-cell *matCellDef="let row">
+							<mat-checkbox (click)="$event.stopPropagation()"
+										  (change)="$event ? model.toggle(row) : null"
+										  [checked]="model.isSelected(row)">
+							</mat-checkbox>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="name">
+						<th mat-header-cell *matHeaderCellDef> Name</th>
+						<td mat-cell *matCellDef="let row"> {{row.name}} </td>
+					</ng-container>
+
+					<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayedColumns; "
+						[class.selected]="model.isSelected(row)" (click)="model.toggle(row)">
+					</tr>
+				</table>
+			</picker-section>
+
+			<picker-shop-cart *pickerShopCartDef="let selection; let length=$length; let model=$model">
+				<ng-container *pickerHeaderDef>
+					<picker-header></picker-header>
+					<picker-header>{{length}} campagnes sélectionnées</picker-header>
+				</ng-container>
+				<picker-shop-cart-item (remove)="model.deselect(item)" *pickerShopCartItemDef="let item">
+					{{item.name}}
+				</picker-shop-cart-item>
+			</picker-shop-cart>
+		</picker>
+
 		<div>
 			<div>valid : {{form.valid}}</div>
 			<pre>{{form.value|json}}</pre>
 		</div>
+
 	</form>
 </div>
+
+
+

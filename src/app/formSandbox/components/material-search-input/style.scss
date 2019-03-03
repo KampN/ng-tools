@@ -1,0 +1,47 @@
+material-search-input {
+	--color: black;
+	--underline-color--idle: rgba(0, 0, 0, .42);;
+	--underline-color--active: var(--color);
+
+	display: inline-block;
+
+	.noop {
+		pointer-events: none;
+	}
+
+	.input-container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		color: var(--color);
+
+		label {
+			position: relative;
+			flex: 1 1 auto;
+		}
+
+		input {
+			width: 100%;
+			border: none;
+			background: transparent;
+			outline: none;
+			line-height: 1.25;
+			padding-bottom: 0.2rem;
+			font-size: 1em;
+		}
+
+		button {
+			height: 2em;
+			width: 2em;
+			line-height: 2em;
+			padding-left: .25rem;
+		}
+	}
+
+	material-underline {
+		--color--idle: var(--underline-color--idle);
+		--color--active: var(--underline-color--active);
+		position: absolute;
+		width: 100%;
+	}
+}

@@ -1,0 +1,27 @@
+picker {
+	--bg-color: white;
+	--divider-color: rgba(0, 0, 0, .12);
+	--height: 20rem;
+
+	display: flex;
+	background-color: var(--bg-color);
+	box-shadow: 0 0 0 1px var(--divider-color);
+
+	> * {
+		flex: 1 1 0;
+		height: var(--height);
+
+		&:nth-last-child(n+2) {
+			box-shadow: inset -1px 0 0 var(--divider-color);
+		}
+	}
+
+	&.disabled {
+		pointer-events: none;
+
+		> * {
+			opacity: .5;
+		}
+	}
+
+}

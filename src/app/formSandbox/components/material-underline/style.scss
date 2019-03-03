@@ -1,0 +1,45 @@
+material-underline {
+
+	--color--idle: rgba(0, 0, 0, .42);
+	--color--active: black;
+
+	$material-underline-height: 1px !default;
+	$ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+	$ease-in-duration: 300ms !default;
+	$ease-in-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2) !default;
+	$ease-in: all $ease-in-duration $ease-in-timing-function !default;
+
+	display: block;
+	position: relative;
+	pointer-events: none;
+	// We transform the height slightly higher to fix inconsistent underline height for some DPIs.
+	transform: scaleY(1.0001);
+	height: $material-underline-height;
+	margin-top: -$material-underline-height;
+	background-color: var(--color--idle);
+
+	.underline-ripple {
+		$height: $material-underline-height * 2;
+		background-color: transparent;
+
+		position: absolute;
+		bottom: 0;
+		height: $height;
+		left: 0;
+		width: 100%;
+		transform-origin: 50%;
+		transform: scaleX(0.5);
+		opacity: 0;
+		transition: background-color $ease-in-duration $ease-in-timing-function;
+	}
+
+	&.active .underline-ripple {
+		background-color: var(--color--active);
+		opacity: 1;
+		transform: scaleX(1);
+		transition: transform 300ms $ease-out-timing-function,
+		opacity 100ms $ease-out-timing-function,
+		background-color 300ms $ease-out-timing-function;
+	}
+
+}
