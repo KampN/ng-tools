@@ -119,7 +119,7 @@ describe('DataSource : FetchedDataSource', () => {
         });
     });
 
-    fit('should add filters keeping previous one ', () => {
+    it('should add filters keeping previous one ', () => {
 
         sourceStore.setDatabase(dummyFactory.sperm(15));
         spyOn(sourceStore, 'fetch').and.callThrough();
