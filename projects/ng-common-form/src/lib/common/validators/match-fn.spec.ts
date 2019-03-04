@@ -1,5 +1,5 @@
-import {FormControlMockFactory} from '../../mockFactories/formControl';
-import {matchFnValidator} from './matchFn';
+import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {matchFnValidator} from './match-fn';
 import {FormControl} from '@angular/forms';
 
 describe('Validators : matchFn', () => {

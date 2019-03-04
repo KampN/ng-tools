@@ -3,7 +3,7 @@ import {SharedModule} from '../shared/module';
 import {PickerHeaderComponent, PickerHeaderDefDirective, PickerHeaderOutletDirective} from './picker-header/picker-header';
 import {
     PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
-} from './picker/component';
+} from './picker/picker';
 import {PickerSectionComponent} from './picker-section/picker-section';
 import {PickerShopCartItemComponent} from './picker-shop-cart-item/picker-shop-cart-item';
 import {

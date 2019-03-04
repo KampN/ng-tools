@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ControlErrorDirective} from './controlError';
-import {FormControlMockFactory} from '../../mockFactories/formControl';
+import {ControlErrorDirective} from './control-error';
+import {FormControlMockFactory} from '../../mockFactories/form-control';
 import {By} from '@angular/platform-browser';
 
 describe('Directives : FormErrorHint', () => {

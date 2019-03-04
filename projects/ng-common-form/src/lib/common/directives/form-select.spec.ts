@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FormControlMockFactory} from '../../mockFactories/formControl';
-import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './formSelect';
+import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './form-select';
 import {By} from '@angular/platform-browser';
 
 fdescribe('Directives : FormSelect', () => {

@@ -5,7 +5,7 @@ import {
 import {SelectionChange, SelectionModel} from '@angular/cdk/collections';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-header/picker-header';
-import {Picker} from '../picker/component';
+import {Picker} from '../picker/picker';
 
 @Directive({
     selector: '[pickerShopCartItemDef]'

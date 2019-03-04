@@ -1,5 +1,5 @@
-import {ControlErrorDirective} from './controlError';
-import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './formSelect';
+import {ControlErrorDirective} from './control-error';
+import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './form-select';
 
 export const Directives: any[] = [
     ControlErrorDirective,

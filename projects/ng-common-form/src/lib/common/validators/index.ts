@@ -1,5 +1,5 @@
 import {Type} from '@angular/core';
-import {matchFnValidator, MatchFnValidatorDirective} from './matchFn';
+import {matchFnValidator, MatchFnValidatorDirective} from './match-fn';
 
 export const ValidatorDirectives: Type<any>[] = [MatchFnValidatorDirective];
 
