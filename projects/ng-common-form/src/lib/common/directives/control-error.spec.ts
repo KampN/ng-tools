@@ -12,7 +12,7 @@ describe('Directives : FormErrorHint', () => {
 			<div [formGroup]="group">
 				<span #inside *controlError="let error of 'control'">{{error}}</span>
 			</div>
-			<div #outside *controlError="let error of control; let errors=$errors; let data=$error">
+			<div #outside *controlError="let error of control; let errors=errors; let data=error">
 				<span class="errors">{{errors|json}}</span>
 				<span class="error-name">{{error}}</span>
 				<span class="error-data">{{data}}</span>

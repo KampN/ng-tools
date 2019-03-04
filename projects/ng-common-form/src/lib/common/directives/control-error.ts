@@ -25,10 +25,10 @@ export class ControlErrorDirectiveExceptions {
 }
 
 export class ControlErrorContext {
-    public $error;
+    public error;
 
-    constructor(public $implicit: string, public $errors: any) {
-        this.$error = $errors[$implicit] || null;
+    constructor(public $implicit: string, public errors: any) {
+        this.error = errors[$implicit] || null;
     }
 }
 

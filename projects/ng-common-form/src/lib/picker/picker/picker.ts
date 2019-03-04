@@ -37,24 +37,24 @@ export class PickerShopCartDefDirective {
 export class PickerBodyContext<T> {
     constructor(public $implicit: SelectionModel<T>) {}
 
-    get $length() {
+    get length() {
         return this.$implicit.selected.length;
     }
 
-    get $empty() {
+    get empty() {
         return this.$implicit.isEmpty();
     }
 }
 
 export class PickerShopCartContext<T> {
-    constructor(public $implicit: T[], public $model: SelectionModel<T>) {}
+    constructor(public $implicit: T[], public model: SelectionModel<T>) {}
 
-    get $length() {
-        return this.$model.selected.length;
+    get length() {
+        return this.model.selected.length;
     }
 
-    get $empty() {
-        return this.$model.isEmpty();
+    get empty() {
+        return this.model.isEmpty();
     }
 }
 

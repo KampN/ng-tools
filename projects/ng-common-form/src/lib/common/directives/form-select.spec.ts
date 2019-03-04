@@ -5,7 +5,7 @@ import {FormControlMockFactory} from '../../mockFactories/form-control';
 import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './form-select';
 import {By} from '@angular/platform-browser';
 
-fdescribe('Directives : FormSelect', () => {
+describe('Directives : FormSelect', () => {
 
     @Component({
         template: `
