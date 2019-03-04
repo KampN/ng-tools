@@ -23,4 +23,4 @@ export {
 } from './lib/picker/picker-shop-cart/picker-shop-cart';
 export * from './lib/picker/picker-module';
 
-export * from './lib/material-ui/material-module';
+export {MaterialUIModule, MaterialSearchInputComponent, MaterialUnderlineComponent} from './lib/material-ui/material-module';
