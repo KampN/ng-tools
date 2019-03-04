@@ -34,7 +34,7 @@
 		"@angular/cli": "^7.3.4",
 		"@angular/compiler-cli": "^7.2.7",
 		"@angular/language-service": "^7.2.7",
-		"@kamp-n/ng-common-form": "^1.3.0",
+		"@kamp-n/ng-common-form": "^1.4.0-beta.2",
 		"@kamp-n/ng-common-tools": "latest",
 		"@kamp-n/ng-logger": "latest",
 		"@kamp-n/ng-logger-fs": "latest",
