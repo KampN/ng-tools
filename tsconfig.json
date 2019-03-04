@@ -37,10 +37,10 @@
       "@kamp-n/ng-common-form/*": [
         "dist/ng-common-form/*"
       ],
-      "ng-logger-fs": [
+      "@kamp-n/ng-logger-fs": [
         "dist/ng-logger-fs"
       ],
-      "ng-logger-fs/*": [
+      "@kamp-n/ng-logger-fs/*": [
         "dist/ng-logger-fs/*"
       ]
     }

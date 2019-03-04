@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
-import {CommonValidators} from '../../../projects';
+import {CommonValidators} from '@kamp-n/ng-common-form';
 
 export interface User {
     name: string;

@@ -4,8 +4,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
-import {CommonFormModule} from '../projects';
 import {CommonModule} from '@angular/common';
+import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
 
 @NgModule({
     imports: [],
@@ -13,6 +13,9 @@ import {CommonModule} from '@angular/common';
         CommonModule,
         CommonToolsModule,
         CommonFormModule,
+        MaterialUIModule,
+        PickerModule,
+
         RouterModule,
         HttpClientModule,
         MaterialModule,

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@an
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-    selector: 'multi-select-select-sample',
+    selector: 'multi-select-sample',
     templateUrl: './template.html',
     styleUrls: ['./style.scss'],
     encapsulation: ViewEncapsulation.None,

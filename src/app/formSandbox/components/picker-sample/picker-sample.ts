@@ -4,7 +4,7 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {MatTableDataSource} from '@angular/material';
 
 @Component({
-    selector: 'picker-select-sample',
+    selector: 'picker-sample',
     templateUrl: './template.html',
     styleUrls: ['./style.scss'],
     encapsulation: ViewEncapsulation.None,
