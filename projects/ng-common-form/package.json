@@ -1,10 +1,10 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "1.3.0",
+	"version": "1.4.0-beta.1",
 	"peerDependencies": {
-		"@angular/common": "^7.2.0",
-		"@angular/core": "^7.2.0",
-		"@angular/forms": "^7.2.0",
+		"@angular/common": "^7.3.0",
+		"@angular/core": "^7.3.0",
+		"@angular/forms": "^7.3.0",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
