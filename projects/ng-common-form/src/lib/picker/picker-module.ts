@@ -11,10 +11,12 @@ import {
     PickerShopCartListOutletDirective
 } from './picker-shop-cart/picker-shop-cart';
 import {MatButtonModule, MatIconModule} from '@angular/material';
+import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 
 @NgModule({
     imports: [
         SharedModule,
+        CommonToolsModule,
         MatIconModule,
         MatButtonModule
     ],
