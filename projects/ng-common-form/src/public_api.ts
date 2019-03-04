@@ -10,7 +10,7 @@ export * from './lib/common/directives/formSelect';
 export {CommonValidators} from './lib/common/validators/index';
 export {MatchFnValidatorDirective} from './lib/common/validators/matchFn';
 
-export * from './lib/common/module';
+export * from './lib/common/common-module';
 
 export {
     PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective

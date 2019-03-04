@@ -1,15 +1,18 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {Directives} from './directives';
-import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ValidatorDirectives} from './validators';
-import {PickerComponents} from '../picker';
+import {Directives} from './directives/index';
+import {ValidatorDirectives} from './validators/index';
 import {SharedModule} from '../shared/module';
 
 @NgModule({
     imports: [SharedModule],
-    exports: [...Directives, ...ValidatorDirectives, ...PickerComponents, FormsModule, ReactiveFormsModule],
-    declarations: [...Directives, ...ValidatorDirectives, ...PickerComponents],
+    exports: [
+        ...Directives,
+        ...ValidatorDirectives,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    declarations: [...Directives, ...ValidatorDirectives],
     providers: [],
 })
 export class CommonFormModule {

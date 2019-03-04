@@ -49,10 +49,10 @@ import {MatButtonModule, MatIconModule} from '@angular/material';
     ],
     providers: [],
 })
-export class PickerModuleModule {
+export class PickerModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: PickerModuleModule,
+            ngModule: PickerModule,
             providers: []
         };
     }

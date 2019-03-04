@@ -1,4 +1,4 @@
-import {FormControlMockFactory} from '@kamp-n/ng-common-form';
+import {FormControlMockFactory} from '../../mockFactories/formControl';
 import {matchFnValidator} from './matchFn';
 import {FormControl} from '@angular/forms';
 
