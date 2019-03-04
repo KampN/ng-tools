@@ -1,19 +1,8 @@
 <mat-toolbar>
-	Multi-select
+	Picker
 </mat-toolbar>
 <div>
 	<form [formGroup]="form">
-		<div formControlName="states" formSelectGroup>
-			<div>
-				<mat-checkbox formSelectControl="A">A</mat-checkbox>
-			</div>
-			<div>
-				<mat-checkbox formSelectControl="B">B</mat-checkbox>
-			</div>
-			<div>
-				<mat-slide-toggle formSelectControl="B">B</mat-slide-toggle>
-			</div>
-		</div>
 
 		<picker class="ggl-scrollbar" formControlName="elements">
 			<picker-section *pickerSectionDef="let model">

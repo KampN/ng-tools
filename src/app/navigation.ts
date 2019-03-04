@@ -26,6 +26,10 @@ export const NavigationRouteProvider: ValueProvider = {
                 {
                     title: 'multi select',
                     route: ['/', 'forms', 'multi-select']
+                },
+                {
+                    title: 'picker',
+                    route: ['/', 'forms', 'picker']
                 }
             ]
         },

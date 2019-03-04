@@ -1,0 +1,58 @@
+multi-select-section-select-sample {
+
+	form {
+		padding: 1rem;
+	}
+
+	.ggl-scrollbar {
+
+		*::-webkit-scrollbar {
+			width: 8px;
+			height: 8px;
+		}
+
+		*::-webkit-scrollbar-thumb {
+			background-color: rgba(0, 0, 0, .26);
+			background-clip: initial;
+		}
+
+		*::-webkit-scrollbar-corner {
+			background: transparent;
+		}
+
+	}
+
+	picker {
+		width: 40rem;
+		height: 20rem;
+
+		material-search-input {
+			width: 100%;
+		}
+
+		picker-section {
+
+			.mat-table {
+				min-width: 100%;
+
+				.mat-row {
+					&:hover, &.selected {
+						background-color: whitesmoke;
+					}
+
+					cursor: pointer;
+				}
+
+				.mat-column-selector {
+					max-width: 80px;
+					overflow: initial;
+				}
+
+				.mat-header-row, .mat-row {
+					height: 40px;
+				}
+			}
+		}
+	}
+}
+

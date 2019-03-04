@@ -4,13 +4,13 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {MatTableDataSource} from '@angular/material';
 
 @Component({
-    selector: 'multi-select-section-select-sample',
+    selector: 'picker-select-sample',
     templateUrl: './template.html',
     styleUrls: ['./style.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MultiSelectSectionSampleComponent implements OnInit, OnDestroy {
+export class PickerSampleComponent implements OnInit, OnDestroy {
     form: FormGroup;
     displayedColumns: string[] = ['selector', 'name'];
     dataSource = new MatTableDataSource([
@@ -33,7 +33,6 @@ export class MultiSelectSectionSampleComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.form = this.fb.group({
             search: this.fb.control(''),
-            states: this.fb.control(['A']),
             elements: this.fb.control({value: [], disabled: false}, [Validators.minLength(1)])
         });
 
@@ -42,7 +41,6 @@ export class MultiSelectSectionSampleComponent implements OnInit, OnDestroy {
         ).subscribe((search: string) => {
             this.dataSource.filter = search;
         });
-
     }
 
     ngOnDestroy(): void {
