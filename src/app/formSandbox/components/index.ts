@@ -5,33 +5,19 @@ import {MaterialUnderlineComponent} from './material-underline/material-underlin
 import {MaterialSearchInputComponent} from './material-search-input/material-search-input';
 import {FlexScrollContainerComponent} from './flex-scroll-container/flex-scroll-container';
 
-import {PickerSectionComponent} from './picker/picker-section/picker-section';
+import {PickerSectionComponent} from '../../../../projects/ng-common-form/src/lib/picker/picker-section/picker-section';
 import {
     PickerShopCartComponent, PickerShopCartEmptyDefDirective, PickerShopCartEmptyOutletDirective, PickerShopCartItemDefDirective,
     PickerShopCartListOutletDirective
-} from './picker/picker-shop-cart/picker-shop-cart';
-import {PickerHeaderComponent, PickerHeaderDefDirective, PickerHeaderOutletDirective} from './picker/picker-header/picker-header';
-import {PickerShopCartItemComponent} from './picker/picker-shop-cart-item/picker-shop-cart-item';
+} from '../../../../projects/ng-common-form/src/lib/picker/picker-shop-cart/picker-shop-cart';
+import {PickerHeaderComponent, PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../../../../projects/ng-common-form/src/lib/picker/picker-header/picker-header';
+import {PickerShopCartItemComponent} from '../../../../projects/ng-common-form/src/lib/picker/picker-shop-cart-item/picker-shop-cart-item';
 import {
     PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
-} from './picker/picker/component';
+} from '../../../../projects/ng-common-form/src/lib/picker/picker/component';
 
 export const Components: Type<any>[] = [
-    PickerHeaderDefDirective,
-    PickerHeaderComponent,
-    PickerBodyOutletDirective,
-    PickerSectionComponent,
-    PickerSectionDefDirective,
-    PickerComponent,
-    PickerShopCartOutletDirective,
-    PickerShopCartDefDirective,
-    PickerShopCartItemComponent,
-    PickerShopCartListOutletDirective,
-    PickerShopCartItemDefDirective,
-    PickerHeaderOutletDirective,
-    PickerShopCartComponent,
-    PickerShopCartEmptyDefDirective,
-    PickerShopCartEmptyOutletDirective,
+
 
     AutocompleteSampleComponent,
     MultiSelectSectionSampleComponent,

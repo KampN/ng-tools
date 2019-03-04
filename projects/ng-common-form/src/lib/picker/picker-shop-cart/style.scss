@@ -1,0 +1,10 @@
+picker-shop-cart, [picker-shop-cart] {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+
+	.picker-shop-cart-item-list {
+		flex: 1 1 auto;
+	}
+}

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {MatTableDataSource} from '@angular/material';
 
@@ -34,7 +34,7 @@ export class MultiSelectSectionSampleComponent implements OnInit, OnDestroy {
         this.form = this.fb.group({
             search: this.fb.control(''),
             states: this.fb.control(['A']),
-            elements: this.fb.control({value: [], disabled: false})
+            elements: this.fb.control({value: [], disabled: false}, [Validators.minLength(1)])
         });
 
         this.form.get('search').valueChanges.pipe(
