@@ -61,7 +61,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this._reload.next();
     }
 
-    addFilters(filters: FetchQueryFilters) {
+    mergeFilters(filters: FetchQueryFilters) {
         this.filters = Object.assign({}, this._filters, filters);
     }
 

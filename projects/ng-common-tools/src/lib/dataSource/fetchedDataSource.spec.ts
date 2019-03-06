@@ -137,7 +137,7 @@ describe('DataSource : FetchedDataSource', () => {
             rc.takeUntil()
         ).subscribe(spy);
 
-        dataSource.addFilters({foo2: 'bar2'});
+        dataSource.mergeFilters({foo2: 'bar2'});
 
         expect(dataSource.filters).toEqual({foo: 'bar', foo2: 'bar2'});
         expect(spy).toHaveBeenCalledTimes(2);
