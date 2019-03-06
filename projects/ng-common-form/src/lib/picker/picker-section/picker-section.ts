@@ -14,7 +14,7 @@ export class PickerSectionComponent<T> implements AfterContentInit, OnDestroy {
     @ContentChild(PickerHeaderDefDirective) headerDef: PickerHeaderDefDirective;
 
     ngAfterContentInit(): void {
-        this.headerOutlet.viewContainer.createEmbeddedView(
+        if (this.headerDef) this.headerOutlet.viewContainer.createEmbeddedView(
             this.headerDef.template
         );
     }
