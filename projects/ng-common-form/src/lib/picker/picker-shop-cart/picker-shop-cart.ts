@@ -1,16 +1,25 @@
 import {
-    AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Directive, ElementRef, Host, OnDestroy, OnInit,
-    Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
+    AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Host,
+    OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
 } from '@angular/core';
 import {SelectionChange, SelectionModel} from '@angular/cdk/collections';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-header/picker-header';
 import {Picker} from '../picker/picker';
 
+export class PickerShopCartExceptions {
+    static multipleDefaultItemDef() {
+        return Error(`There can only be one default item without a when predicate function.`);
+    }
+}
+
 @Directive({
     selector: '[pickerShopCartItemDef]'
 })
-export class PickerShopCartItemDefDirective {
+export class PickerShopCartItemDefDirective<T> {
+
+    when: (index: number, rowData: T) => boolean;
+
     constructor(public template: TemplateRef<any>) {}
 }
 
@@ -43,10 +52,11 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
     @ViewChild(PickerHeaderOutletDirective) headerOutlet: PickerHeaderOutletDirective;
     @ContentChild(PickerHeaderDefDirective) headerDef: PickerHeaderDefDirective;
     @ViewChild(PickerShopCartListOutletDirective) listOutlet: PickerShopCartListOutletDirective;
-    @ContentChild(PickerShopCartItemDefDirective) itemDef: PickerShopCartItemDefDirective;
+    @ContentChildren(PickerShopCartItemDefDirective) itemDefs: PickerShopCartItemDefDirective<T>[];
     @ViewChild(PickerShopCartEmptyOutletDirective) emptyBlockOutlet: PickerShopCartEmptyOutletDirective;
     @ContentChild(PickerShopCartEmptyDefDirective) emptyBlockDef: PickerShopCartEmptyDefDirective;
 
+    protected defaultItemDef: PickerShopCartItemDefDirective<T>;
     protected renderMap: Map<T, ViewRef> = new Map();
     protected rc: RxCleaner = new RxCleaner();
 
@@ -62,6 +72,10 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
     }
 
     ngOnInit(): void {
+    }
+
+    ngAfterContentInit(): void {
+        this.cacheItemDefs();
         this.model.changed.pipe(
             this.rc.takeUntil('destroy')
         ).subscribe((changed: SelectionChange<T>) => {
@@ -70,9 +84,6 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
             changed.removed.forEach((item: T) => this.remove(item));
             this.cdr.markForCheck();
         });
-    }
-
-    ngAfterContentInit(): void {
         this.headerOutlet.viewContainer.createEmbeddedView(
             this.headerDef.template
         );
@@ -84,14 +95,15 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
     }
 
     protected toggleEmptyBlock(nbRendered: number) {
-        if(!this.emptyBlockDef) return;
+        if (!this.emptyBlockDef) return;
         const container = this.emptyBlockOutlet.viewContainer;
         if (nbRendered > 0) container.createEmbeddedView(this.emptyBlockDef.template);
         else container.clear();
     }
 
     protected insert(item: T) {
-        this.renderMap.set(item, this.listOutlet.viewContainer.createEmbeddedView(this.itemDef.template, {$implicit: item}));
+        const def = this.itemDefs.find((d) => d.when && d.when(this.renderMap.size, item)) || this.defaultItemDef;
+        this.renderMap.set(item, this.listOutlet.viewContainer.createEmbeddedView(def.template, {$implicit: item}));
     }
 
     protected remove(item: T) {
@@ -100,6 +112,12 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
         const container = this.listOutlet.viewContainer;
         container.remove(container.indexOf(viewRef));
         this.renderMap.delete(item);
+    }
+
+    protected cacheItemDefs() {
+        const defaultItemDefs = this.itemDefs.filter(def => !def.when);
+        if (defaultItemDefs.length > 1) throw PickerShopCartExceptions.multipleDefaultItemDef();
+        this.defaultItemDef = defaultItemDefs[0];
     }
 
 }

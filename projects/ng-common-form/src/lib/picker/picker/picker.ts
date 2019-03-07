@@ -58,6 +58,8 @@ export class PickerShopCartContext<T> {
     }
 }
 
+
+//@todo - handle dom changes (ngIf on shopCart/section templates)
 @Component({
     selector: 'picker',
     templateUrl: './template.html',
