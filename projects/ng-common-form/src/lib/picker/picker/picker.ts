@@ -1,10 +1,10 @@
 import {
-    AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, forwardRef, HostBinding, OnDestroy, OnInit,
-    TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation
+    AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, forwardRef, HostBinding, Input, OnChanges,
+    OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
 import {Check, RxCleaner} from '@kamp-n/ng-common-tools';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
 
 @Directive({selector: '[pickerBodyOutlet]'})
 export class PickerBodyOutletDirective {
@@ -58,7 +58,6 @@ export class PickerShopCartContext<T> {
     }
 }
 
-
 //@todo - handle dom changes (ngIf on shopCart/section templates)
 @Component({
     selector: 'picker',
@@ -75,14 +74,16 @@ export class PickerShopCartContext<T> {
         }
     ]
 })
-export class PickerComponent<T> implements ControlValueAccessor, AfterContentInit, OnDestroy, OnInit {
+export class PickerComponent<T> implements ControlValueAccessor, AfterContentInit, OnDestroy, OnInit, OnChanges {
 
     @ContentChild(PickerShopCartDefDirective) shopCartDef: PickerShopCartDefDirective;
     @ContentChild(PickerSectionDefDirective) sectionDef: PickerSectionDefDirective;
     @ViewChild(PickerShopCartOutletDirective) shopCartOutlet: PickerShopCartOutletDirective;
     @ViewChild(PickerBodyOutletDirective) bodyOutlet: PickerBodyOutletDirective;
     @HostBinding('class.disabled') public disabled: boolean = false;
+    @Input() public extractIdFn: ExtractIdFn;
     public model: SelectionModel<T> = new SelectionModel(true);
+
     protected rc: RxCleaner = new RxCleaner();
     protected bodyContext: PickerBodyContext<T> = new PickerBodyContext(this.model);
     protected shopCartContext: PickerShopCartContext<T> = new PickerShopCartContext([], this.model);
@@ -128,6 +129,11 @@ export class PickerComponent<T> implements ControlValueAccessor, AfterContentIni
             this.onChange(this._value);
             this.onTouched();
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if ('extractIdFn' in changes && this.extractIdFn)
+            this.model.setExtractIdFn(this.extractIdFn);
     }
 
     ngAfterContentInit(): void {

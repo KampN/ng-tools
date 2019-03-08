@@ -2,10 +2,10 @@ import {
     AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Host,
     Input, OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
 } from '@angular/core';
-import {SelectionChange, SelectionModel} from '@angular/cdk/collections';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-header/picker-header';
 import {Picker} from '../picker/picker';
+import {SelectionChange, SelectionModel} from '../../common/collections/selection';
 
 export class PickerShopCartExceptions {
     static multipleDefaultItemDef() {

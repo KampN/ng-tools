@@ -7,28 +7,37 @@ export class SelectionModel<T> {
     protected _deselectedToEmit: T[] = [];
     protected _selectedToEmit: T[] = [];
 
-    constructor(protected _multiple = false, initiallySelectedValues?: T[], extractIdFn?: (T) => any, protected _emitChanges = true) {
+    constructor(protected _multiple = false, initiallySelectedValues?: T[], extractIdFn?: ExtractIdFn, protected _emitChanges = true) {
 
         if (initiallySelectedValues && initiallySelectedValues.length) {
-            if (_multiple) {
+            if (_multiple)
                 initiallySelectedValues.forEach(value => this._markSelected(value));
-            } else {
+            else
                 this._markSelected(initiallySelectedValues[0]);
-            }
             this._selectedToEmit.length = 0;
         }
 
-        if (extractIdFn) this.extractId = extractIdFn;
+        if (extractIdFn) this.setExtractIdFn(extractIdFn);
+
     }
 
     protected _selected: T[] | null;
 
     get selected(): T[] {
-        if (!this._selected) {
-            this._selected = Array.from(this._selection.values());
-        }
-
+        if (!this._selected) this._selected = Array.from(this._selection.values());
         return this._selected;
+    }
+
+    protected _extractId: ExtractIdFn = (value: T) => value;
+
+    get extractId(): ExtractIdFn {
+        return this._extractId;
+    }
+
+    setExtractIdFn(extractIdFn: ExtractIdFn) {
+        this._extractId = extractIdFn;
+        const mapContent: [any, T][] = this.selected.map((value: T) => [this.extractId(value), value]) as [any, T][];
+        this._selection = new Map(mapContent);
     }
 
     select(...values: T[]): void {
@@ -65,16 +74,16 @@ export class SelectionModel<T> {
     }
 
     sort(predicate?: (a: T, b: T) => number): void {
-        if (this._multiple && this.selected) {
-            this._selected.sort(predicate);
-        }
+        if (this._multiple && this.selected) this._selected.sort(predicate);
     }
 
     isMultipleSelection() {
         return this._multiple;
     }
 
-    protected extractId: (T) => any = (value: T) => value;
+    public destroy() {
+        this.changed.complete();
+    }
 
     protected _emitChangeEvent() {
         this._selected = null;
@@ -93,40 +102,32 @@ export class SelectionModel<T> {
 
     protected _markSelected(value: T) {
         if (!this.isSelected(value)) {
-            if (!this._multiple) {
-                this._unmarkAll();
-            }
-
+            if (!this._multiple) this._unmarkAll();
             this._selection.set(this.extractId(value), value);
-
-            if (this._emitChanges) {
-                this._selectedToEmit.push(value);
-            }
+            if (this._emitChanges) this._selectedToEmit.push(value);
         }
     }
 
     protected _unmarkSelected(value: T) {
         if (this.isSelected(value)) {
-            this._selection.delete(this.extractId(value));
+            const key = this.extractId(value);
+            const ref = this._selection.get(key);
+            this._selection.delete(key);
 
-            if (this._emitChanges) {
-                this._deselectedToEmit.push(value);
-            }
+            if (this._emitChanges) this._deselectedToEmit.push(ref);
         }
     }
 
     protected _unmarkAll() {
-        if (!this.isEmpty()) {
-            this._selection.forEach(value => this._unmarkSelected(value));
-        }
+        if (!this.isEmpty()) this._selection.forEach(value => this._unmarkSelected(value));
     }
 
     protected _verifyValueAssignment(values: T[]) {
-        if (values.length > 1 && !this._multiple) {
-            throw getMultipleValuesInSingleSelectionError();
-        }
+        if (values.length > 1 && !this._multiple) throw getMultipleValuesInSingleSelectionError();
     }
 }
+
+export type ExtractIdFn = (T) => any;
 
 export interface SelectionChange<T> {
     source: SelectionModel<T>;

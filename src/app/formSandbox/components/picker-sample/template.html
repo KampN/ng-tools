@@ -4,7 +4,7 @@
 <div>
 	<form [formGroup]="form">
 
-		<picker class="ggl-scrollbar" formControlName="elements">
+		<picker class="ggl-scrollbar" formControlName="elements" [extractIdFn]="extractIdFn">
 			<picker-section *pickerSectionDef="let model">
 				<picker-header *pickerHeaderDef>
 					<material-search-input formControlName="search" placeholder="Rechercher"></material-search-input>

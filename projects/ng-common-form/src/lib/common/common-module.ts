@@ -4,6 +4,12 @@ import {Directives} from './directives/index';
 import {ValidatorDirectives} from './validators/index';
 import {SharedModule} from '../shared/module';
 
+export * from './collections/selection';
+export * from './directives/control-error';
+export * from './directives/form-select';
+export {CommonValidators} from './validators/index';
+export {MatchFnValidatorDirective} from './validators/match-fn';
+
 @NgModule({
     imports: [SharedModule],
     exports: [

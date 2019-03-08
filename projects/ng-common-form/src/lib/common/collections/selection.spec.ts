@@ -150,7 +150,7 @@ describe('Collections : SelectionModel', () => {
             it('should emit an event when a value is selected', () => {
                 model.select(1);
 
-                let event = spy.calls.mostRecent().args[0];
+                const event = spy.calls.mostRecent().args[0];
 
                 expect(spy).toHaveBeenCalled();
                 expect(event.added).toEqual([1]);
@@ -257,6 +257,24 @@ describe('Collections : SelectionModel', () => {
 
             expect(model.selected.length).toBe(0);
             expect(model.isSelected(dummy)).toBe(false);
+        });
+
+        it('should set the extractIdFn and remap the selected values', () => {
+            const dummies = dummyFactory.sperm(5);
+            model.select(...dummies);
+
+            expect(model.selected.length).toBe(5);
+            expect(model.isSelected({id: dummies[0].id})).toBe(true);
+
+            model.setExtractIdFn((v) => v);
+
+            expect(model.selected.length).toBe(5);
+            expect(model.isSelected({id: dummies[0].id})).toBe(false);
+
+            model.setExtractIdFn((v) => v.id);
+
+            expect(model.selected.length).toBe(5);
+            expect(model.isSelected({id: dummies[0].id})).toBe(true);
         });
 
     });
