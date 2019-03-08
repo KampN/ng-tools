@@ -30,6 +30,10 @@ export class PickerSampleComponent implements OnInit, OnDestroy {
     constructor(protected fb: FormBuilder, protected cdr: ChangeDetectorRef) {
     }
 
+    even(index: number, item: any) {
+        return index % 2;
+    }
+
     ngOnInit() {
         this.form = this.fb.group({
             search: this.fb.control(''),

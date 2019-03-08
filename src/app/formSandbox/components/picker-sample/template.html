@@ -40,6 +40,9 @@
 				<picker-shop-cart-item (remove)="model.deselect(item)" *pickerShopCartItemDef="let item">
 					{{item.name}}
 				</picker-shop-cart-item>
+				<picker-shop-cart-item class="even" (remove)="model.deselect(item)" *pickerShopCartItemDef="let item; when: even">
+					{{item.name}}
+				</picker-shop-cart-item>
 			</picker-shop-cart>
 		</picker>
 

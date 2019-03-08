@@ -1,6 +1,6 @@
 import {
     AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Host,
-    OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
+    Input, OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
 } from '@angular/core';
 import {SelectionChange, SelectionModel} from '@angular/cdk/collections';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
@@ -18,6 +18,7 @@ export class PickerShopCartExceptions {
 })
 export class PickerShopCartItemDefDirective<T> {
 
+    @Input('pickerShopCartItemDefWhen')
     when: (index: number, rowData: T) => boolean;
 
     constructor(public template: TemplateRef<any>) {}
