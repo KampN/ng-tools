@@ -81,6 +81,8 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
 
     ngAfterContentInit(): void {
         this.cacheItemDefs();
+
+        this.model.selected.forEach((item: T) => this.insert(item));
         this.model.changed.pipe(
             this.rc.takeUntil('destroy')
         ).subscribe((changed: SelectionChange<T>) => {

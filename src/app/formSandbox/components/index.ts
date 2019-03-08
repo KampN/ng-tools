@@ -6,5 +6,6 @@ import {PickerSampleComponent} from './picker-sample/picker-sample';
 export const Components: Type<any>[] = [
     AutocompleteSampleComponent,
     MultiSelectSampleComponent,
-    PickerSampleComponent
+    PickerSampleComponent,
+
 ];

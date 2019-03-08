@@ -41,7 +41,11 @@ export class PickerSampleComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.form = this.fb.group({
             search: this.fb.control(''),
-            elements: this.fb.control({value: [], disabled: false}, [Validators.minLength(1)])
+            elements: this.fb.control({
+                value: [
+                    {id: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+                ], disabled: false
+            }, [Validators.minLength(1)])
         });
 
         this.form.get('search').valueChanges.pipe(
