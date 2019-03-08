@@ -11,6 +11,10 @@ export class PickerShopCartExceptions {
     static multipleDefaultItemDef() {
         return Error(`There can only be one default item without a when predicate function.`);
     }
+
+    static noDefaultItemDef() {
+        return Error(`There must be one default item without a when predicate function.`);
+    }
 }
 
 @Directive({
@@ -119,6 +123,7 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
         const defaultItemDefs = this.itemDefs.filter(def => !def.when);
         if (defaultItemDefs.length > 1) throw PickerShopCartExceptions.multipleDefaultItemDef();
         this.defaultItemDef = defaultItemDefs[0];
+        if (!this.defaultItemDef) throw PickerShopCartExceptions.noDefaultItemDef();
     }
 
 }
