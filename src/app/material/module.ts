@@ -6,10 +6,12 @@ import {
 } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PortalModule} from '@angular/cdk/portal';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
     imports: [],
     exports: [
+        FlexLayoutModule,
         DragDropModule,
         PortalModule,
 
