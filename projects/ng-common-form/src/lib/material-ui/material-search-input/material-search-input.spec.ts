@@ -7,7 +7,7 @@ import {By} from '@angular/platform-browser';
 import {MatButtonModule, MatIconModule} from '@angular/material';
 import {FormControlMockFactory} from '../../mockFactories/form-control';
 
-fdescribe('Material-UI : MaterialSearchInput', () => {
+describe('Material-UI : MaterialSearchInput', () => {
 
     const ClearButtonCSSSelector = 'button.__clear-input';
 
