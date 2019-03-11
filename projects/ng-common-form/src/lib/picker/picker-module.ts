@@ -14,7 +14,7 @@ import {MatButtonModule, MatIconModule} from '@angular/material';
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 
 export {
-    PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
+    Picker, PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
 } from './picker/picker';
 export {PickerSectionComponent} from './picker-section/picker-section';
 export {PickerShopCartItemComponent} from './picker-shop-cart-item/picker-shop-cart-item';
