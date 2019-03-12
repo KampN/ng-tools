@@ -35,6 +35,8 @@ export * from './lib/mockFactories/jwt';
 export * from './lib/rxjs/array';
 export * from './lib/rxjs/rxCleaner';
 
+export * from './lib/components/flex-scroll-container';
+
 export * from './lib/pipes/ucfirst';
 export * from './lib/pipes/prepend';
 export * from './lib/pipes/append';
