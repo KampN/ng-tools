@@ -8,7 +8,7 @@ export interface FormControlMockOptions {
     touched?: boolean;
 }
 
-export class FormControlMockFactory extends MockFactory<FormControl> {
+export class FormControlMockFactory extends MockFactory<FormControl, FormControlMockOptions> {
 
     generate({value, validators, dirty, touched}: FormControlMockOptions = {}): FormControl {
         const control = new FormControl(value || null, validators || []);

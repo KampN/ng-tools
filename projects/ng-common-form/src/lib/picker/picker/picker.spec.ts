@@ -4,7 +4,7 @@ import {By} from '@angular/platform-browser';
 import {FormControl} from '@angular/forms';
 import {PickerBodyContext, PickerComponent, PickerShopCartContext} from '../picker/picker';
 import {FormControlMockFactory} from '../../mockFactories/form-control';
-import {DummyMockFactory, DummyObject} from '../../../../../ng-common-tools/src/lib/mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {SharedModule} from '../../shared/module';
 import {PickerModule} from '../picker-module';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
@@ -133,7 +133,7 @@ describe('Picker', () => {
             const dummyClone = dummyFactory.seed({id: 1}); // new ref but same id
 
             testComponent.control = controlFactory.seed({}, {
-                value: {value: [dummy], disabled: true}
+                value: {value: [dummy], disabled: true},
             });
 
             testFixture.detectChanges();

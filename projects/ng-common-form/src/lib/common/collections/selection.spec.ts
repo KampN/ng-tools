@@ -1,5 +1,5 @@
 import {getMultipleValuesInSingleSelectionError, SelectionModel} from './selection';
-import {DummyMockFactory} from '../../../../../ng-common-tools/src/lib/mockFactories/dummy';
+import {DummyMockFactory} from '@kamp-n/ng-common-tools';
 
 describe('Collections : SelectionModel', () => {
     describe('single selection', () => {

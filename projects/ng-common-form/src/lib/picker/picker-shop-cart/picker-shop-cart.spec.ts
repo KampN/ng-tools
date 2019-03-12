@@ -5,7 +5,7 @@ import {PickerShopCartComponent} from './picker-shop-cart';
 import {FormControl} from '@angular/forms';
 import {PickerComponent} from '../picker/picker';
 import {FormControlMockFactory} from '../../mockFactories/form-control';
-import {DummyMockFactory, DummyObject} from '../../../../../ng-common-tools/src/lib/mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {SharedModule} from '../../shared/module';
 import {PickerModule} from '../picker-module';
 import {PickerHeaderComponent} from '../picker-header/picker-header';
