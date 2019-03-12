@@ -4,6 +4,15 @@ import {Pipes} from './pipes/index';
 import {Components} from './components/index';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
+export * from './components/flex-scroll-container/flex-scroll-container';
+export * from './pipes/ucfirst';
+export * from './pipes/prepend';
+export * from './pipes/append';
+export * from './pipes/coalesce';
+export * from './pipes/padEnd';
+export * from './pipes/padStart';
+export * from './pipes/shortNumber';
+
 @NgModule({
     imports: [
         CommonModule,
