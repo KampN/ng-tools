@@ -83,6 +83,8 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
         this.cacheItemDefs();
 
         this.model.selected.forEach((item: T) => this.insert(item));
+        this.toggleEmptyBlock(this.renderMap.size);
+
         this.model.changed.pipe(
             this.rc.takeUntil('destroy')
         ).subscribe((changed: SelectionChange<T>) => {
@@ -91,7 +93,8 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
             changed.removed.forEach((item: T) => this.remove(item));
             this.cdr.markForCheck();
         });
-        this.headerOutlet.viewContainer.createEmbeddedView(
+
+        if (this.headerDef) this.headerOutlet.viewContainer.createEmbeddedView(
             this.headerDef.template
         );
     }
@@ -104,7 +107,7 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
     protected toggleEmptyBlock(nbRendered: number) {
         if (!this.emptyBlockDef) return;
         const container = this.emptyBlockOutlet.viewContainer;
-        if (nbRendered > 0) container.createEmbeddedView(this.emptyBlockDef.template);
+        if (nbRendered === 0) container.createEmbeddedView(this.emptyBlockDef.template);
         else container.clear();
     }
 

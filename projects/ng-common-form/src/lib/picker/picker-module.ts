@@ -13,8 +13,11 @@ import {
 import {MatButtonModule, MatIconModule} from '@angular/material';
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 
+export {PickerHeaderComponent, PickerHeaderDefDirective, PickerHeaderOutletDirective} from './picker-header/picker-header';
+
 export {
-    Picker, PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
+    Picker, PickerBodyContext, PickerShopCartContext,
+    PickerBodyOutletDirective, PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
 } from './picker/picker';
 export {PickerSectionComponent} from './picker-section/picker-section';
 export {PickerShopCartItemComponent} from './picker-shop-cart-item/picker-shop-cart-item';
