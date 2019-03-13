@@ -1,5 +1,5 @@
 import {inject, TestBed} from '@angular/core/testing';
-import {PadStartPipe} from './padStart';
+import {PadStartPipe} from './pad-start';
 
 describe('Pipe: PadStart', () => {
     let pipe: PadStartPipe;

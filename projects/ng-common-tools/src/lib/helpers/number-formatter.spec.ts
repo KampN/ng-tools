@@ -1,4 +1,4 @@
-import {NumberFormatter} from './numberFormatter';
+import {NumberFormatter} from './number-formatter';
 
 describe('Helpers : NumberFormatter', () => {
 

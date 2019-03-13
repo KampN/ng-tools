@@ -1,5 +1,5 @@
 import {JWTMockFactory} from './jwt';
-import {JwtHelper} from '../helpers/jwtHelper';
+import {JwtHelper} from '../helpers/jwt-helper';
 
 describe('MockFactories : JWT', () => {
 

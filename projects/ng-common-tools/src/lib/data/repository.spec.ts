@@ -5,7 +5,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {DataStore} from '../interfaces/datastore';
 import {HttpClient} from '@angular/common/http';
 import * as _moment from 'moment';
-import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
+import {RepositoryCacheStore, StoreStrategy} from './repository-cache-store';
 import {first, last} from 'rxjs/operators';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';

@@ -1,4 +1,4 @@
-import {MockFactory} from './mockFactory';
+import {MockMactory} from './mock-mactory';
 import {enc, HmacSHA256} from 'crypto-js';
 
 export type JWT = string;
@@ -15,7 +15,7 @@ export interface JWTOptions {
 
 export const DefaultJWTSecret = 'default_secret';
 
-export class JWTMockFactory extends MockFactory<JWT, JWTOptions> {
+export class JWTMockFactory extends MockMactory<JWT, JWTOptions> {
 
     seed(data: any = {}, opt?: JWTOptions): JWT {
         const {alg, secret, kid} = Object.assign({}, {

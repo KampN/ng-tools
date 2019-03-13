@@ -1,4 +1,4 @@
-import {RepositoryInvalidIdCacheStore} from './repositoryInvalidIdCacheStore';
+import {RepositoryInvalidIdCacheStore} from './repository-invalid-id-cache-store';
 import {DataStoreStub} from '../storage/datastore.stub';
 
 describe('Data : RepositoryInvalidIdCacheStore', () => {

@@ -1,11 +1,11 @@
 import {Observable, of} from 'rxjs';
 import {DataStore} from '../interfaces/datastore';
-import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
+import {RepositoryCacheStore, StoreStrategy} from './repository-cache-store';
 import {catchError, first, map, shareReplay, switchMap, tap} from 'rxjs/operators';
-import {RepositoryInvalidIdCacheStore} from './repositoryInvalidIdCacheStore';
+import {RepositoryInvalidIdCacheStore} from './repository-invalid-id-cache-store';
 import {Perishable, PerishableTTL, RepositoryLoadQuery, Timestamp} from '../interfaces/repository';
 import * as _moment from 'moment';
-import {memoizeStream} from '../decorators/memoizeStream';
+import {memoizeStream} from '../decorators/memoize-stream';
 import {Normalizer} from '../helpers/normalizer';
 import {Check} from '../helpers/check';
 

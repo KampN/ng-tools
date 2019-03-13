@@ -1,7 +1,7 @@
-import {SourceStoreStub} from './sourceStore.stub';
+import {SourceStoreStub} from './source-store.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
-import {RxCleaner} from '../rxjs/rxCleaner';
-import {PaginatedFetchedDataSource} from './paginatedFetchDataSource';
+import {RxCleaner} from '../rxjs/rx-cleaner';
+import {PaginatedFetchedDataSource} from './paginated-fetch-data-source';
 
 describe('DataSource : PaginatedFetchedDataSource', () => {
 

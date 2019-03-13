@@ -1,5 +1,5 @@
 import {inject, TestBed} from '@angular/core/testing';
-import {ShortNumberPipe} from './shortNumber';
+import {ShortNumberPipe} from './short-number';
 
 describe('Pipe: ShortNumber', () => {
     let pipe: ShortNumberPipe;

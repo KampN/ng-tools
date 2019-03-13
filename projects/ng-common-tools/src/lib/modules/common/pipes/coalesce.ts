@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Check} from '../helpers/check';
+import {Check} from '../../../helpers/check';
 
 @Pipe({name: 'coalesce'})
 export class CoalescePipe implements PipeTransform {

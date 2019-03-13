@@ -1,4 +1,4 @@
-import {RepositoryCacheStore, StoreStrategy} from './repositoryCacheStore';
+import {RepositoryCacheStore, StoreStrategy} from './repository-cache-store';
 import {CacheStore} from '../interfaces/repository';
 import {Observable} from 'rxjs';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';

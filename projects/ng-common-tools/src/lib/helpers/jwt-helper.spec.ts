@@ -1,4 +1,4 @@
-import {JwtHelper, JwtHelperErrors} from './jwtHelper';
+import {JwtHelper, JwtHelperErrors} from './jwt-helper';
 import {JWTMockFactory} from '../mockFactories/jwt';
 
 describe('Helpers : JwtHelper', () => {

@@ -1,5 +1,5 @@
 import {distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
-import {FetchedDataSource} from './fetchedDataSource';
+import {FetchedDataSource} from './fetched-data-source';
 import {merge} from 'rxjs';
 import {Check} from '../helpers/check';
 

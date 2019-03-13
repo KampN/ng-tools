@@ -1,4 +1,4 @@
-import {RxCleaner} from './rxCleaner';
+import {RxCleaner} from './rx-cleaner';
 import {Subject} from 'rxjs';
 
 describe('RxJS : RxCleaner', () => {

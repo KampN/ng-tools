@@ -2,7 +2,7 @@ import {DataSource} from '@angular/cdk/table';
 import {BehaviorSubject, merge, Observable, ReplaySubject, Subject} from 'rxjs';
 import {distinctUntilChanged, filter, switchMap, tap} from 'rxjs/operators';
 import {FetchQueryFilters, FetchQueryPagination, FetchQuerySort, SourceStore} from '../interfaces/datasource';
-import {RxCleaner} from '../rxjs/rxCleaner';
+import {RxCleaner} from '../rxjs/rx-cleaner';
 import {CollectionViewer} from '@angular/cdk/collections';
 import {Check} from '../helpers/check';
 

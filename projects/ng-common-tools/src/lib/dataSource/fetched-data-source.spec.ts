@@ -1,7 +1,7 @@
-import {SourceStoreStub} from './sourceStore.stub';
+import {SourceStoreStub} from './source-store.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
-import {FetchedDataSource} from './fetchedDataSource';
-import {RxCleaner} from '../rxjs/rxCleaner';
+import {FetchedDataSource} from './fetched-data-source';
+import {RxCleaner} from '../rxjs/rx-cleaner';
 
 describe('DataSource : FetchedDataSource', () => {
 

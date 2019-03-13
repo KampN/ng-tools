@@ -1,4 +1,4 @@
-import {memoizeStream} from './memoizeStream';
+import {memoizeStream} from './memoize-stream';
 import {BehaviorSubject} from 'rxjs';
 
 describe('Decorator : MemoizeStream', () => {

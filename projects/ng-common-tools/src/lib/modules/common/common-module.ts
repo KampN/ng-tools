@@ -9,9 +9,9 @@ export * from './pipes/ucfirst';
 export * from './pipes/prepend';
 export * from './pipes/append';
 export * from './pipes/coalesce';
-export * from './pipes/padEnd';
-export * from './pipes/padStart';
-export * from './pipes/shortNumber';
+export * from './pipes/pad-end';
+export * from './pipes/pad-start';
+export * from './pipes/short-number';
 
 @NgModule({
     imports: [

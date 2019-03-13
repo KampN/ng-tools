@@ -7,5 +7,4 @@ export const Components: Type<any>[] = [
     AutocompleteSampleComponent,
     MultiSelectSampleComponent,
     PickerSampleComponent,
-
 ];

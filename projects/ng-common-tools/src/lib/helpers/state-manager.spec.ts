@@ -1,4 +1,4 @@
-import {StateManager} from './stateManager';
+import {StateManager} from './state-manager';
 import {Subject} from 'rxjs';
 
 describe('RxJS : RxCleaner', () => {

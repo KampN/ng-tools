@@ -1,4 +1,4 @@
-import {UrlParser} from './urlParser';
+import {UrlParser} from './url-parser';
 
 describe('Helper : UrlParser', () => {
 
