@@ -1,8 +1,9 @@
-import * as Faker from 'faker';
+import * as faker from 'faker';
 import {Directive, EmbeddedViewRef, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
+import {FakerJS} from '../interfaces/faker';
 
 export class FakerContext {
-    constructor(public $implicit: Faker.FakerStatic) {}
+    constructor(public $implicit: FakerJS) {}
 }
 
 @Directive({
@@ -10,7 +11,7 @@ export class FakerContext {
 })
 export class FakerDirective implements OnInit {
 
-    protected context: FakerContext = new FakerContext(Faker);
+    protected context: FakerContext = new FakerContext(faker);
     protected viewRef: EmbeddedViewRef<FakerContext>;
 
     constructor(protected vc: ViewContainerRef, protected template: TemplateRef<FakerContext>) {}

@@ -3,7 +3,7 @@ import {MaterialModule} from '../material/module';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
-import {CommonToolsModule} from '@kamp-n/ng-common-tools';
+import {CommonDevToolsModule, CommonToolsModule} from '@kamp-n/ng-common-tools';
 import {CommonModule} from '@angular/common';
 import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
 
@@ -12,6 +12,7 @@ import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-commo
     exports: [
         CommonModule,
         CommonToolsModule,
+        CommonDevToolsModule,
         CommonFormModule,
         MaterialUIModule,
         PickerModule,
