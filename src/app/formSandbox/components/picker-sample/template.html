@@ -3,7 +3,6 @@
 </mat-toolbar>
 <div>
 	<form [formGroup]="form">
-		<div *faker="let faker">{{faker.internet.email()}}</div>
 		<picker class="ggl-scrollbar" formControlName="elements" [extractIdFn]="extractIdFn">
 			<picker-section *pickerSectionDef="let model">
 				<picker-header *pickerHeaderDef>
