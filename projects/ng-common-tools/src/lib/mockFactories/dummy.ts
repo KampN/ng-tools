@@ -1,4 +1,4 @@
-import {MockMactory} from './mock-mactory';
+import {MockFactory} from './mock-factory';
 
 export interface DummyObject {
     id: number;
@@ -6,7 +6,7 @@ export interface DummyObject {
     [prop: string]: any;
 }
 
-export class DummyMockFactory extends MockMactory<DummyObject> {
+export class DummyMockFactory extends MockFactory<DummyObject> {
     static id = 0;
 
     generate(): DummyObject {

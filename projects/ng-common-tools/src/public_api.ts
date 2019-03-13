@@ -28,7 +28,7 @@ export * from './lib/helpers/state-manager';
 export * from './lib/storage/datastore.stub';
 export * from './lib/storage/datastore';
 
-export * from './lib/mockFactories/mock-mactory';
+export * from './lib/mockFactories/mock-factory';
 export * from './lib/mockFactories/dummy';
 export * from './lib/mockFactories/jwt';
 

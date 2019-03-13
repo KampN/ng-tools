@@ -1,4 +1,4 @@
-export abstract class MockMactory<T, Opts = any> {
+export abstract class MockFactory<T, Opts = any> {
 
     abstract generate(opt?: Opts): T;
 
