@@ -31,6 +31,12 @@ export * from './lib/storage/datastore';
 export * from './lib/mockFactories/mock-factory';
 export * from './lib/mockFactories/dummy';
 export * from './lib/mockFactories/jwt';
+export * from './lib/mockFactories/hydra';
+
+export * from './lib/network/helpers/hydra';
+export * from './lib/network/interfaces/hydra';
+export * from './lib/network/http-endpoint';
+export * from './lib/network/interfaces/api';
 
 export * from './lib/rxjs/array';
 export * from './lib/rxjs/rx-cleaner';
