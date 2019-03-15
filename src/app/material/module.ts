@@ -1,8 +1,9 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {
-    MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatFormFieldModule,
-    MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatSlideToggleModule, MatTableModule,
-    MatToolbarModule, MatTreeModule
+    MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatDividerModule, MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSidenavModule, MatSlideToggleModule,
+    MatTableModule, MatToolbarModule, MatTreeModule
 } from '@angular/material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PortalModule} from '@angular/cdk/portal';
@@ -30,7 +31,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
         MatCheckboxModule,
         MatSlideToggleModule,
         MatExpansionModule,
-        MatTableModule
+        MatTableModule,
+        MatMenuModule,
+        MatDividerModule
     ],
 })
 export class MaterialModule {

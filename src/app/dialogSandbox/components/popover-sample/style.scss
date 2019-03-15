@@ -1,0 +1,29 @@
+popover-sample {
+
+}
+
+.mat-menu-panel {
+	&.menu-popover {
+		min-width: 25rem;
+		max-width: 25rem;
+
+		.mat-menu-content {
+			padding: 0;
+		}
+
+		.notification-menu-content {
+			position: relative;
+		}
+
+		.menu-header {
+			padding: .5rem 1rem;
+		}
+
+		.notification-list {
+			min-height: 15rem;
+			max-height: 20rem;
+			overflow: auto;
+		}
+
+	}
+}

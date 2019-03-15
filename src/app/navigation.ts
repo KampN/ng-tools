@@ -33,5 +33,14 @@ export const NavigationRouteProvider: ValueProvider = {
                 }
             ]
         },
+        {
+            title: 'dialog',
+            children: [
+                {
+                    title: 'popover',
+                    route: ['/', 'dialogs', 'popover']
+                },
+            ]
+        },
     ]
 };

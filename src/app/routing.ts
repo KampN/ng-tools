@@ -10,6 +10,10 @@ export const ROUTES: Routes = [
                 loadChildren: './formSandbox/module#FormSandboxModule'
             },
             {
+                path: 'dialogs',
+                loadChildren: './dialogSandbox/module#DialogSandboxModule'
+            },
+            {
                 path: '**',
                 redirectTo: 'forms'
             }
