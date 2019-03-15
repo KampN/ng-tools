@@ -24,7 +24,6 @@ export class StopPropagationDirective implements OnChanges, OnDestroy {
         if (this.eventName)
             this._listener = this.render.listen(this.ref.nativeElement, this.eventName, (event: Event) => {
                 event.stopPropagation();
-                console.log('event triggered', this.eventName);
             });
     }
 
