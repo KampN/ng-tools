@@ -1,5 +1,4 @@
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FlexScrollContainerComponent} from './flex-scroll-container';
 import {By} from '@angular/platform-browser';
@@ -39,7 +38,6 @@ describe('Components : FlexScrollContainer', () => {
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule],
             declarations: [
                 TestHostComponent,
                 FlexScrollContainerComponent,

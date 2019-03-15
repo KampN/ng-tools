@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {Pipes} from './pipes/index';
 import {Components} from './components/index';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {Directives} from './directives';
 
 export * from './components/flex-scroll-container/flex-scroll-container';
 export * from './pipes/ucfirst';
@@ -18,8 +19,8 @@ export * from './pipes/short-number';
         CommonModule,
         ScrollingModule
     ],
-    exports: [...Pipes, ...Components],
-    declarations: [...Pipes, ...Components],
+    exports: [...Pipes, ...Components, ...Directives],
+    declarations: [...Pipes, ...Components, ...Directives],
     providers: [],
 })
 export class CommonToolsModule {
