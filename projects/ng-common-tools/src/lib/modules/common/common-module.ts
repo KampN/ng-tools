@@ -3,8 +3,9 @@ import {CommonModule} from '@angular/common';
 import {Pipes} from './pipes/index';
 import {Components} from './components/index';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import {Directives} from './directives';
+import {Directives} from './directives/index';
 
+export * from './directives/stop-propagation';
 export * from './components/flex-scroll-container/flex-scroll-container';
 export * from './pipes/ucfirst';
 export * from './pipes/prepend';
