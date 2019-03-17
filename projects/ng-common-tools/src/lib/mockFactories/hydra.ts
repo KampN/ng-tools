@@ -1,6 +1,7 @@
 import {HydraCollection} from '../network/interfaces/hydra';
 import * as faker from 'faker';
 
+// @dynamic
 export class HydraFactory {
 
     static generateCollection(items: any[], total: number = items.length, type: string = faker.random.word()): HydraCollection {
