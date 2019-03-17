@@ -1,6 +1,6 @@
 {
 	"name": "@kamp-n/ng-common-tools",
-	"version": "2.4.0",
+	"version": "2.5.0",
 	"peerDependencies": {
 		"rxjs": "~6.3.3",
 		"@angular/common": "^7.3.0",
