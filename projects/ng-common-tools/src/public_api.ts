@@ -34,12 +34,15 @@ export * from './lib/mockFactories/jwt';
 export * from './lib/mockFactories/hydra';
 
 export * from './lib/network/helpers/hydra';
+export * from './lib/network/helpers/api';
 export * from './lib/network/interfaces/hydra';
+export * from './lib/network/interfaces/api';
 export * from './lib/network/http-endpoint';
 export * from './lib/network/interfaces/api';
 
 export * from './lib/rxjs/array';
 export * from './lib/rxjs/rx-cleaner';
+export * from './lib/rxjs/http';
 
 export * from './lib/modules/common/common-module';
 export * from './lib/modules/dev/dev-module';
