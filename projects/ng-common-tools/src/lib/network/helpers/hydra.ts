@@ -1,4 +1,4 @@
-import {ApiHttpResponse} from '../interfaces/api';
+import {ApiHydraHttpResponse} from '../interfaces/api';
 import {HydraCollection, HydraItem} from '../interfaces/hydra';
 import {Check} from '../../helpers/check';
 
@@ -12,7 +12,7 @@ export class Hydra {
         return null;
     }
 
-    static normalizeResponse(response: HydraItem | HydraCollection): ApiHttpResponse<any> {
+    static normalizeResponse(response: HydraItem | HydraCollection): ApiHydraHttpResponse<any> {
         const metadata: any = {
             '@context': response['@context'],
             '@id': response['@id'],

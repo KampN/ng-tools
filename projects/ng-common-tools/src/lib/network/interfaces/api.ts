@@ -5,3 +5,12 @@ export interface ApiHttpResponse<T> {
 
     [prop: string]: any;
 }
+
+export interface ApiHydraHttpResponse<T> extends ApiHttpResponse<T> {
+    metadata: {
+        '@context': string;
+        '@id': string;
+        '@type': string;
+        [prop: string]: any;
+    };
+}
