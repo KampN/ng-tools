@@ -10,7 +10,7 @@ import {first, last} from 'rxjs/operators';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {RepositoryLoadQuery} from '../interfaces/repository';
-import {RxCleaner} from '@kamp-n/ng-common-tools';
+import {RxCleaner} from '../rxjs/rx-cleaner';
 
 const moment = _moment;
 

@@ -1,6 +1,6 @@
 import {ApiHttpResponse} from '../interfaces/api';
 import {HydraCollection, HydraItem} from '../interfaces/hydra';
-import {Check} from '@kamp-n/ng-common-tools';
+import {Check} from '../../helpers/check';
 
 export type HydraId = string;
 

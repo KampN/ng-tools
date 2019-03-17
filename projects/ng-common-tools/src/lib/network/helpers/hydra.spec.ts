@@ -1,7 +1,7 @@
 import {Hydra} from './hydra';
 import {HydraCollection, HydraItem} from '../interfaces/hydra';
-import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {HydraFactory} from '../../mockFactories/hydra';
+import {DummyMockFactory, DummyObject} from '../../mockFactories/dummy';
 
 describe('Network : Hydra', () => {
 
