@@ -4,7 +4,7 @@ import {ApiHydraHttpResponse} from '../network/interfaces/api';
 import {ApiResponseHelper} from '../network/helpers/api';
 
 export function mapHttpData(returnFirstResult?: boolean) {
-    return (source: Observable<any>) => {
+    return (source: Observable<ApiHydraHttpResponse<any>>): Observable<any> => {
         return new Observable(subscriber => source.subscribe(value => {
                 try {
                     subscriber.next(ApiResponseHelper.getDataFromResponse(value, returnFirstResult));
