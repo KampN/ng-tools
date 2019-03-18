@@ -2,8 +2,8 @@ import {ApiHttpResponse} from '../network/interfaces/api';
 import {first} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {HydraCollection, HydraItem} from '../network/interfaces/hydra';
-import {DummyMockFactory} from '../mockFactories/dummy';
-import {mapHttpData, mapHydraResponse} from './http';
+import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
+import {getHttpData, mapHttpData, mapHydraResponse} from './http';
 import {HydraFactory} from '../mockFactories/hydra';
 
 describe('Helpers : Pipe', () => {
@@ -29,10 +29,39 @@ describe('Helpers : Pipe', () => {
         afterEach(() => httpStream.complete());
 
         describe('mapHttpData', () => {
+            it('should return the mapped data', () => {
+
+                const spy = jasmine.createSpy('subscribe').and.stub();
+                httpStream.pipe(
+                    first(),
+                    mapHttpData((dummy: DummyObject) => dummy.id)
+                ).subscribe(spy);
+
+                httpStream.next(apiResponse);
+                const ids = apiResponse.data.map((dummy: DummyObject) => dummy.id);
+                expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({data: ids}));
+
+            });
+
+            it('should return a empty array if the data property is null', () => {
+
+                const spy = jasmine.createSpy('subscribe').and.stub();
+                httpStream.pipe(
+                    first(),
+                    mapHttpData((dummy: DummyObject) => dummy.id)
+                ).subscribe(spy);
+
+                httpStream.next({data: null} as any);
+                expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({data: []}));
+            });
+
+        });
+
+        describe('getHttpData', () => {
             it('should return the data values from the given ApiResponse', () => {
                 httpStream.pipe(
                     first(),
-                    mapHttpData()
+                    getHttpData()
                 ).subscribe((result) => {
                     expect(result).toEqual(apiResponse.data);
                 });
@@ -42,7 +71,7 @@ describe('Helpers : Pipe', () => {
             it('should return a empty array if the data property is null', () => {
                 httpStream.pipe(
                     first(),
-                    mapHttpData()
+                    getHttpData()
                 ).subscribe((result) => {
                     expect(result).toEqual([]);
                 });
@@ -52,7 +81,7 @@ describe('Helpers : Pipe', () => {
             it('should return the first result of the given api response\'s data', () => {
                 httpStream.pipe(
                     first(),
-                    mapHttpData(true)
+                    getHttpData(true)
                 ).subscribe((result) => {
                     expect(result).toEqual(apiResponse.data[0]);
                 });
@@ -61,7 +90,7 @@ describe('Helpers : Pipe', () => {
 
             it('should return null if data are empty or null when querying the first result', () => {
                 const sub = httpStream.pipe(
-                    mapHttpData(true)
+                    getHttpData(true)
                 ).subscribe((result) => {
                     expect(result).toEqual(null);
                 });
@@ -130,4 +159,5 @@ describe('Helpers : Pipe', () => {
         });
 
     });
-});
+})
+;
