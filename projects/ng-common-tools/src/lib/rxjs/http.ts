@@ -19,7 +19,7 @@ export function mapHttpData<T, P>(mapFn: (item: T) => P) {
 }
 
 export function getHttpData<T>(returnFirstResult?: boolean) {
-    return (source: Observable<ApiHttpResponse<T>>): Observable<T[] | T> => {
+    return (source: Observable<ApiHttpResponse<T>>): Observable<any> => {
         return new Observable(subscriber => source.subscribe(value => {
                 try {
                     subscriber.next(ApiResponseHelper.getDataFromResponse(value, returnFirstResult));
