@@ -9,6 +9,8 @@ export class SelectionModel<T> {
 
     constructor(protected _multiple = false, initiallySelectedValues?: T[], extractIdFn?: ExtractIdFn, protected _negative = false, protected _emitChanges = true) {
 
+        if (extractIdFn) this.setExtractIdFn(extractIdFn);
+
         if (initiallySelectedValues && initiallySelectedValues.length) {
             if (_multiple)
                 initiallySelectedValues.forEach(value => this._markSelected(value));
@@ -16,9 +18,6 @@ export class SelectionModel<T> {
                 this._markSelected(initiallySelectedValues[0]);
             this._selectedToEmit.length = 0;
         }
-
-        if (extractIdFn) this.setExtractIdFn(extractIdFn);
-
     }
 
     protected _selected: T[] | null;
