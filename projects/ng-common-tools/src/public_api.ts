@@ -15,6 +15,7 @@ export * from './lib/dataSource/paginated-fetch-data-source';
 export * from './lib/interfaces/datasource';
 export * from './lib/interfaces/repository';
 export * from './lib/interfaces/datastore';
+export * from './lib/interfaces/directive';
 
 export * from './lib/helpers/encoder';
 export * from './lib/helpers/jwt-helper';
