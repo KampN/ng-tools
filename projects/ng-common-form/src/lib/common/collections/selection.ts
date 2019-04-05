@@ -44,7 +44,7 @@ export class SelectionModel<T> {
         if (value !== this._negative) {
             if (clear) this._unmarkAll();
             this._negative = !!value;
-            this._emitChangeEvent();
+            this._emitChangeEvent(true);
         }
     }
 
@@ -97,10 +97,11 @@ export class SelectionModel<T> {
         this.changed.complete();
     }
 
-    protected _emitChangeEvent() {
+    protected _emitChangeEvent(force?: boolean) {
         this._selected = null;
 
-        if (this._selectedToEmit.length || this._deselectedToEmit.length) {
+        const emit = force === true || this._selectedToEmit.length || this._deselectedToEmit.length;
+        if (emit) {
             this.changed.next({
                 source: this,
                 negative: this._negative,
