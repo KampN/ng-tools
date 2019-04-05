@@ -2,6 +2,7 @@ import {getMultipleValuesInSingleSelectionError, SelectionModel} from './selecti
 import {DummyMockFactory} from '@kamp-n/ng-common-tools';
 
 describe('Collections : SelectionModel', () => {
+    const dummyFactory: DummyMockFactory = new DummyMockFactory();
     describe('single selection', () => {
         let model: SelectionModel<any>;
 
@@ -214,7 +215,7 @@ describe('Collections : SelectionModel', () => {
         let model: SelectionModel<any>;
 
         beforeEach(() => {
-            model = new SelectionModel(true, undefined, (v) => v, false);
+            model = new SelectionModel(true, undefined, (v) => v, false, false);
         });
 
         it('should still update the select value', () => {
@@ -226,9 +227,46 @@ describe('Collections : SelectionModel', () => {
         });
     });
 
+    describe('negative selection', () => {
+        let model: SelectionModel<any>;
+
+        beforeEach(() => {
+            model = new SelectionModel(true, undefined, (v) => v, true);
+        });
+
+        it('should return true if the selection is negative', () => {
+            expect(model.isNegativeSelection()).toBe(true);
+        });
+
+        it('should return set the negative flag and clear the current selection emitting a change event', () => {
+            const dummies = dummyFactory.sperm(3);
+            model.select(...dummies);
+
+            const spy = jasmine.createSpy('SelectionModel change event');
+            model.changed.subscribe(spy);
+            model.setIsNegative(false);
+
+            expect(model.isNegativeSelection()).toBe(false);
+            expect(model.selected.length).toBe(0);
+
+            const event = spy.calls.mostRecent().args[0];
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(event.negative).toBe(false);
+            expect(event.removed).toEqual(dummies);
+        });
+
+        it('should return set the negative flag and keep current selection', () => {
+            const dummies = dummyFactory.sperm(3);
+            model.select(...dummies);
+            model.setIsNegative(false, false);
+
+            expect(model.isNegativeSelection()).toBe(false);
+            expect(model.selected.length).toBe(3);
+        });
+    });
+
     describe('change extractId fn', () => {
         let model: SelectionModel<any>;
-        const dummyFactory: DummyMockFactory = new DummyMockFactory();
 
         beforeEach(() => {
             model = new SelectionModel(true, undefined, (v) => v.id);

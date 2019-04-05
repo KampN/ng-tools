@@ -7,7 +7,7 @@ export class SelectionModel<T> {
     protected _deselectedToEmit: T[] = [];
     protected _selectedToEmit: T[] = [];
 
-    constructor(protected _multiple = false, initiallySelectedValues?: T[], extractIdFn?: ExtractIdFn, protected _emitChanges = true) {
+    constructor(protected _multiple = false, initiallySelectedValues?: T[], extractIdFn?: ExtractIdFn, protected _negative = false, protected _emitChanges = true) {
 
         if (initiallySelectedValues && initiallySelectedValues.length) {
             if (_multiple)
@@ -38,6 +38,14 @@ export class SelectionModel<T> {
         this._extractId = extractIdFn;
         const mapContent: [any, T][] = this.selected.map((value: T) => [this.extractId(value), value]) as [any, T][];
         this._selection = new Map(mapContent);
+    }
+
+    setIsNegative(value: boolean, clear: boolean = true): void {
+        if (value !== this._negative) {
+            if (clear) this._unmarkAll();
+            this._negative = !!value;
+            this._emitChangeEvent();
+        }
     }
 
     select(...values: T[]): void {
@@ -77,6 +85,10 @@ export class SelectionModel<T> {
         if (this._multiple && this.selected) this._selected.sort(predicate);
     }
 
+    isNegativeSelection() {
+        return this._negative;
+    }
+
     isMultipleSelection() {
         return this._multiple;
     }
@@ -91,6 +103,7 @@ export class SelectionModel<T> {
         if (this._selectedToEmit.length || this._deselectedToEmit.length) {
             this.changed.next({
                 source: this,
+                negative: this._negative,
                 added: this._selectedToEmit,
                 removed: this._deselectedToEmit
             });
@@ -131,6 +144,7 @@ export type ExtractIdFn = (T) => any;
 
 export interface SelectionChange<T> {
     source: SelectionModel<T>;
+    negative: boolean;
     added: T[];
     removed: T[];
 }
