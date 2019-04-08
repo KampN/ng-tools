@@ -125,11 +125,11 @@ describe('DataSource : FetchedDataSource', () => {
         spyOn(sourceStore, 'fetch').and.callThrough();
 
         const spy = jasmine.createSpy('subscription');
-        const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}, filters: {foo: 'bar'}});
+        const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}, filters: [{foo: 'bar'}]});
 
         expect(sourceStore.fetch).toHaveBeenCalledWith({
             sort: undefined,
-            filters: {foo: 'bar'},
+            filters: [{foo: 'bar'}],
             pagination: {limit: 5, page: 0}
         });
 
@@ -137,14 +137,14 @@ describe('DataSource : FetchedDataSource', () => {
             rc.takeUntil()
         ).subscribe(spy);
 
-        dataSource.mergeFilters({foo2: 'bar2'});
+        dataSource.addFilters({foo2: 'bar2'});
 
-        expect(dataSource.filters).toEqual({foo: 'bar', foo2: 'bar2'});
+        expect(dataSource.filters).toEqual([{foo: 'bar'}, {foo2: 'bar2'}]);
         expect(spy).toHaveBeenCalledTimes(2);
         expect(sourceStore.fetch).toHaveBeenCalledTimes(2);
         expect(sourceStore.fetch).toHaveBeenCalledWith({
             sort: undefined,
-            filters: {foo: 'bar', foo2: 'bar2'},
+            filters: [{foo: 'bar'}, {foo2: 'bar2'}],
             pagination: {limit: 5, page: 0}
         });
     });
@@ -165,8 +165,8 @@ describe('DataSource : FetchedDataSource', () => {
             rc.takeUntil()
         ).subscribe(spy);
 
-        dataSource.filters = {foo: 'bar'};
-        dataSource.filters = {foo: 'bar'}; // noop, trigger only if filter changed
+        dataSource.filters = [{foo: 'bar'}];
+        dataSource.filters = [{foo: 'bar'}]; // noop, trigger only if filter changed
 
         expect(spy).toHaveBeenCalledWith(sourceStore.store.slice(0, 10));
         expect(spy).toHaveBeenCalledWith(sourceStore.store.slice(0, 5));
@@ -175,7 +175,7 @@ describe('DataSource : FetchedDataSource', () => {
         expect(sourceStore.fetch).toHaveBeenCalledTimes(1);
         expect(sourceStore.fetch).toHaveBeenCalledWith({
             sort: undefined,
-            filters: {foo: 'bar'},
+            filters: [{foo: 'bar'}],
             pagination: {limit: 5, page: 0}
         });
     });

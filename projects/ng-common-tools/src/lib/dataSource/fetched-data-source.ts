@@ -1,10 +1,11 @@
 import {DataSource} from '@angular/cdk/table';
 import {BehaviorSubject, merge, Observable, ReplaySubject, Subject} from 'rxjs';
 import {distinctUntilChanged, filter, switchMap, tap} from 'rxjs/operators';
-import {FetchQueryFilters, FetchQueryPagination, FetchQuerySort, SourceStore} from '../interfaces/datasource';
+import {FetchQueryFilter, FetchQueryFilters, FetchQueryPagination, FetchQuerySort, SourceStore} from '../interfaces/datasource';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {CollectionViewer} from '@angular/cdk/collections';
 import {Check} from '../helpers/check';
+import {Normalizer} from '../helpers/normalizer';
 
 export interface FetchedDataSourceConfig {
     pagination?: { page?: number, limit?: number };
@@ -12,6 +13,8 @@ export interface FetchedDataSourceConfig {
     filters?: FetchQueryFilters;
     fetchAtInit?: boolean;
 }
+
+export type ReplaceFilterFn = (filter: FetchQueryFilter, index: number) => FetchQueryFilter;
 
 export class FetchedDataSource<T> extends DataSource<T> {
 
@@ -38,7 +41,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
     protected _filters: FetchQueryFilters;
 
-    get filters(): FetchQueryFilters { return this._filters || {}; }
+    get filters(): FetchQueryFilters { return this._filters || []; }
 
     set filters(filters: FetchQueryFilters) { this.filtersChange.next(this._filters = filters); }
 
@@ -66,12 +69,12 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this._reload.next();
     }
 
-    mergeFilters(filters: FetchQueryFilters) {
-        this.filters = Object.assign({}, this._filters, filters);
-    }
-
     updatePagination(pagination: { page?: number, limit?: number }) {
         this.pagination = Object.assign({}, this.pagination, pagination);
+    }
+
+    addFilters(filters: FetchQueryFilters | FetchQueryFilter) {
+        this.filters = [...this.filters, ...Normalizer.asArray(filters)];
     }
 
     connect(collectionViewer: CollectionViewer): Observable<T[] | ReadonlyArray<T>> {
@@ -102,7 +105,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     protected updateDataChangeSubscription() {
 
         const filterChange = this.filtersChange.pipe(
-            distinctUntilChanged(Check.isEqual)
+            distinctUntilChanged((a, b) => Check.isEqual(a, b, 2))
         );
 
         const sortChange = this.sortChange.pipe(

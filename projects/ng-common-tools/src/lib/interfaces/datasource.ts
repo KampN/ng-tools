@@ -1,6 +1,7 @@
 import {Observable} from 'rxjs';
 
-export interface FetchQueryFilters {[prop: string]: any;}
+export type FetchQueryFilter<T = any> = T;
+export type FetchQueryFilters<T = any> = FetchQueryFilter<T>[];
 
 export interface FetchQuerySort {
     operand: string;
