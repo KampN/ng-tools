@@ -17,7 +17,7 @@ export class SourceStoreStub<T> implements SourceStore<T> {
         this.setDatabase(data);
     }
 
-    _storeChange: ReplaySubject<void> = new ReplaySubject();
+    _storeChange: ReplaySubject<void> = new ReplaySubject(1);
 
     get storeChange(): Observable<void> {
         return this._storeChange.asObservable();

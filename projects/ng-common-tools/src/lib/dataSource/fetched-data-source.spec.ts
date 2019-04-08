@@ -268,4 +268,63 @@ describe('DataSource : FetchedDataSource', () => {
         expect(dataSource['sortChange'].isStopped).toBeTruthy();
     });
 
+    describe('change listening', () => {
+
+        it('should wait first connection before fetching', () => {
+
+            sourceStore.setDatabase(dummyFactory.sperm(15));
+            spyOn(sourceStore, 'fetch').and.callThrough();
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}, fetchAtInit: false});
+
+            expect(sourceStore.fetch).not.toHaveBeenCalled();
+            dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(spy);
+
+            dataSource.pagination = {page: 1, limit: 5};
+
+            expect(spy).toHaveBeenCalledWith(sourceStore.store.slice(0, 10));
+            expect(spy).toHaveBeenCalledTimes(2);
+            expect(sourceStore.fetch).toHaveBeenCalledTimes(2);
+            expect(sourceStore.fetch).toHaveBeenCalledWith({
+                sort: undefined,
+                filters: undefined,
+                pagination: {limit: 5, page: 1}
+            });
+        });
+
+        it('should stop listening changes on disconnect', () => {
+
+            sourceStore.setDatabase(dummyFactory.sperm(15));
+            spyOn(sourceStore, 'fetch').and.callThrough();
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}});
+
+            const sub = dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(() => null);
+            dataSource.disconnect(null);
+
+            dataSource.pagination = {page: 1, limit: 5};
+            dataSource.pagination = {page: 2, limit: 5};
+            dataSource.pagination = {page: 1, limit: 5};
+
+            dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(spy);
+
+            expect(spy).toHaveBeenCalledWith(sourceStore.store.slice(0, 10));
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(sourceStore.fetch).toHaveBeenCalledTimes(2);
+            expect(sourceStore.fetch).toHaveBeenCalledWith({
+                sort: undefined,
+                filters: undefined,
+                pagination: {limit: 5, page: 1}
+            });
+        });
+
+    });
 });

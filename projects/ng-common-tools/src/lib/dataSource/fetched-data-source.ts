@@ -10,25 +10,30 @@ export interface FetchedDataSourceConfig {
     pagination?: { page?: number, limit?: number };
     sort?: FetchQuerySort;
     filters?: FetchQueryFilters;
+    fetchAtInit?: boolean;
 }
 
 export class FetchedDataSource<T> extends DataSource<T> {
 
     protected readonly _fetching = new BehaviorSubject<boolean>(false);
     protected readonly renderData = new BehaviorSubject<T[]>([]);
-    protected readonly paginationChange = new ReplaySubject<FetchQueryPagination>();
+    protected readonly paginationChange = new ReplaySubject<FetchQueryPagination>(1);
     protected readonly filtersChange = new Subject<FetchQueryFilters>();
     protected readonly _reload = new Subject<void>();
     protected readonly sortChange = new Subject<FetchQuerySort>();
     protected readonly rc: RxCleaner = new RxCleaner();
+    protected listenchanges: boolean = false;
 
-    constructor(protected store: SourceStore<T>, {pagination, sort, filters}: FetchedDataSourceConfig = {}) {
+    constructor(protected store: SourceStore<T>, {pagination, sort, filters, fetchAtInit}: FetchedDataSourceConfig = {}) {
         super();
         this.pagination = Object.assign({limit: 10, page: 0}, pagination);
         if (sort) this._sort = sort;
         if (filters) this._filters = filters;
-        this.updateDataChangeSubscription();
-        this.updateRenderChangeSubscription();
+        if (fetchAtInit !== false) {
+            this.listenchanges = true;
+            this.updateDataChangeSubscription();
+            this.updateRenderChangeSubscription();
+        }
     }
 
     protected _filters: FetchQueryFilters;
@@ -70,10 +75,18 @@ export class FetchedDataSource<T> extends DataSource<T> {
     }
 
     connect(collectionViewer: CollectionViewer): Observable<T[] | ReadonlyArray<T>> {
+        if (!this.listenchanges) {
+            this.listenchanges = true;
+            this.updateDataChangeSubscription();
+            this.updateRenderChangeSubscription();
+        }
         return this.renderData;
     }
 
     disconnect(collectionViewer: CollectionViewer): void {
+        this.listenchanges = false;
+        this.rc.unsubscribe('store_change');
+        this.rc.unsubscribe('render_change');
     }
 
     destroy() {
@@ -105,14 +118,14 @@ export class FetchedDataSource<T> extends DataSource<T> {
             );
 
         const fetchOutOfBound = this.paginationChange.pipe(
-            filter(({page, limit}) => !this.store.isChunkLoaded(page * limit, page * limit + limit))
+            filter(({page, limit}) => !this.store.isChunkLoaded(page * limit, page * limit + limit)),
         );
 
         this.rc.unsubscribe('store_change');
         merge(stream, fetchOutOfBound).pipe(
             tap(() => this._fetching.next(true)),
             switchMap(() => this.fetchData()),
-            this.rc.takeUntil('store_change')
+            this.rc.takeUntil('store_change'),
         ).subscribe(() => this._fetching.next(false));
     }
 

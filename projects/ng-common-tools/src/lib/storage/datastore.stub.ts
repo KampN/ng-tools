@@ -8,7 +8,7 @@ import {Check} from '../helpers/check';
  */
 export class DataStoreStub implements DataStore {
 
-    readonly changeStream: ReplaySubject<void> = new ReplaySubject();
+    readonly changeStream: ReplaySubject<void> = new ReplaySubject(1);
     public storage: Storage<any, any> = new Map();
 
     clear(key: any) {
