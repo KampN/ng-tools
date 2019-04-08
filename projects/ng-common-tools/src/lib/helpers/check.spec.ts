@@ -98,6 +98,17 @@ describe('Helpers : Check', () => {
             expect(Check.isEqual({value: 1}, {value: 1, value2: 2})).toBeFalsy();
         });
 
+        describe('deepEqual', () => {
+
+            it('should test equality of objects with a depth of 2', () => {
+                expect(Check.isEqual({value: {v: 1}}, {value: {v: 1}})).toBeFalsy();
+                expect(Check.isEqual({value: {v: 1}}, {value: {v: 1}}, 2)).toBeTruthy();
+
+                expect(Check.isEqual({value: {v: 1}}, {value: {v: 2}}, 2)).toBeFalsy();
+            });
+
+        });
+
     });
 
     describe('isEmpty()', () => {

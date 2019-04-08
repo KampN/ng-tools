@@ -17,11 +17,15 @@ export class Check {
         return data && data.hasOwnProperty(property);
     }
 
-    static isEqual(itemA: any, itemB: any) {
+    static isEqual(itemA: any, itemB: any, depth: number = 1) {
         if (!(itemB instanceof Object) || !(itemA instanceof Object)) return itemA === itemB;
+
         const keys = Object.keys(itemB);
         if (keys.length !== Object.keys(itemA).length) return false;
-        return keys.every((key) => itemA[key] === itemB[key]);
+
+        return --depth > 0 ?
+            keys.every((key) => Check.isEqual(itemA[key], itemB[key], depth)) :
+            keys.every((key) => itemA[key] === itemB[key]);
     }
 
     static isEmpty(val: string | any[] | object) {
