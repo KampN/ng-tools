@@ -48,7 +48,7 @@ export class SourceStoreStub<T> implements SourceStore<T> {
     }
 
     isChunkLoaded(start: number, end: number): boolean {
-        return this.store.slice(start, end).length === end - start;
+        return this.store.slice(start, end).length === (end - start);
     }
 
     observe(start: number, end?: number): Observable<T[]> {

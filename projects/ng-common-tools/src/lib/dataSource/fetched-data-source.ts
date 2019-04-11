@@ -26,6 +26,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     protected readonly sortChange = new Subject<FetchQuerySort>();
     protected readonly rc: RxCleaner = new RxCleaner();
     protected listenchanges: boolean = false;
+    protected offChanged: boolean = false;
 
     constructor(protected store: SourceStore<T>, {pagination, sort, filters, fetchAtInit}: FetchedDataSourceConfig = {}) {
         super();
@@ -43,19 +44,27 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
     get filters(): FetchQueryFilters { return this._filters || []; }
 
-    set filters(filters: FetchQueryFilters) { this.filtersChange.next(this._filters = filters); }
+    set filters(filters: FetchQueryFilters) {
+        if (!Check.isEqual(this._filters, filters) && !this.listenchanges) this.offChanged = true;
+        this.filtersChange.next(this._filters = filters);
+    }
 
     protected _sort: FetchQuerySort;
 
     get sort(): FetchQuerySort { return this._sort; }
 
-    set sort(sort: FetchQuerySort) { this.sortChange.next(this._sort = sort); }
+    set sort(sort: FetchQuerySort) {
+        if (!Check.isEqual(this._sort, sort) && !this.listenchanges) this.offChanged = true;
+        this.sortChange.next(this._sort = sort);
+    }
 
     protected _pagination: FetchQueryPagination;
 
     get pagination(): FetchQueryPagination { return this._pagination; }
 
-    set pagination(pagination: FetchQueryPagination) { this.paginationChange.next(this._pagination = pagination); }
+    set pagination(pagination: FetchQueryPagination) {
+        this.paginationChange.next(this._pagination = pagination);
+    }
 
     get isFetching(): boolean { return this._fetching.value; }
 
@@ -73,6 +82,10 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this.pagination = Object.assign({}, this.pagination, pagination);
     }
 
+    updateSort(sort: { operand?: string, direction?: 'asc' | 'desc' }) {
+        this.sort = Object.assign({}, this.sort, sort);
+    }
+
     addFilters(filters: FetchQueryFilters | FetchQueryFilter) {
         this.filters = [...this.filters, ...Normalizer.asArray(filters)];
     }
@@ -82,6 +95,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
             this.listenchanges = true;
             this.updateDataChangeSubscription();
             this.updateRenderChangeSubscription();
+            if (this.offChanged) this._reload.next();
         }
         return this.renderData;
     }
@@ -105,7 +119,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     protected updateDataChangeSubscription() {
 
         const filterChange = this.filtersChange.pipe(
-            distinctUntilChanged((a, b) => Check.isEqual(a, b, 2))
+            distinctUntilChanged((a, b) => Check.isEqual(a, b, 3)),
         );
 
         const sortChange = this.sortChange.pipe(
@@ -115,6 +129,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
         const stream = merge(sortChange, filterChange, this._reload)
             .pipe(
                 tap(() => {
+                    this.offChanged = false;
                     this._pagination = {...this._pagination, page: 0};
                     this.store.clear();
                 })

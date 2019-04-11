@@ -198,7 +198,7 @@ describe('DataSource : FetchedDataSource', () => {
             rc.takeUntil()
         ).subscribe(spy);
 
-        dataSource.sort = {operand: 'operand'};
+        dataSource.updateSort({operand: 'operand'});
         dataSource.sort = {operand: 'operand'}; // noop, trigger only if sort changed
 
         expect(spy).toHaveBeenCalledWith(oldData);
@@ -323,6 +323,37 @@ describe('DataSource : FetchedDataSource', () => {
                 sort: undefined,
                 filters: undefined,
                 pagination: {limit: 5, page: 1}
+            });
+        });
+
+        it('should trigger changes on reconnect', () => {
+
+            sourceStore.setDatabase(dummyFactory.sperm(15));
+            spyOn(sourceStore, 'fetch').and.callThrough();
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}});
+
+            const sub = dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(() => null);
+            dataSource.disconnect(null);
+
+            dataSource.filters = [{foo: 'barbi'}];
+            dataSource.sort = {operand: 'foo', direction: 'asc'};
+            dataSource.updatePagination({limit: 15});
+
+            dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(spy);
+
+            expect(spy).toHaveBeenCalledWith(sourceStore.DATABASE.slice(0, 15));
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(sourceStore.fetch).toHaveBeenCalledTimes(3);
+            expect(sourceStore.fetch).toHaveBeenCalledWith({
+                sort: {operand: 'foo', direction: 'asc'},
+                filters: [{foo: 'barbi'}],
+                pagination: {limit: 15, page: 0}
             });
         });
 
