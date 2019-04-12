@@ -78,12 +78,18 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this._reload.next();
     }
 
-    updatePagination(pagination: { page?: number, limit?: number }) {
-        this.pagination = Object.assign({}, this.pagination, pagination);
+    updatePagination(pagination: { page?: number, limit?: number }): boolean {
+        const value = Object.assign({}, this.pagination, pagination);
+        const updated = !Check.isEqual(this.pagination, value);
+        this.pagination = value;
+        return updated;
     }
 
-    updateSort(sort: { operand?: string, direction?: 'asc' | 'desc' }) {
-        this.sort = Object.assign({}, this.sort, sort);
+    updateSort(sort: { operand?: string, direction?: 'asc' | 'desc' }): boolean {
+        const value = Object.assign({}, this.sort, sort);
+        const updated = !Check.isEqual(this.sort, value);
+        this.sort = value;
+        return updated;
     }
 
     addFilters(filters: FetchQueryFilters | FetchQueryFilter) {

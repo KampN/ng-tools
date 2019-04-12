@@ -268,6 +268,38 @@ describe('DataSource : FetchedDataSource', () => {
         expect(dataSource['sortChange'].isStopped).toBeTruthy();
     });
 
+    describe('change detection on update', () => {
+
+        it('should detect if the pagination changed', () => {
+            sourceStore.setStore(dummyFactory.sperm(15));
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 10, page: 1}});
+
+            expect(dataSource.updatePagination({limit: 10, page: 1})).toBeFalsy();
+            expect(dataSource.updatePagination({limit: 10})).toBeFalsy();
+            expect(dataSource.updatePagination({})).toBeFalsy();
+
+            expect(dataSource.updatePagination({page: 2})).toBeTruthy();
+            expect(dataSource.updatePagination({limit: 20})).toBeTruthy();
+        });
+
+        it('should detect if the sort changed', () => {
+            sourceStore.setStore(dummyFactory.sperm(15));
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {sort: {operand: 'foo', direction: 'asc'}});
+
+            expect(dataSource.updateSort({operand: 'foo', direction: 'asc'})).toBeFalsy();
+            expect(dataSource.updateSort({operand: 'foo'})).toBeFalsy();
+            expect(dataSource.updateSort({})).toBeFalsy();
+
+            expect(dataSource.updateSort({operand: 'bar'})).toBeTruthy();
+            expect(dataSource.updateSort({direction: 'desc'})).toBeTruthy();
+        });
+
+    });
+
     describe('change listening', () => {
 
         it('should wait first connection before fetching', () => {
