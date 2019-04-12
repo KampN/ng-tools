@@ -371,21 +371,21 @@ describe('DataSource : FetchedDataSource', () => {
             ).subscribe(() => null);
             dataSource.disconnect(null);
 
+            dataSource.updatePagination({page: 2, limit: 5});
             dataSource.filters = [{foo: 'barbi'}];
             dataSource.sort = {operand: 'foo', direction: 'asc'};
-            dataSource.updatePagination({limit: 15});
 
             dataSource.connect(null).pipe(
                 rc.takeUntil()
             ).subscribe(spy);
 
-            expect(spy).toHaveBeenCalledWith(sourceStore.DATABASE.slice(0, 15));
+            expect(spy).toHaveBeenCalledWith(sourceStore.DATABASE.slice(10, 5));
             expect(spy).toHaveBeenCalledTimes(1);
             expect(sourceStore.fetch).toHaveBeenCalledTimes(3);
             expect(sourceStore.fetch).toHaveBeenCalledWith({
                 sort: {operand: 'foo', direction: 'asc'},
                 filters: [{foo: 'barbi'}],
-                pagination: {limit: 15, page: 0}
+                pagination: {limit: 5, page: 2}
             });
         });
 

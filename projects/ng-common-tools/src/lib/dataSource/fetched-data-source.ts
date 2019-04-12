@@ -1,6 +1,6 @@
 import {DataSource} from '@angular/cdk/table';
 import {BehaviorSubject, merge, Observable, ReplaySubject, Subject} from 'rxjs';
-import {distinctUntilChanged, filter, switchMap, tap} from 'rxjs/operators';
+import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators';
 import {FetchQueryFilter, FetchQueryFilters, FetchQueryPagination, FetchQuerySort, SourceStore} from '../interfaces/datasource';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {CollectionViewer} from '@angular/cdk/collections';
@@ -22,7 +22,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     protected readonly renderData = new BehaviorSubject<T[]>([]);
     protected readonly paginationChange = new ReplaySubject<FetchQueryPagination>(1);
     protected readonly filtersChange = new Subject<FetchQueryFilters>();
-    protected readonly _reload = new Subject<void>();
+    protected readonly _reload = new Subject<boolean>();
     protected readonly sortChange = new Subject<FetchQuerySort>();
     protected readonly rc: RxCleaner = new RxCleaner();
     protected listenchanges: boolean = false;
@@ -75,7 +75,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     get totalLoaded() { return this.store.length; }
 
     reload() {
-        this._reload.next();
+        this._reload.next(true);
     }
 
     updatePagination(pagination: { page?: number, limit?: number }): boolean {
@@ -101,7 +101,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
             this.listenchanges = true;
             this.updateDataChangeSubscription();
             this.updateRenderChangeSubscription();
-            if (this.offChanged) this._reload.next();
+            if (this.offChanged) this._reload.next(false);
         }
         return this.renderData;
     }
@@ -126,17 +126,19 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
         const filterChange = this.filtersChange.pipe(
             distinctUntilChanged((a, b) => Check.isEqual(a, b, 3)),
+            map(() => true)
         );
 
         const sortChange = this.sortChange.pipe(
-            distinctUntilChanged(Check.isEqual)
+            distinctUntilChanged(Check.isEqual),
+            map(() => true)
         );
 
         const stream = merge(sortChange, filterChange, this._reload)
             .pipe(
-                tap(() => {
+                tap((resetPagination: boolean) => {
                     this.offChanged = false;
-                    this._pagination = {...this._pagination, page: 0};
+                    if (resetPagination) this._pagination = {...this._pagination, page: 0};
                     this.store.clear();
                 })
             );
