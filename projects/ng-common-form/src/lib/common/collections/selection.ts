@@ -76,6 +76,10 @@ export class SelectionModel<T> {
         return this._selection.size === 0;
     }
 
+    get size(): number {
+        return this._selection.size;
+    }
+
     hasValue(): boolean {
         return !this.isEmpty();
     }

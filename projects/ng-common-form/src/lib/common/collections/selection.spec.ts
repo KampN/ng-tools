@@ -51,6 +51,7 @@ describe('Collections : SelectionModel', () => {
             expect(model.selected.length).toBe(2);
             expect(model.isSelected(1)).toBe(true);
             expect(model.isSelected(2)).toBe(true);
+            expect(model.size).toBe(2);
             expect(changedSpy).toHaveBeenCalledTimes(2);
         });
 
