@@ -17,6 +17,7 @@ export * from './lib/interfaces/repository';
 export * from './lib/interfaces/datastore';
 export * from './lib/interfaces/directive';
 
+export * from './lib/helpers/unicode-encoder';
 export * from './lib/helpers/encoder';
 export * from './lib/helpers/jwt-helper';
 export * from './lib/helpers/number-formatter';
