@@ -1,7 +1,7 @@
 /* istanbul ignore next */
 
 // @dynamic
-class UnicodeEncoder {
+export class UnicodeEncoder {
 
     static toBase64(value: string): string {
         const inUTF8 = UnicodeEncoder.strToUTF8Arr(value);
