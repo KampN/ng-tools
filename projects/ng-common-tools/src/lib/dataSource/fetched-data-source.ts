@@ -18,6 +18,7 @@ export type ReplaceFilterFn = (filter: FetchQueryFilter, index: number) => Fetch
 
 export class FetchedDataSource<T> extends DataSource<T> {
 
+    protected readonly _totalChange = new BehaviorSubject<number>(this.store.total);
     protected readonly _fetching = new BehaviorSubject<boolean>(false);
     protected readonly renderData = new BehaviorSubject<T[]>([]);
     protected readonly paginationChange = new ReplaySubject<FetchQueryPagination>(1);
@@ -66,11 +67,13 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this.paginationChange.next(this._pagination = pagination);
     }
 
+    get totalChange(): Observable<number> { return this._totalChange; }
+
     get isFetching(): boolean { return this._fetching.value; }
 
     get fetching(): Observable<boolean> { return this._fetching.asObservable(); }
 
-    get total(): number { return this.store.total; }
+    get total(): number { return this._totalChange.value; }
 
     get totalLoaded() { return this.store.length; }
 
@@ -140,6 +143,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
                     this.offChanged = false;
                     if (resetPagination) this._pagination = {...this._pagination, page: 0};
                     this.store.clear();
+                    this._totalChange.next(undefined);
                 })
             );
 
@@ -152,7 +156,10 @@ export class FetchedDataSource<T> extends DataSource<T> {
             tap(() => this._fetching.next(true)),
             switchMap(() => this.fetchData()),
             this.rc.takeUntil('store_change'),
-        ).subscribe(() => this._fetching.next(false));
+        ).subscribe(({total}) => {
+            this._totalChange.next(total);
+            this._fetching.next(false);
+        });
     }
 
     protected updateRenderChangeSubscription() {
