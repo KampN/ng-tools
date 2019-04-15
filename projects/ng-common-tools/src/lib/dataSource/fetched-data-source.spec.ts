@@ -371,9 +371,98 @@ describe('DataSource : FetchedDataSource', () => {
             ).subscribe(() => null);
             dataSource.disconnect(null);
 
-            dataSource.updatePagination({page: 2, limit: 5});
             dataSource.filters = [{foo: 'barbi'}];
             dataSource.sort = {operand: 'foo', direction: 'asc'};
+
+            dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(spy);
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(sourceStore.fetch).toHaveBeenCalledTimes(2);
+            expect(sourceStore.fetch).toHaveBeenCalledWith({
+                sort: {operand: 'foo', direction: 'asc'},
+                filters: [{foo: 'barbi'}],
+                pagination: {limit: 5, page: 0}
+            });
+        });
+
+        it('should set page to 0 if filters changed on reconnect', () => {
+
+            sourceStore.setDatabase(dummyFactory.sperm(15));
+            spyOn(sourceStore, 'fetch').and.callThrough();
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}});
+
+            const sub = dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(() => null);
+            dataSource.disconnect(null);
+
+            dataSource.updatePagination({page: 2, limit: 5});
+            dataSource.filters = [{foo: 'barbi'}];
+
+            dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(spy);
+
+            expect(spy).toHaveBeenCalledWith(sourceStore.DATABASE.slice(0, 5));
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(sourceStore.fetch).toHaveBeenCalledTimes(3);
+            expect(sourceStore.fetch).toHaveBeenCalledWith({
+                sort: undefined,
+                filters: [{foo: 'barbi'}],
+                pagination: {limit: 5, page: 0}
+            });
+        });
+
+        it('should set page to 0 if sort changed on reconnect', () => {
+
+            sourceStore.setDatabase(dummyFactory.sperm(15));
+            spyOn(sourceStore, 'fetch').and.callThrough();
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}});
+
+            const sub = dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(() => null);
+            dataSource.disconnect(null);
+
+            dataSource.updatePagination({page: 2, limit: 5});
+            dataSource.sort = {operand: 'foo', direction: 'asc'};
+
+            dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(spy);
+
+            expect(spy).toHaveBeenCalledWith(sourceStore.DATABASE.slice(0, 5));
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(sourceStore.fetch).toHaveBeenCalledTimes(3);
+            expect(sourceStore.fetch).toHaveBeenCalledWith({
+                sort: {operand: 'foo', direction: 'asc'},
+                filters: undefined,
+                pagination: {limit: 5, page: 0}
+            });
+        });
+
+        it('should keep pagination on reconnect if filters & sort changed before pagination', () => {
+
+            sourceStore.setDatabase(dummyFactory.sperm(15));
+            spyOn(sourceStore, 'fetch').and.callThrough();
+
+            const spy = jasmine.createSpy('subscription');
+            const dataSource = new FetchedDataSource(sourceStore, {pagination: {limit: 5}});
+
+            const sub = dataSource.connect(null).pipe(
+                rc.takeUntil()
+            ).subscribe(() => null);
+            dataSource.disconnect(null);
+
+            dataSource.filters = [{foo: 'barbi'}];
+            dataSource.sort = {operand: 'foo', direction: 'asc'};
+            dataSource.updatePagination({page: 2, limit: 5});
 
             dataSource.connect(null).pipe(
                 rc.takeUntil()

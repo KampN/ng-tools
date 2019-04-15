@@ -48,7 +48,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     set filters(filters: FetchQueryFilters) {
         const updated = !Check.isEqual(this._filters, filters, 3);
         if (updated) {
-            if (!this.listenchanges) this.offChanged = true;
+            if (!this.listenchanges) this.handleOfflineChange();
             this.filtersChange.next(this._filters = filters);
         }
     }
@@ -60,7 +60,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
     set sort(sort: FetchQuerySort) {
         const updated = !Check.isEqual(this._sort, sort, 3);
         if (updated) {
-            if (!this.listenchanges) this.offChanged = true;
+            if (!this.listenchanges) this.handleOfflineChange();
             this.sortChange.next(this._sort = sort);
         }
     }
@@ -129,6 +129,11 @@ export class FetchedDataSource<T> extends DataSource<T> {
         this._reload.complete();
         this.sortChange.complete();
         this.rc.complete();
+    }
+
+    protected handleOfflineChange() {
+        this._pagination = {...this._pagination, page: 0};
+        this.offChanged = true;
     }
 
     protected updateDataChangeSubscription() {
