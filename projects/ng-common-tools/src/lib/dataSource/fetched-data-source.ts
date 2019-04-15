@@ -46,8 +46,11 @@ export class FetchedDataSource<T> extends DataSource<T> {
     get filters(): FetchQueryFilters { return this._filters || []; }
 
     set filters(filters: FetchQueryFilters) {
-        if (!Check.isEqual(this._filters, filters) && !this.listenchanges) this.offChanged = true;
-        this.filtersChange.next(this._filters = filters);
+        const updated = !Check.isEqual(this._filters, filters, 3);
+        if (updated) {
+            if (!this.listenchanges) this.offChanged = true;
+            this.filtersChange.next(this._filters = filters);
+        }
     }
 
     protected _sort: FetchQuerySort;
@@ -55,8 +58,11 @@ export class FetchedDataSource<T> extends DataSource<T> {
     get sort(): FetchQuerySort { return this._sort; }
 
     set sort(sort: FetchQuerySort) {
-        if (!Check.isEqual(this._sort, sort) && !this.listenchanges) this.offChanged = true;
-        this.sortChange.next(this._sort = sort);
+        const updated = !Check.isEqual(this._sort, sort, 3);
+        if (updated) {
+            if (!this.listenchanges) this.offChanged = true;
+            this.sortChange.next(this._sort = sort);
+        }
     }
 
     protected _pagination: FetchQueryPagination;
