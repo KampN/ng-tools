@@ -55,7 +55,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
 
     protected _sort: FetchQuerySort;
 
-    get sort(): FetchQuerySort { return this._sort; }
+    get sort(): FetchQuerySort { return this._sort || {} as FetchQuerySort; }
 
     set sort(sort: FetchQuerySort) {
         const updated = !Check.isEqual(this._sort, sort, 3);
