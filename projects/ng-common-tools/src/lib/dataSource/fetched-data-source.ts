@@ -157,6 +157,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
                     this._totalChange.next(undefined);
                 })
             );
+            
 
         const fetchOutOfBound = this.paginationChange.pipe(
             filter(({page, limit}) => !this.store.isChunkLoaded(page * limit, page * limit + limit)),
