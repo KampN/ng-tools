@@ -68,7 +68,7 @@ describe('Data : Repository', () => {
         it('should return an empty array if an error occurs during the http query', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.load({ids: [1]}).subscribe((items: any[]) => {
                     expect(items).toEqual([]);
@@ -85,7 +85,7 @@ describe('Data : Repository', () => {
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
                 let i = 0;
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint/${++i}`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint/${++i}`) as Observable<any[]>);
 
                 const response1: any[] = [dummyFactory.seed({id: 1})];
                 const response2: any[] = [dummyFactory.seed({id: 2})];
@@ -121,7 +121,7 @@ describe('Data : Repository', () => {
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
                 let i = 0;
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint/${++i}`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint/${++i}`) as Observable<any[]>);
 
                 const response1: any[] = [dummyFactory.seed({id: 1})];
                 const response2: any[] = [dummyFactory.seed({id: 2})];
@@ -157,7 +157,7 @@ describe('Data : Repository', () => {
         it('should store the loaded result into the datastore', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 const client = dummyFactory.seed({id: 1});
                 const response: any[] = [client];
@@ -181,7 +181,7 @@ describe('Data : Repository', () => {
         it('should observe changes of the loaded data', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 const client = dummyFactory.seed({id: 1});
                 const response: any[] = [client];
@@ -218,7 +218,7 @@ describe('Data : Repository', () => {
         it('should clear the stored data and load the query result into the datastore', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 const spy = jasmine.createSpy('subscribe');
 
@@ -245,7 +245,7 @@ describe('Data : Repository', () => {
         it('should observe changes of the loaded data', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 const spy = jasmine.createSpy('subscribe');
 
@@ -297,7 +297,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2});
 
                 store.push(storeKey, {1: client1});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.get([1, 2]).subscribe((result: any[]) => {
                     const ids = result.map(({id}) => id).sort();
@@ -314,7 +314,7 @@ describe('Data : Repository', () => {
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
 
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.get([1, 2]).subscribe((result: any[]) => {
                     expect(result).toEqual([]);
@@ -333,7 +333,7 @@ describe('Data : Repository', () => {
                 const client = dummyFactory.seed({id: 1, expiryDate: 1});
 
                 store.push(storeKey, {1: client});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.get([1]).subscribe((result: any[]) => {
                     expect(result[0].id).toEqual(client.id);
@@ -514,7 +514,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2, expiryDate});
 
                 store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.refresh([1, 2]).subscribe((result: any[]) => {
                     const ids = result.map(({id}) => id).sort();
@@ -539,7 +539,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2, expiryDate});
 
                 store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.refresh([1, 2]).subscribe((result: any[]) => {
                     const ids = result.map(({id}) => id).sort();
@@ -565,7 +565,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2, expiryDate: 1});
 
                 store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`));
+                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.refresh().subscribe((result: any[]) => {
                     const item = result[0];

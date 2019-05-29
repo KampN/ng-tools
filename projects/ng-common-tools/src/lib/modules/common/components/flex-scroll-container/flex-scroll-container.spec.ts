@@ -29,7 +29,7 @@ describe('Components : FlexScrollContainer', () => {
         `
     })
     class TestHostComponent {
-        @ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
+        @ViewChild(FlexScrollContainerComponent, {static: false}) container: FlexScrollContainerComponent;
     }
 
     let testFixture: ComponentFixture<TestHostComponent>;

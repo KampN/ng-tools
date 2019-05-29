@@ -75,10 +75,10 @@ export class PickerShopCartContext<T> {
 })
 export class PickerComponent<T> implements ControlValueAccessor, AfterContentInit, OnDestroy, OnInit, OnChanges {
 
-    @ContentChild(PickerShopCartDefDirective) shopCartDef: PickerShopCartDefDirective;
-    @ContentChild(PickerSectionDefDirective) sectionDef: PickerSectionDefDirective;
-    @ViewChild(PickerShopCartOutletDirective) shopCartOutlet: PickerShopCartOutletDirective;
-    @ViewChild(PickerBodyOutletDirective) bodyOutlet: PickerBodyOutletDirective;
+    @ContentChild(PickerShopCartDefDirective, {static: false}) shopCartDef: PickerShopCartDefDirective;
+    @ContentChild(PickerSectionDefDirective, {static: false}) sectionDef: PickerSectionDefDirective;
+    @ViewChild(PickerShopCartOutletDirective, { static: true }) shopCartOutlet: PickerShopCartOutletDirective;
+    @ViewChild(PickerBodyOutletDirective, { static: true }) bodyOutlet: PickerBodyOutletDirective;
     @HostBinding('class.disabled') public disabled: boolean = false;
     @Input() public extractIdFn: ExtractIdFn;
     public model: SelectionModel<T> = new SelectionModel(true);

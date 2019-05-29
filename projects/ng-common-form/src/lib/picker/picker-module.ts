@@ -10,7 +10,8 @@ import {
     PickerShopCartComponent, PickerShopCartEmptyDefDirective, PickerShopCartEmptyOutletDirective, PickerShopCartItemDefDirective,
     PickerShopCartListOutletDirective
 } from './picker-shop-cart/picker-shop-cart';
-import {MatButtonModule, MatIconModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 
 export {PickerHeaderComponent, PickerHeaderDefDirective, PickerHeaderOutletDirective} from './picker-header/picker-header';

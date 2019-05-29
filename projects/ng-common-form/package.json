@@ -1,10 +1,10 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "2.2.0",
+	"version": "3.0.0",
 	"peerDependencies": {
-		"@angular/common": "^7.3.0",
-		"@angular/core": "^7.3.0",
-		"@angular/forms": "^7.3.0",
+		"@angular/common": "^8.0.0",
+		"@angular/core": "^8.0.0",
+		"@angular/forms": "^8.0.0",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"optionalDependencies": {

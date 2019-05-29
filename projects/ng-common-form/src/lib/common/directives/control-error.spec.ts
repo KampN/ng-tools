@@ -20,8 +20,8 @@ describe('Directives : FormErrorHint', () => {
         `
     })
     class TestHostComponent {
-        @ViewChild('inside', {read: ElementRef}) inside: ElementRef;
-        @ViewChild('outside', {read: ElementRef}) outside: ElementRef;
+        @ViewChild('inside', {static: false, read: ElementRef}) inside: ElementRef;
+        @ViewChild('outside', {static: false, read: ElementRef}) outside: ElementRef;
         group: FormGroup;
 
         get control(): FormControl {

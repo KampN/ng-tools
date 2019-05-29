@@ -1,6 +1,6 @@
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output,
-    ViewChild, ViewEncapsulation
+    AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit,
+    Output, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import {FocusMonitor, FocusOrigin} from '@angular/cdk/a11y';
 import {distinctUntilChanged, map} from 'rxjs/operators';
@@ -22,13 +22,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
         },
     ]
 })
-export class MaterialSearchInputComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 
     @Input() search: string = '';
     @Output() searchChange: EventEmitter<string> = new EventEmitter();
     readonly valueChange: Subject<string> = new Subject();
 
-    @ViewChild('input') input: ElementRef;
+    @ViewChild('input', {static: false}) input: ElementRef;
     @Input() placeholder = '';
     @Input() disableClear: boolean = false;
 
@@ -52,7 +52,9 @@ export class MaterialSearchInputComponent implements OnInit, OnDestroy, ControlV
             this.onChange(this.search);
             this.searchChange.emit(this.search);
         });
+    }
 
+    ngAfterViewInit(): void {
         this.monitor.monitor(this.input.nativeElement).pipe(
             map((origin: FocusOrigin) => !!origin),
             distinctUntilChanged(),

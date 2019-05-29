@@ -1,7 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {MatButtonModule, MatIconModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {PickerHeaderComponent} from './picker-header';
 
 describe('Picker : PickerHeader', () => {
@@ -14,7 +15,7 @@ describe('Picker : PickerHeader', () => {
         `,
     })
     class TestHostComponent {
-        @ViewChild(PickerHeaderComponent) underline: PickerHeaderComponent;
+        @ViewChild(PickerHeaderComponent, {static: false}) underline: PickerHeaderComponent;
     }
 
     let testFixture: ComponentFixture<TestHostComponent>;

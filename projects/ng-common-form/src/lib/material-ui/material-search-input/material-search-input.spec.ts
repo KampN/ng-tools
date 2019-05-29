@@ -4,7 +4,8 @@ import {Component, ViewChild} from '@angular/core';
 import {MaterialSearchInputComponent} from './material-search-input';
 import {MaterialUnderlineComponent} from '../material-underline/material-underline';
 import {By} from '@angular/platform-browser';
-import {MatButtonModule, MatIconModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {FormControlMockFactory} from '../../mockFactories/form-control';
 
 describe('Material-UI : MaterialSearchInput', () => {
@@ -17,7 +18,7 @@ describe('Material-UI : MaterialSearchInput', () => {
         `,
     })
     class TestHostComponent {
-        @ViewChild(MaterialSearchInputComponent) search: MaterialSearchInputComponent;
+        @ViewChild(MaterialSearchInputComponent, {static: true}) search: MaterialSearchInputComponent;
         control: FormControl = new FormControl(null);
 
         disableClear: boolean = false;

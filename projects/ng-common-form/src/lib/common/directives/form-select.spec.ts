@@ -19,9 +19,9 @@ describe('Directives : FormSelect', () => {
     })
     class TestHostComponent {
         group: FormGroup;
-        @ViewChild('checkbox') input: FormSelectControlCheckboxControlValueAccessorDirective;
-        @ViewChild(FormSelectGroupDirective) selectGroup: FormSelectGroupDirective<any>;
-        @ViewChild(FormSelectControlDirective) selectControl: FormSelectControlDirective<any>;
+        @ViewChild('checkbox', {static: false}) input: FormSelectControlCheckboxControlValueAccessorDirective;
+        @ViewChild(FormSelectGroupDirective, {static: false}) selectGroup: FormSelectGroupDirective<any>;
+        @ViewChild(FormSelectControlDirective, {static: false}) selectControl: FormSelectControlDirective<any>;
 
         get control(): FormControl {
             return this.group && this.group.contains('control') ? this.group.get('control') as FormControl : null;
