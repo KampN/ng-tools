@@ -4,7 +4,7 @@ import {FLEX_SCROLL_CONTAINER, FlexScrollContainerComponent} from './flex-scroll
 import {By} from '@angular/platform-browser';
 import {CdkScrollable, ScrollingModule} from '@angular/cdk/scrolling';
 
-fdescribe('Components : FlexScrollContainer', () => {
+describe('Components : FlexScrollContainer', () => {
 
     @Component({
         styles: [`
