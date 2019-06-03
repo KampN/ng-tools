@@ -1,9 +1,10 @@
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, DebugElement, Inject, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FlexScrollContainerComponent} from './flex-scroll-container';
+import {FLEX_SCROLL_CONTAINER, FlexScrollContainerComponent} from './flex-scroll-container';
 import {By} from '@angular/platform-browser';
+import {CdkScrollable, ScrollingModule} from '@angular/cdk/scrolling';
 
-describe('Components : FlexScrollContainer', () => {
+fdescribe('Components : FlexScrollContainer', () => {
 
     @Component({
         styles: [`
@@ -24,12 +25,20 @@ describe('Components : FlexScrollContainer', () => {
         `],
         template: `
 			<div flex-scroll-container>
-				<div class="content"></div>
+				<test-inner class="content"></test-inner>
 			</div>
         `
     })
     class TestHostComponent {
         @ViewChild(FlexScrollContainerComponent, {static: false}) container: FlexScrollContainerComponent;
+    }
+
+    @Component({
+        selector: 'test-inner',
+        template: 'hello world'
+    })
+    class TestInnerComponent {
+        constructor(@Inject(FLEX_SCROLL_CONTAINER) public scrollContainer: FlexScrollContainerComponent) {}
     }
 
     let testFixture: ComponentFixture<TestHostComponent>;
@@ -38,8 +47,12 @@ describe('Components : FlexScrollContainer', () => {
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
+            imports: [
+                ScrollingModule
+            ],
             declarations: [
                 TestHostComponent,
+                TestInnerComponent,
                 FlexScrollContainerComponent,
             ],
         }).compileComponents();
@@ -52,19 +65,39 @@ describe('Components : FlexScrollContainer', () => {
 
     it('should create a scroll-container element with a position absolute taking 100% of its container', async(() => {
         const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
-        const scontainer: DebugElement = container.query(By.css('.scroll-container'));
+        const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
 
         const containerRect = container.nativeElement.getBoundingClientRect();
-        const scontainerRect = scontainer.nativeElement.getBoundingClientRect();
+        const scontainerRect = scrollContainer.nativeElement.getBoundingClientRect();
         expect(containerRect.width).toEqual(scontainerRect.width);
         expect(containerRect.height).toEqual(scontainerRect.height);
     }));
 
     it('should add a scroll-container decorated by the cdk-scrollable directive', async(() => {
         const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
-        const scontainer: DebugElement = container.query(By.css('.scroll-container'));
+        const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
 
-        expect(scontainer.attributes).toEqual(jasmine.objectContaining({'cdk-scrollable': ''}));
+        expect(scrollContainer).toBeDefined();
     }));
+
+    it('should expose the cdk-scrollable instance', () => {
+
+        const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
+        const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
+        const instance: FlexScrollContainerComponent = container.componentInstance;
+
+        expect(instance.cdkScrollable).toBeDefined();
+        expect(instance.cdkScrollable.getElementRef().nativeElement).toEqual(scrollContainer.nativeElement);
+    });
+
+    it('should expose a provider FLEX_SCROLL_CONTAINER to the children', () => {
+
+        const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
+        const child: DebugElement = container.query(By.directive(TestInnerComponent));
+        const childInstance: TestInnerComponent = child.componentInstance;
+
+        expect(childInstance.scrollContainer).toBeDefined();
+        expect(childInstance.scrollContainer).toEqual(container.componentInstance);
+    });
 
 });
