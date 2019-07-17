@@ -4,7 +4,7 @@ export type HydraItem<T = any> = T & {
 	'@context'?:string;
 }
 
-export interface HydraCollection<T = null> {
+export interface HydraCollection<T = any> {
 	'@context':string;
 	'@id':string;
 	'@type':string;
