@@ -1,4 +1,4 @@
-export type HydraItem<T> = T & {
+export type HydraItem<T = any> = T & {
 	'@id':string;
 	'@type':string;
 	'@context'?:string;
