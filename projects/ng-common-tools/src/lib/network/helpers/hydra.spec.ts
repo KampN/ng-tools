@@ -9,7 +9,7 @@ describe('Network : Hydra', () => {
 
 	describe('id', () => {
 		it('should return an hydra id when passing Hydra object or HydraId', () => {
-			const item:HydraItem<DummyObject> = HydraFactory.generateItem(dummyFactory.seed(1));
+			const item:HydraItem<DummyObject> = HydraFactory.generateItem(dummyFactory.seed({id: 1}));
 
 			expect(Hydra.id(item)).toEqual(item['@id']);
 			expect(Hydra.id(item['@id'])).toBeDefined(item['@id']);
