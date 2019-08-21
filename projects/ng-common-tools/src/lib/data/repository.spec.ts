@@ -582,6 +582,21 @@ describe('Data : Repository', () => {
 
     });
 
+    it('should mark all items as outdated', () => {
+
+        const expiryDate = moment().unix() + 8600;
+        const client1 = dummyFactory.seed({id: 1, expiryDate});
+        const client2 = dummyFactory.seed({id: 2, expiryDate});
+        store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
+
+        repository.markAllAsOutdated();
+
+        const cache = store.pull(storeKey);
+
+        expect(cache[client1.id].expiryDate).toEqual(1);
+        expect(cache[client2.id].expiryDate).toEqual(1);
+    });
+
     it('should mark the given ids as outdated', () => {
 
         const expiryDate = moment().unix() + 8600;
