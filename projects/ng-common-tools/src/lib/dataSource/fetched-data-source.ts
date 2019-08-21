@@ -89,7 +89,10 @@ export class FetchedDataSource<T> extends DataSource<T> {
 			if(!this.listenchanges) this.handleOfflineChange();
 			this._reload.next(true);
 		}
-		else this.updatePagination({page});
+		else {
+			const changed = this.updatePagination({page});
+			if(!changed) this._reload.next(true);
+		}
 	}
 
 	updatePagination(pagination:{ page?:number, limit?:number }):boolean {
