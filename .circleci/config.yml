@@ -7,6 +7,9 @@ anchor_2: &workflow_branch_only_filter
     tags:
       ignore: /.*/
 
+orbs:
+  jira: circleci/jira@1.0.2
+
 executors:
   node:
     <<: *wdir
@@ -105,24 +108,32 @@ workflows:
         project: ng-common-tools
         requires:
         - install_dependencies
+        post-steps:
+        - jira/notify
     - unit_test:
         <<: *workflow_branch_only_filter
         name: "test [ng-logger]"
         project: ng-logger
         requires:
         - install_dependencies
+        post-steps:
+        - jira/notify
     - unit_test:
         <<: *workflow_branch_only_filter
         name: "test [ng-logger-fs]"
         project: ng-logger-fs
         requires:
         - install_dependencies
+        post-steps:
+        - jira/notify
     - unit_test:
         <<: *workflow_branch_only_filter
         name: "test [ng-common-form]"
         project: ng-common-form
         requires:
         - install_dependencies
+        post-steps:
+        - jira/notify
 
     - build:
         <<: *workflow_branch_only_filter
