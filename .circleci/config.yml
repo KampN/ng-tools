@@ -104,7 +104,6 @@ workflows:
         context: "open source"
         post-steps:
         - jira/notify
-
     - unit_test:
         <<: *workflow_branch_only_filter
         context: "open source"
