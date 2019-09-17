@@ -101,9 +101,13 @@ workflows:
     jobs:
     - install_dependencies:
         <<: *workflow_branch_only_filter
+        context: "open source"
+        post-steps:
+        - jira/notify
 
     - unit_test:
         <<: *workflow_branch_only_filter
+        context: "open source"
         name: "test [ng-common-tools]"
         project: ng-common-tools
         requires:
@@ -112,6 +116,7 @@ workflows:
         - jira/notify
     - unit_test:
         <<: *workflow_branch_only_filter
+        context: "open source"
         name: "test [ng-logger]"
         project: ng-logger
         requires:
@@ -120,6 +125,7 @@ workflows:
         - jira/notify
     - unit_test:
         <<: *workflow_branch_only_filter
+        context: "open source"
         name: "test [ng-logger-fs]"
         project: ng-logger-fs
         requires:
@@ -128,6 +134,7 @@ workflows:
         - jira/notify
     - unit_test:
         <<: *workflow_branch_only_filter
+        context: "open source"
         name: "test [ng-common-form]"
         project: ng-common-form
         requires:
