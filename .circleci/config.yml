@@ -129,28 +129,28 @@ workflows:
         name: "test [ng-common-tools]"
         project: ng-common-tools
         requires:
-        - "test [ng-common-tools]"
+        - "build [ng-common-tools]"
         - install_dependencies
     - unit_test:
         <<: *workflow_branch_only_filter
         name: "test [ng-logger]"
         project: ng-logger
         requires:
-        - "test [ng-logger]"
+        - "build [ng-logger]"
         - install_dependencies
     - unit_test:
         <<: *workflow_branch_only_filter
         name: "test [ng-logger-fs]"
         project: ng-logger-fs
         requires:
-        - "test [ng-logger-fs]"
+        - "build [ng-logger-fs]"
         - install_dependencies
     - unit_test:
         <<: *workflow_branch_only_filter
         name: "test [ng-common-form]"
         project: ng-common-form
         requires:
-        - "test [ng-common-form]"
+        - "build [ng-common-form]"
         - install_dependencies
 
     - publish:
