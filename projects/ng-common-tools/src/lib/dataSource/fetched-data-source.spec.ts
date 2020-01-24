@@ -159,7 +159,7 @@ describe('DataSource : FetchedDataSource', () => {
 		const spy = jasmine.createSpy('subscription');
 		const dataSource = new FetchedDataSource(sourceStore, {pagination: {page: 1, limit: 5}});
 
-		expect(sourceStore.fetch).not.toHaveBeenCalledWith(); // Already fetched by the SetStore call
+		expect(sourceStore.fetch).not.toHaveBeenCalled(); // Already fetched by the SetStore call
 
 		dataSource.connect(null).pipe(
 			rc.takeUntil()
@@ -192,7 +192,7 @@ describe('DataSource : FetchedDataSource', () => {
 		const spy = jasmine.createSpy('subscription');
 		const dataSource = new FetchedDataSource(sourceStore, {pagination: {page: 0, limit: 5}});
 
-		expect(sourceStore.fetch).not.toHaveBeenCalledWith(); // Already fetched by the SetStore call
+		expect(sourceStore.fetch).not.toHaveBeenCalled(); // Already fetched by the SetStore call
 
 		dataSource.connect(null).pipe(
 			rc.takeUntil()
@@ -220,7 +220,7 @@ describe('DataSource : FetchedDataSource', () => {
 		const spy = jasmine.createSpy('subscription');
 		const dataSource = new FetchedDataSource(sourceStore, {pagination: {page: 0, limit: 5}});
 
-		expect(sourceStore.fetch).not.toHaveBeenCalledWith(); // Already fetched by the SetStore call
+		expect(sourceStore.fetch).not.toHaveBeenCalled(); // Already fetched by the SetStore call
 
 		dataSource.connect(null).pipe(
 			rc.takeUntil()

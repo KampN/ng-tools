@@ -116,12 +116,14 @@ workflows:
         name: "build [ng-logger-fs]"
         project: ng-logger-fs
         requires:
+        - "build [ng-logger]"
         - install_dependencies
     - build:
         <<: *workflow_branch_only_filter
         name: "build [ng-common-form]"
         project: ng-common-form
         requires:
+        - "build [ng-common-tools]"
         - install_dependencies
 
     - unit_test:
