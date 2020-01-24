@@ -32,7 +32,8 @@ describe('Providers : FSLogDisplay', () => {
 				logStream.push(log);
 				expect(display.showLog).not.toHaveBeenCalled();
 				expect(fs.log).toHaveBeenCalledTimes(1);
-				expect(fs.log).toHaveBeenCalledWith([FSLogLevel.Debug, 'message', null]);
+				//@ts-ignore
+				expect(fs.log).toHaveBeenCalledWith(FSLogLevel.Debug, 'message', null);
 			})
 		);
 
@@ -46,7 +47,8 @@ describe('Providers : FSLogDisplay', () => {
 				logStream.push(log);
 				expect(display.showLog).not.toHaveBeenCalled();
 				expect(fs.log).toHaveBeenCalledTimes(1);
-				expect(fs.log).toHaveBeenCalledWith([FSLogLevel.Warn, 'message', 'foobar']);
+				//@ts-ignore
+				expect(fs.log).toHaveBeenCalledWith(FSLogLevel.Warn, 'message', 'foobar');
 			})
 		);
 
@@ -80,8 +82,10 @@ describe('Providers : FSLogDisplay', () => {
 				logStream.push(log);
 
 				expect(display.showLog).not.toHaveBeenCalled();
-				expect(fs.log).toHaveBeenCalledWith([FSLogLevel.Info, 'message', 'foobar']);
-				expect(fs.log).toHaveBeenCalledWith([FSLogLevel.Info, 'Log Stack : ', jasmine.arrayContaining([debugLog])]);
+				//@ts-ignore
+				expect(fs.log).toHaveBeenCalledWith(FSLogLevel.Info, 'message', 'foobar');
+				//@ts-ignore
+				expect(fs.log).toHaveBeenCalledWith(FSLogLevel.Info, 'Log Stack : ', jasmine.arrayContaining([debugLog]));
 
 				expect(logStream.stackSize).toEqual(0);
 			})

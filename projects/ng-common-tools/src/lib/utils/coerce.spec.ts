@@ -8,11 +8,11 @@ describe('Utils : Coerce', () => {
 		it('should return an object', () => {
 			expect(coerceObjectData('data')).toEqual({} as any);
 			expect(coerceObjectData({prop: 1})).toEqual({prop: 1});
-			expect(coerceObjectData([1])).toEqual({} as any);
+			expect(coerceObjectData([1])).toEqual([1]);
 			expect(coerceObjectData(null)).toEqual({});
 			expect(coerceObjectData(undefined)).toEqual({});
 			expect(coerceObjectData({})).toEqual({});
-			expect(coerceObjectData([])).toEqual({} as any);
+			expect(coerceObjectData([])).toEqual([]);
 		});
 
 	});
