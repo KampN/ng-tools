@@ -72,7 +72,7 @@ jobs:
         command: npm run build -- "<< parameters.project >>"
     - persist_to_workspace:
         root: .
-        paths: dist
+        paths: dist/<< parameters.project >>
 
   publish:
     executor: node
@@ -99,31 +99,6 @@ workflows:
     - install_dependencies:
         <<: *workflow_branch_only_filter
 
-    - unit_test:
-        <<: *workflow_branch_only_filter
-        name: "test [ng-common-tools]"
-        project: ng-common-tools
-        requires:
-        - install_dependencies
-    - unit_test:
-        <<: *workflow_branch_only_filter
-        name: "test [ng-logger]"
-        project: ng-logger
-        requires:
-        - install_dependencies
-    - unit_test:
-        <<: *workflow_branch_only_filter
-        name: "test [ng-logger-fs]"
-        project: ng-logger-fs
-        requires:
-        - install_dependencies
-    - unit_test:
-        <<: *workflow_branch_only_filter
-        name: "test [ng-common-form]"
-        project: ng-common-form
-        requires:
-        - install_dependencies
-
     - build:
         <<: *workflow_branch_only_filter
         name: "build [ng-common-tools]"
@@ -147,6 +122,35 @@ workflows:
         name: "build [ng-common-form]"
         project: ng-common-form
         requires:
+        - install_dependencies
+
+    - unit_test:
+        <<: *workflow_branch_only_filter
+        name: "test [ng-common-tools]"
+        project: ng-common-tools
+        requires:
+        - "test [ng-common-tools]"
+        - install_dependencies
+    - unit_test:
+        <<: *workflow_branch_only_filter
+        name: "test [ng-logger]"
+        project: ng-logger
+        requires:
+        - "test [ng-logger]"
+        - install_dependencies
+    - unit_test:
+        <<: *workflow_branch_only_filter
+        name: "test [ng-logger-fs]"
+        project: ng-logger-fs
+        requires:
+        - "test [ng-logger-fs]"
+        - install_dependencies
+    - unit_test:
+        <<: *workflow_branch_only_filter
+        name: "test [ng-common-form]"
+        project: ng-common-form
+        requires:
+        - "test [ng-common-form]"
         - install_dependencies
 
     - publish:
