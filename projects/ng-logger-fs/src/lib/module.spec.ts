@@ -31,7 +31,7 @@ describe('Module : FSLoggerModule', () => {
         inject([LoggerService], (logger: LoggerService) => {
             logger.info('hello world');
 
-            expect(fs.log).toHaveBeenCalledWith(FSLogLevel.Info, 'hello world', null);
+            expect(fs.log).toHaveBeenCalledWith([FSLogLevel.Info, 'hello world', null]);
         })
     );
 
