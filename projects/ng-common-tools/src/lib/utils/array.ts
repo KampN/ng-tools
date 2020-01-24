@@ -1,6 +1,6 @@
-// @dynamic
 import {Check} from './check';
 
+// @dynamic
 export class ArrayUtils {
 
 	static asArray(data?:any | any[]) {
@@ -13,18 +13,18 @@ export class ArrayUtils {
 	}
 
 	static intersect<T>(...arrs:T[][]):T[] {
-		return ArrayUtils.asArray(arrs).slice(1).reduce((current, arr) => {
+		return ArrayUtils.asArray(arrs).slice(1).reduce(function(current, arr) {
 			arr = ArrayUtils.asArray(arr);
 			if(!current) return arr;
-			return ArrayUtils._intersect(current, arr);
+			return intersect(current, arr);
 		}, ArrayUtils.asArray(arrs[0]));
 	}
 
 	static except<T>(...arrs:T[][]):T[] {
-		return ArrayUtils.asArray(arrs).slice(1).reduce((current, arr) => {
+		return ArrayUtils.asArray(arrs).slice(1).reduce(function(current, arr) {
 			arr = ArrayUtils.asArray(arr);
 			if(!current) return arr;
-			return ArrayUtils._except(current, arr);
+			return except(current, arr);
 		}, ArrayUtils.asArray(arrs[0]));
 	}
 
@@ -32,14 +32,14 @@ export class ArrayUtils {
 		return [...new Set(array).values()];
 	}
 
-	static _intersect<T>(a:T[], b:T[]):T[] {
-		const setB:Set<T> = new Set(b);
-		return [...new Set(a)].filter(x => setB.has(x));
-	}
+}
 
-	static _except<T>(a:T[], b:T[]):T[] {
-		const setB:Set<T> = new Set(b);
-		return [...new Set(a)].filter(x => !setB.has(x));
-	}
+function intersect<T>(a:T[], b:T[]):T[] {
+	const setB:Set<T> = new Set(b);
+	return [...new Set(a)].filter(x => setB.has(x));
+}
 
+function except<T>(a:T[], b:T[]):T[] {
+	const setB:Set<T> = new Set(b);
+	return [...new Set(a)].filter(x => !setB.has(x));
 }
