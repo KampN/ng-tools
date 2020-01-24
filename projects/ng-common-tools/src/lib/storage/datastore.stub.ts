@@ -1,7 +1,7 @@
 import {filter, map, shareReplay, startWith} from 'rxjs/operators';
 import {Observable, ReplaySubject} from 'rxjs';
 import {DataStore, Storage} from '../interfaces/datastore';
-import {Check} from '../helpers/check';
+import {Check} from '../utils/check';
 
 /**
  * Test purpose only

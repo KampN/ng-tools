@@ -1,6 +1,6 @@
 import {FetchQuery, SourceStore} from '../interfaces/datasource';
 import {Observable, of, ReplaySubject} from 'rxjs';
-import {Check} from '../helpers/check';
+import {Check} from '../utils/check';
 
 /**
  * Test purpose only

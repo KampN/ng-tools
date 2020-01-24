@@ -1,7 +1,7 @@
 import {distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
 import {FetchedDataSource} from './fetched-data-source';
 import {merge} from 'rxjs';
-import {Check} from '../helpers/check';
+import {Check} from '../utils/check';
 
 export class PaginatedFetchedDataSource<T> extends FetchedDataSource<T> {
 

@@ -1,6 +1,6 @@
 import {ApiHydraHttpResponse} from '../interfaces/api';
 import {HydraCollection, HydraItem} from '../interfaces/hydra';
-import {Check} from '../../helpers/check';
+import {Check} from '../../utils/check';
 
 export type HydraId = string;
 

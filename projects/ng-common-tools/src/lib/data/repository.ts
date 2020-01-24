@@ -6,8 +6,8 @@ import {RepositoryInvalidIdCacheStore} from './repository-invalid-id-cache-store
 import {Perishable, PerishableTTL, RepositoryLoadQuery, Timestamp} from '../interfaces/repository';
 import * as _moment from 'moment';
 import {memoizeStream} from '../decorators/memoize-stream';
-import {Normalizer} from '../helpers/normalizer';
-import {Check} from '../helpers/check';
+import {Normalizer} from '../utils/normalizer';
+import {Check} from '../utils/check';
 
 const moment = _moment;
 

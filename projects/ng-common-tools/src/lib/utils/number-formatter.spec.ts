@@ -1,6 +1,6 @@
 import {NumberFormatter} from './number-formatter';
 
-describe('Helpers : NumberFormatter', () => {
+describe('Utils : NumberFormatter', () => {
 
     it('should transform a micro value into a readable money value', () => {
         expect(NumberFormatter.microToMoney(1000000)).toEqual(1);

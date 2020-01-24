@@ -1,7 +1,7 @@
 import {JwtHelper, JwtHelperErrors} from './jwt-helper';
 import {JWTMockFactory} from '../mockFactories/jwt';
 
-describe('Helpers : JwtHelper', () => {
+describe('Utils : JwtHelper', () => {
 
     const factory: JWTMockFactory = new JWTMockFactory();
 

@@ -1,6 +1,6 @@
 import {UrlParser} from './url-parser';
 
-describe('Helper : UrlParser', () => {
+describe('Utils : UrlParser', () => {
 
     it('should build a A tag set with the given href', () => {
         expect(UrlParser.getAnchor('http://www.toto.com?toto=1') instanceof Node).toBeTruthy();

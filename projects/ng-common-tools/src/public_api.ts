@@ -17,15 +17,15 @@ export * from './lib/interfaces/repository';
 export * from './lib/interfaces/datastore';
 export * from './lib/interfaces/directive';
 
-export * from './lib/helpers/unicode-encoder';
-export * from './lib/helpers/encoder';
-export * from './lib/helpers/jwt-helper';
-export * from './lib/helpers/number-formatter';
-export * from './lib/helpers/url-parser';
-export * from './lib/helpers/check';
-export * from './lib/helpers/array';
-export * from './lib/helpers/normalizer';
-export * from './lib/helpers/state-manager';
+export * from './lib/utils/unicode-encoder';
+export * from './lib/utils/encoder';
+export * from './lib/utils/jwt-helper';
+export * from './lib/utils/number-formatter';
+export * from './lib/utils/url-parser';
+export * from './lib/utils/check';
+export * from './lib/utils/array';
+export * from './lib/utils/state-manager';
+export * from './lib/utils/coerce';
 
 export * from './lib/storage/datastore.stub';
 export * from './lib/storage/datastore';

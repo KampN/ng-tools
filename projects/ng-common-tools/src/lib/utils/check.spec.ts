@@ -1,6 +1,6 @@
 import {Check} from './check';
 
-describe('Helpers : Check', () => {
+describe('Utils : Check', () => {
 
     describe('isDefined()', () => {
         it('should determine if the given value is defined', () => {

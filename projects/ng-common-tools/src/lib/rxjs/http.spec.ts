@@ -6,7 +6,7 @@ import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
 import {getHttpData, mapHttpData, mapHydraResponse} from './http';
 import {HydraFactory} from '../mockFactories/hydra';
 
-describe('Helpers : Pipe', () => {
+describe('Utils : Pipe', () => {
 
     let apiResponse: ApiHttpResponse<any>;
     const dummyFactory: DummyMockFactory = new DummyMockFactory();

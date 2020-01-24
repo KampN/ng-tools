@@ -1,5 +1,5 @@
 import {DataStore} from '../interfaces/datastore';
-import {ArrayHelper} from '../helpers/array';
+import {ArrayUtils} from '../utils/array';
 
 export class RepositoryInvalidIdCacheStore {
     constructor(readonly namespace, protected store: DataStore) {}
@@ -10,7 +10,7 @@ export class RepositoryInvalidIdCacheStore {
 
     public add(ids: any[] | any): any[] {
         const current: any[] = this.pull();
-        const newList = ArrayHelper.uniq([...ids, ...current]);
+        const newList = ArrayUtils.uniq([...ids, ...current]);
         return this.push(newList);
     }
 

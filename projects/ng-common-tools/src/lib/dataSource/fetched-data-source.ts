@@ -4,8 +4,8 @@ import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import {FetchQueryFilter, FetchQueryFilters, FetchQueryPagination, FetchQuerySort, SourceStore} from '../interfaces/datasource';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {CollectionViewer} from '@angular/cdk/collections';
-import {Check} from '../helpers/check';
-import {Normalizer} from '../helpers/normalizer';
+import {Check} from '../utils/check';
+import {Normalizer} from '../utils/normalizer';
 
 export interface FetchedDataSourceConfig {
 	pagination?:{ page?:number, limit?:number };

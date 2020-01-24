@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {NumberFormatter} from '../../../helpers/number-formatter';
+import {NumberFormatter} from '../../../utils/number-formatter';
 
 @Pipe({
     name: 'shortNumber'
