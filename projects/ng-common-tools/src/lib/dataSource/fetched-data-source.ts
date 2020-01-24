@@ -5,7 +5,7 @@ import {FetchQueryFilter, FetchQueryFilters, FetchQueryPagination, FetchQuerySor
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {CollectionViewer} from '@angular/cdk/collections';
 import {Check} from '../utils/check';
-import {Normalizer} from '../utils/normalizer';
+import {ArrayUtils} from '../utils/array';
 
 export interface FetchedDataSourceConfig {
 	pagination?:{ page?:number, limit?:number };
@@ -110,7 +110,7 @@ export class FetchedDataSource<T> extends DataSource<T> {
 	}
 
 	addFilters(filters:FetchQueryFilters | FetchQueryFilter) {
-		this.filters = [...this.filters, ...Normalizer.asArray(filters)];
+		this.filters = [...this.filters, ...ArrayUtils.asArray(filters)];
 	}
 
 	connect(collectionViewer:CollectionViewer):Observable<T[] | ReadonlyArray<T>> {

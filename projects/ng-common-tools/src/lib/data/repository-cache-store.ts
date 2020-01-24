@@ -2,7 +2,6 @@ import {DataStore} from '../interfaces/datastore';
 import {Observable, of} from 'rxjs';
 import {CacheStore, Perishable, Timestamp} from '../interfaces/repository';
 import {distinctUntilChanged, map} from 'rxjs/operators';
-import {Normalizer} from '../utils/normalizer';
 import * as _moment from 'moment';
 import {ArrayUtils} from '../utils/array';
 import {Check} from '../utils/check';
@@ -30,7 +29,7 @@ export class RepositoryCacheStore<T extends Perishable> {
 
     public observe(ids?: any | any[]): Observable<T[]> {
         if (ArrayUtils.isArrayOfLength(ids, 0)) return of([]);
-        ids = Normalizer.asArray(ids);
+        ids = ArrayUtils.asArray(ids);
         return this.observeCache().pipe(
             map((cache: CacheStore<T>) => this.cacheToList(cache, ids)),
             distinctUntilChanged((a, b) => {
@@ -42,11 +41,11 @@ export class RepositoryCacheStore<T extends Perishable> {
     }
 
     public pull(ids?: any | any[]): T[] {
-        return this.cacheToList(this.getCache(), Normalizer.asArray(ids));
+        return this.cacheToList(this.getCache(), ArrayUtils.asArray(ids));
     }
 
     public push(data: T[] | T, strategy: StoreStrategy = StoreStrategy.Merge): T[] {
-        data = Normalizer.asArray(data) as T[];
+        data = ArrayUtils.asArray(data) as T[];
         let toStore: CacheStore<T> = data.reduce((s: CacheStore<T>, o: any) => {
             s[this.extractIdentifierFn(o)] = o;
             return s;
@@ -57,7 +56,7 @@ export class RepositoryCacheStore<T extends Perishable> {
     }
 
     public removeItems(ids: any | any[]): T[] {
-        ids = Normalizer.asArray(ids);
+        ids = ArrayUtils.asArray(ids);
         const cache: CacheStore<T> = {...this.getCache()};
 
         const items = ids.map((id) => {
@@ -88,7 +87,7 @@ export class RepositoryCacheStore<T extends Perishable> {
     }
 
     public getMissingIdentifiers(ids: any | any[], outdatedAsMissing: boolean = true): any[] {
-        ids = Normalizer.asArray(ids);
+        ids = ArrayUtils.asArray(ids);
         const cache = this.getCache();
         const now: Timestamp = moment().unix();
         return ids.filter((id: any) => !cache[id] || (outdatedAsMissing && this.isOutdated(cache[id], now)));

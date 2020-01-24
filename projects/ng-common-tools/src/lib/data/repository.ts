@@ -6,8 +6,8 @@ import {RepositoryInvalidIdCacheStore} from './repository-invalid-id-cache-store
 import {Perishable, PerishableTTL, RepositoryLoadQuery, Timestamp} from '../interfaces/repository';
 import * as _moment from 'moment';
 import {memoizeStream} from '../decorators/memoize-stream';
-import {Normalizer} from '../utils/normalizer';
 import {Check} from '../utils/check';
+import {ArrayUtils} from '../utils/array';
 
 const moment = _moment;
 
@@ -82,7 +82,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
 
 	public refresh(ids?:any | any[]):Observable<T[]> {
 		if(!Check.isDefined(ids)) ids = this.cache.getOutdatedCachedIdentifiers();
-		ids = Normalizer.asArray(ids);
+		ids = ArrayUtils.asArray(ids);
 		this.markAsOutdated(ids);
 		return this.loadByIds(ids).pipe(map(() => this.cache.pull(ids)));
 	}
@@ -116,7 +116,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
 	}
 
 	public markAsOutdated(ids:any | any[]):boolean {
-		ids = Normalizer.asArray(ids);
+		ids = ArrayUtils.asArray(ids);
 		if(ids.length === 0) return false;
 
 		const data = this.cache.pull(ids) as any[];
@@ -148,7 +148,7 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
 
 	public cacheItems(data:T | T[], strategy:StoreStrategy = StoreStrategy.Merge):T[] {
 		const now:Timestamp = moment().unix();
-		const items:T[] = Normalizer.asArray(data).map((item:any) => this.setItemTTL(item, now));
+		const items:T[] = ArrayUtils.asArray(data).map((item:any) => this.setItemTTL(item, now));
 		return this.cache.push(items, strategy);
 	}
 
