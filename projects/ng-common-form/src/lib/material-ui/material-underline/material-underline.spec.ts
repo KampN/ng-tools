@@ -5,51 +5,53 @@ import {By} from '@angular/platform-browser';
 
 describe('Material-UI : MaterialUnderline', () => {
 
-    @Component({
-        template: `
+	@Component({
+		template: `
 			<material-underline [active]="active"></material-underline>
-        `,
-    })
-    class TestHostComponent {
-        @ViewChild(MaterialUnderlineComponent) underline: MaterialUnderlineComponent;
-        active: boolean = false;
-    }
+		`,
+	})
+	class TestHostComponent {
+		@ViewChild(MaterialUnderlineComponent) underline:MaterialUnderlineComponent;
+		active:boolean = false;
+	}
 
-    let testFixture: ComponentFixture<TestHostComponent>;
-    let testComponent: TestHostComponent;
+	let testFixture:ComponentFixture<TestHostComponent>;
+	let testComponent:TestHostComponent;
 
-    beforeEach(async(() => {
+	beforeEach(async(() => {
 
-        TestBed.configureTestingModule({
-            imports: [],
-            declarations: [
-                TestHostComponent,
-                MaterialUnderlineComponent,
-            ],
-        }).compileComponents();
-        testFixture = TestBed.createComponent(TestHostComponent);
-        testComponent = testFixture.debugElement.componentInstance;
+		TestBed.configureTestingModule({
+			imports: [],
+			declarations: [
+				TestHostComponent,
+				MaterialUnderlineComponent,
+			],
+		}).compileComponents();
+		testFixture = TestBed.createComponent(TestHostComponent);
+		testComponent = testFixture.debugElement.componentInstance;
 
-    }));
+	}));
 
-    afterEach(() => testFixture.destroy());
+	afterEach(() => testFixture.destroy());
 
-    it('should append the active class when enabled', () => {
+	it('should append the active class when enabled', () => {
 
-        testComponent.active = true;
-        testFixture.detectChanges();
+		testComponent.active = true;
+		testFixture.detectChanges();
 
-        const ref = testFixture.debugElement.query(By.directive(MaterialUnderlineComponent));
-        expect(ref.classes).toEqual(jasmine.objectContaining({active: true}));
+		const ref = testFixture.debugElement.query(By.directive(MaterialUnderlineComponent));
+		expect(ref.classes).toEqual(jasmine.objectContaining({active: true}));
 
-    });
+	});
 
-    it('shouldn\'t have the active class when disabled', () => {
+	it('shouldn\'t have the active class when disabled', () => {
 
-        const ref = testFixture.debugElement.query(By.directive(MaterialUnderlineComponent));
-        expect(ref.classes).toEqual({});
+		const ref = testFixture.debugElement.query(By.directive(MaterialUnderlineComponent));
 
-    });
+		console.log(ref.classes);
+		expect(ref.classes).not.toEqual(jasmine.objectContaining({active: true}));
+
+	});
 
 });
 

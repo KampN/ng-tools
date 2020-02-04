@@ -1,11 +1,11 @@
 {
 	"name": "@kamp-n/ng-common-tools",
-	"version": "6.0.1",
+	"version": "7.0.0",
 	"peerDependencies": {
 		"rxjs": "~6.5.2",
-		"@angular/common": "^8.0.0",
-		"@angular/core": "^8.0.0",
-		"@angular/cdk": "^8.0.0",
+		"@angular/common": "9.x",
+		"@angular/core": "9.x",
+		"@angular/cdk": "9.x",
 		"moment": "^2.23.0"
 	},
 	"optionalDependencies": {
