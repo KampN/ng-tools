@@ -9,7 +9,7 @@ import {Components} from './components';
     providers: [],
 })
 export class WorkspaceModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<WorkspaceModule> {
         return {
             ngModule: WorkspaceModule,
             providers: []

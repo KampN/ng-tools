@@ -30,7 +30,7 @@ describe('Components : FlexScrollContainer', () => {
         `
     })
     class TestHostComponent {
-        @ViewChild(FlexScrollContainerComponent, {static: false}) container: FlexScrollContainerComponent;
+        @ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
     }
 
     @Component({

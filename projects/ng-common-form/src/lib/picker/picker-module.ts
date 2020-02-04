@@ -67,7 +67,7 @@ export {
 	providers: [],
 })
 export class PickerModule {
-	static forRoot():ModuleWithProviders {
+	static forRoot():ModuleWithProviders<PickerModule> {
 		return {
 			ngModule: PickerModule,
 			providers: []

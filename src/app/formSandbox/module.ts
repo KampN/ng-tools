@@ -15,7 +15,7 @@ import {WorkspaceModule} from '../workspace/module';
     providers: [],
 })
 export class FormSandboxModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<FormSandboxModule> {
         return {
             ngModule: FormSandboxModule,
             providers: []

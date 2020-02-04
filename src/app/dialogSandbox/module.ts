@@ -15,7 +15,7 @@ import {WorkspaceModule} from '../workspace/module';
     providers: [],
 })
 export class DialogSandboxModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<DialogSandboxModule> {
         return {
             ngModule: DialogSandboxModule,
             providers: []

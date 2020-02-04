@@ -15,7 +15,7 @@ describe('Picker : PickerHeader', () => {
         `,
     })
     class TestHostComponent {
-        @ViewChild(PickerHeaderComponent, {static: false}) underline: PickerHeaderComponent;
+        @ViewChild(PickerHeaderComponent) underline: PickerHeaderComponent;
     }
 
     let testFixture: ComponentFixture<TestHostComponent>;

@@ -20,7 +20,7 @@ describe('Picker : PickerSection', () => {
 		`,
 	})
 	class TestHostComponent {
-		@ViewChild(PickerComponent, {static: false}) picker:PickerComponent<DummyObject>;
+		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
 		control:FormControl = new FormControl();
 	}
 

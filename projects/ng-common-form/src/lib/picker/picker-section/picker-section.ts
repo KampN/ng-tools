@@ -11,7 +11,7 @@ import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-h
 export class PickerSectionComponent<T> implements AfterContentInit, OnDestroy {
 
     @ViewChild(PickerHeaderOutletDirective, { static: true }) headerOutlet: PickerHeaderOutletDirective;
-    @ContentChild(PickerHeaderDefDirective, {static: false}) headerDef: PickerHeaderDefDirective;
+    @ContentChild(PickerHeaderDefDirective) headerDef: PickerHeaderDefDirective;
 
     ngAfterContentInit(): void {
         if (this.headerDef) this.headerOutlet.viewContainer.createEmbeddedView(

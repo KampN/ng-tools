@@ -11,7 +11,7 @@ describe('Material-UI : MaterialUnderline', () => {
         `,
     })
     class TestHostComponent {
-        @ViewChild(MaterialUnderlineComponent, {static: false}) underline: MaterialUnderlineComponent;
+        @ViewChild(MaterialUnderlineComponent) underline: MaterialUnderlineComponent;
         active: boolean = false;
     }
 

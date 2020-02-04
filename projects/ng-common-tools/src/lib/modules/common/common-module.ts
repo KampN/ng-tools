@@ -25,7 +25,7 @@ export * from './pipes/short-number';
     providers: [],
 })
 export class CommonToolsModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<CommonToolsModule> {
         return {
             ngModule: CommonToolsModule,
             providers: []

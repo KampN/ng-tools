@@ -28,7 +28,7 @@ export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterVie
     @Output() searchChange: EventEmitter<string> = new EventEmitter();
     readonly valueChange: Subject<string> = new Subject();
 
-    @ViewChild('input', {static: false}) input: ElementRef;
+    @ViewChild('input') input: ElementRef;
     @Input() placeholder = '';
     @Input() disableClear: boolean = false;
 

@@ -14,7 +14,7 @@ export class LoggerModule {
     // inject LogDisplay to initialize the console logger
     constructor(display: LogDisplay) {}
 
-    static forRoot(config?: LoggerConfiguration): ModuleWithProviders {
+    static forRoot(config?: LoggerConfiguration): ModuleWithProviders<LoggerModule> {
         return {
             ngModule: LoggerModule,
             providers: [

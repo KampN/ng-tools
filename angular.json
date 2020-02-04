@@ -17,6 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+            "aot": true,
 						"outputPath": "dist/kampn-ng-tools",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -53,7 +54,11 @@
 									"type": "initial",
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
-								}
+								},
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
 							]
 						}
 					}
@@ -146,7 +151,12 @@
 						"tsConfig": "projects/ng-logger/tsconfig.lib.json",
 						"project": "projects/ng-logger/ng-package.json"
 					}
-				},
+				,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-logger/tsconfig.lib.prod.json"
+            }
+          }
+},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
@@ -181,7 +191,12 @@
 						"tsConfig": "projects/ng-common-tools/tsconfig.lib.json",
 						"project": "projects/ng-common-tools/ng-package.json"
 					}
-				},
+				,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-common-tools/tsconfig.lib.prod.json"
+            }
+          }
+},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
@@ -216,7 +231,12 @@
 						"tsConfig": "projects/ng-common-form/tsconfig.lib.json",
 						"project": "projects/ng-common-form/ng-package.json"
 					}
-				},
+				,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-common-form/tsconfig.lib.prod.json"
+            }
+          }
+},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
@@ -251,7 +271,12 @@
 						"tsConfig": "projects/ng-logger-fs/tsconfig.lib.json",
 						"project": "projects/ng-logger-fs/ng-package.json"
 					}
-				},
+				,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-logger-fs/tsconfig.lib.prod.json"
+            }
+          }
+},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {

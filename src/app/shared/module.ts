@@ -26,7 +26,7 @@ import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-commo
 	providers: [],
 })
 export class SharedModule {
-	static forRoot():ModuleWithProviders {
+	static forRoot():ModuleWithProviders<SharedModule> {
 		return {
 			ngModule: SharedModule,
 			providers: []

@@ -15,7 +15,7 @@ describe('Picker : PickerShopCartItem', () => {
         `,
     })
     class TestHostComponent {
-        @ViewChild(PickerShopCartItemComponent, {static: false}) underline: PickerShopCartItemComponent<any>;
+        @ViewChild(PickerShopCartItemComponent) underline: PickerShopCartItemComponent<any>;
 
         remove() {}
     }

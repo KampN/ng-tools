@@ -22,7 +22,7 @@ export {MatchFnValidatorDirective} from './validators/match-fn';
 	providers: [],
 })
 export class CommonFormModule {
-	static forRoot():ModuleWithProviders {
+	static forRoot():ModuleWithProviders<CommonFormModule> {
 		return {
 			ngModule: CommonFormModule,
 			providers: []

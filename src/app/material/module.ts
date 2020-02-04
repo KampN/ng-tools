@@ -49,7 +49,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ],
 })
 export class MaterialModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<MaterialModule> {
         return {
             ngModule: MaterialModule,
             providers: []

@@ -26,7 +26,7 @@ export {MaterialSearchInputComponent} from './material-search-input/material-sea
 	providers: [],
 })
 export class MaterialUIModule {
-	static forRoot():ModuleWithProviders {
+	static forRoot():ModuleWithProviders<MaterialUIModule> {
 		return {
 			ngModule: MaterialUIModule,
 			providers: []

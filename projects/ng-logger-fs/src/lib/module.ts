@@ -6,7 +6,7 @@ import {FullstoryProvider} from './accessors/fullstory';
 })
 export class FSLoggerModule {
 
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<FSLoggerModule> {
         return {
             ngModule: FSLoggerModule,
             providers: [

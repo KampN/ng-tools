@@ -55,11 +55,11 @@ export class PickerShopCartEmptyOutletDirective {
 export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnDestroy {
 
     @ViewChild(PickerHeaderOutletDirective, { static: true }) headerOutlet: PickerHeaderOutletDirective;
-    @ContentChild(PickerHeaderDefDirective, {static: false}) headerDef: PickerHeaderDefDirective;
+    @ContentChild(PickerHeaderDefDirective) headerDef: PickerHeaderDefDirective;
     @ViewChild(PickerShopCartListOutletDirective, { static: true }) listOutlet: PickerShopCartListOutletDirective;
     @ContentChildren(PickerShopCartItemDefDirective) itemDefs: PickerShopCartItemDefDirective<T>[];
     @ViewChild(PickerShopCartEmptyOutletDirective, { static: true }) emptyBlockOutlet: PickerShopCartEmptyOutletDirective;
-    @ContentChild(PickerShopCartEmptyDefDirective, {static: false}) emptyBlockDef: PickerShopCartEmptyDefDirective;
+    @ContentChild(PickerShopCartEmptyDefDirective) emptyBlockDef: PickerShopCartEmptyDefDirective;
 
     protected defaultItemDef: PickerShopCartItemDefDirective<T>;
     protected renderMap: Map<T, ViewRef> = new Map();
