@@ -8,28 +8,28 @@ import {CommonModule} from '@angular/common';
 import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
 
 @NgModule({
-    imports: [],
-    exports: [
-        CommonModule,
-        CommonToolsModule,
-        CommonDevToolsModule,
-        CommonFormModule,
-        MaterialUIModule,
-        PickerModule,
+	imports: [],
+	exports: [
+		CommonModule,
+		CommonToolsModule,
+		CommonDevToolsModule,
+		CommonFormModule,
+		MaterialUIModule,
+		PickerModule,
 
-        RouterModule,
-        HttpClientModule,
-        MaterialModule,
-        ReactiveFormsModule
-    ],
-    declarations: [],
-    providers: [],
+		RouterModule,
+		HttpClientModule,
+		MaterialModule,
+		ReactiveFormsModule
+	],
+	declarations: [],
+	providers: [],
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: []
-        };
-    }
+	static forRoot():ModuleWithProviders {
+		return {
+			ngModule: SharedModule,
+			providers: []
+		};
+	}
 }
