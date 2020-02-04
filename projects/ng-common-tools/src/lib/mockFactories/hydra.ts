@@ -9,7 +9,7 @@ export class HydraFactory {
 			'@context': `/fake/contexts/${type}`,
 			'@id': `/fake/${type}`,
 			'@type': 'hydra:Collection',
-			'hydra:member': items.map((item) => HydraFactory.generateItem(item, type)),
+			'hydra:member': items.map((item) => this.generateItem(item, type)),
 			'hydra:totalItems': total,
 			'hydra:view': {
 				'@id': `/fake/${type}`,

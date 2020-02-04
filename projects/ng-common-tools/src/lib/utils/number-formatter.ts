@@ -21,6 +21,6 @@ export class NumberFormatter {
         if (tier === 0) return `${number}`;
 
         const scale = Math.pow(10, tier * 3);
-        return NumberFormatter.truncate(number / scale, precision) + SIPrefixes[tier];
+        return this.truncate(number / scale, precision) + SIPrefixes[tier];
     }
 }

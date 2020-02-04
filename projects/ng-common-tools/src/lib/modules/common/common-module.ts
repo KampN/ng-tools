@@ -16,19 +16,19 @@ export * from './pipes/pad-start';
 export * from './pipes/short-number';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ScrollingModule
-    ],
-    exports: [...Pipes, ...Components, ...Directives],
-    declarations: [...Pipes, ...Components, ...Directives],
-    providers: [],
+	imports: [
+		CommonModule,
+		ScrollingModule
+	],
+	exports: [...Pipes, ...Components, ...Directives],
+	declarations: [...Pipes, ...Components, ...Directives],
+	providers: [],
 })
 export class CommonToolsModule {
-    static forRoot(): ModuleWithProviders<CommonToolsModule> {
-        return {
-            ngModule: CommonToolsModule,
-            providers: []
-        };
-    }
+	static forRoot():ModuleWithProviders<CommonToolsModule> {
+		return {
+			ngModule: CommonToolsModule,
+			providers: []
+		};
+	}
 }
