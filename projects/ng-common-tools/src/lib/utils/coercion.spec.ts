@@ -1,7 +1,7 @@
-import {coerceNullable, coerceObjectData, coerceObservable} from './coerce';
+import {coerceNullable, coerceObjectData, coerceObservable} from './coercion';
 import {Observable, of} from 'rxjs';
 
-describe('Utils : Coerce', () => {
+describe('Utils : Coercion', () => {
 
 	describe('coerceObjectData()', () => {
 

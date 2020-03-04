@@ -1,4 +1,4 @@
-import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {matchFnValidator} from './match-fn';
 import {FormControl} from '@angular/forms';
 

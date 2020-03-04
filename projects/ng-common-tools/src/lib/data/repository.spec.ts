@@ -8,7 +8,7 @@ import * as _moment from 'moment';
 import {RepositoryCacheStore, StoreStrategy} from './repository-cache-store';
 import {first, last} from 'rxjs/operators';
 import {DataStoreStub} from '../storage/datastore.stub';
-import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {RepositoryLoadQuery} from '../interfaces/repository';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 

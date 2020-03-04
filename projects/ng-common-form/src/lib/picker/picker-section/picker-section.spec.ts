@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {CommonToolsModule, DummyMockFactory, DummyObject, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
 import {PickerComponent, PickerHeaderComponent, PickerModule, PickerSectionComponent} from '../picker-module';
 import {CommonModule} from '@angular/common';

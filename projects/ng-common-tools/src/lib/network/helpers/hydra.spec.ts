@@ -1,7 +1,7 @@
 import {Hydra} from './hydra';
 import {HydraCollection, HydraItem} from '../interfaces/hydra';
-import {HydraFactory} from '../../mockFactories/hydra';
-import {DummyMockFactory, DummyObject} from '../../mockFactories/dummy';
+import {HydraFactory} from '../../mock-factories/hydra';
+import {DummyMockFactory, DummyObject} from '../../mock-factories/dummy';
 
 describe('Network : Hydra', () => {
 

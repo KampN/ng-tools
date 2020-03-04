@@ -6,7 +6,7 @@ import {MaterialUnderlineComponent} from '../material-underline/material-underli
 import {By} from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {FormControlMockFactory} from '../../mock-factories/form-control';
 
 describe('Material-UI : MaterialSearchInput', () => {
 

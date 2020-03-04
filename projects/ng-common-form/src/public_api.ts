@@ -2,7 +2,7 @@
  * Public API Surface of ng-common-form
  */
 
-export * from './lib/mockFactories/form-control';
+export * from './lib/mock-factories/form-control';
 
 export * from './lib/common/common-module';
 

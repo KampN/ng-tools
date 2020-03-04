@@ -4,7 +4,7 @@ import {By} from '@angular/platform-browser';
 import {PickerShopCartComponent} from './picker-shop-cart';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PickerComponent} from '../picker/picker';
-import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {PickerModule} from '../picker-module';
 import {PickerHeaderComponent} from '../picker-header/picker-header';

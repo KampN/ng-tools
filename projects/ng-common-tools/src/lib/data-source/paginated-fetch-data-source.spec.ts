@@ -1,5 +1,5 @@
 import {SourceStoreStub} from './source-store.stub';
-import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {PaginatedFetchedDataSource} from './paginated-fetch-data-source';
 

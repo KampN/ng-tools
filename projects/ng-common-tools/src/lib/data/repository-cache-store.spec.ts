@@ -1,7 +1,7 @@
 import {RepositoryCacheStore, StoreStrategy} from './repository-cache-store';
 import {CacheStore} from '../interfaces/repository';
 import {Observable} from 'rxjs';
-import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {first} from 'rxjs/operators';
 import * as moment from 'moment';

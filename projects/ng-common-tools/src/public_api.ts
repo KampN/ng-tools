@@ -9,8 +9,8 @@ export * from './lib/data/repository';
 export * from './lib/data/repository-cache-store';
 export * from './lib/data/repository-invalid-id-cache-store';
 
-export * from './lib/dataSource/fetched-data-source';
-export * from './lib/dataSource/paginated-fetch-data-source';
+export * from './lib/data-source/fetched-data-source';
+export * from './lib/data-source/paginated-fetch-data-source';
 
 export * from './lib/interfaces/datasource';
 export * from './lib/interfaces/repository';
@@ -25,15 +25,15 @@ export * from './lib/utils/url-parser';
 export * from './lib/utils/check';
 export * from './lib/utils/array';
 export * from './lib/utils/state-manager';
-export * from './lib/utils/coerce';
+export * from './lib/utils/coercion';
 
 export * from './lib/storage/datastore.stub';
 export * from './lib/storage/datastore';
 
-export * from './lib/mockFactories/mock-factory';
-export * from './lib/mockFactories/dummy';
-export * from './lib/mockFactories/jwt';
-export * from './lib/mockFactories/hydra';
+export * from './lib/mock-factories/mock-factory';
+export * from './lib/mock-factories/dummy';
+export * from './lib/mock-factories/jwt';
+export * from './lib/mock-factories/hydra';
 
 export * from './lib/network/helpers/hydra';
 export * from './lib/network/helpers/api';

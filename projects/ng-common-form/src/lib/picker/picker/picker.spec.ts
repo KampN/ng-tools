@@ -3,7 +3,7 @@ import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PickerBodyContext, PickerComponent, PickerShopCartContext} from '../picker/picker';
-import {FormControlMockFactory} from '../../mockFactories/form-control';
+import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {PickerModule} from '../picker-module';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';

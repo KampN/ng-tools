@@ -2,9 +2,9 @@ import {ApiHttpResponse} from '../network/interfaces/api';
 import {first} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {HydraCollection, HydraItem} from '../network/interfaces/hydra';
-import {DummyMockFactory, DummyObject} from '../mockFactories/dummy';
+import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {getHttpData, mapHttpData, mapHydraResponse} from './http';
-import {HydraFactory} from '../mockFactories/hydra';
+import {HydraFactory} from '../mock-factories/hydra';
 
 describe('Utils : Pipe', () => {
 

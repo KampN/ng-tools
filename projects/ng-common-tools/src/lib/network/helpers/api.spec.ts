@@ -1,6 +1,6 @@
 import {ApiHttpResponse} from '../interfaces/api';
 import {ApiResponseHelper} from './api';
-import {DummyMockFactory} from '../../mockFactories/dummy';
+import {DummyMockFactory} from '../../mock-factories/dummy';
 
 describe('Network : ApiResponseHelper', () => {
 
