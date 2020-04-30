@@ -133,6 +133,13 @@ export abstract class Repository<T extends Perishable, SearchQuery = any> {
 		return data.length > 0;
 	}
 
+	public markMatchingItemsAsOutdated(fn:(item:T) => boolean):boolean {
+		const data:any[] = this.cache.pull();
+		for(const datum of data) if(fn(datum)) datum.expiryDate = 1;
+		this.cache.push(data, StoreStrategy.Merge);
+		return data.length > 0;
+	}
+
 	public updateCachedItem(id:any, data:any, refreshTTL:boolean = true, strategy:UpdateCacheStrategy = UpdateCacheStrategy.Merge):T {
 		const items:any[] = this.cache.pull(id);
 		if(items.length === 0) return null;
