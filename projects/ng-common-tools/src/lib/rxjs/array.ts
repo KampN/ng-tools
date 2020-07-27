@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs';
 
 export function arrayFirst<T>() {
-	return (source:Observable<T>):Observable<T> => {
+	return (source:Observable<T[]>):Observable<T> => {
 		return new Observable(subscriber => source.subscribe(array => {
 				try {
 					subscriber.next(array instanceof Array && array.length > 0 ? array[0] : null);
