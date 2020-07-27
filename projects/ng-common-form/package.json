@@ -1,6 +1,6 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "4.0.1",
+	"version": "5.0.0",
 	"peerDependencies": {
 		"@angular/common": "10.x",
 		"@angular/core": "10.x",
@@ -11,7 +11,8 @@
 		"@angular/material": "10.x",
 		"@angular/cdk": "10.x"
 	},
-	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
+	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
+,
   "dependencies": {
     "tslib": "^2.0.0"
   }
