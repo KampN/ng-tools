@@ -1,9 +1,14 @@
 import {Observable, of} from 'rxjs';
 import {Check} from './check';
 
+// @Deprecated use coerceObject instead
 export function coerceObjectData<T>(model:T):T {
-	if(typeof model !== 'object' || !model) return {} as T;
-	return model;
+	if(console.warn) console.warn('coerceObjectData is deprecated, use coerceObject instead');
+	return coerceObject(model) as T;
+}
+
+export function coerceObject<T>(val:T):T extends Record<string, any> ? T : Record<string, undefined> {
+	return !Check.isDefined(val) || typeof val !== 'object' ? {} as any : val;
 }
 
 export function coerceNullable<T>(value?:T, defaultValue:T = null):T | null {

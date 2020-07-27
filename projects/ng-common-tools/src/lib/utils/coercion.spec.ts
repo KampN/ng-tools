@@ -1,18 +1,18 @@
-import {coerceNullable, coerceObjectData, coerceObservable} from './coercion';
+import {coerceNullable, coerceObject, coerceObservable} from './coercion';
 import {Observable, of} from 'rxjs';
 
 describe('Utils : Coercion', () => {
 
-	describe('coerceObjectData()', () => {
+	describe('coerceObject()', () => {
 
 		it('should return an object', () => {
-			expect(coerceObjectData('data')).toEqual({} as any);
-			expect(coerceObjectData({prop: 1})).toEqual({prop: 1});
-			expect(coerceObjectData([1])).toEqual([1]);
-			expect(coerceObjectData(null)).toEqual({});
-			expect(coerceObjectData(undefined)).toEqual({});
-			expect(coerceObjectData({})).toEqual({});
-			expect(coerceObjectData([])).toEqual([]);
+			expect(coerceObject('data')).toEqual({} as any);
+			expect(coerceObject({prop: 1})).toEqual({prop: 1});
+			expect(coerceObject([1])).toEqual([1]);
+			expect(coerceObject(null)).toEqual({});
+			expect(coerceObject(undefined)).toEqual({});
+			expect(coerceObject({})).toEqual({});
+			expect(coerceObject([])).toEqual([]);
 		});
 
 	});
