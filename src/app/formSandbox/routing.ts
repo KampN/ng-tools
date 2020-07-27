@@ -23,6 +23,6 @@ export const ROUTES: Routes = [
     }
 ];
 
-export const Routing: ModuleWithProviders = RouterModule.forChild(ROUTES);
+export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forChild(ROUTES);
 
 

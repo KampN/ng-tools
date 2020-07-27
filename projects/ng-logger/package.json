@@ -5,5 +5,8 @@
 		"@angular/common": "10.x",
 		"@angular/core": "10.x"
 	},
-	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
+	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

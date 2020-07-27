@@ -1,48 +1,44 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "@kamp-n/ng-logger": [
-        "dist/ng-logger"
-      ],
-      "@kamp-n/ng-logger/*": [
-        "dist/ng-logger/*"
-      ],
-      "@kamp-n/ng-common-tools": [
-        "dist/ng-common-tools"
-      ],
-      "@kamp-n/ng-common-tools/*": [
-        "dist/ng-common-tools/*"
-      ],
-      "@kamp-n/ng-common-form": [
-        "dist/ng-common-form"
-      ],
-      "@kamp-n/ng-common-form/*": [
-        "dist/ng-common-form/*"
-      ],
-      "@kamp-n/ng-logger-fs": [
-        "dist/ng-logger-fs"
-      ],
-      "@kamp-n/ng-logger-fs/*": [
-        "dist/ng-logger-fs/*"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    },
+    {
+      "path": "./e2e/tsconfig.e2e.json"
+    },
+    {
+      "path": "./projects/ng-logger/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-logger/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-common-tools/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-common-tools/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-common-form/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-common-form/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-logger-fs/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-logger-fs/tsconfig.spec.json"
     }
-  }
+  ]
 }

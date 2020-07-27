@@ -12,5 +12,8 @@
 	"optionalDependencies": {
 		"crypto-js": "^3.1.9-1"
 	},
-	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
+	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }
