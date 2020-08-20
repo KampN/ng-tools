@@ -21,7 +21,10 @@ import {coerceBooleanProperty} from '@angular/cdk/coercion';
 			useExisting: forwardRef(() => MaterialSearchInputComponent),
 			multi: true
 		},
-	]
+	],
+	host: {
+		'[class.disabled]': 'disabled'
+	}
 })
 export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 

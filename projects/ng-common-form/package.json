@@ -1,6 +1,6 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "5.1.0",
+	"version": "5.1.1",
 	"peerDependencies": {
 		"@angular/common": "10.x",
 		"@angular/core": "10.x",
