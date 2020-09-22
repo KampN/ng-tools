@@ -35,5 +35,5 @@ export function max(value: number, boundaryValue: number): number {
 }
 
 export function minmax(value: number, minBoundary: number, maxBoundary: number): number {
-	return this.max(this.min(value, minBoundary), maxBoundary);
+	return max(min(value, minBoundary), maxBoundary);
 }
