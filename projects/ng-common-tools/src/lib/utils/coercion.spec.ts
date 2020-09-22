@@ -1,4 +1,4 @@
-import {coerceNullable, coerceObject, coerceObservable} from './coercion';
+import {coerceArray, coerceNullable, coerceObject, coerceObservable} from './coercion';
 import {Observable, of} from 'rxjs';
 
 describe('Utils : Coercion', () => {
@@ -51,6 +51,24 @@ describe('Utils : Coercion', () => {
 				expect(val).toEqual('data');
 				done();
 			});
+		});
+
+	});
+
+	describe('coerceArray()', () => {
+
+		it('should normalize the given input and return an array', () => {
+
+			expect(coerceArray([1, 2, 3])).toEqual([1, 2, 3]);
+			expect(coerceArray(2)).toEqual([2]);
+			expect(coerceArray([])).toEqual([]);
+			expect(coerceArray(null)).toEqual([]);
+			expect(coerceArray(undefined)).toEqual([]);
+		});
+
+		it('should normalize the given input and return an array considerring null as an array value', () => {
+			expect(coerceArray(null, false)).toEqual([null]);
+			expect(coerceArray(undefined, false)).toEqual([]);
 		});
 
 	});

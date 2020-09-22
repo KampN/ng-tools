@@ -20,7 +20,7 @@ export * from './lib/interfaces/directive';
 export * from './lib/utils/unicode-encoder';
 export * from './lib/utils/encoder';
 export * from './lib/utils/jwt-helper';
-export * from './lib/utils/number-formatter';
+export * from './lib/utils/number';
 export * from './lib/utils/url-parser';
 export * from './lib/utils/check';
 export * from './lib/utils/array';
