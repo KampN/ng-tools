@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {LogStream} from './logStream';
 import {LogLevel, LogMessage} from '../interfaces/log';
 import {first} from 'rxjs/operators';
@@ -6,7 +6,7 @@ import {configurationFactory, LOGGER_CONFIGURATION} from './configuration';
 
 describe('Providers : LogStream', () => {
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             providers: [
                 {

@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {LogStream} from './logStream';
 import {LoggerService} from './logger';
 import {LogLevel, LogMessage} from '../interfaces/log';
@@ -7,7 +7,7 @@ describe('Providers : LoggerService', () => {
 
     let logStreamMock: any;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         logStreamMock = {push: jasmine.createSpy('push')};
         TestBed.configureTestingModule({
             providers: [

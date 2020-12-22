@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ControlErrorDirective} from './control-error';
@@ -33,7 +33,7 @@ describe('Directives : FormErrorHint', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
             imports: [FormsModule, ReactiveFormsModule],
@@ -49,7 +49,7 @@ describe('Directives : FormErrorHint', () => {
 
     afterEach(() => testFixture.destroy());
 
-    it('should instantiate the template if the control has an error', async(() => {
+    it('should instantiate the template if the control has an error', waitForAsync(() => {
 
         testComponent.group = new FormGroup({
             control: controlMockFactory.generate({validators: [Validators.required], value: 'value'})
@@ -69,7 +69,7 @@ describe('Directives : FormErrorHint', () => {
         expect(testComponent.outside).toBeDefined();
     }));
 
-    it('should instantiate the template if the control has an error', async(() => {
+    it('should instantiate the template if the control has an error', waitForAsync(() => {
 
         testComponent.group = new FormGroup({
             control: controlMockFactory.generate({validators: [Validators.required], value: null, dirty: true, touched: true})

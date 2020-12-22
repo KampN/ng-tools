@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Component, ViewChild} from '@angular/core';
 import {MaterialSearchInputComponent} from './material-search-input';
@@ -30,7 +30,7 @@ describe('Material-UI : MaterialSearchInput', () => {
 
     const controlFactory: FormControlMockFactory = new FormControlMockFactory();
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule, ReactiveFormsModule,

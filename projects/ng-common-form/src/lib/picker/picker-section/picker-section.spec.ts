@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -29,7 +29,7 @@ describe('Picker : PickerSection', () => {
 	let testFixture:ComponentFixture<TestHostComponent>;
 	let testComponent:TestHostComponent;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 
 		TestBed.configureTestingModule({
 			imports: [

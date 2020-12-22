@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {FSLogDisplay} from './fsLogDisplay';
 import {DefaultConfiguration, LogDisplay, LoggerConfiguration, LoggerModule, LogLevel, LogMessage, LogStream} from '@kamp-n/ng-logger';
 import {FSLogLevel, FULLSTORY, FullStory} from '../accessors/fullstory';
@@ -10,7 +10,7 @@ describe('Providers : FSLogDisplay', () => {
 
 	describe('Basic Logging', () => {
 
-		beforeEach(async(() => {
+		beforeEach(waitForAsync(() => {
 			fs = jasmine.createSpyObj('fs', ['log']);
 			TestBed.configureTestingModule({
 				imports: [
@@ -56,7 +56,7 @@ describe('Providers : FSLogDisplay', () => {
 
 	describe('Cross Finger Logging', () => {
 
-		beforeEach(async(() => {
+		beforeEach(waitForAsync(() => {
 			fs = jasmine.createSpyObj('fs', ['log']);
 			TestBed.configureTestingModule({
 				imports: [

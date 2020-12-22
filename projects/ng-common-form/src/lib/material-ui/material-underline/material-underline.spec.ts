@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {MaterialUnderlineComponent} from './material-underline';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
@@ -18,7 +18,7 @@ describe('Material-UI : MaterialUnderline', () => {
 	let testFixture:ComponentFixture<TestHostComponent>;
 	let testComponent:TestHostComponent;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 
 		TestBed.configureTestingModule({
 			imports: [],

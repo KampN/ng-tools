@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {LoggerService} from './providers/logger';
 import {LoggerServiceStub} from './providers/logger.stub';
 import {LoggerModule} from './module';
@@ -7,7 +7,7 @@ import {LogStream} from './providers/logStream';
 
 describe('Module : LoggerModule', () => {
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [
                 LoggerModule.forRoot()

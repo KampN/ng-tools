@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
@@ -32,7 +32,7 @@ describe('Directives : FormSelect', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
             imports: [FormsModule, ReactiveFormsModule],
@@ -50,7 +50,7 @@ describe('Directives : FormSelect', () => {
 
     afterEach(() => testFixture.destroy());
 
-    it('should set the checked status to the formSelectControl\'s hosts', async(() => {
+    it('should set the checked status to the formSelectControl\'s hosts', waitForAsync(() => {
 
         testComponent.group = new FormGroup({
             control: controlMockFactory.generate({value: ['value']})
@@ -65,7 +65,7 @@ describe('Directives : FormSelect', () => {
         expect(checkbox2El.nativeElement.checked).toBeFalsy();
     }));
 
-    it('should update the form value on checkbox interactions', async(() => {
+    it('should update the form value on checkbox interactions', waitForAsync(() => {
 
         testComponent.group = new FormGroup({
             control: controlMockFactory.generate({value: []})
@@ -82,7 +82,7 @@ describe('Directives : FormSelect', () => {
 
     }));
 
-    it('should update the checkbox on form update', async(() => {
+    it('should update the checkbox on form update', waitForAsync(() => {
 
         testComponent.group = new FormGroup({
             control: controlMockFactory.generate({value: []})
@@ -105,7 +105,7 @@ describe('Directives : FormSelect', () => {
 
     }));
 
-    it('should disable the value accessors', async(() => {
+    it('should disable the value accessors', waitForAsync(() => {
 
         testComponent.group = new FormGroup({
             control: controlMockFactory.generate({value: {disabled: true, value: ['value']}})

@@ -21,4 +21,4 @@ export const ROUTES:Routes = [
 	}
 ];
 
-export const Routing:ModuleWithProviders<RouterModule> = RouterModule.forRoot(ROUTES);
+export const Routing:ModuleWithProviders<RouterModule> = RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' });

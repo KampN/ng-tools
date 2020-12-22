@@ -1,5 +1,5 @@
 import {Component, DebugElement, Inject, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {FLEX_SCROLL_CONTAINER, FlexScrollContainerComponent} from './flex-scroll-container';
 import {By} from '@angular/platform-browser';
 import {CdkScrollable, ScrollingModule} from '@angular/cdk/scrolling';
@@ -44,7 +44,7 @@ describe('Components : FlexScrollContainer', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
             imports: [
@@ -63,7 +63,7 @@ describe('Components : FlexScrollContainer', () => {
 
     afterEach(() => testFixture.destroy());
 
-    it('should create a scroll-container element with a position absolute taking 100% of its container', async(() => {
+    it('should create a scroll-container element with a position absolute taking 100% of its container', waitForAsync(() => {
         const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
         const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
 
@@ -73,7 +73,7 @@ describe('Components : FlexScrollContainer', () => {
         expect(containerRect.height).toEqual(scontainerRect.height);
     }));
 
-    it('should add a scroll-container decorated by the cdk-scrollable directive', async(() => {
+    it('should add a scroll-container decorated by the cdk-scrollable directive', waitForAsync(() => {
         const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
         const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
 

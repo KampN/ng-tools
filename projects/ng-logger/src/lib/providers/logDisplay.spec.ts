@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {configurationFactory, DefaultConfiguration, LOGGER_CONFIGURATION} from './configuration';
 import {LogStream} from './logStream';
 import {LogDisplay} from './logDisplay';
@@ -7,7 +7,7 @@ import {LoggerConfiguration} from '../interfaces/configuration';
 
 describe('Providers : LogDisplay', () => {
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             providers: [
                 {provide: LOGGER_CONFIGURATION, useValue: configurationFactory()}
