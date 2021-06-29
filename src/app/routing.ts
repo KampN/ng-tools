@@ -7,11 +7,11 @@ export const ROUTES:Routes = [
 		children: [
 			{
 				path: 'forms',
-				loadChildren: () => import('./formSandbox/module').then(m => m.FormSandboxModule)
+				loadChildren: () => import('./form-sandbox/module').then(m => m.FormSandboxModule)
 			},
 			{
 				path: 'dialogs',
-				loadChildren: () => import('./dialogSandbox/module').then(m => m.DialogSandboxModule)
+				loadChildren: () => import('./dialog-sandbox/module').then(m => m.DialogSandboxModule)
 			},
 			{
 				path: '**',
