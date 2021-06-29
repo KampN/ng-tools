@@ -19,16 +19,20 @@
     ],
     "paths": {
       "@kamp-n/ng-logger": [
-        "projects/ng-logger/src/public_api.ts"
+        "projects/ng-logger/src/public-api.ts"
       ],
       "@kamp-n/ng-common-tools": [
-        "projects/ng-common-tools/src/public_api.ts"
+        "projects/ng-common-tools/src/public-api.ts"
       ],
       "@kamp-n/ng-common-form": [
-        "projects/ng-common-form/src/public_api.ts"
+        "projects/ng-common-form/src/public-api.ts"
       ],
       "@kamp-n/ng-logger-fs": [
-        "projects/ng-logger-fs/src/public_api.ts"
+        "projects/ng-logger-fs/src/public-api.ts"
+      ],
+      "google-ads-preview": [
+        "dist/google-ads-preview/google-ads-preview",
+        "dist/google-ads-preview"
       ]
     }
   }
