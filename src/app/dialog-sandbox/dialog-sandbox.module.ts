@@ -1,23 +1,21 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {SharedModule} from '../shared/module';
 import {Components} from './components';
-import {Routing} from './routing';
-import {WorkspaceModule} from '../workspace/module';
+import {DisalogRandboxRouting} from './disalog-randbox.routing';
 
 @NgModule({
     imports: [
         SharedModule,
-        Routing,
-        WorkspaceModule
+        DisalogRandboxRouting,
     ],
     exports: [],
     declarations: [...Components],
     providers: [],
 })
-export class FormSandboxModule {
-    static forRoot(): ModuleWithProviders<FormSandboxModule> {
+export class DialogSandboxModule {
+    static forRoot(): ModuleWithProviders<DialogSandboxModule> {
         return {
-            ngModule: FormSandboxModule,
+            ngModule: DialogSandboxModule,
             providers: []
         };
     }

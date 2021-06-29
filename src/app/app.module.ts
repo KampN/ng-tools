@@ -6,7 +6,7 @@ import {LoggerModule} from '@kamp-n/ng-logger';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/module';
 import {MaterialModule} from './material/module';
-import {Routing} from './routing';
+import {AppRouting} from './app.routing';
 import {Components} from './_components';
 import {NavigationRouteProvider} from './navigation';
 
@@ -18,7 +18,7 @@ import {NavigationRouteProvider} from './navigation';
         BrowserModule,
         BrowserAnimationsModule,
 
-        Routing,
+        AppRouting,
 
         SharedModule,
 

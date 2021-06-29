@@ -30,9 +30,8 @@
       "@kamp-n/ng-logger-fs": [
         "projects/ng-logger-fs/src/public-api.ts"
       ],
-      "google-ads-preview": [
-        "dist/google-ads-preview/google-ads-preview",
-        "dist/google-ads-preview"
+      "@kamp-n/gads-preview": [
+        "projects/google-ads-preview/src/public-api.ts"
       ]
     }
   }

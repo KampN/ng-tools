@@ -13,6 +13,6 @@ export const ROUTES:Routes = [
 	}
 ];
 
-export const Routing:ModuleWithProviders<RouterModule> = RouterModule.forChild(ROUTES);
+export const DisalogRandboxRouting:ModuleWithProviders<RouterModule> = RouterModule.forChild(ROUTES);
 
 
