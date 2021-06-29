@@ -11,8 +11,8 @@ import {coerceBooleanProperty} from '@angular/cdk/coercion';
 
 @Component({
 	selector: 'material-search-input',
-	templateUrl: './template.html',
-	styleUrls: ['./style.scss'],
+	templateUrl: './material-search-input.html',
+	styleUrls: ['./material-search-input.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	providers: [

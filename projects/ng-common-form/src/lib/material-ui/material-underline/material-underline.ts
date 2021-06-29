@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulatio
 
 @Component({
 	selector: 'material-underline',
-	templateUrl: './template.html',
-	styleUrls: ['./style.scss'],
+	templateUrl: './material-underline.html',
+	styleUrls: ['./material-underline.scss'],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -14,8 +14,8 @@ export class PickerHeaderDefDirective {
 
 @Component({
     selector: 'picker-header',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './picker-header.html',
+    styleUrls: ['./picker-header.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

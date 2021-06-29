@@ -13,8 +13,8 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
 
 @Component({
     selector: 'autocomplete-sample',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './autocomplete-sample.html',
+    styleUrls: ['./autocomplete-sample.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

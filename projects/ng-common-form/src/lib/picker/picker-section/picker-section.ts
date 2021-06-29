@@ -3,8 +3,8 @@ import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-h
 
 @Component({
     selector: 'picker-section, [picker-section]',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './picker-section.html',
+    styleUrls: ['./picker-section.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

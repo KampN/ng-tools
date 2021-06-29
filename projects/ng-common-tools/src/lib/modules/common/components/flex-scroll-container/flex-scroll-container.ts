@@ -5,8 +5,8 @@ export const FLEX_SCROLL_CONTAINER = new InjectionToken('FLEX_SCROLL_CONTAINER')
 
 @Component({
     selector: 'flex-scroll-container,[flex-scroll-container]',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './flex-scroll-container.html',
+    styleUrls: ['./flex-scroll-container.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     providers: [{

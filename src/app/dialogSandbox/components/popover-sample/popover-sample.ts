@@ -3,8 +3,8 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 
 @Component({
     selector: 'popover-sample',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './popover-sample.html',
+    styleUrls: ['./popover-sample.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

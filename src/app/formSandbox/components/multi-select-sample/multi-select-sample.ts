@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'multi-select-sample',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './multi-select-sample.html',
+    styleUrls: ['./multi-select-sample.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

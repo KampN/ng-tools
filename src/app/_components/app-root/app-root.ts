@@ -2,9 +2,9 @@ import {ChangeDetectionStrategy, Component, Inject, ViewEncapsulation} from '@an
 import {NAVIGATION_ROUTES, NavigationRoutes} from '../../navigation';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    selector: 'flex-scroll-container',
+    templateUrl: './app-root.html',
+    styleUrls: ['./app-root.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

@@ -3,8 +3,8 @@ import {NavigationRoutes} from '../../navigation';
 
 @Component({
     selector: 'navigation-list',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './navigation-list.html',
+    styleUrls: ['./navigation-list.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

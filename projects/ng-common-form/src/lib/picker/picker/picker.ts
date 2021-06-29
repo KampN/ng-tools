@@ -60,8 +60,8 @@ export class PickerShopCartContext<T> {
 
 @Component({
     selector: 'picker',
-    templateUrl: './template.html',
-    styleUrls: [`./style.scss`],
+    templateUrl: './picker.html',
+    styleUrls: [`./picker.scss`],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [

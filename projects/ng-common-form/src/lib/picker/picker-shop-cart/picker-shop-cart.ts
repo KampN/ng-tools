@@ -47,8 +47,8 @@ export class PickerShopCartEmptyOutletDirective {
 
 @Component({
     selector: 'picker-shop-cart, [picker-shop-cart]',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './picker-shop-cart.html',
+    styleUrls: ['./picker-shop-cart.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

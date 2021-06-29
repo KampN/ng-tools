@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, Output, Vie
 
 @Component({
     selector: 'picker-shop-cart-item, [picker-shop-cart-item]',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './picker-shop-cart-item.html',
+    styleUrls: ['./picker-shop-cart-item.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

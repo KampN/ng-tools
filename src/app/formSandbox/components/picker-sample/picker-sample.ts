@@ -6,8 +6,8 @@ import {ExtractIdFn} from '@kamp-n/ng-common-form';
 
 @Component({
     selector: 'picker-sample',
-    templateUrl: './template.html',
-    styleUrls: ['./style.scss'],
+    templateUrl: './picker-sample.html',
+    styleUrls: ['./picker-sample.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
