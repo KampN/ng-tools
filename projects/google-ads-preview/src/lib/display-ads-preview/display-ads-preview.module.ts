@@ -3,8 +3,9 @@ import {AdComponents} from './ads';
 import {CommonModule} from '@angular/common';
 import {GoogleAdsPreviewCommonModule} from '../common/common.module';
 
-export {ImageAdsRenderModel, ImageAdsComponent} from './ads/image-ads/image-ads';
-export {ImageAdsTowerComponent} from './ads/image-ads-tower/image-ads-tower';
+export {DisplayImageAdComponent, DisplayImageAdRenderModel} from './ads/display-image-ad/display-image-ad';
+export {DisplayImageAdsTowerComponent} from './ads/image-ad-tower/display-image-ad-tower';
+export {DisplayTextAdComponent, DisplayTextAdRenderModel} from './ads/display-text-ad/display-text-ad';
 
 @NgModule({
 	imports: [

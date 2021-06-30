@@ -1,4 +1,4 @@
-<div class="image-ads-layout column-layout" fxLayout="column" fxLayoutAlign="start">
+<div class="image-ad-layout column-layout" fxLayout="column" fxLayoutAlign="start">
 	<gads-image class="ad-image" height="235" width="450" [image]="imageUrl"></gads-image>
 	<div class="ad-spacer"></div>
 	<div fxLayout="column" fxLayoutAlign="space-between center" class="tower-content" fxFlex="1 0 auto">
@@ -6,13 +6,21 @@
 			<a>{{headline}}</a>
 		</div>
 		<div class="ad-spacer"></div>
-		<gads-image class="ad-logo" height="180" width="180" [image]="logoUrl"></gads-image>
-		<div class="ad-spacer-2"></div>
+		<ng-container *ngIf="logoUrl">
+			<gads-image class="ad-logo" height="180" width="180" [image]="logoUrl"></gads-image>
+			<div class="ad-spacer-2"></div>
+		</ng-container>
 		<div class="description-block">
 			<a>{{description}}</a>
 		</div>
 		<div class="ad-spacer-3"></div>
 		<gads-fab-button></gads-fab-button>
+		<ng-container *ngIf="!logoUrl">
+			<div class="ad-spacer-3"></div>
+			<div class="business-name">
+				<a>{{businessName}}</a>
+			</div>
+		</ng-container>
 	</div>
 	<div class="ad-footer"></div>
 </div>

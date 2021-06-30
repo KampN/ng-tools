@@ -1,12 +1,17 @@
-<div class="image-ads-layout landscape-layout" fxLayout="column">
+<div class="image-ad-layout landscape-layout" fxLayout="column">
 	<gads-image class="ad-image" height="235" width="450" [image]="imageUrl"></gads-image>
 	<div class="title-block">
 		<a>{{headline}}</a>
 	</div>
 	<div fxLayout="row" fxLayoutAlign="center center" class="bottom-container">
-		<gads-image class="ad-logo" height="180" width="180" [image]="logoUrl"></gads-image>
+		<gads-image class="ad-logo" height="180" width="180" [image]="logoUrl" *ngIf="logoUrl"></gads-image>
 		<div class="description-block" fxFlex="1 1 auto">
-			<a>{{description}}</a>
+			<div>
+				<a>{{description}}</a>
+			</div>
+			<div class="business-name" *ngIf="!logoUrl">
+				<a>{{businessName}}</a>
+			</div>
 		</div>
 		<gads-fab-button></gads-fab-button>
 	</div>
