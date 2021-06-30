@@ -1,12 +1,15 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {AdComponents} from './ads';
 import {CommonModule} from '@angular/common';
-import {MatIconModule} from '@angular/material/icon';
+import {GoogleAdsPreviewCommonModule} from '../common/common.module';
+
+export {ImageAdsRenderModel, ImageAdsComponent} from './ads/image-ads/image-ads';
+export {ImageAdsTowerComponent} from './ads/image-ads-tower/image-ads-tower';
 
 @NgModule({
 	imports: [
 		CommonModule,
-		MatIconModule,
+		GoogleAdsPreviewCommonModule
 	],
 	exports: [...AdComponents],
 	declarations: [...AdComponents],

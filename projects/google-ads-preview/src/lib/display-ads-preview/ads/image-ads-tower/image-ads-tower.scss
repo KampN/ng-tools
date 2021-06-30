@@ -1,7 +1,10 @@
 @use '../../../styles/shared';
 
-image-ads {
+image-ads-tower {
 	$gap-size: 6px;
+	$ad-width: 160px;
+	$ad-height: 600px;
+
 	--ad-main-color: #000;
 
 	display: inline-block;
@@ -9,6 +12,11 @@ image-ads {
 
 	font-family: "Roboto", Roboto, Arial, sans-serif;
 	white-space: nowrap;
+
+	.image-ads-layout {
+		height: $ad-height;
+		width: $ad-width;
+	}
 
 	.title-block, .description-block {
 		line-height: 1.4em;
@@ -18,36 +26,32 @@ image-ads {
 		flex-shrink: 0;
 		margin: 6.25px $gap-size*2;
 
-		font-size: 19px;
+		font-size: 30px;
 		font-weight: 700;
+		text-align: center;
 	}
 
 	.description-block {
-		padding: 0 $gap-size;
-
-		font-size: 14px;
+		font-size: 20px;
 		font-weight: 300;
 	}
 
-	.bottom-container {
+	.tower-content {
 		padding: 0 $gap-size;
-
-		> * {
-			margin: 0 $gap-size;
-		}
 	}
 
 	gads-image.ad-image {
-		--image-max-height: 162.5px;
+		--image-max-height: 83.5px;
+		--image-max-width: #{$ad-width};
 	}
 
 	gads-image.ad-logo {
-		--image-max-height: 45px;
-		--image-max-width: 45px;
+		--image-max-height: 60px;
+		--image-max-width: 60px;
 	}
 
 	gads-fab-button {
-		--gads-fab-button-size: 37.5px;
+		--gads-fab-button-size: 56px;
 	}
 
 	a, a:visited, a:hover, a:active {
@@ -58,8 +62,22 @@ image-ads {
 
 	.ad-footer {
 		width: 1px;
-		height: 8.75px;
+		height: 60px;
 		flex-shrink: 0;
+	}
+
+	.ad-spacer {
+		width: 1px;
+		height: 30px;
+		flex-shrink: 0;
+
+		&-2 {
+			height: 24px;
+		}
+		&-3 {
+			height: 12px;
+		}
+
 	}
 }
 

@@ -1,0 +1,14 @@
+gads-fab-button {
+	display: inline-block;
+	background-color: var(--ad-main-color);
+	border-radius: 50%;
+
+	box-shadow: 0 0 2px 0 rgb(0 0 0 / 12%),
+	0 2px 2px 0 rgb(0 0 0 / 24%);
+	text-shadow: 1px 1px 0 rgb(255 255 255 / 10%);
+
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cG9seWxpbmUgZmlsbD0ibm9uZSIgcG9pbnRzPSI0MiwzMiA2MCw1MCA0Miw2OCIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwxKSI+PC9wb2x5bGluZT48L3N2Zz4=);
+
+	width: var(--gads-fab-button-size, 1.5em);
+	height: var(--gads-fab-button-size, 1.5em);
+}

@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CommonDevToolsModule, CommonToolsModule} from '@kamp-n/ng-common-tools';
 import {CommonModule} from '@angular/common';
 import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
+import {DisplayAdsPreviewModule} from '@kamp-n/gads-preview';
 
 @NgModule({
 	imports: [],
@@ -16,6 +17,7 @@ import {CommonFormModule, MaterialUIModule, PickerModule} from '@kamp-n/ng-commo
 		CommonFormModule,
 		MaterialUIModule,
 		PickerModule,
+		DisplayAdsPreviewModule,
 
 		RouterModule,
 		HttpClientModule,

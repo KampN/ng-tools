@@ -1,0 +1,15 @@
+gads-image {
+	display: inline-block;
+	max-height: var(--image-max-height, initial);
+	max-width: var(--image-max-width, initial);
+
+	canvas {
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		animation: fadein_keyframes .9s both;
+		background-image: var(--image-url);
+		max-height: var(--image-max-height, initial);
+		max-width: var(--image-max-width, initial);
+	}
+}

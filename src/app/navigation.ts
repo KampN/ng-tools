@@ -46,7 +46,7 @@ export const NavigationRouteProvider: ValueProvider = {
             title: 'google ads',
             children: [
                 {
-                    title: 'display-ads',
+                    title: 'display ads',
                     route: ['/', 'google-ads', 'display-ads']
                 },
             ]
