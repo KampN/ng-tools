@@ -1,6 +1,6 @@
 {
 	"name": "@kamp-n/gads-preview",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"peerDependencies": {
 		"rxjs": "6.x",
 		"@angular/common": "12.x",
