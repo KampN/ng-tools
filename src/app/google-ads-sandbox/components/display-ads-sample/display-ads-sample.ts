@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {DisplayImageAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
+import {DisplayNativeAdLargeRenderModel} from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/display-native-ad-large/display-native-ad-large';
 
 @Component({
 	selector: 'display-ads-sample',
@@ -13,12 +14,12 @@ export class DisplayAdsSampleComponent implements OnInit {
 		headline: 'a long headline that doesn fit',
 		description: 'une description vraiment trop longue pour s\'afficher dans l\'emplacement actuel',
 		logoUrl: 'https://tpc.googlesyndication.com/simgad/13362787963035582741?w=100&h=100',
-		imageUrl: 'https://ads.google.com/aw_cm/editing/Asset?__u=4876155827&__c=9373306907&ocid=125254643&authuser=3&id=AOKYFsjmyXs_CLWARyk2ZcbBC2s2FQNJI40rhhL6yzB3odsTjJrfqthL3sWrjBwQYBY54ANjG8neUluvpIb4_Bw7fd29PcVACS_MhNsP2RCDJmh9uwK4JU8lSO462fO0627cD0HpwuDacrcGsnkxx7pmeAhGSFH9YwOrB9Awb1bnTuyJlQA3nm1cil5lu6tHa9LTz02oQlfySJ5SX6EB5xJz58NI8VspGfGXbN-wE_R3Lb7-kGNX7CZX20K77OpJo4nWk5QctJ0ctxZjeE6_R1FbIrg_jsvpcg%3D%3D',
+		imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
 		businessName: 'Kamp\'n'
 	}, {
 		headline: 'a long headline that doesn fit',
 		description: 'une description vraiment trop longue pour s\'afficher dans l\'emplacement actuel',
-		imageUrl: 'https://ads.google.com/aw_cm/editing/Asset?__u=4876155827&__c=9373306907&ocid=125254643&authuser=3&id=AOKYFsjmyXs_CLWARyk2ZcbBC2s2FQNJI40rhhL6yzB3odsTjJrfqthL3sWrjBwQYBY54ANjG8neUluvpIb4_Bw7fd29PcVACS_MhNsP2RCDJmh9uwK4JU8lSO462fO0627cD0HpwuDacrcGsnkxx7pmeAhGSFH9YwOrB9Awb1bnTuyJlQA3nm1cil5lu6tHa9LTz02oQlfySJ5SX6EB5xJz58NI8VspGfGXbN-wE_R3Lb7-kGNX7CZX20K77OpJo4nWk5QctJ0ctxZjeE6_R1FbIrg_jsvpcg%3D%3D',
+		imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
 		businessName: 'Kamp\'n'
 	}];
 	textAdModels: DisplayTextAdRenderModel[] = [{
@@ -26,6 +27,19 @@ export class DisplayAdsSampleComponent implements OnInit {
 		description: 'une description vraiment trop longue pour s\'afficher dans l\'emplacement actuel',
 		businessName: 'Kamp\'n'
 	}];
+
+	nativeAdModels: { large: DisplayNativeAdLargeRenderModel } = {
+		large: {
+			imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
+			longHeadline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
+			businessName: 'Kamp\'n'
+		},
+		//collapsed: {
+		//	logoUrl: 'https://tpc.googlesyndication.com/simgad/13362787963035582741?w=100&h=100',
+		//	longHeadline: 'a long headline that doesn fit',
+		//	businessName: 'Kamp\'n'
+		//}
+	};
 
 	constructor() { }
 

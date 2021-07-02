@@ -38,16 +38,6 @@ display-image-ad-tower {
 		padding: 0 $gap-size;
 	}
 
-	gads-image.ad-image {
-		--image-max-height: 83.5px;
-		--image-max-width: #{$ad-width};
-	}
-
-	gads-image.ad-logo {
-		--image-max-height: 60px;
-		--image-max-width: 60px;
-	}
-
 	gads-fab-button {
 		--gads-fab-button-size: 56px;
 	}

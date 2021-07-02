@@ -43,15 +43,15 @@ display-image-ad {
 		}
 	}
 
-	gads-image.ad-image {
-		--image-max-height: 160px;
-		--image-max-width: #{$ad-width};
-	}
-
-	gads-image.ad-logo {
-		--image-max-height: 45px;
-		--image-max-width: 45px;
-	}
+	//gads-image.ad-image {
+	//	--image-max-height: 160px;
+	//	--image-max-width: #{$ad-width};
+	//}
+	//
+	//gads-image.ad-logo {
+	//	--image-max-height: 45px;
+	//	--image-max-width: 45px;
+	//}
 
 	gads-fab-button {
 		--gads-fab-button-size: 37.5px;
