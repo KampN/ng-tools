@@ -1,12 +1,12 @@
 import {Inject, Optional, Pipe, PipeTransform} from '@angular/core';
 import {GADS_PREVIEW_TRANSLATOR, GAdsPreviewTranslator} from '../providers/translator';
-import {GADS_PREVIEW_VALUE_FORMATTER, GAdsPreviewValueFormatter} from '@kamp-n/gads-preview';
+import {GADS_PREVIEW_VALUE_FORMATTER, GAdsPreviewValueFormatter} from '../providers/value-formatter';
 
 @Pipe({
 	name: 'fallback',
 	pure: true
 })
-export class FallbackDirective implements PipeTransform {
+export class FallbackPipe implements PipeTransform {
 
 	constructor(@Optional() @Inject(GADS_PREVIEW_VALUE_FORMATTER) protected format: GAdsPreviewValueFormatter,
 				@Optional() @Inject(GADS_PREVIEW_TRANSLATOR) protected translate: GAdsPreviewTranslator) {}

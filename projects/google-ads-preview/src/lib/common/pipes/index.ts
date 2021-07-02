@@ -1,7 +1,7 @@
-import {TranslateDirective} from './translate';
-import {FallbackDirective} from './fallback';
+import {TranslatePipe} from './translate';
+import {FallbackPipe} from './fallback';
 
 export const Pipes: any[] = [
-	TranslateDirective,
-	FallbackDirective
+	TranslatePipe,
+	FallbackPipe
 ];

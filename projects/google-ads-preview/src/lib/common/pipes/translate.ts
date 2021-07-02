@@ -5,7 +5,7 @@ import {GADS_PREVIEW_TRANSLATOR, GAdsPreviewTranslator} from '../providers/trans
 	name: 'translate',
 	pure: true
 })
-export class TranslateDirective implements PipeTransform {
+export class TranslatePipe implements PipeTransform {
 
 	constructor(@Optional() @Inject(GADS_PREVIEW_TRANSLATOR) protected translate: GAdsPreviewTranslator) {}
 
