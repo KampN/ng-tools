@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
 
 @Component({
@@ -8,7 +8,7 @@ import {DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRend
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
-export class DisplayAdsSampleComponent implements OnInit {
+export class DisplayAdsSampleComponent {
 	imageAdModels: DisplayImageAdRenderModel[] = [{
 		headline: 'a long headline that doesn fit',
 		description: 'une description vraiment trop longue pour s\'afficher dans l\'emplacement actuel',
@@ -39,9 +39,5 @@ export class DisplayAdsSampleComponent implements OnInit {
 			businessName: 'Kamp\'n'
 		}
 	};
-	constructor() { }
-
-	ngOnInit() { }
-
 }
 

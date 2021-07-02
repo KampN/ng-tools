@@ -3,7 +3,7 @@
 	<div class="ad-spacer"></div>
 	<div fxLayout="column" fxLayoutAlign="space-between center" class="tower-content" fxFlex="1 0 auto">
 		<div class="title-block">
-			<a>{{headline}}</a>
+			<a [innerHTML]="headline|fallback:'headline'"></a>
 		</div>
 		<div class="ad-spacer"></div>
 		<ng-container *ngIf="logoUrl">
@@ -11,14 +11,14 @@
 			<div class="ad-spacer-2"></div>
 		</ng-container>
 		<div class="description-block">
-			<a>{{description}}</a>
+			<a [innerHTML]="description|fallback:'description'"></a>
 		</div>
 		<div class="ad-spacer-3"></div>
 		<gads-fab-button></gads-fab-button>
 		<ng-container *ngIf="!logoUrl">
 			<div class="ad-spacer-3"></div>
 			<div class="business-name">
-				<a>{{businessName}}</a>
+				<a [innerHTML]="businessName|fallback:'business_name'"></a>
 			</div>
 		</ng-container>
 	</div>

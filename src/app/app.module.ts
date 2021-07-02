@@ -9,24 +9,55 @@ import {MaterialModule} from './material/module';
 import {AppRouting} from './app.routing';
 import {Components} from './_components';
 import {NavigationRouteProvider} from './navigation';
+import {
+	GADS_PREVIEW_TRANSLATOR, GADS_PREVIEW_VALUE_FORMATTER, GAdsPreviewTranslator, GAdsPreviewValueFormatter
+} from '@kamp-n/gads-preview';
+
+const GAdsPreviewTranslations = {
+	'headline': 'Headline',
+	'description': 'Description',
+	'business_name': 'Business Name',
+	'long_headline': 'Long Headline',
+	'button.open': 'Open',
+	'flag.ad': 'Ad',
+};
+
+function GAdsPreviewTranslatorFactory(): GAdsPreviewTranslator {
+	return (value: string) => GAdsPreviewTranslations[value] ?? value;
+}
+
+function GAdsPreviewValueFormatterFactory(): GAdsPreviewValueFormatter {
+	return (value: string) => `<span>${value}</span>`;
+}
 
 @NgModule({
-    declarations: [
-        ...Components
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
+	declarations: [
+		...Components
+	],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
 
-        AppRouting,
+		AppRouting,
 
-        SharedModule,
+		SharedModule,
 
-        MaterialModule.forRoot(),
-        LoggerModule.forRoot(),
-    ],
-    providers: [NavigationRouteProvider],
-    bootstrap: [AppRootComponent]
+		MaterialModule.forRoot(),
+		LoggerModule.forRoot(),
+
+	],
+	providers: [
+		NavigationRouteProvider,
+		{
+			provide: GADS_PREVIEW_TRANSLATOR,
+			useFactory: (GAdsPreviewTranslatorFactory)
+		},
+		{
+			provide: GADS_PREVIEW_VALUE_FORMATTER,
+			useFactory: (GAdsPreviewValueFormatterFactory)
+		}
+	],
+	bootstrap: [AppRootComponent]
 })
 export class AppModule {}
 

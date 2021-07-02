@@ -5,17 +5,17 @@
 	<div fxLayout="column" fxLayoutAlign="start" class="side-container" fxFlex="1 0 auto">
 		<div class="ad-content" fxFlex="1 1 auto">
 			<div class="long-headline-container">
-				<a class="long-headline">{{longHeadline}}</a>
+				<a class="long-headline" [innerHTML]="longHeadline|fallback:'long_headline'"></a>
 			</div>
 			<div fxLayout="row wrap" fxLayoutAlign="space-between center">
 				<div fxLayout="row" class="business-block">
-					<div class="ad-flag">Ad</div>
+					<div class="ad-flag">{{'flag.ad'|translate}}</div>
 					<div class="business-name">
-						<a>{{businessName}}</a>
+						<a [innerHTML]="businessName|fallback:'business_name'"></a>
 					</div>
 				</div>
 				<div>
-					<div class="open-button">Open</div>
+					<div class="open-button">{{'button.open'|translate}}</div>
 				</div>
 			</div>
 		</div>
