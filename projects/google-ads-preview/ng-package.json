@@ -1,7 +1,10 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/google-ads-preview",
-  "lib": {
-    "entryFile": "src/public-api.ts"
-  }
+	"$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+	"dest": "../../dist/google-ads-preview",
+	"lib": {
+		"entryFile": "src/public-api.ts",
+		"umdModuleIds": {
+			"@kamp-n/ng-common-tools": "commonTools"
+		}
+	}
 }

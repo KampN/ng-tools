@@ -1,38 +1,21 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "es2020",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "@kamp-n/ng-logger": [
-        "projects/ng-logger/src/public-api.ts"
-      ],
-      "@kamp-n/ng-common-tools": [
-        "projects/ng-common-tools/src/public-api.ts"
-      ],
-      "@kamp-n/ng-common-form": [
-        "projects/ng-common-form/src/public-api.ts"
-      ],
-      "@kamp-n/ng-logger-fs": [
-        "projects/ng-logger-fs/src/public-api.ts"
-      ],
-      "@kamp-n/gads-preview": [
-        "projects/google-ads-preview/src/public-api.ts"
-      ]
-    }
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"sourceMap": true,
+		"declaration": false,
+		"module": "es2020",
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"lib": [
+			"es2018",
+			"dom"
+		]
+	}
 }
