@@ -1,0 +1,76 @@
+@use '../../../styles/shared';
+
+display-image-ad {
+	$ad-width: 300px;
+	$ad-height: 250px;
+	$gap-size: 6px;
+	--ad-main-color: #000;
+
+	display: inline-block;
+	box-sizing: border-box;
+
+	font-family: "Roboto", Roboto, Arial, sans-serif;
+
+	.image-ad-layout {
+		height: $ad-height;
+		width: $ad-width;
+	}
+
+	.title-block, .description-block {
+		line-height: 1.4em;
+	}
+
+	.title-block {
+		flex-shrink: 0;
+		margin: 6.25px $gap-size*2;
+
+		font-size: 19px;
+		font-weight: 700;
+	}
+
+	.description-block {
+		padding: 0 $gap-size;
+
+		font-size: 11px;
+		font-weight: 300;
+	}
+
+	.bottom-container {
+		padding: 0 $gap-size;
+
+		> * {
+			margin: 0 $gap-size;
+		}
+	}
+
+	//gads-image.ad-image {
+	//	--image-max-height: 160px;
+	//	--image-max-width: #{$ad-width};
+	//}
+	//
+	//gads-image.ad-logo {
+	//	--image-max-height: 45px;
+	//	--image-max-width: 45px;
+	//}
+
+	gads-fab-button {
+		--gads-fab-button-size: 37.5px;
+	}
+
+	a, a:visited, a:hover, a:active {
+		color: inherit;
+		cursor: pointer;
+		text-decoration: inherit;
+	}
+
+	.business-name {
+		font-size: 10px;
+	}
+
+	.ad-footer {
+		width: 1px;
+		height: 8.75px;
+		flex-shrink: 0;
+	}
+}
+

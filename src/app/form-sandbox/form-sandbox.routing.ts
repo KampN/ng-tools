@@ -23,6 +23,6 @@ export const ROUTES: Routes = [
     }
 ];
 
-export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forChild(ROUTES);
+export const FormSandboxRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild(ROUTES);
 
 

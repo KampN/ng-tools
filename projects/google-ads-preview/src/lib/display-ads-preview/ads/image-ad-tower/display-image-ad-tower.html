@@ -1,0 +1,26 @@
+<div class="image-ad-layout column-layout" fxLayout="column" fxLayoutAlign="start">
+	<gads-image class="ad-image" height="83.5" width="160" [image]="imageUrl"></gads-image>
+	<div class="ad-spacer"></div>
+	<div fxLayout="column" fxLayoutAlign="space-between center" class="tower-content" fxFlex="1 0 auto">
+		<div class="title-block">
+			<a [innerHTML]="headline|fallback:'headline'"></a>
+		</div>
+		<div class="ad-spacer"></div>
+		<ng-container *ngIf="logoUrl">
+			<gads-image class="ad-logo" height="60" width="60" [image]="logoUrl"></gads-image>
+			<div class="ad-spacer-2"></div>
+		</ng-container>
+		<div class="description-block">
+			<a [innerHTML]="description|fallback:'description'"></a>
+		</div>
+		<div class="ad-spacer-3"></div>
+		<gads-fab-button></gads-fab-button>
+		<ng-container *ngIf="!logoUrl">
+			<div class="ad-spacer-3"></div>
+			<div class="business-name">
+				<a [innerHTML]="businessName|fallback:'business_name'"></a>
+			</div>
+		</ng-container>
+	</div>
+	<div class="ad-footer"></div>
+</div>

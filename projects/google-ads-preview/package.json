@@ -1,0 +1,17 @@
+{
+	"name": "@kamp-n/gads-preview",
+	"version": "1.0.0",
+	"peerDependencies": {
+		"rxjs": "6.x",
+		"@angular/common": "12.x",
+		"@angular/core": "12.x",
+		"@angular/cdk": "12.x",
+		"@angular/material": "12.x",
+		"moment": "^2.23.0",
+		"@kamp-n/ng-common-tools": "latest"
+	},
+	"dependencies": {
+		"tslib": "^2.2.0"
+	},
+	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
+}

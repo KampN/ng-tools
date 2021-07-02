@@ -1,0 +1,80 @@
+display-native-ad {
+	$ad-width: 480px;
+	$ad-height: 120px;
+	$ad-gap: 6px;
+
+	display: inline-block;
+	box-sizing: border-box;
+
+	font-family: "Roboto", Roboto, Arial, sans-serif;
+	background: #fff;
+
+	.native-ad-layout {
+		height: $ad-height;
+		width: $ad-width;
+	}
+
+	.side-container {
+		padding: 4px 0 4px 13px;
+		width: 251px;
+	}
+
+	.long-headline-container {
+		font-size: 17px;
+		font-weight: 400;
+		line-height: 20px;
+
+		.long-headline {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			white-space: normal;
+		}
+
+		padding: 0 30px 0 0;
+		margin-bottom: $ad-gap;
+	}
+
+	.ad-flag {
+		display: inline-block;
+		font-family: "Roboto", arial, sans-serif;
+		font-size: 10px;
+		font-weight: 400;
+		height: 14px;
+		line-height: 10px;
+		overflow: hidden;
+		padding: 1px 3px 1px 3px;
+		white-space: nowrap;
+		background-color: green;
+		border: 1px solid white;
+		border-radius: 3px;
+		color: white;
+		margin-right: $ad-gap;
+	}
+
+	.business-block {
+		margin-bottom: $ad-gap;
+	}
+
+	.business-name {
+		font-size: 12px;
+		line-height: 14px;
+		color: rgb(178, 178, 178);
+	}
+
+	.open-button {
+		display: inline-block;
+		background-color: #4e92df;
+		border-radius: 2px;
+		box-shadow: 0 0 2px 0 rgb(0 0 0 / 12%), 0 2px 2px 0 rgb(0 0 0 / 24%);
+		font-weight: 500;
+		line-height: 25px;
+		font-size: 11px;
+		color: #fff;
+		height: 25px;
+		min-width: 57px;
+		max-width: 216px;
+		text-align: center;
+	}
+}

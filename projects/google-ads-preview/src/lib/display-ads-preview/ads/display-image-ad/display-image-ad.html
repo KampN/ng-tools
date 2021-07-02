@@ -1,0 +1,19 @@
+<div class="image-ad-layout landscape-layout" fxLayout="column">
+	<gads-image class="ad-image" height="160" width="300" [image]="imageUrl"></gads-image>
+	<div class="title-block">
+		<a [innerHTML]="headline|fallback:'headline'"></a>
+	</div>
+	<div fxLayout="row" fxLayoutAlign="center center" class="bottom-container">
+		<gads-image class="ad-logo" height="45" width="45" [image]="logoUrl" *ngIf="logoUrl"></gads-image>
+		<div class="description-block" fxFlex="1 1 auto">
+			<div>
+				<a [innerHTML]="description|fallback:'description'"></a>
+			</div>
+			<div class="business-name" *ngIf="!logoUrl">
+				<a [innerHTML]="businessName|fallback:'business_name'"></a>
+			</div>
+		</div>
+		<gads-fab-button></gads-fab-button>
+	</div>
+	<div class="ad-footer"></div>
+</div>

@@ -1,0 +1,18 @@
+<div class="text-ad-layout" fxLayout="column">
+	<div class="ad-main" fxFlex="1 0 auto" fxLayout="column">
+		<div class="title-block">
+			<a [innerHTML]="headline|fallback:'headline'"></a>
+		</div>
+		<div class="business-block">
+			<a [innerHTML]="businessName|fallback:'business_name'"></a>
+		</div>
+		<div class="description-block">
+			<a [innerHTML]="description|fallback:'description'"></a>
+		</div>
+	</div>
+	<div class="ad-footer" fxLayout fxLayoutAlign="center center">
+		<a class="open-button">
+			{{'button.open'|translate}}
+		</a>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@kamp-n/ng-logger": [
+				"projects/ng-logger/src/public-api.ts"
+			],
+			"@kamp-n/ng-common-tools": [
+				"projects/ng-common-tools/src/public-api.ts"
+			],
+			"@kamp-n/ng-common-form": [
+				"projects/ng-common-form/src/public-api.ts"
+			],
+			"@kamp-n/ng-logger-fs": [
+				"projects/ng-logger-fs/src/public-api.ts"
+			],
+			"@kamp-n/gads-preview": [
+				"projects/google-ads-preview/src/public-api.ts"
+			]
+		}
+	}
+}

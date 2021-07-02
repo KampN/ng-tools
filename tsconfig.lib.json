@@ -1,0 +1,24 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@kamp-n/ng-logger": [
+				"dist/ng-logger",
+				"dist/ng-logger/*"
+			],
+			"@kamp-n/ng-common-tools": [
+				"dist/ng-common-tools",
+				"dist/ng-common-tools/*"
+			],
+			"@kamp-n/ng-common-form": [
+				"dist/ng-common-form",
+				"dist/ng-common-form/*"
+			],
+			"@kamp-n/ng-logger-fs": [
+				"dist/ng-logger-fs",
+				"dist/ng-logger-fs/*"
+			]
+		}
+	}
+}
