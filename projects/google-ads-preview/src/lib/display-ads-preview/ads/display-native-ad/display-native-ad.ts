@@ -1,29 +1,29 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
 
-export interface DisplayNativeAdLargeRenderModel {
+export interface DisplayNativeAdRenderModel {
 	imageUrl?: string;
 	longHeadline?: string;
 	businessName?: string;
 }
 
 @Component({
-	selector: 'display-native-ad-large',
-	templateUrl: './display-native-ad-large.html',
-	styleUrls: ['./display-native-ad-large.scss'],
+	selector: 'display-native-ad',
+	templateUrl: './display-native-ad.html',
+	styleUrls: ['./display-native-ad.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
-export class DisplayNativeAdLargeComponent {
+export class DisplayNativeAdComponent {
 	get businessName(): string {return this._data?.businessName;}
 
 	get longHeadline(): string {return this._data?.longHeadline;}
 
 	get imageUrl(): string {return this._data?.imageUrl;}
 
-	protected _data: DisplayNativeAdLargeRenderModel = null;
+	protected _data: DisplayNativeAdRenderModel = null;
 
-	get data(): DisplayNativeAdLargeRenderModel {return this._data;}
+	get data(): DisplayNativeAdRenderModel {return this._data;}
 
-	@Input() set data(val: DisplayNativeAdLargeRenderModel) {this._data = coerceObject(val);}
+	@Input() set data(val: DisplayNativeAdRenderModel) {this._data = coerceObject(val);}
 }

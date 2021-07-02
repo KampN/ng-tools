@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {DisplayImageAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
-import {DisplayNativeAdLargeRenderModel} from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/display-native-ad-large/display-native-ad-large';
+import {DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
 
 @Component({
 	selector: 'display-ads-sample',
@@ -28,19 +27,18 @@ export class DisplayAdsSampleComponent implements OnInit {
 		businessName: 'Kamp\'n'
 	}];
 
-	nativeAdModels: { large: DisplayNativeAdLargeRenderModel } = {
+	nativeAdModels: { large: DisplayNativeAdRenderModel, collapsed: DisplayNativeAdRenderModel } = {
 		large: {
 			imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
 			longHeadline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
 			businessName: 'Kamp\'n'
 		},
-		//collapsed: {
-		//	logoUrl: 'https://tpc.googlesyndication.com/simgad/13362787963035582741?w=100&h=100',
-		//	longHeadline: 'a long headline that doesn fit',
-		//	businessName: 'Kamp\'n'
-		//}
+		collapsed: {
+			imageUrl: 'https://tpc.googlesyndication.com/simgad/13362787963035582741?w=100&h=100',
+			longHeadline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
+			businessName: 'Kamp\'n'
+		}
 	};
-
 	constructor() { }
 
 	ngOnInit() { }

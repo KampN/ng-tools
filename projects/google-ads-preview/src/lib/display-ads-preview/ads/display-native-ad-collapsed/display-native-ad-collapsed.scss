@@ -1,0 +1,84 @@
+display-native-ad-collapsed {
+	$ad-width: 373px;
+	$ad-height: 116px;
+	$ad-gap: 10px;
+
+	display: inline-block;
+	box-sizing: border-box;
+
+	font-family: "Roboto", Roboto, Arial, sans-serif;
+	background: #fff;
+
+	.native-ad-layout {
+		padding: 10px;
+		height: $ad-height;
+		width: $ad-width;
+	}
+
+	.side-container {
+		padding: 4px 0 4px 13px;
+		width: 260px;
+	}
+
+	.long-headline-container {
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 18px;
+
+		.long-headline {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			white-space: normal;
+		}
+
+		margin-bottom: $ad-gap;
+	}
+
+	.ad-flag {
+		display: inline-block;
+		font-family: "Roboto", arial, sans-serif;
+		font-size: 10px;
+		font-weight: 400;
+		height: 14px;
+		line-height: 10px;
+		overflow: hidden;
+		padding: 1px 3px 1px 3px;
+		white-space: nowrap;
+		background-color: green;
+		border: 1px solid white;
+		border-radius: 3px;
+		color: white;
+		margin-right: $ad-gap;
+	}
+
+	.business-block {
+		margin-bottom: $ad-gap;
+	}
+
+	.business-name {
+		font-size: 12px;
+		line-height: 14px;
+		color: rgb(178, 178, 178);
+	}
+
+	.open-button {
+		display: inline-block;
+		background: #ffffff;
+		border-radius: 2px;
+		border: 1px solid #999999;
+		color: #757575;
+		text-align: center;
+		height: 28px;
+		min-width: 61px;
+		max-width: 300px;
+		font-weight: 400;
+		line-height: 28px;
+		font-size: 12px;
+	}
+
+	.image-container {
+		padding: 0 15px 5px 0;
+	}
+}
