@@ -20,6 +20,10 @@ export class DisplayAdsSampleComponent {
 		description: 'une description vraiment trop longue pour s\'afficher dans l\'emplacement actuel',
 		imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
 		businessName: 'Kamp\'n'
+	}, {
+		headline: 'Alison Brie <3',
+		description: 'Background image par défaut en utilisant la variable css adequat',
+		businessName: 'Kamp\'n'
 	}];
 	textAdModels: DisplayTextAdRenderModel[] = [{
 		headline: 'a long headline that doesn fit',
