@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {GoogleAdsPreviewCommonModule} from '../common/common.module';
 
 export {DisplayImageAdComponent, DisplayImageAdRenderModel} from './ads/display-image-ad/display-image-ad';
-export {DisplayImageAdsTowerComponent} from './ads/image-ad-tower/display-image-ad-tower';
+export {DisplayImageAdsTowerComponent} from './ads/display-image-ad-tower/display-image-ad-tower';
 export {DisplayTextAdComponent, DisplayTextAdRenderModel} from './ads/display-text-ad/display-text-ad';
 export {DisplayNativeAdComponent, DisplayNativeAdRenderModel} from './ads/display-native-ad/display-native-ad';
 export {DisplayNativeAdCollapsedComponent} from './ads/display-native-ad-collapsed/display-native-ad-collapsed';

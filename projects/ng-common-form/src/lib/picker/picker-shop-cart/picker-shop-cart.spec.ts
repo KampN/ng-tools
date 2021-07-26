@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {PickerShopCartComponent} from './picker-shop-cart';
@@ -30,18 +30,18 @@ describe('Picker : PickerShopCart', () => {
 		`,
 	})
 	class TestHostComponent {
-		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
-		control:FormControl = new FormControl();
+		@ViewChild(PickerComponent) picker: PickerComponent<DummyObject>;
+		control: FormControl = new FormControl();
 
-		indexEven(index:number, item:DummyObject) {
+		indexEven(index: number, item: DummyObject) {
 			return index % 2;
 		}
 	}
 
-	const dummyFactory:DummyMockFactory = new DummyMockFactory();
-	const controlFactory:FormControlMockFactory = new FormControlMockFactory();
-	let testFixture:ComponentFixture<TestHostComponent>;
-	let testComponent:TestHostComponent;
+	const dummyFactory: DummyMockFactory = new DummyMockFactory();
+	const controlFactory: FormControlMockFactory = new FormControlMockFactory();
+	let testFixture: ComponentFixture<TestHostComponent>;
+	let testComponent: TestHostComponent;
 
 	beforeEach(waitForAsync(() => {
 
