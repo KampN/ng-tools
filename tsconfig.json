@@ -18,6 +18,10 @@
 		  "dom"
 		],
 		"paths": {
+			"@kamp-n/gads-preview": [
+				"dist/google-ads-preview/google-ads-preview",
+				"dist/google-ads-preview"
+			],
 			"@kamp-n/ng-logger": [
 				"dist/ng-logger/ng-logger",
 				"dist/ng-logger"
