@@ -2,9 +2,6 @@
 	"$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
 	"dest": "../../dist/ng-common-form",
 	"lib": {
-		"entryFile": "src/public-api.ts",
-		"umdModuleIds": {
-			"@kamp-n/ng-common-tools": "commonTools"
-		}
+    "entryFile": "src/public-api.ts"
 	}
 }
