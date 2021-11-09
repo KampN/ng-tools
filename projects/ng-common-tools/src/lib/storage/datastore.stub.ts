@@ -13,12 +13,12 @@ export class DataStoreStub implements DataStore {
 
     clear(key: any) {
         this.storage.delete(key);
-        this.changeStream.next();
+        this.changeStream.next(null);
     }
 
     clearAll() {
         this.storage.clear();
-        this.changeStream.next();
+        this.changeStream.next(null);
     }
 
     observe(key: any): Observable<any> {
@@ -36,7 +36,7 @@ export class DataStoreStub implements DataStore {
 
     push(key: any, value: any): any {
         this.storage.set(key, value);
-        this.changeStream.next();
+        this.changeStream.next(null);
         return value;
     }
 

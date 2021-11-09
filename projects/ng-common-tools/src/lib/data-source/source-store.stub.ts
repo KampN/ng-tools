@@ -34,7 +34,7 @@ export class SourceStoreStub<T> implements SourceStore<T> {
 
     setStore(store: T[]) {
         this.store = store;
-        this._storeChange.next();
+        this._storeChange.next(null);
     }
 
     clear(): void {
@@ -43,7 +43,7 @@ export class SourceStoreStub<T> implements SourceStore<T> {
 
     fetch({pagination}: FetchQuery): Observable<{ data: T[]; total: number }> {
         this.store = [...this.store, ...this.DATABASE.slice(pagination.limit * pagination.page, pagination.limit)];
-        this._storeChange.next();
+        this._storeChange.next(null);
         return of({data: [], total: this.total});
     }
 

@@ -24,12 +24,12 @@ describe('RxJS : RxCleaner', () => {
 				rc.takeUntil()
 			).subscribe(spy);
 
-			subject.next();
-			subject.next();
+			subject.next(null);
+			subject.next(null);
 
 			rc.unsubscribeAll();
 
-			subject.next();
+			subject.next(null);
 
 			expect(spy).toHaveBeenCalledTimes(2);
 		});
@@ -43,13 +43,13 @@ describe('RxJS : RxCleaner', () => {
 				rc.takeUntil('ns')
 			).subscribe(spy);
 
-			subject.next();
+			subject.next(null);
 
 			rc.unsubscribe('foobar');
-			subject.next();
+			subject.next(null);
 
 			rc.unsubscribe('ns');
-			subject.next();
+			subject.next(null);
 
 			expect(spy).toHaveBeenCalledTimes(2);
 		});
@@ -69,10 +69,10 @@ describe('RxJS : RxCleaner', () => {
 				rc.takeUntil('ns')
 			).subscribe(spy);
 
-			subject.next();
+			subject.next(null);
 			rc.complete();
 
-			subject.next();
+			subject.next(null);
 
 			expect(spy).toHaveBeenCalledTimes(1);
 			expect(rcStream.isStopped).toBeTruthy();

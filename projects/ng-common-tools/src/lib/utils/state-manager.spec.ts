@@ -145,12 +145,12 @@ describe('RxJS : RxCleaner', () => {
                     sm.takeWhen('hot')
                 ).subscribe(spy);
 
-                subject.next();
+                subject.next(null);
                 expect(spy).not.toHaveBeenCalled();
 
                 sm.active('hot');
-                subject.next();
-                subject.next();
+                subject.next(null);
+                subject.next(null);
                 expect(spy).toHaveBeenCalledTimes(2);
 
             });
@@ -167,12 +167,12 @@ describe('RxJS : RxCleaner', () => {
                     sm.skipWhen('hot')
                 ).subscribe(spy);
 
-                subject.next();
+                subject.next(null);
                 expect(spy).not.toHaveBeenCalled();
 
                 sm.deactive('hot');
-                subject.next();
-                subject.next();
+                subject.next(null);
+                subject.next(null);
                 expect(spy).toHaveBeenCalledTimes(2);
 
             });
