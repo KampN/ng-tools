@@ -88,6 +88,11 @@ export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterVie
 
 	registerOnTouched(fn) { this.onTouched = fn; }
 
+	handleValueChange(event: Event) {
+		const target = event.target as HTMLInputElement;
+		this.valueChange.next(target?.value)
+	}
+
 	setDisabledState(isDisabled: boolean): void {
 		this.disabled = isDisabled;
 	}

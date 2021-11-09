@@ -101,25 +101,6 @@
 				}
 			}
 		},
-		"kampn-ng-tools-e2e": {
-			"root": "e2e/",
-			"projectType": "application",
-			"prefix": "",
-			"architect": {
-				"e2e": {
-					"builder": "@angular-devkit/build-angular:protractor",
-					"options": {
-						"protractorConfig": "e2e/protractor.conf.js",
-						"devServerTarget": "kampn-ng-tools:serve"
-					},
-					"configurations": {
-						"production": {
-							"devServerTarget": "kampn-ng-tools:serve:production"
-						}
-					}
-				}
-			}
-		},
 		"ng-logger": {
 			"root": "projects/ng-logger",
 			"sourceRoot": "projects/ng-logger/src",

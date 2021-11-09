@@ -1,6 +1,6 @@
 <div class="input-container">
 	<label>
-		<input [disabled]="disabled" type="text" [value]="search" (input)="valueChange.next($event.target.value)" #input [placeholder]="placeholder">
+		<input [disabled]="disabled" type="text" [value]="search" (input)="handleValueChange($event)" #input [placeholder]="placeholder">
 		<material-underline [active]="focused"></material-underline>
 	</label>
 	<button mat-icon-button disableRipple class="noop" *ngIf="!showClearBtn; else clearInputBtn">

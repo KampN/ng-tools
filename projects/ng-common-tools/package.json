@@ -3,10 +3,10 @@
 	"version": "11.0.0",
 	"peerDependencies": {
 		"rxjs": "6.x",
-		"@angular/common": "12.x",
-		"@angular/core": "12.x",
-		"@angular/cdk": "12.x",
-		"@angular/material": "12.x",
+		"@angular/common": "13.x",
+		"@angular/core": "13.x",
+		"@angular/cdk": "13.x",
+		"@angular/material": "13.x",
 		"moment": "^2.23.0"
 	},
 	"optionalDependencies": {

@@ -21,19 +21,19 @@ export class GadsImageComponent {
 		return this.image ? `url(${this.image})` : null;
 	}
 
-	protected _height: number = null;
+	protected _height: number|string = null;
 
-	get height(): number {return this._height;}
+	get height(): number|string {return this._height;}
 
-	@Input() set height(val: number) {this._height = coerceNumberProperty(val);}
+	@Input() set height(val: number|string) {this._height = coerceNumberProperty(val);}
 
 	get heightPx(): string {return `${this._height}px`;}
 
 	get widthPx(): string {return `${this._width}px`;}
 
-	protected _width: number = null;
+	protected _width: number|string = null;
 
-	get width(): number {return this._width;}
+	get width(): number|string {return this._width;}
 
-	@Input() set width(val: number) {this._width = coerceNumberProperty(val);}
+	@Input() set width(val: number|string) {this._width = coerceNumberProperty(val);}
 }

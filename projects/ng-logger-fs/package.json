@@ -2,8 +2,8 @@
 	"name": "@kamp-n/ng-logger-fs",
 	"version": "5.0.0",
 	"peerDependencies": {
-		"@angular/common": "12.x",
-		"@angular/core": "12.x",
+		"@angular/common": "13.x",
+		"@angular/core": "13.x",
 		"@kamp-n/ng-logger": "latest"
 	}
 ,

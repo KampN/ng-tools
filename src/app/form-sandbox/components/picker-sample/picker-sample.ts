@@ -34,8 +34,8 @@ export class PickerSampleComponent implements OnInit, OnDestroy {
 
     extractIdFn: ExtractIdFn = (v: any) => v.id;
 
-    even(index: number, item: any) {
-        return index % 2;
+    even(index: number, item: any):boolean {
+        return index % 2 === 0;
     }
 
     ngOnInit() {

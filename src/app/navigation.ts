@@ -10,7 +10,7 @@ export interface NavigationCategory {
     children: NavigationRoute[];
 }
 
-export type NavigationRoutes = (NavigationCategory | NavigationRoute)[];
+export type NavigationRoutes = NavigationCategory[];
 
 export const NAVIGATION_ROUTES: InjectionToken<NavigationCategory[]> = new InjectionToken('navigation_routes');
 export const NavigationRouteProvider: ValueProvider = {

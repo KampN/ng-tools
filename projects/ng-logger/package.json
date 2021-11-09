@@ -2,8 +2,8 @@
 	"name": "@kamp-n/ng-logger",
 	"version": "7.0.0",
 	"peerDependencies": {
-		"@angular/common": "12.x",
-		"@angular/core": "12.x"
+		"@angular/common": "13.x",
+		"@angular/core": "13.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
 ,
