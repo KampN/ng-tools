@@ -11,9 +11,8 @@
 		"@angular/material": "13.x",
 		"@angular/cdk": "13.x"
 	},
-	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>"
-,
+	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.2.0"
   }
 }
