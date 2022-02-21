@@ -2,11 +2,9 @@ import {DataStore} from '../interfaces/datastore';
 import {Observable, of} from 'rxjs';
 import {CacheStore, Perishable, Timestamp} from '../interfaces/repository';
 import {distinctUntilChanged, map} from 'rxjs/operators';
-import * as _moment from 'moment';
+import moment from 'moment';
 import {ArrayUtils} from '../utils/array';
 import {Check} from '../utils/check';
-
-const moment = _moment;
 
 export enum StoreStrategy {
     Merge, Replace
