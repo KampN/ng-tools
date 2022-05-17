@@ -47,6 +47,12 @@ export class SelectionModel<T> {
         }
     }
 
+    setSelected(values: T[], emitChanges: boolean = true) {
+        this._verifyValueAssignment(values);
+        values.forEach(value => this._markSelected(value, emitChanges));
+        if (emitChanges) this._emitChangeEvent();
+    }
+
     select(...values: T[]): void {
         this._verifyValueAssignment(values);
         values.forEach(value => this._markSelected(value));
@@ -117,21 +123,21 @@ export class SelectionModel<T> {
         }
     }
 
-    protected _markSelected(value: T) {
+    protected _markSelected(value: T, emitChanges = this._emitChanges) {
         if (!this.isSelected(value)) {
             if (!this._multiple) this._unmarkAll();
             this._selection.set(this.extractId(value), value);
-            if (this._emitChanges) this._selectedToEmit.push(value);
+            if (emitChanges) this._selectedToEmit.push(value);
         }
     }
 
-    protected _unmarkSelected(value: T) {
+    protected _unmarkSelected(value: T, emitChanges = this._emitChanges) {
         if (this.isSelected(value)) {
             const key = this.extractId(value);
             const ref = this._selection.get(key);
             this._selection.delete(key);
 
-            if (this._emitChanges) this._deselectedToEmit.push(ref);
+            if (emitChanges) this._deselectedToEmit.push(ref);
         }
     }
 
