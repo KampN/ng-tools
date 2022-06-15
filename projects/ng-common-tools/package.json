@@ -1,12 +1,12 @@
 {
 	"name": "@kamp-n/ng-common-tools",
-	"version": "12.2.0",
+	"version": "13.0.0",
 	"peerDependencies": {
 		"rxjs": "7.x",
-		"@angular/common": "13.x",
-		"@angular/core": "13.x",
-		"@angular/cdk": "13.x",
-		"@angular/material": "13.x",
+		"@angular/common": "14.x",
+		"@angular/core": "14.x",
+		"@angular/cdk": "14.x",
+		"@angular/material": "14.x",
 		"moment": "^2.23.0"
 	},
 	"optionalDependencies": {

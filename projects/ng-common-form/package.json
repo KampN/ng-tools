@@ -1,15 +1,15 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "8.1.0",
+	"version": "9.0.0",
 	"peerDependencies": {
-		"@angular/common": "13.x",
-		"@angular/core": "13.x",
-		"@angular/forms": "13.x",
+		"@angular/common": "14.x",
+		"@angular/core": "14.x",
+		"@angular/forms": "14.x",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"optionalDependencies": {
-		"@angular/material": "13.x",
-		"@angular/cdk": "13.x"
+		"@angular/material": "14.x",
+		"@angular/cdk": "14.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
   "dependencies": {
