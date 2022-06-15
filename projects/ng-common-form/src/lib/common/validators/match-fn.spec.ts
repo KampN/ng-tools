@@ -1,13 +1,13 @@
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {matchFnValidator} from './match-fn';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 
 describe('Validators : matchFn', () => {
 
     const controlFactory: FormControlMockFactory = new FormControlMockFactory();
 
     it('should validate a control with the given function', () => {
-        const control: FormControl = controlFactory.generate({
+        const control: UntypedFormControl = controlFactory.generate({
             validators: [matchFnValidator((value) => value === 'foo')]
         });
 

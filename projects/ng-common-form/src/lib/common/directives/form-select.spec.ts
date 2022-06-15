@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './form-select';
 import {By} from '@angular/platform-browser';
@@ -18,13 +18,13 @@ describe('Directives : FormSelect', () => {
         `
     })
     class TestHostComponent {
-        group: FormGroup;
+        group: UntypedFormGroup;
         @ViewChild('checkbox') input: FormSelectControlCheckboxControlValueAccessorDirective;
         @ViewChild(FormSelectGroupDirective) selectGroup: FormSelectGroupDirective<any>;
         @ViewChild(FormSelectControlDirective) selectControl: FormSelectControlDirective<any>;
 
-        get control(): FormControl {
-            return this.group && this.group.contains('control') ? this.group.get('control') as FormControl : null;
+        get control(): UntypedFormControl {
+            return this.group && this.group.contains('control') ? this.group.get('control') as UntypedFormControl : null;
         }
     }
 
@@ -52,7 +52,7 @@ describe('Directives : FormSelect', () => {
 
     it('should set the checked status to the formSelectControl\'s hosts', waitForAsync(() => {
 
-        testComponent.group = new FormGroup({
+        testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({value: ['value']})
         });
 
@@ -67,7 +67,7 @@ describe('Directives : FormSelect', () => {
 
     it('should update the form value on checkbox interactions', waitForAsync(() => {
 
-        testComponent.group = new FormGroup({
+        testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({value: []})
         });
 
@@ -84,7 +84,7 @@ describe('Directives : FormSelect', () => {
 
     it('should update the checkbox on form update', waitForAsync(() => {
 
-        testComponent.group = new FormGroup({
+        testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({value: []})
         });
 
@@ -107,7 +107,7 @@ describe('Directives : FormSelect', () => {
 
     it('should disable the value accessors', waitForAsync(() => {
 
-        testComponent.group = new FormGroup({
+        testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({value: {disabled: true, value: ['value']}})
         });
 

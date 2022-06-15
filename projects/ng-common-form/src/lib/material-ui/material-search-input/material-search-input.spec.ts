@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Component, ViewChild} from '@angular/core';
 import {MaterialSearchInputComponent} from './material-search-input';
 import {MaterialUnderlineComponent} from '../material-underline/material-underline';
@@ -19,7 +19,7 @@ describe('Material-UI : MaterialSearchInput', () => {
     })
     class TestHostComponent {
         @ViewChild(MaterialSearchInputComponent, {static: true}) search: MaterialSearchInputComponent;
-        control: FormControl = new FormControl(null);
+        control: UntypedFormControl = new UntypedFormControl(null);
 
         disableClear: boolean = false;
         text: string;

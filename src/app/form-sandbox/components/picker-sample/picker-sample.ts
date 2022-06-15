@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import { MatTableDataSource } from '@angular/material/table';
 import {ExtractIdFn} from '@kamp-n/ng-common-form';
@@ -12,7 +12,7 @@ import {ExtractIdFn} from '@kamp-n/ng-common-form';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PickerSampleComponent implements OnInit, OnDestroy {
-    form: FormGroup;
+    form: UntypedFormGroup;
     displayedColumns: string[] = ['selector', 'name'];
     dataSource = new MatTableDataSource([
         {id: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -29,7 +29,7 @@ export class PickerSampleComponent implements OnInit, OnDestroy {
     ]);
     protected rc: RxCleaner = new RxCleaner();
 
-    constructor(protected fb: FormBuilder, protected cdr: ChangeDetectorRef) {
+    constructor(protected fb: UntypedFormBuilder, protected cdr: ChangeDetectorRef) {
     }
 
     extractIdFn: ExtractIdFn = (v: any) => v.id;

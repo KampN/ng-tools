@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PickerBodyContext, PickerComponent, PickerShopCartContext} from '../picker/picker';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
@@ -25,7 +25,7 @@ describe('Picker', () => {
 	})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
-		control:FormControl = new FormControl();
+		control:UntypedFormControl = new UntypedFormControl();
 
 		extractIdFn:ExtractIdFn;
 	}

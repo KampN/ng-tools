@@ -1,5 +1,5 @@
 import {MockFactory} from '@kamp-n/ng-common-tools';
-import {FormControl, ValidatorFn} from '@angular/forms';
+import {UntypedFormControl, ValidatorFn} from '@angular/forms';
 
 export interface FormControlMockOptions {
     value?: any;
@@ -8,10 +8,10 @@ export interface FormControlMockOptions {
     touched?: boolean;
 }
 
-export class FormControlMockFactory extends MockFactory<FormControl, FormControlMockOptions> {
+export class FormControlMockFactory extends MockFactory<UntypedFormControl, FormControlMockOptions> {
 
-    generate({value, validators, dirty, touched}: FormControlMockOptions = {}): FormControl {
-        const control = new FormControl(value || null, validators || []);
+    generate({value, validators, dirty, touched}: FormControlMockOptions = {}): UntypedFormControl {
+        const control = new UntypedFormControl(value || null, validators || []);
         if (dirty) control.markAsDirty();
         if (touched) control.markAsTouched();
         return control;

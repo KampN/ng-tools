@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {PickerShopCartComponent} from './picker-shop-cart';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PickerComponent} from '../picker/picker';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
@@ -31,7 +31,7 @@ describe('Picker : PickerShopCart', () => {
 	})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker: PickerComponent<DummyObject>;
-		control: FormControl = new FormControl();
+		control: UntypedFormControl = new UntypedFormControl();
 
 		indexEven(index: number, item: DummyObject) {
 			return index % 2;

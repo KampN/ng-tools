@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
@@ -19,7 +19,7 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteSampleComponent implements OnInit, OnDestroy {
-    form: FormGroup;
+    form: UntypedFormGroup;
     options: User[] = [
         {name: 'Mary'},
         {name: 'Marianne'},
@@ -31,7 +31,7 @@ export class AutocompleteSampleComponent implements OnInit, OnDestroy {
     protected rc: RxCleaner = new RxCleaner();
     protected states: StateManager = new StateManager();
 
-    constructor(protected fb: FormBuilder, protected cdr: ChangeDetectorRef) { }
+    constructor(protected fb: UntypedFormBuilder, protected cdr: ChangeDetectorRef) { }
 
     get isQueryingUsers(): boolean {
         return this.states.is('loading');

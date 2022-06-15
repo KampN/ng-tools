@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ControlErrorDirective} from './control-error';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {By} from '@angular/platform-browser';
@@ -22,10 +22,10 @@ describe('Directives : FormErrorHint', () => {
     class TestHostComponent {
         @ViewChild('inside', { read: ElementRef }) inside: ElementRef;
         @ViewChild('outside', { read: ElementRef }) outside: ElementRef;
-        group: FormGroup;
+        group: UntypedFormGroup;
 
-        get control(): FormControl {
-            return this.group && this.group.contains('control') ? this.group.get('control') as FormControl : null;
+        get control(): UntypedFormControl {
+            return this.group && this.group.contains('control') ? this.group.get('control') as UntypedFormControl : null;
         }
     }
 
@@ -51,7 +51,7 @@ describe('Directives : FormErrorHint', () => {
 
     it('should instantiate the template if the control has an error', waitForAsync(() => {
 
-        testComponent.group = new FormGroup({
+        testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({validators: [Validators.required], value: 'value'})
         });
 
@@ -71,7 +71,7 @@ describe('Directives : FormErrorHint', () => {
 
     it('should instantiate the template if the control has an error', waitForAsync(() => {
 
-        testComponent.group = new FormGroup({
+        testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({validators: [Validators.required], value: null, dirty: true, touched: true})
         });
 

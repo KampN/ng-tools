@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 
 @Component({
     selector: 'multi-select-sample',
@@ -9,9 +9,9 @@ import {FormBuilder, FormGroup} from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MultiSelectSampleComponent implements OnInit {
-    form: FormGroup;
+    form: UntypedFormGroup;
 
-    constructor(protected fb: FormBuilder) {
+    constructor(protected fb: UntypedFormBuilder) {
     }
 
     ngOnInit() {

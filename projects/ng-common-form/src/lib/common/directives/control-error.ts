@@ -1,6 +1,6 @@
 import {Directive, Host, Input, OnChanges, OnDestroy, OnInit, Optional, SkipSelf, TemplateRef, ViewContainerRef} from '@angular/core';
 import {
-	AbstractControl, AbstractFormGroupDirective, ControlContainer, FormArray, FormArrayName, FormControl, FormGroup, FormGroupDirective,
+	AbstractControl, AbstractFormGroupDirective, ControlContainer, UntypedFormArray, FormArrayName, UntypedFormControl, UntypedFormGroup, FormGroupDirective,
 	FormGroupName
 } from '@angular/forms';
 import {combineLatest, ReplaySubject} from 'rxjs';
@@ -99,9 +99,9 @@ export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
 	}
 
 	protected isFormControl(item:any) {
-		return item instanceof FormControl ||
-			item instanceof FormGroup ||
-			item instanceof FormArray;
+		return item instanceof UntypedFormControl ||
+			item instanceof UntypedFormGroup ||
+			item instanceof UntypedFormArray;
 	}
 
 	protected isControlInvalid():boolean {
