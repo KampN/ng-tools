@@ -10,7 +10,11 @@ display-ads-sample {
 
 	.sample-block {
 		background: rgba(0, 0, 0, .08);
-		padding: 1rem;
+		padding: 0 1rem 1rem;
+
+		.sample-item {
+			margin-top: 1rem;
+		}
 	}
 
 	display-image-ad, display-image-ad-tower {

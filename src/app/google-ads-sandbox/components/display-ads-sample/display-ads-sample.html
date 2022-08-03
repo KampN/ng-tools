@@ -6,7 +6,7 @@
 	Image Ad - Landscape display
 </div>
 <div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
-	<display-image-ad [data]="model" *ngFor="let model of imageAdModels"></display-image-ad>
+	<display-image-ad class="sample-item" [data]="model" *ngFor="let model of imageAdModels"></display-image-ad>
 </div>
 
 <mat-divider></mat-divider>
@@ -15,7 +15,7 @@
 	Image Ad - Tower display
 </div>
 <div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
-	<display-image-ad-tower [data]="model" *ngFor="let model of imageAdModels"></display-image-ad-tower>
+	<display-image-ad-tower class="sample-item" [data]="model" *ngFor="let model of imageAdModels"></display-image-ad-tower>
 </div>
 
 <mat-divider></mat-divider>
@@ -24,7 +24,7 @@
 	Text Ad
 </div>
 <div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
-	<display-text-ad [data]="model" *ngFor="let model of textAdModels"></display-text-ad>
+	<display-text-ad class="sample-item" [data]="model" *ngFor="let model of textAdModels"></display-text-ad>
 </div>
 
 <mat-divider></mat-divider>
@@ -34,8 +34,8 @@
 </div>
 <div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
 
-	<display-native-ad [data]="nativeAdModels.large"></display-native-ad>
-	<display-native-ad-collapsed [data]="nativeAdModels.collapsed"></display-native-ad-collapsed>
+	<display-native-ad class="sample-item" [data]="nativeAdModels.large"></display-native-ad>
+	<display-native-ad-collapsed class="sample-item" [data]="nativeAdModels.collapsed"></display-native-ad-collapsed>
 
 </div>
 
