@@ -5,6 +5,7 @@ export interface DisplayNativeAdRenderModel {
 	imageUrl?: string;
 	longHeadline?: string;
 	businessName?: string;
+    callToAction?: string;
 }
 
 @Component({
@@ -20,6 +21,8 @@ export class DisplayNativeAdComponent {
 	get longHeadline(): string {return this._data?.longHeadline;}
 
 	get imageUrl(): string {return this._data?.imageUrl;}
+
+    get callToAction(): string {return this._data?.callToAction;}
 
 	protected _data: DisplayNativeAdRenderModel = null;
 

@@ -2,29 +2,32 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@ang
 import {coerceObject} from '@kamp-n/ng-common-tools';
 
 export interface DisplayTextAdRenderModel {
-	headline?: string;
-	description?: string;
-	businessName?: string;
+    headline?: string;
+    description?: string;
+    businessName?: string;
+    callToAction?: string;
 }
 
 @Component({
-	selector: 'display-text-ad',
-	templateUrl: './display-text-ad.html',
-	styleUrls: ['./display-text-ad.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None
+    selector: 'display-text-ad',
+    templateUrl: './display-text-ad.html',
+    styleUrls: ['./display-text-ad.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class DisplayTextAdComponent {
 
-	get businessName(): string {return this._data?.businessName;}
+    get businessName(): string {return this._data?.businessName;}
 
-	get headline(): string {return this._data?.headline;}
+    get headline(): string {return this._data?.headline;}
 
-	get description(): string {return this._data?.description;}
+    get description(): string {return this._data?.description;}
 
-	protected _data: DisplayTextAdRenderModel = null;
+    get callToAction(): string {return this._data?.callToAction;}
 
-	get data(): DisplayTextAdRenderModel {return this._data;}
+    protected _data: DisplayTextAdRenderModel = null;
 
-	@Input() set data(val: DisplayTextAdRenderModel) {this._data = coerceObject(val);}
+    get data(): DisplayTextAdRenderModel {return this._data;}
+
+    @Input() set data(val: DisplayTextAdRenderModel) {this._data = coerceObject(val);}
 }

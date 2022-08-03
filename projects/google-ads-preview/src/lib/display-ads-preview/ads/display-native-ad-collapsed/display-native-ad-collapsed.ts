@@ -16,6 +16,8 @@ export class DisplayNativeAdCollapsedComponent {
 
 	get imageUrl(): string {return this._data?.imageUrl;}
 
+    get callToAction(): string {return this._data?.callToAction;}
+
 	protected _data: DisplayNativeAdRenderModel = null;
 
 	get data(): DisplayNativeAdRenderModel {return this._data;}
