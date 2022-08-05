@@ -1,0 +1,12 @@
+<mat-toolbar>
+	Text Ad
+</mat-toolbar>
+
+<div class="sample-title">
+	Responsive Ad
+</div>
+<div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
+	<responsive-text-ad class="sample-item" [data]="model" *ngFor="let model of responsiveAdModels"></responsive-text-ad>
+</div>
+
+<mat-divider></mat-divider>

@@ -49,6 +49,10 @@ export const NavigationRouteProvider: ValueProvider = {
                     title: 'display ads',
                     route: ['/', 'google-ads', 'display-ads']
                 },
+                {
+                    title: 'text ads',
+                    route: ['/', 'google-ads', 'text-ads']
+                },
             ]
         },
     ]

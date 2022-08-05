@@ -1,0 +1,19 @@
+<div class="text-ad-layout" fxLayout="column">
+	<div class="url-section" fxLayout fxLayoutAlign="start center">
+		<span aria-hidden="true" class="badge">Ad</span>
+		<span class="punctuation">·</span>
+		<span class="visurl">https://{{url}}</span>
+		<span class="info"></span>
+	</div>
+	<div class="top-section" fxLayout fxLayoutAlign="space-between">
+		<span class="headline-group">
+			<ng-container *ngFor="let headline of headlines; let isLast=last">
+			{{headline}}
+				<ng-container *ngIf="!isLast">&nbsp;|&nbsp;</ng-container>
+			</ng-container>
+		</span>
+	</div>
+	<div class="description-group">
+		<span class="description" *ngFor="let description of descriptions">{{description}}</span>
+	</div>
+</div>
