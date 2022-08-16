@@ -1,0 +1,12 @@
+<mat-toolbar>
+	Video Ad
+</mat-toolbar>
+
+<div class="sample-title">
+	Youtube Ad
+</div>
+<div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
+	<youtube-video-ad class="sample-item" [data]="model" *ngFor="let model of youtubeAdModels"></youtube-video-ad>
+</div>
+
+<mat-divider></mat-divider>

@@ -1,0 +1,144 @@
+youtube-video-ad {
+
+	$ad-width: 320px;
+	$ad-img-height: 240px;
+
+
+	background: #fff;
+	display: inline-block;
+	box-sizing: border-box;
+	position: relative;
+
+
+	gads-image.ad-image {
+		display: block;
+		--image-max-height: #{$ad-img-height};
+		--image-max-width: #{$ad-width};
+	}
+
+	gads-image.channel-logo {
+		margin: 4px;
+		--image-url: var(--default-logo-url, var(--default-image-url));
+	}
+
+	.img-container {
+		position: relative;
+	}
+
+	.skip-button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background: rgba(0, 0, 0, .8);
+		border: 1px solid #dadce0;
+		box-shadow: 0 0 5px hsl(0deg 0% 100% / 80%);
+		color: #fff;
+
+		position: absolute;
+		bottom: 48px;
+		right: 0;
+
+		border-right: 0;
+		font-size: 10px;
+		min-width: 70px;
+		padding: 5px;
+		max-width: 50%;
+	}
+
+	.skip-icon {
+		display: inline-block;
+		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVR4AaXSiQCAQBQE0EUIIZRQQgklhBBCCCGEDF4AnbM7AO+fBTvGEgagAKTQBUihK3DNiqEFuEI5cIWuQJ4ZfQsAWoANQw1wYKzdwYSu5goL+p9/cJ0z/MTrnAlwXOYMgPkyZwCcU8iGhtpfWAUAAAAASUVORK5CYII=) no-repeat 50%;
+		white-space: nowrap;
+		background-size: 7px;
+		height: 7px;
+		margin: 0 2.5px;
+		font-size: 10px;
+		min-width: 7px;
+	}
+
+	.ad-data {
+		padding: 4px 8px;
+		width: 100%;
+	}
+
+	.actions-banner {
+		font-size: 11px;
+		line-height: 12px;
+
+		display: flex;
+		align-items: center;
+		height: 40px;
+		justify-content: space-between;
+		max-width: 310px;
+		min-width: 240px;
+
+		.banner-ad-message {
+			display: flex;
+		}
+
+		.left {
+			align-items: center;
+			display: flex;
+		}
+
+		.ad-label {
+			background-color: #ecc740;
+			color: #3c4043;
+			display: inline-block;
+			padding: 1px 4px;
+		}
+
+		.actions-banner-messages {
+			font-size: 11px;
+			line-height: 12px;
+			margin: 6px 2px;
+			max-width: 128px;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+
+		.actions-banner-headline {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-weight: 700;
+			margin-bottom: 2px;
+		}
+
+		.actions-display-url {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: #5f6368;
+			margin-left: 5px;
+		}
+
+		.button-cta {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			background-color: #1a73e8;
+			border-radius: 2px;
+			color: #fff;
+			font-size: 12px;
+			height: 26px;
+			line-height: 26px;
+			margin: 0 4px;
+			max-width: 96px;
+			min-width: 40px;
+			padding: 0 5px;
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+
+
+	.progress-bar {
+		background-color: #fde293;
+		bottom: 0;
+		height: 3px;
+		position: absolute;
+		width: 30%;
+	}
+}

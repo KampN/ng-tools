@@ -1,11 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
 
-export interface AdAssetText {
-    text: string;
-    position?: number;
-}
-
 export interface ResponsiveTextAdRenderModel {
     headlines?: string[];
     descriptions?: string[];

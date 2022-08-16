@@ -20,6 +20,8 @@ const GAdsPreviewTranslations = {
 	'long_headline': 'Long Headline',
 	'button.open': 'Open',
 	'flag.ad': 'Ad',
+	'button.skip_ad': 'Skip Ad',
+	'button.learn_more': 'Learn more'
 };
 
 function GAdsPreviewTranslatorFactory(): GAdsPreviewTranslator {

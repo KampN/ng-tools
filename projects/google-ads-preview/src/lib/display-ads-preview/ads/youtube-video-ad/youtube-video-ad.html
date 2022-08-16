@@ -1,0 +1,29 @@
+<div class="video-ad-layout" fxLayout="column">
+	<div class="img-container">
+		<gads-image class="ad-image" height="240" width="320" [image]="imageUrl"></gads-image>
+		<div aria-hidden="true" class="skip-button">
+			<span class="skip-text">{{'button.skip_ad'|translate}}</span>
+			<span class="skip-icon"></span>
+		</div>
+		<div class="progress-bar"></div>
+	</div>
+
+	<div class="ad-data">
+		<div class="actions-banner">
+			<div class="left">
+				<gads-image class="channel-logo" height="30" width="30" [image]="logoUrl"></gads-image>
+
+				<div class="actions-banner-messages ">
+					<div class="actions-banner-headline ">{{headline|fallback:'headline'}}</div>
+					<div class="banner-ad-message ">
+						<div class="ad-label">{{'flag.ad'|translate}}</div>
+						<div class="actions-display-url ">{{url}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="button-cta">
+				<a title="https://www.tartine-et-chocolat.com/fr-fr/">{{callToAction|fallback:('button.learn_more'|translate)}}</a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -4,6 +4,7 @@ import {DisplayImageAdsTowerComponent} from './display-image-ad-tower/display-im
 import {DisplayNativeAdComponent} from './display-native-ad/display-native-ad';
 import {DisplayNativeAdCollapsedComponent} from './display-native-ad-collapsed/display-native-ad-collapsed';
 import {ResponsiveTextAdComponent} from './responsive-text-ad/responsive-text-ad';
+import {YoutubeVideoAdComponent} from './youtube-video-ad/youtube-video-ad';
 
 export const AdComponents: any[] = [
 	DisplayImageAdComponent,
@@ -11,5 +12,6 @@ export const AdComponents: any[] = [
 	DisplayTextAdComponent,
 	DisplayNativeAdComponent,
 	DisplayNativeAdCollapsedComponent,
-	ResponsiveTextAdComponent
+	ResponsiveTextAdComponent,
+	YoutubeVideoAdComponent
 ];

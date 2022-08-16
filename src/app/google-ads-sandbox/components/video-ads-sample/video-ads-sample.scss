@@ -1,0 +1,21 @@
+video-ads-sample {
+
+	--default-logo-url: url(https://tpc.googlesyndication.com/simgad/8470388958918264714);
+	--default-image-url: url(https://townsquare.media/site/442/files/2013/02/brie-sing.jpg?w=980&q=75);
+
+	.sample-title {
+		padding: .5rem 1rem;
+		font-size: 1rem;
+		margin: .5rem 0;
+	}
+
+	.sample-block {
+		background: rgba(0, 0, 0, .08);
+		padding: 0 1rem 1rem;
+
+		.sample-item {
+			margin-top: 1rem;
+		}
+	}
+
+}
