@@ -8,22 +8,24 @@ export {DisplayImageAdsTowerComponent} from './ads/display-image-ad-tower/displa
 export {DisplayTextAdComponent, DisplayTextAdRenderModel} from './ads/display-text-ad/display-text-ad';
 export {DisplayNativeAdComponent, DisplayNativeAdRenderModel} from './ads/display-native-ad/display-native-ad';
 export {DisplayNativeAdCollapsedComponent} from './ads/display-native-ad-collapsed/display-native-ad-collapsed';
+export {ResponsiveTextAdComponent, ResponsiveTextAdRenderModel} from './ads/responsive-text-ad/responsive-text-ad';
+export {YoutubeVideoAdComponent, YoutubeVideoAdRenderModel} from './ads/youtube-video-ad/youtube-video-ad';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		GoogleAdsPreviewCommonModule
-	],
-	exports: [...AdComponents],
-	declarations: [...AdComponents],
-	providers: [],
+    imports: [
+        CommonModule,
+        GoogleAdsPreviewCommonModule
+    ],
+    exports: [...AdComponents],
+    declarations: [...AdComponents],
+    providers: [],
 })
 export class DisplayAdsPreviewModule {
 
-	static forRoot(): ModuleWithProviders<DisplayAdsPreviewModule> {
-		return {
-			ngModule: DisplayAdsPreviewModule,
-			providers: []
-		};
-	}
+    static forRoot(): ModuleWithProviders<DisplayAdsPreviewModule> {
+        return {
+            ngModule: DisplayAdsPreviewModule,
+            providers: []
+        };
+    }
 }
