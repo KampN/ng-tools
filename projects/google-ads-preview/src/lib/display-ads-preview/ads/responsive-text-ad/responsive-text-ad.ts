@@ -39,10 +39,10 @@ export class ResponsiveTextAdComponent {
         this.path1 = this.data?.path1 ?? '';
         this.path2 = this.data?.path2 ?? '';
 
-        this.headlines = [...this.data?.headlines]
+        this.headlines = [...(this.data?.headlines ?? [])]
             .map((text) => text.trim())
             .sort(() => Math.random() - Math.random()).slice(0, 4);
-        this.descriptions = [...this.data?.descriptions]
+        this.descriptions = [...(this.data?.descriptions ?? [])]
             .map(this.buildDescriptionText)
             .sort(() => Math.random() - Math.random()).slice(0, 2);
     }
