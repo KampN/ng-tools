@@ -36,7 +36,7 @@ export class YoutubeVideoAdComponent {
     protected parseModel() {
         const url = new URL(this.data?.url ?? 'https://www.example.com');
         this.url = url.host;
-        this.headline = [...this.data?.headlines]
+        this.headline = [...(this.data?.headlines ?? [])]
             .map((text) => text.trim())
             .sort(() => Math.random() - Math.random())
             .pop() ?? null;
