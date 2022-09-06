@@ -2,18 +2,18 @@
 	<div class="url-section" fxLayout fxLayoutAlign="start center">
 		<span aria-hidden="true" class="badge">Ad</span>
 		<span class="punctuation">·</span>
-		<span class="visurl">https://{{url}}</span>
+		<span class="visurl">https://<span [innerHTML]="url|fallback:'url'"></span></span>
 		<span class="info"></span>
 	</div>
 	<div class="top-section" fxLayout fxLayoutAlign="space-between">
 		<span class="headline-group">
 			<ng-container *ngFor="let headline of headlines; let isLast=last">
-			{{headline}}
+				<span [innerHTML]="headline|fallback:'headline'"></span>
 				<ng-container *ngIf="!isLast">&nbsp;|&nbsp;</ng-container>
 			</ng-container>
 		</span>
 	</div>
 	<div class="description-group">
-		<span class="description" *ngFor="let description of descriptions">{{description}}</span>
+		<span class="description" *ngFor="let description of descriptions" [innerHTML]="description|fallback:'description'"></span>
 	</div>
 </div>

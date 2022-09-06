@@ -14,10 +14,14 @@
 				<gads-image class="channel-logo" height="30" width="30" [image]="logoUrl"></gads-image>
 
 				<div class="actions-banner-messages ">
-					<div class="actions-banner-headline ">{{headline|fallback:'headline'}}</div>
+					<div class="actions-banner-headline ">
+						<span [innerHTML]="headline|fallback:'headline'"></span>
+					</div>
 					<div class="banner-ad-message ">
 						<div class="ad-label">{{'flag.ad'|translate}}</div>
-						<div class="actions-display-url ">{{url}}</div>
+						<div class="actions-display-url ">
+							<span [innerHTML]="url|fallback:'url'"></span>
+						</div>
 					</div>
 				</div>
 			</div>
