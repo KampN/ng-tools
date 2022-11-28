@@ -9,7 +9,7 @@ import {
 	PickerShopCartComponent, PickerShopCartEmptyDefDirective, PickerShopCartEmptyOutletDirective, PickerShopCartItemDefDirective,
 	PickerShopCartListOutletDirective
 } from './picker-shop-cart/picker-shop-cart';
-import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
+import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 import {CommonModule} from '@angular/common';

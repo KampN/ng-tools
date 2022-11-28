@@ -4,7 +4,7 @@ import {Component, ViewChild} from '@angular/core';
 import {MaterialSearchInputComponent} from './material-search-input';
 import {MaterialUnderlineComponent} from '../material-underline/material-underline';
 import {By} from '@angular/platform-browser';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 
