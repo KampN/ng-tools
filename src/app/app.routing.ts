@@ -25,4 +25,4 @@ export const ROUTES: Routes = [
 	}
 ];
 
-export const AppRouting: ModuleWithProviders<RouterModule> = RouterModule.forRoot(ROUTES, {relativeLinkResolution: 'legacy'});
+export const AppRouting: ModuleWithProviders<RouterModule> = RouterModule.forRoot(ROUTES, {});
