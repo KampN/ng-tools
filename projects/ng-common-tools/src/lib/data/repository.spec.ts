@@ -10,7 +10,7 @@ import {DataStoreStub} from '../storage/datastore.stub';
 import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {RepositoryLoadQuery} from '../interfaces/repository';
 import {RxCleaner} from '../rxjs/rx-cleaner';
-import {DateTime} from 'luxon/src/datetime';
+import {DateTime} from 'luxon';
 
 describe('Data : Repository', () => {
 

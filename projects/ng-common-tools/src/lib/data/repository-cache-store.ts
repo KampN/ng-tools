@@ -4,7 +4,7 @@ import {CacheStore, Perishable, Timestamp} from '../interfaces/repository';
 import {distinctUntilChanged, map} from 'rxjs/operators';
 import {ArrayUtils} from '../utils/array';
 import {Check} from '../utils/check';
-import {DateTime} from 'luxon/src/datetime';
+import {DateTime} from 'luxon';
 
 export enum StoreStrategy {
     Merge, Replace

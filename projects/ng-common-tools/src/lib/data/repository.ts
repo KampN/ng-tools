@@ -7,7 +7,7 @@ import {Perishable, PerishableTTL, RepositoryLoadQuery, Timestamp} from '../inte
 import {memoizeStream} from '../decorators/memoize-stream';
 import {Check} from '../utils/check';
 import {ArrayUtils} from '../utils/array';
-import {DateTime} from 'luxon/src/datetime';
+import {DateTime} from 'luxon';
 
 export enum UpdateCacheStrategy {
     Replace, Merge

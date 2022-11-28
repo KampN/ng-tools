@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {first} from 'rxjs/operators';
-import {DateTime} from 'luxon/src/datetime';
+import {DateTime} from 'luxon';
 
 describe('Data : RepositoryCacheStore', () => {
 
