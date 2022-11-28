@@ -4,7 +4,7 @@ import {MaterialSearchInputComponent} from './material-search-input/material-sea
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 
 export {MaterialUnderlineComponent} from './material-underline/material-underline';
 export {MaterialSearchInputComponent} from './material-search-input/material-search-input';
