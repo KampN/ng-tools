@@ -5,12 +5,11 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"rxjs": "7.x",
-		"@angular/common": "14.x",
-		"@angular/core": "14.x",
-		"@angular/cdk": "14.x",
-		"@angular/material": "14.x",
-		"moment": "^2.23.0",
+		"rxjs": "^7.x",
+		"@angular/common": "15.x",
+		"@angular/core": "15.x",
+		"@angular/cdk": "15.x",
+		"@angular/material": "15.x",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"dependencies": {

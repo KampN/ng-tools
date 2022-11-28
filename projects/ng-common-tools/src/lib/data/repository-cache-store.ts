@@ -2,9 +2,9 @@ import {DataStore} from '../interfaces/datastore';
 import {Observable, of} from 'rxjs';
 import {CacheStore, Perishable, Timestamp} from '../interfaces/repository';
 import {distinctUntilChanged, map} from 'rxjs/operators';
-import moment from 'moment';
 import {ArrayUtils} from '../utils/array';
 import {Check} from '../utils/check';
+import {DateTime} from 'luxon/src/datetime';
 
 export enum StoreStrategy {
     Merge, Replace
@@ -87,12 +87,13 @@ export class RepositoryCacheStore<T extends Perishable> {
     public getMissingIdentifiers(ids: any | any[], outdatedAsMissing: boolean = true): any[] {
         ids = ArrayUtils.asArray(ids);
         const cache = this.getCache();
-        const now: Timestamp = moment().unix();
+
+        const now: Timestamp = DateTime.now().toUnixInteger();
         return ids.filter((id: any) => !cache[id] || (outdatedAsMissing && this.isOutdated(cache[id], now)));
     }
 
     public getOutdatedCachedIdentifiers() {
-        const now: Timestamp = moment().unix();
+        const now: Timestamp = DateTime.now().toUnixInteger();
         const cache = this.getCache();
         return Object.keys(cache).filter((id: any) => this.isOutdated(cache[id], now));
     }
@@ -103,7 +104,7 @@ export class RepositoryCacheStore<T extends Perishable> {
     }
 
     public isOutdated(datum: T, time?: Timestamp) {
-        if (!Check.isDefined(time)) time = moment().unix();
+        if (!Check.isDefined(time)) time = DateTime.now().toUnixInteger();
         return datum && datum.expiryDate !== undefined && datum.expiryDate !== 0 && datum.expiryDate < time;
     }
 

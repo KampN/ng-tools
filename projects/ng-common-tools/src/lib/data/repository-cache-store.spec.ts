@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {first} from 'rxjs/operators';
-import * as moment from 'moment';
+import {DateTime} from 'luxon/src/datetime';
 
 describe('Data : RepositoryCacheStore', () => {
 
@@ -190,9 +190,10 @@ describe('Data : RepositoryCacheStore', () => {
         });
 
         it('should compare the given expirydate with the current date and determine if an item is outdated', () => {
-            const beforeNow = moment().subtract(10, 'd').unix();
-            const afterNow = moment().add(10, 'd').unix();
-            const now = moment().unix();
+
+            const beforeNow = DateTime.now().minus({days: 10}).toUnixInteger();
+            const afterNow = DateTime.now().plus({days: 10}).toUnixInteger();
+            const now = DateTime.now().toUnixInteger();
 
             expect(cache.isOutdated({expiryDate: beforeNow})).toBeTruthy();
             expect(cache.isOutdated({expiryDate: afterNow})).toBeFalsy();
