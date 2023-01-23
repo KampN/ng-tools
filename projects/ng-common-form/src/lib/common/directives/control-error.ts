@@ -3,7 +3,7 @@ import {
 	AbstractControl, AbstractFormGroupDirective, ControlContainer, UntypedFormArray, FormArrayName, UntypedFormControl, UntypedFormGroup, FormGroupDirective,
 	FormGroupName
 } from '@angular/forms';
-import {combineLatest, ReplaySubject} from 'rxjs';
+import {combineLatest, merge, ReplaySubject} from 'rxjs';
 import {distinctUntilChanged, map} from 'rxjs/operators';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 
@@ -77,7 +77,7 @@ export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
 		if(!control) return;
 
 		this.errorStream.next(control.errors);
-		combineLatest([control.statusChanges, control.valueChanges]).pipe(
+		merge(control.statusChanges, control.valueChanges).pipe(
 			map(() => control.errors || null),
 			distinctUntilChanged(),
 			this.rc.takeUntil('controls')
