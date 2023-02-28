@@ -1,9 +1,15 @@
 <div class="text-ad-layout">
 	<div class="url-section">
-		<span aria-hidden="true" class="badge">Ad</span>
-		<span class="punctuation">·</span>
-		<span class="visurl">https://<span [innerHTML]="url|fallback:'url'"></span></span>
-		<span class="info"></span>
+		<div>
+			<span aria-hidden="true" class="badge">Ad</span>
+			<span class="punctuation">·</span>
+		</div>
+		<div class="visurl">
+			https://<span [innerHTML]="url|fallback:'url'"></span>
+		</div>
+		<div>
+			<span class="info"></span>
+		</div>
 	</div>
 	<div class="top-section">
 		<span class="headline-group">

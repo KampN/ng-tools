@@ -25,7 +25,7 @@ export class TextAdsSampleComponent {
     }, {
         headlines: ['Nulla convallis vel orci eros.'],
         descriptions: [],
-        url: 'https://www.Helloworld.com',
+        url: 'https://www.tres-longue-url-de-redirection-permettant-de-tester-le-responsive.com',
     }, {
         headlines: ['Nulla convallis vel orci eros.'],
         descriptions: ['une description'],

@@ -54,7 +54,8 @@ responsive-text-ad {
 	}
 
 	.url-section {
-		line-height: 1;
+		display: grid;
+		grid-template-columns: auto auto 1fr;
 
 		.badge {
 			flex-shrink: 0;
