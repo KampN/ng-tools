@@ -8,10 +8,18 @@ text-ads-sample {
 
 	.sample-block {
 		background: rgba(0, 0, 0, .08);
-		padding: 0 1rem 1rem;
+		padding: 1rem;
 
-		.sample-item {
-			margin-top: 1rem;
+		display: grid;
+		grid-gap: 1rem;
+
+		&.mobile-container > div {
+			max-width: 20rem;
+
+			responsive-text-ad {
+				display: block;
+				--responsive-text-ad-width: auto;
+			}
 		}
 	}
 

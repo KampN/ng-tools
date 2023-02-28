@@ -17,6 +17,18 @@ export class TextAdsSampleComponent {
         descriptions: ['une description vraiment trop longue pour s\'afficher dans l\'emplacement actuel'],
         path1: 'lorem',
         url: 'https://www.Helloworld.com',
+    }, {
+        headlines: [],
+        descriptions: ['Nulla convallis vel orci eros.'],
+        path1: 'lorem',
+        url: 'https://www.Helloworld.com',
+    }, {
+        headlines: ['Nulla convallis vel orci eros.'],
+        descriptions: [],
+        url: 'https://www.Helloworld.com',
+    }, {
+        headlines: ['Nulla convallis vel orci eros.'],
+        descriptions: ['une description'],
     }];
 }
 

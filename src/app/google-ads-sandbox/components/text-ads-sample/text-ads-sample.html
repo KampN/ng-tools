@@ -5,8 +5,22 @@
 <div class="sample-title">
 	Responsive Ad
 </div>
-<div class="sample-block" fxLayout="row wrap" fxLayoutGap="1rem">
-	<responsive-text-ad class="sample-item" [data]="model" *ngFor="let model of responsiveAdModels"></responsive-text-ad>
+<section class="sample-block">
+	<div *ngFor="let model of responsiveAdModels">
+		<responsive-text-ad class="sample-item" [data]="model"></responsive-text-ad>
+	</div>
+</section>
+
+<mat-divider></mat-divider>
+
+
+<div class="sample-title">
+	Responsive Ad - Mobile
 </div>
+<section class="sample-block mobile-container">
+	<div *ngFor="let model of responsiveAdModels">
+		<responsive-text-ad class="sample-item" [data]="model"></responsive-text-ad>
+	</div>
+</section>
 
 <mat-divider></mat-divider>

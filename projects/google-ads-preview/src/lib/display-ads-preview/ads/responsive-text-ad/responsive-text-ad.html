@@ -1,11 +1,11 @@
-<div class="text-ad-layout" fxLayout="column">
-	<div class="url-section" fxLayout fxLayoutAlign="start center">
+<div class="text-ad-layout">
+	<div class="url-section">
 		<span aria-hidden="true" class="badge">Ad</span>
 		<span class="punctuation">·</span>
 		<span class="visurl">https://<span [innerHTML]="url|fallback:'url'"></span></span>
 		<span class="info"></span>
 	</div>
-	<div class="top-section" fxLayout fxLayoutAlign="space-between">
+	<div class="top-section">
 		<span class="headline-group">
 			<ng-container *ngFor="let headline of headlines; let isLast=last">
 				<span [innerHTML]="headline|fallback:'headline'"></span>
