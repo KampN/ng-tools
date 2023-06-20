@@ -9,7 +9,7 @@ import {LOGGER_CONFIGURATION} from './configuration';
 export class LogDisplay {
 
 	protected crossFingerEnabled:boolean;
-	protected minLevel:LogLevel;
+	protected minLevel:LogLevel|0;
 
 	constructor(protected logStream:LogStream, @Inject(LOGGER_CONFIGURATION) protected config:LoggerConfiguration) {
 		this.crossFingerEnabled = this.config.crossFinger && this.config.crossFinger.enabled;
