@@ -25,8 +25,8 @@ export function coerceMap<K, V>(data: Map<K, V> | Iterable<[K, V]> | [K, V][]): 
     return new Map(data);
 }
 
-export function coerceArray<T>(val: T | T[], nullAsEmpty = true): T[] {
-    if (typeof val === 'undefined') return [];
+export function coerceArray<T>(val: T | T[] | null | undefined, nullAsEmpty = true): T[] {
+    if (val === undefined) return [];
     if (val === null) return nullAsEmpty ? [] : [val as T];
     return val instanceof Array ? val : [val];
 }
