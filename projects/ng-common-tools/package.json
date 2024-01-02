@@ -3,10 +3,10 @@
 	"version": "15.1.0",
 	"peerDependencies": {
 		"rxjs": "7.x",
-		"@angular/common": "16.x",
-		"@angular/core": "16.x",
-		"@angular/cdk": "16.x",
-		"@angular/material": "16.x"
+		"@angular/common": "17.x",
+		"@angular/core": "17.x",
+		"@angular/cdk": "17.x",
+		"@angular/material": "17.x"
 	},
 	"optionalDependencies": {
 		"crypto-js": "^3.1.9-1"
