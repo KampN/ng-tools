@@ -7,6 +7,9 @@ anchor_2: &workflow_branch_only_filter
     tags:
       ignore: /.*/
 
+orbs:
+  browser-tools: circleci/browser-tools@1.4.6
+
 executors:
   node:
     <<: *wdir
