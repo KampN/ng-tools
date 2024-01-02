@@ -1,15 +1,15 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "11.0.0",
+	"version": "12.0.0",
 	"peerDependencies": {
-		"@angular/common": "16.x",
-		"@angular/core": "16.x",
-		"@angular/forms": "16.x",
+		"@angular/common": "17.x",
+		"@angular/core": "17.x",
+		"@angular/forms": "17.x",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"optionalDependencies": {
-		"@angular/material": "16.x",
-		"@angular/cdk": "16.x"
+		"@angular/material": "17.x",
+		"@angular/cdk": "17.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
   "dependencies": {

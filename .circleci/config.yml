@@ -7,15 +7,18 @@ anchor_2: &workflow_branch_only_filter
     tags:
       ignore: /.*/
 
+orbs:
+  browser-tools: circleci/browser-tools@1.4.6
+
 executors:
   node:
     <<: *wdir
     docker:
-    - image: circleci/node:17
+    - image: cimg/node:20.9
   node-browsers:
     <<: *wdir
     docker:
-    - image: circleci/node:17-browsers
+    - image: cimg/node:20.9-browsers
 
 jobs:
   install_dependencies:
@@ -46,6 +49,8 @@ jobs:
         type: string
     steps:
     - checkout
+    - browser-tools/install-chrome
+    - browser-tools/install-chromedriver
     - attach_workspace:
         at: ~/app
     - run:
