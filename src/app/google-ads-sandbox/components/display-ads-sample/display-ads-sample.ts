@@ -1,10 +1,15 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
+import {SharedModule} from "../../../shared/module";
 
 @Component({
 	selector: 'display-ads-sample',
 	templateUrl: './display-ads-sample.html',
 	styleUrls: ['./display-ads-sample.scss'],
+	standalone: true,
+	imports: [
+		SharedModule
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })

@@ -3,11 +3,16 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import { MatTableDataSource } from '@angular/material/table';
 import {ExtractIdFn} from '@kamp-n/ng-common-form';
+import {SharedModule} from "../../../shared/module";
 
 @Component({
     selector: 'picker-sample',
     templateUrl: './picker-sample.html',
     styleUrls: ['./picker-sample.scss'],
+	standalone: true,
+	imports: [
+		SharedModule
+	],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

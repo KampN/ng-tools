@@ -2,11 +2,16 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {
     ResponsiveTextAdRenderModel
 } from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/responsive-text-ad/responsive-text-ad';
+import {SharedModule} from "../../../shared/module";
 
 @Component({
     selector: 'text-ads-sample',
     templateUrl: './text-ads-sample.html',
     styleUrls: ['./text-ads-sample.scss'],
+	standalone: true,
+	imports: [
+		SharedModule
+	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

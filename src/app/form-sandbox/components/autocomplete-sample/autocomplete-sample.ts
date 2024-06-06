@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
 import {CommonValidators} from '@kamp-n/ng-common-form';
+import {SharedModule} from "../../../shared/module";
 
 export interface User {
     name: string;
@@ -14,8 +15,12 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
 @Component({
     selector: 'autocomplete-sample',
     templateUrl: './autocomplete-sample.html',
-    styleUrls: ['./autocomplete-sample.scss'],
-    encapsulation: ViewEncapsulation.None,
+	styleUrls: ['./autocomplete-sample.scss'],
+	standalone: true,
+	imports: [
+		SharedModule
+	],
+	encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteSampleComponent implements OnInit, OnDestroy {

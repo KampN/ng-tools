@@ -2,11 +2,16 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {
     YoutubeVideoAdRenderModel
 } from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/youtube-video-ad/youtube-video-ad';
+import {SharedModule} from "../../../shared/module";
 
 @Component({
     selector: 'video-ads-sample',
     templateUrl: './video-ads-sample.html',
     styleUrls: ['./video-ads-sample.scss'],
+	standalone: true,
+	imports: [
+		SharedModule
+	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
