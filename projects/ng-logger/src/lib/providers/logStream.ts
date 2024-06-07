@@ -36,5 +36,4 @@ export class LogStream {
         this.logStack = [];
         return logStack;
     }
-
 }

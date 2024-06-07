@@ -1,6 +1,6 @@
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {FSLoggerModule} from './module';
-import {LogDisplay, LoggerModule, LoggerService} from '@kamp-n/ng-logger';
+import {LogDisplay, loggerProviders, LoggerService} from '@kamp-n/ng-logger';
 import {FSLogLevel, FULLSTORY, FullStory} from './accessors/fullstory';
 import {FSLogDisplay} from './providers/fsLogDisplay';
 
@@ -12,10 +12,10 @@ describe('Module : FSLoggerModule', () => {
 		fs = window.FS = jasmine.createSpyObj('fs', ['log']);
 		TestBed.configureTestingModule({
 			imports: [
-				LoggerModule.forRoot(),
 				FSLoggerModule.forRoot()
 			],
 			providers: [
+				loggerProviders(),
 				{provide: LogDisplay, useClass: FSLogDisplay},
 			],
 		});

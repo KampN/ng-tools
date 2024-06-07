@@ -13,4 +13,4 @@ export * from './lib/providers/logStream';
 export * from './lib/providers/logger';
 export * from './lib/providers/logger.stub';
 
-export * from './lib/module';
+export * from './lib/logger.providers';
