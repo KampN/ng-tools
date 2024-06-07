@@ -4,4 +4,4 @@
 
 export * from './lib/accessors/fullstory';
 export * from './lib/providers/fsLogDisplay';
-export * from './lib/module';
+export * from './lib/fs-logger.providers';

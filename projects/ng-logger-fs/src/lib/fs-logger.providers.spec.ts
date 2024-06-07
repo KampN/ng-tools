@@ -1,21 +1,19 @@
-import { inject, TestBed, waitForAsync } from '@angular/core/testing';
-import {FSLoggerModule} from './module';
+import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 import {LogDisplay, loggerProviders, LoggerService} from '@kamp-n/ng-logger';
 import {FSLogLevel, FULLSTORY, FullStory} from './accessors/fullstory';
 import {FSLogDisplay} from './providers/fsLogDisplay';
+import {fsLoggerProviders} from "./fs-logger.providers";
 
 declare const window:any;
 
-describe('Module : FSLoggerModule', () => {
+describe('Providers : Fs Logger', () => {
 	let fs:FullStory;
 	beforeEach(waitForAsync(() => {
 		fs = window.FS = jasmine.createSpyObj('fs', ['log']);
 		TestBed.configureTestingModule({
-			imports: [
-				FSLoggerModule.forRoot()
-			],
 			providers: [
 				loggerProviders(),
+				fsLoggerProviders(),
 				{provide: LogDisplay, useClass: FSLogDisplay},
 			],
 		});
