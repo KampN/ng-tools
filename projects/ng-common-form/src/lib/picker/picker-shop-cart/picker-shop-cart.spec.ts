@@ -1,14 +1,16 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {PickerShopCartComponent} from './picker-shop-cart';
-import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PickerComponent} from '../picker/picker';
+import {
+	PickerShopCartComponent,
+	PickerShopCartEmptyDefDirective,
+	PickerShopCartItemDefDirective
+} from './picker-shop-cart';
+import {FormsModule, ReactiveFormsModule, UntypedFormControl} from '@angular/forms';
+import {PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective} from '../picker/picker';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
-import {PickerModule} from '../picker-module';
-import {PickerHeaderComponent} from '../picker-header/picker-header';
-import {CommonModule} from '@angular/common';
+import {PickerHeaderComponent, PickerHeaderDefDirective} from '../picker-header/picker-header';
 
 describe('Picker : PickerShopCart', () => {
 
@@ -28,6 +30,18 @@ describe('Picker : PickerShopCart', () => {
 				</picker-shop-cart>
 			</picker>
 		`,
+		standalone: true,
+		imports: [
+			PickerComponent,
+			PickerShopCartComponent,
+			PickerHeaderDefDirective,
+			PickerHeaderComponent,
+			ReactiveFormsModule,
+			PickerShopCartItemDefDirective,
+			PickerShopCartDefDirective,
+			PickerSectionDefDirective,
+			PickerShopCartEmptyDefDirective,
+		]
 	})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker: PickerComponent<DummyObject>;
@@ -46,10 +60,8 @@ describe('Picker : PickerShopCart', () => {
 	beforeEach(waitForAsync(() => {
 
 		TestBed.configureTestingModule({
-			imports: [CommonModule, FormsModule, ReactiveFormsModule, PickerModule],
-			declarations: [
-				TestHostComponent,
-			],
+			imports: [TestHostComponent],
+			declarations: [],
 		}).compileComponents();
 		testFixture = TestBed.createComponent(TestHostComponent);
 		testComponent = testFixture.debugElement.componentInstance;

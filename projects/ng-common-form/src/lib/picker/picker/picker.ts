@@ -6,12 +6,18 @@ import {Check, RxCleaner} from '@kamp-n/ng-common-tools';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
 
-@Directive({selector: '[pickerBodyOutlet]'})
+@Directive({
+	selector: '[pickerBodyOutlet]',
+	standalone: true,
+})
 export class PickerBodyOutletDirective {
     constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
 }
 
-@Directive({selector: '[pickerShopCartOutlet]'})
+@Directive({
+	selector: '[pickerShopCartOutlet]',
+	standalone: true,
+})
 export class PickerShopCartOutletDirective {
     constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
 }
@@ -21,14 +27,16 @@ export abstract class Picker<T> {
 }
 
 @Directive({
-    selector: '[pickerSectionDef]'
+    selector: '[pickerSectionDef]',
+	standalone: true,
 })
 export class PickerSectionDefDirective {
     constructor(public template: TemplateRef<any>) {}
 }
 
 @Directive({
-    selector: '[pickerShopCartDef]'
+    selector: '[pickerShopCartDef]',
+	standalone: true,
 })
 export class PickerShopCartDefDirective {
     constructor(public template: TemplateRef<any>) {}
@@ -62,8 +70,12 @@ export class PickerShopCartContext<T> {
     selector: 'picker',
     templateUrl: './picker.html',
     styleUrls: [`./picker.scss`],
+	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		PickerBodyOutletDirective, PickerShopCartOutletDirective
+	],
     providers: [
         {provide: Picker, useExisting: forwardRef(() => PickerComponent)},
         {

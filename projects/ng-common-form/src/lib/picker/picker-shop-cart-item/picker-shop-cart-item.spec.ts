@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {PickerShopCartItemComponent} from './picker-shop-cart-item';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {PickerModule} from "../picker-module";
 
 describe('Picker : PickerShopCartItem', () => {
 
@@ -26,10 +27,11 @@ describe('Picker : PickerShopCartItem', () => {
     beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
-            imports: [MatButtonModule, MatIconModule],
+            imports: [
+				PickerShopCartItemComponent
+			],
             declarations: [
-                TestHostComponent,
-                PickerShopCartItemComponent,
+                TestHostComponent
             ],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
