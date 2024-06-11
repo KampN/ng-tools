@@ -24,7 +24,7 @@ describe('Picker : PickerHeader', () => {
     beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
-            imports: [MatButtonModule, MatIconModule, PickerHeaderComponent],
+            imports: [PickerHeaderComponent],
             declarations: [
                 TestHostComponent
             ],

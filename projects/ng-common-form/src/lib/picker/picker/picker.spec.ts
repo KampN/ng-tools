@@ -2,12 +2,19 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PickerBodyContext, PickerComponent, PickerShopCartContext} from '../picker/picker';
+import {
+	PickerBodyContext,
+	PickerComponent,
+	PickerSectionDefDirective,
+	PickerShopCartContext,
+	PickerShopCartDefDirective
+} from '../picker/picker';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {PickerModule} from '../picker-module';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
 import {CommonModule} from '@angular/common';
+import {TestHost} from "@angular-devkit/core/src/virtual-fs/host/test";
 
 describe('Picker', () => {
 
@@ -22,6 +29,10 @@ describe('Picker', () => {
 				</div>
 			</picker>
 		`,
+		standalone: true,
+		imports: [
+			PickerComponent, ReactiveFormsModule, PickerShopCartDefDirective, PickerSectionDefDirective
+		]
 	})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
@@ -38,10 +49,10 @@ describe('Picker', () => {
 	beforeEach(waitForAsync(() => {
 
 		TestBed.configureTestingModule({
-			imports: [CommonModule, FormsModule, ReactiveFormsModule, PickerModule],
-			declarations: [
-				TestHostComponent,
+			imports: [
+				TestHostComponent
 			],
+			declarations: [],
 		}).compileComponents();
 		testFixture = TestBed.createComponent(TestHostComponent);
 		testComponent = testFixture.debugElement.componentInstance;

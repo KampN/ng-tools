@@ -3,8 +3,13 @@ import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
-import {CommonToolsModule, DummyMockFactory, DummyObject, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
-import {PickerComponent, PickerHeaderComponent, PickerModule, PickerSectionComponent} from '../picker-module';
+import {DummyMockFactory, DummyObject, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
+import {
+	PickerComponent,
+	PickerHeaderComponent, PickerHeaderDefDirective,
+	PickerSectionComponent,
+	PickerSectionDefDirective
+} from '../picker-module';
 import {CommonModule} from '@angular/common';
 
 describe('Picker : PickerSection', () => {
@@ -18,6 +23,15 @@ describe('Picker : PickerSection', () => {
 				</picker-section>
 			</picker>
 		`,
+		standalone: true,
+		imports: [
+			PickerComponent,
+			PickerSectionComponent,
+			PickerHeaderComponent,
+			ReactiveFormsModule,
+			PickerSectionDefDirective,
+			PickerHeaderDefDirective,
+		]
 	})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
@@ -33,9 +47,10 @@ describe('Picker : PickerSection', () => {
 
 		TestBed.configureTestingModule({
 			imports: [
-				CommonModule, FormsModule, ReactiveFormsModule, CommonToolsModule, PickerModule],
+				TestHostComponent
+			],
 			declarations: [
-				TestHostComponent,
+
 			],
 		}).compileComponents();
 		testFixture = TestBed.createComponent(TestHostComponent);

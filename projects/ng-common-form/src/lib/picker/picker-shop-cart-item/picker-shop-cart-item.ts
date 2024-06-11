@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, Output, ViewEncapsulation} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {PickerModule} from "../picker-module";
 
 @Component({
     selector: 'picker-shop-cart-item, [picker-shop-cart-item]',

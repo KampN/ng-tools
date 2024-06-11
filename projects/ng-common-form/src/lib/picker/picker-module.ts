@@ -47,12 +47,8 @@ export {
 		MatButtonModule
 	],
 	exports: [
-		PickerSectionComponent,
-		PickerShopCartItemDefDirective,
 	],
 	declarations: [
-		PickerSectionComponent,
-		PickerShopCartItemDefDirective,
 	],
 	providers: [],
 })
