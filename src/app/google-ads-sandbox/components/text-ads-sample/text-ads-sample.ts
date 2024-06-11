@@ -1,8 +1,11 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {
-    ResponsiveTextAdRenderModel
+	ResponsiveTextAdComponent,
+	ResponsiveTextAdRenderModel
 } from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/responsive-text-ad/responsive-text-ad';
-import {SharedModule} from "../../../shared/module";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {CommonModule} from "@angular/common";
+import {MatDividerModule} from "@angular/material/divider";
 
 @Component({
     selector: 'text-ads-sample',
@@ -10,7 +13,10 @@ import {SharedModule} from "../../../shared/module";
     styleUrls: ['./text-ads-sample.scss'],
 	standalone: true,
 	imports: [
-		SharedModule
+		CommonModule,
+		MatToolbarModule,
+		MatDividerModule,
+		ResponsiveTextAdComponent
 	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None

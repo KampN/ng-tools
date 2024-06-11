@@ -1,10 +1,17 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
 import {CommonValidators} from '@kamp-n/ng-common-form';
 import {SharedModule} from "../../../shared/module";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {CommonModule} from "@angular/common";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatInputModule} from "@angular/material/input";
 
 export interface User {
     name: string;
@@ -18,7 +25,14 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
 	styleUrls: ['./autocomplete-sample.scss'],
 	standalone: true,
 	imports: [
-		SharedModule
+		CommonModule,
+		ReactiveFormsModule,
+		MatToolbarModule,
+		MatFormFieldModule,
+		MatSelectModule,
+		MatInputModule,
+		MatAutocompleteModule,
+		MatProgressSpinnerModule
 	],
 	encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,

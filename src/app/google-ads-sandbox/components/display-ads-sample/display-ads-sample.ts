@@ -1,6 +1,18 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
-import {SharedModule} from "../../../shared/module";
+import {
+	DisplayImageAdComponent,
+	DisplayImageAdRenderModel,
+	DisplayImageAdsTowerComponent,
+	DisplayNativeAdCollapsedComponent,
+	DisplayNativeAdComponent,
+	DisplayNativeAdRenderModel,
+	DisplayTextAdComponent,
+	DisplayTextAdRenderModel
+} from '@kamp-n/gads-preview';
+import {MatDividerModule} from "@angular/material/divider";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {CommonModule} from "@angular/common";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @Component({
 	selector: 'display-ads-sample',
@@ -8,7 +20,15 @@ import {SharedModule} from "../../../shared/module";
 	styleUrls: ['./display-ads-sample.scss'],
 	standalone: true,
 	imports: [
-		SharedModule
+		CommonModule,
+		DisplayImageAdComponent,
+		DisplayImageAdsTowerComponent,
+		MatDividerModule,
+		MatToolbarModule,
+		FlexLayoutModule,
+		DisplayTextAdComponent,
+		DisplayNativeAdComponent,
+		DisplayNativeAdCollapsedComponent
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None

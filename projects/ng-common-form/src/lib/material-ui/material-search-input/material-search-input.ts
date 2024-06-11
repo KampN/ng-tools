@@ -1,6 +1,17 @@
 import {
-	AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit,
-	Output, ViewChild, ViewEncapsulation
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	EventEmitter,
+	forwardRef,
+	Input,
+	OnDestroy,
+	OnInit,
+	Output,
+	ViewChild,
+	ViewEncapsulation
 } from '@angular/core';
 import {FocusMonitor, FocusOrigin} from '@angular/cdk/a11y';
 import {distinctUntilChanged, map} from 'rxjs/operators';
@@ -8,11 +19,16 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {Subject} from 'rxjs';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {coerceBooleanProperty} from '@angular/cdk/coercion';
+import {CommonModule} from "@angular/common";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MaterialUnderlineComponent} from "../material-underline/material-underline";
 
 @Component({
 	selector: 'material-search-input',
 	templateUrl: './material-search-input.html',
 	styleUrls: ['./material-search-input.scss'],
+	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	providers: [
@@ -24,7 +40,13 @@ import {coerceBooleanProperty} from '@angular/cdk/coercion';
 	],
 	host: {
 		'[class.disabled]': 'disabled'
-	}
+	},
+	imports: [
+		CommonModule,
+		MatIconModule,
+		MatButtonModule,
+		MaterialUnderlineComponent,
+	]
 })
 export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 

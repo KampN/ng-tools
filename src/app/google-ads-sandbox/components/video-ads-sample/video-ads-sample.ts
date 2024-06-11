@@ -1,8 +1,11 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {
-    YoutubeVideoAdRenderModel
-} from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/youtube-video-ad/youtube-video-ad';
-import {SharedModule} from "../../../shared/module";
+	YoutubeVideoAdComponent,
+	YoutubeVideoAdRenderModel
+} from '@kamp-n/gads-preview';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatDividerModule} from "@angular/material/divider";
 
 @Component({
     selector: 'video-ads-sample',
@@ -10,7 +13,10 @@ import {SharedModule} from "../../../shared/module";
     styleUrls: ['./video-ads-sample.scss'],
 	standalone: true,
 	imports: [
-		SharedModule
+		MatToolbarModule,
+		MatDividerModule,
+		FlexLayoutModule,
+		YoutubeVideoAdComponent
 	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None

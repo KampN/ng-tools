@@ -15,10 +15,9 @@ import {DisplayAdsPreviewModule} from '@kamp-n/gads-preview';
 		CommonToolsModule,
 		CommonDevToolsModule,
 		CommonFormModule,
-		MaterialUIModule,
 		PickerModule,
 		DisplayAdsPreviewModule,
-
+		MaterialUIModule,
 		RouterModule,
 		MaterialModule,
 		ReactiveFormsModule
