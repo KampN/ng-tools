@@ -1,11 +1,10 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {
-	ResponsiveTextAdComponent,
 	ResponsiveTextAdRenderModel
 } from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/responsive-text-ad/responsive-text-ad';
-import {MatToolbarModule} from "@angular/material/toolbar";
 import {CommonModule} from "@angular/common";
-import {MatDividerModule} from "@angular/material/divider";
+import {MaterialModule} from "../../../material/module";
+import {DisplayAdsPreviewModule} from "@kamp-n/gads-preview";
 
 @Component({
     selector: 'text-ads-sample',
@@ -14,9 +13,8 @@ import {MatDividerModule} from "@angular/material/divider";
 	standalone: true,
 	imports: [
 		CommonModule,
-		MatToolbarModule,
-		MatDividerModule,
-		ResponsiveTextAdComponent
+		MaterialModule,
+		DisplayAdsPreviewModule
 	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None

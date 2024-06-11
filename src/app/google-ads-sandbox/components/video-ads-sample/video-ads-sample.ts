@@ -1,11 +1,7 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {
-	YoutubeVideoAdComponent,
-	YoutubeVideoAdRenderModel
-} from '@kamp-n/gads-preview';
-import {MatToolbarModule} from "@angular/material/toolbar";
+import {DisplayAdsPreviewModule, YoutubeVideoAdRenderModel} from '@kamp-n/gads-preview';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {MatDividerModule} from "@angular/material/divider";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'video-ads-sample',
@@ -13,10 +9,9 @@ import {MatDividerModule} from "@angular/material/divider";
     styleUrls: ['./video-ads-sample.scss'],
 	standalone: true,
 	imports: [
-		MatToolbarModule,
-		MatDividerModule,
+		MaterialModule,
 		FlexLayoutModule,
-		YoutubeVideoAdComponent
+		DisplayAdsPreviewModule
 	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None

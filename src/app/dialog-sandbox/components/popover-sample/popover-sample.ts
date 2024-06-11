@@ -1,6 +1,8 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {RxCleaner} from '@kamp-n/ng-common-tools';
-import {SharedModule} from "../../../shared/module";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
+import {CommonToolsModule, RxCleaner} from '@kamp-n/ng-common-tools';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {CommonModule} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'popover-sample',
@@ -8,7 +10,10 @@ import {SharedModule} from "../../../shared/module";
     styleUrls: ['./popover-sample.scss'],
 	standalone: true,
 	imports: [
-		SharedModule
+		CommonModule,
+		CommonToolsModule,
+		MaterialModule,
+		FlexLayoutModule
 	],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,

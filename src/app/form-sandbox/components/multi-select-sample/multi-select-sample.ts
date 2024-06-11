@@ -1,11 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import {MatSelectModule} from "@angular/material/select";
 import {CommonFormModule} from "@kamp-n/ng-common-form";
-import {MatToolbarModule} from "@angular/material/toolbar";
 import {JsonPipe} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'multi-select-sample',
@@ -15,10 +12,7 @@ import {JsonPipe} from "@angular/common";
 	imports: [
 		CommonFormModule,
 		ReactiveFormsModule,
-		MatCheckboxModule,
-		MatSlideToggleModule,
-		MatSelectModule,
-		MatToolbarModule,
+		MaterialModule,
 		JsonPipe
 	],
     encapsulation: ViewEncapsulation.None,

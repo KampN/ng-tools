@@ -1,11 +1,17 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	OnDestroy,
+	OnInit,
+	ViewEncapsulation
+} from '@angular/core';
 import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {ExtractIdFn, MaterialSearchInputComponent, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
+import {MatTableDataSource} from '@angular/material/table';
+import {ExtractIdFn, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
 import {CommonModule} from "@angular/common";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatToolbarModule} from "@angular/material/toolbar";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'picker-sample',
@@ -15,12 +21,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
-		MatTableModule,
-		MatCheckboxModule,
-		MatToolbarModule,
+		MaterialModule,
 		PickerModule,
 		MaterialUIModule,
-		MaterialSearchInputComponent
 	],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
