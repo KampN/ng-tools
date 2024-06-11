@@ -1,13 +1,23 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
 import {DisplayNativeAdRenderModel} from '../display-native-ad/display-native-ad';
+import {GadsImageComponent} from "../../../common/components/gads-image/gads-image";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {FallbackPipe} from "../../../common/pipes/fallback";
+import {TranslatePipe} from "../../../common/pipes/translate";
 
 @Component({
 	selector: 'display-native-ad-collapsed',
 	templateUrl: './display-native-ad-collapsed.html',
 	styleUrls: ['./display-native-ad-collapsed.scss'],
+	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	imports: [
+		GadsImageComponent,
+		FlexLayoutModule,
+		FallbackPipe, TranslatePipe
+	]
 })
 export class DisplayNativeAdCollapsedComponent {
 	get businessName(): string {return this._data?.businessName;}

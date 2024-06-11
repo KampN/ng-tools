@@ -4,6 +4,7 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@ang
 	selector: 'gads-fab-button',
 	template: '',
 	styleUrls: ['./gads-fab-button.scss'],
+	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 })
