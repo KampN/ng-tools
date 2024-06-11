@@ -5,37 +5,13 @@ import {By} from '@angular/platform-browser';
 import {CdkScrollable, ScrollingModule} from '@angular/cdk/scrolling';
 
 describe('Components : FlexScrollContainer', () => {
-
-    @Component({
-        styles: [`
-			:host {
-				display: flex;
-				height: 300px;
-				width: 300px;
-			}
-
-			[flex-scroll-container] {
-				flex: 1 1 auto;
-			}
-
-			.content {
-				width: 100%;
-				height: 500px;
-			}
-        `],
-        template: `
-			<div flex-scroll-container>
-				<test-inner class="content"></test-inner>
-			</div>
-        `
-    })
-    class TestHostComponent {
-        @ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
-    }
-
     @Component({
         selector: 'test-inner',
-        template: 'hello world'
+        template: 'hello world',
+		standalone: true,
+		imports: [
+			FlexScrollContainerComponent,
+		]
     })
     class TestInnerComponent {
         constructor(@Inject(FLEX_SCROLL_CONTAINER) public scrollContainer: FlexScrollContainerComponent) {}
@@ -48,13 +24,12 @@ describe('Components : FlexScrollContainer', () => {
 
         TestBed.configureTestingModule({
             imports: [
-                ScrollingModule
-            ],
-            declarations: [
-                TestHostComponent,
-                TestInnerComponent,
-                FlexScrollContainerComponent,
-            ],
+                ScrollingModule,
+				FlexScrollContainerComponent,
+				TestInnerComponent,
+				TestHostComponent,
+			],
+            declarations: [],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
@@ -99,5 +74,37 @@ describe('Components : FlexScrollContainer', () => {
         expect(childInstance.scrollContainer).toBeDefined();
         expect(childInstance.scrollContainer).toEqual(container.componentInstance);
     });
+
+	@Component({
+		styles: [`
+			:host {
+				display: flex;
+				height: 300px;
+				width: 300px;
+			}
+
+			[flex-scroll-container] {
+				flex: 1 1 auto;
+			}
+
+			.content {
+				width: 100%;
+				height: 500px;
+			}
+        `],
+		template: `
+			<div flex-scroll-container>
+				<test-inner class="content"></test-inner>
+			</div>
+        `,
+		standalone: true,
+		imports: [
+			TestInnerComponent,
+			FlexScrollContainerComponent
+		]
+	})
+	class TestHostComponent {
+		@ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
+	}
 
 });

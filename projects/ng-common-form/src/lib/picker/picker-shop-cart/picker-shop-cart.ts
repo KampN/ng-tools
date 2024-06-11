@@ -2,9 +2,8 @@ import {
     AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Host,
     Input, OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
 } from '@angular/core';
-import {RxCleaner} from '@kamp-n/ng-common-tools';
+import {RxCleaner, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
 import {
-	PickerHeaderComponent,
 	PickerHeaderDefDirective,
 	PickerHeaderOutletDirective
 } from '../picker-header/picker-header';
@@ -12,7 +11,6 @@ import {Picker} from '../picker/picker';
 import {SelectionChange, SelectionModel} from '../../common/collections/selection';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {CommonToolsModule} from "@kamp-n/ng-common-tools";
 
 export class PickerShopCartExceptions {
     static multipleDefaultItemDef() {
@@ -69,8 +67,8 @@ export class PickerShopCartEmptyOutletDirective {
     changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		CommonModule, FormsModule, ReactiveFormsModule,
-		CommonToolsModule,
-		PickerHeaderOutletDirective, PickerShopCartEmptyOutletDirective, PickerShopCartListOutletDirective
+		PickerHeaderOutletDirective, PickerShopCartEmptyOutletDirective, PickerShopCartListOutletDirective,
+		FlexScrollContainerComponent
 	]
 })
 export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnDestroy {

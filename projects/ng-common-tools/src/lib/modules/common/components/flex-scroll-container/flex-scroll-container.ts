@@ -7,12 +7,16 @@ export const FLEX_SCROLL_CONTAINER = new InjectionToken('FLEX_SCROLL_CONTAINER')
     selector: 'flex-scroll-container,[flex-scroll-container]',
     templateUrl: './flex-scroll-container.html',
     styleUrls: ['./flex-scroll-container.scss'],
+	standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     providers: [{
         useExisting: forwardRef(() => FlexScrollContainerComponent),
         provide: FLEX_SCROLL_CONTAINER
-    }]
+    }],
+	imports: [
+		CdkScrollable
+	]
 })
 export class FlexScrollContainerComponent {
     @ViewChild(CdkScrollable, {static: true}) public cdkScrollable: CdkScrollable;
