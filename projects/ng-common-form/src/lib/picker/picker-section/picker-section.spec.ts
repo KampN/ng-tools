@@ -4,13 +4,10 @@ import {By} from '@angular/platform-browser';
 import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
-import {
-	PickerComponent,
-	PickerHeaderComponent, PickerHeaderDefDirective,
-	PickerSectionComponent,
-	PickerSectionDefDirective
-} from '../picker-module';
-import {CommonModule} from '@angular/common';
+import {PickerModule} from "../picker-module";
+import {PickerComponent} from "../picker/picker";
+import {PickerSectionComponent} from "./picker-section";
+import {PickerHeaderComponent} from "../picker-header/picker-header";
 
 describe('Picker : PickerSection', () => {
 
@@ -25,12 +22,8 @@ describe('Picker : PickerSection', () => {
 		`,
 		standalone: true,
 		imports: [
-			PickerComponent,
-			PickerSectionComponent,
-			PickerHeaderComponent,
 			ReactiveFormsModule,
-			PickerSectionDefDirective,
-			PickerHeaderDefDirective,
+			PickerModule
 		]
 	})
 	class TestHostComponent {

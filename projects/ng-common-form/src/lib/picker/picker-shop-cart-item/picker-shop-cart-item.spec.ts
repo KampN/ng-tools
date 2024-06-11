@@ -14,6 +14,10 @@ describe('Picker : PickerShopCartItem', () => {
 				<div class="content">content</div>
 			</picker-shop-cart-item>
         `,
+		standalone: true,
+		imports: [
+			PickerModule
+		]
     })
     class TestHostComponent {
         @ViewChild(PickerShopCartItemComponent) underline: PickerShopCartItemComponent<any>;
@@ -28,11 +32,9 @@ describe('Picker : PickerShopCartItem', () => {
 
         TestBed.configureTestingModule({
             imports: [
-				PickerShopCartItemComponent
+				TestHostComponent
 			],
-            declarations: [
-                TestHostComponent
-            ],
+            declarations: [],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;

@@ -11,6 +11,7 @@ import {PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective} 
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {PickerHeaderComponent, PickerHeaderDefDirective} from '../picker-header/picker-header';
+import {PickerModule} from "../picker-module";
 
 describe('Picker : PickerShopCart', () => {
 
@@ -32,15 +33,8 @@ describe('Picker : PickerShopCart', () => {
 		`,
 		standalone: true,
 		imports: [
-			PickerComponent,
-			PickerShopCartComponent,
-			PickerHeaderDefDirective,
-			PickerHeaderComponent,
 			ReactiveFormsModule,
-			PickerShopCartItemDefDirective,
-			PickerShopCartDefDirective,
-			PickerSectionDefDirective,
-			PickerShopCartEmptyDefDirective,
+			PickerModule
 		]
 	})
 	class TestHostComponent {
