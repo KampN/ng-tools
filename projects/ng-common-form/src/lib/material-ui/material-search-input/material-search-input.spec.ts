@@ -7,6 +7,7 @@ import {By} from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
+import {MaterialUIModule} from "../material-module";
 
 describe('Material-UI : MaterialSearchInput', () => {
 
@@ -16,6 +17,11 @@ describe('Material-UI : MaterialSearchInput', () => {
         template: `
 			<material-search-input [disableClear]="disableClear" [formControl]="control" [(search)]="text"></material-search-input>
         `,
+		standalone: true,
+		imports: [
+			ReactiveFormsModule,
+			MaterialUIModule
+		]
     })
     class TestHostComponent {
         @ViewChild(MaterialSearchInputComponent, {static: true}) search: MaterialSearchInputComponent;
@@ -34,12 +40,10 @@ describe('Material-UI : MaterialSearchInput', () => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule, ReactiveFormsModule,
-                MatIconModule, MatButtonModule
+                MatIconModule, MatButtonModule,
+				TestHostComponent, MaterialUIModule
             ],
             declarations: [
-                TestHostComponent,
-                MaterialUnderlineComponent,
-                MaterialSearchInputComponent,
             ],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
