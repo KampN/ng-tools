@@ -50,7 +50,6 @@ jobs:
     steps:
     - checkout
     - browser-tools/install-chrome
-    - browser-tools/install-chromedriver
     - attach_workspace:
         at: ~/app
     - run:
