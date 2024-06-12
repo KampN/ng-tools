@@ -1,12 +1,12 @@
 {
 	"name": "@kamp-n/ng-common-tools",
-	"version": "16.0.0",
+	"version": "18.0.0",
 	"peerDependencies": {
 		"rxjs": "7.x",
-		"@angular/common": "17.x",
-		"@angular/core": "17.x",
-		"@angular/cdk": "17.x",
-		"@angular/material": "17.x"
+		"@angular/common": "18.x",
+		"@angular/core": "18.x",
+		"@angular/cdk": "18.x",
+		"@angular/material": "18.x"
 	},
 	"optionalDependencies": {
 		"crypto-js": "^3.1.9-1"
