@@ -20,6 +20,20 @@ import {NgModule} from "@angular/core";
 import {PickerSectionComponent} from "./picker-section/picker-section";
 import {PickerShopCartItemComponent} from "./picker-shop-cart-item/picker-shop-cart-item";
 
+export {PickerHeaderComponent, PickerHeaderDefDirective, PickerHeaderOutletDirective} from './picker-header/picker-header';
+
+export {
+	Picker, PickerComponent, PickerBodyContext, PickerShopCartContext,
+	PickerBodyOutletDirective, PickerSectionDefDirective, PickerShopCartDefDirective, PickerShopCartOutletDirective
+} from './picker/picker';
+export {PickerSectionComponent} from './picker-section/picker-section';
+export {PickerShopCartItemComponent} from './picker-shop-cart-item/picker-shop-cart-item';
+export {
+	PickerShopCartComponent,
+	PickerShopCartEmptyDefDirective, PickerShopCartEmptyOutletDirective, PickerShopCartItemDefDirective,
+	PickerShopCartListOutletDirective
+} from './picker-shop-cart/picker-shop-cart';
+
 const EXPORTED_DIRECTIVES = [
 	PickerShopCartItemDefDirective,
 	PickerShopCartListOutletDirective,
