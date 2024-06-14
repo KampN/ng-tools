@@ -1,5 +1,7 @@
 import {MockFactory} from './mock-factory';
-import {enc, HmacSHA256} from 'crypto-js';
+import Base64 from 'crypto-js/enc-base64';
+import HmacSHA256 from 'crypto-js/hmac-sha256';
+import Utf8 from 'crypto-js/enc-utf8';
 
 export type JWT = string;
 
@@ -30,20 +32,19 @@ export class JWTMockFactory extends MockFactory<JWT, JWTOptions> {
     generate({alg, secret, kid, data}): JWT {
         const header = {alg, typ: 'JWT', kid};
 
-        const stringifiedHeader = enc.Utf8.parse(JSON.stringify(header));
+        const stringifiedHeader = Utf8.parse(JSON.stringify(header));
         const encodedHeader = this.base64url(stringifiedHeader);
 
-        const stringifiedData = enc.Utf8.parse(JSON.stringify(data));
+        const stringifiedData = Utf8.parse(JSON.stringify(data));
         const encodedData = this.base64url(stringifiedData);
 
-        let signature = `${encodedHeader}.${encodedData}`;
-        signature = HmacSHA256(signature, secret);
-        signature = this.base64url(signature);
-        return `${encodedHeader}.${encodedData}.${signature}`;
+        let signature = HmacSHA256( `${encodedHeader}.${encodedData}`, secret);
+        let signatureStr = this.base64url(signature);
+        return `${encodedHeader}.${encodedData}.${signatureStr}`;
     }
 
     protected base64url(data: any) {
-        let encodedSource = enc.Base64.stringify(data);
+        let encodedSource = Base64.stringify(data);
         encodedSource = encodedSource.replace(/=+$/, '');
         encodedSource = encodedSource.replace(/\+/g, '-');
         encodedSource = encodedSource.replace(/\//g, '_');
