@@ -1,7 +1,7 @@
 import {Directive, ElementRef, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges} from '@angular/core';
 
 @Directive({
-    selector: '[stopPropagation]'
+    selector: '[stopPropagation]', standalone: true
 })
 export class StopPropagationDirective implements OnChanges, OnDestroy {
     @Input('stopPropagation') eventName: string = 'click';

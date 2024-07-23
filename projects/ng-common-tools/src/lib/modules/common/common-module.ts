@@ -1,8 +1,6 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 import {Pipes} from './pipes/index';
 import {Components} from './components/index';
-import {ScrollingModule} from '@angular/cdk/scrolling';
 import {Directives} from './directives/index';
 
 export * from './directives/stop-propagation';
@@ -16,19 +14,8 @@ export * from './pipes/pad-start';
 export * from './pipes/short-number';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		ScrollingModule
-	],
-	exports: [...Pipes, ...Components, ...Directives],
-	declarations: [...Pipes, ...Components, ...Directives],
-	providers: [],
+    imports: [...Pipes, ...Components, ...Directives],
+    exports: [...Pipes, ...Components, ...Directives],
 })
 export class CommonToolsModule {
-	static forRoot():ModuleWithProviders<CommonToolsModule> {
-		return {
-			ngModule: CommonToolsModule,
-			providers: []
-		};
-	}
 }

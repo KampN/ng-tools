@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({name: 'append'})
+@Pipe({name: 'append', pure: true, standalone: true})
 export class AppendPipe implements PipeTransform {
 
     public transform(token: string, suffix: string = '', glue: string = ''): string {

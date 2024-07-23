@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {NumberFormatter} from '../../../utils/number';
 
 @Pipe({
-    name: 'shortNumber'
+    name: 'shortNumber', pure: true, standalone: true
 })
 export class ShortNumberPipe implements PipeTransform {
 
