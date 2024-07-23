@@ -5,6 +5,7 @@ import {coerceNumberProperty} from '@angular/cdk/coercion';
 	selector: 'gads-image',
 	templateUrl: './gads-image.html',
 	styleUrls: ['./gads-image.scss'],
+	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 	host: {

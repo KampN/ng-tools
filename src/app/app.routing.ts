@@ -7,15 +7,15 @@ export const ROUTES: Routes = [
 		children: [
 			{
 				path: 'forms',
-				loadChildren: () => import('./form-sandbox/form-sandbox.module').then(m => m.FormSandboxModule)
+				loadChildren: () => import('./form-sandbox/form-sandbox.routing').then(m => m.FORM_SANDBOX_ROUTES)
 			},
 			{
 				path: 'dialogs',
-				loadChildren: () => import('./dialog-sandbox/dialog-sandbox.module').then(m => m.DialogSandboxModule)
+				loadChildren: () => import('./dialog-sandbox/dialog-sandbox.routing').then(m => m.DIALOG_SANDBOX_ROUTES)
 			},
 			{
 				path: 'google-ads',
-				loadChildren: () => import('./google-ads-sandbox/google-ads-sandbox.module').then(m => m.GoogleAdsSandboxModule)
+				loadChildren: () => import('./google-ads-sandbox/google-ads-sandbox.routing').then(m => m.GOOGLE_ADS_SANDBOX_ROUTES)
 			},
 			{
 				path: '**',

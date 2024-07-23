@@ -1,28 +1,20 @@
-import {RouterModule, Routes} from '@angular/router';
-import {ModuleWithProviders} from '@angular/core';
-import {AutocompleteSampleComponent} from './components/autocomplete-sample/autocomplete-sample';
-import {MultiSelectSampleComponent} from './components/multi-select-sample/multi-select-sample';
-import {PickerSampleComponent} from './components/picker-sample/picker-sample';
+import {Routes} from '@angular/router';
 
-export const ROUTES: Routes = [
+export const FORM_SANDBOX_ROUTES: Routes = [
     {
         path: 'autocomplete',
-        component: AutocompleteSampleComponent
+		loadComponent: () => import('./components/autocomplete-sample/autocomplete-sample').then(m => m.AutocompleteSampleComponent)
     },
     {
         path: 'multi-select',
-        component: MultiSelectSampleComponent
+		loadComponent: () => import('./components/multi-select-sample/multi-select-sample').then(m => m.MultiSelectSampleComponent)
     },
     {
         path: 'picker',
-        component: PickerSampleComponent
+		loadComponent: () => import('./components/picker-sample/picker-sample').then(m => m.PickerSampleComponent)
     },
     {
         path: '**',
         redirectTo: 'autocomplete'
     }
 ];
-
-export const FormSandboxRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild(ROUTES);
-
-

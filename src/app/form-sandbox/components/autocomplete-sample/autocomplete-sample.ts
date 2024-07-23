@@ -1,9 +1,18 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	OnDestroy,
+	OnInit,
+	ViewEncapsulation
+} from '@angular/core';
+import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
 import {CommonValidators} from '@kamp-n/ng-common-form';
+import {CommonModule} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
 
 export interface User {
     name: string;
@@ -14,8 +23,14 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
 @Component({
     selector: 'autocomplete-sample',
     templateUrl: './autocomplete-sample.html',
-    styleUrls: ['./autocomplete-sample.scss'],
-    encapsulation: ViewEncapsulation.None,
+	styleUrls: ['./autocomplete-sample.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		ReactiveFormsModule,
+		MaterialModule
+	],
+	encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteSampleComponent implements OnInit, OnDestroy {

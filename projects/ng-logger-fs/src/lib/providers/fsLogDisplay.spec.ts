@@ -1,6 +1,6 @@
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {FSLogDisplay} from './fsLogDisplay';
-import {DefaultConfiguration, LogDisplay, LoggerConfiguration, LoggerModule, LogLevel, LogMessage, LogStream} from '@kamp-n/ng-logger';
+import {DefaultConfiguration, LogDisplay, LoggerConfiguration, loggerProviders, LogLevel, LogMessage, LogStream} from '@kamp-n/ng-logger';
 import {FSLogLevel, FULLSTORY, FullStory} from '../accessors/fullstory';
 
 declare const window:any;
@@ -13,10 +13,8 @@ describe('Providers : FSLogDisplay', () => {
 		beforeEach(waitForAsync(() => {
 			fs = jasmine.createSpyObj('fs', ['log']);
 			TestBed.configureTestingModule({
-				imports: [
-					LoggerModule.forRoot()
-				],
 				providers: [
+					loggerProviders(),
 					{provide: FULLSTORY, useFactory: () => fs},
 					{provide: LogDisplay, useClass: FSLogDisplay}
 				]
@@ -59,12 +57,10 @@ describe('Providers : FSLogDisplay', () => {
 		beforeEach(waitForAsync(() => {
 			fs = jasmine.createSpyObj('fs', ['log']);
 			TestBed.configureTestingModule({
-				imports: [
-					LoggerModule.forRoot({
-						crossFinger: {enabled: true, level: LogLevel.Info}
-					})
-				],
 				providers: [
+					loggerProviders({
+						crossFinger: {enabled: true, level: LogLevel.Info}
+					}),
 					{provide: FULLSTORY, useFactory: () => fs},
 					{provide: FULLSTORY, useFactory: () => fs},
 					{provide: LogDisplay, useClass: FSLogDisplay}

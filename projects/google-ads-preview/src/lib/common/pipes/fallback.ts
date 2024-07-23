@@ -5,7 +5,8 @@ import {Check} from '@kamp-n/ng-common-tools';
 
 @Pipe({
 	name: 'fallback',
-	pure: true
+	pure: true,
+	standalone: true
 })
 export class FallbackPipe implements PipeTransform {
 

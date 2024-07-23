@@ -1,13 +1,30 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	OnDestroy,
+	OnInit,
+	ViewEncapsulation
+} from '@angular/core';
+import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
-import { MatTableDataSource } from '@angular/material/table';
-import {ExtractIdFn} from '@kamp-n/ng-common-form';
+import {MatTableDataSource} from '@angular/material/table';
+import {ExtractIdFn, MaterialUIModule, PickerModule} from '@kamp-n/ng-common-form';
+import {CommonModule} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'picker-sample',
     templateUrl: './picker-sample.html',
     styleUrls: ['./picker-sample.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		ReactiveFormsModule,
+		MaterialModule,
+		PickerModule,
+		MaterialUIModule,
+	],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

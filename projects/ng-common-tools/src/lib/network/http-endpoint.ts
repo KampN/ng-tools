@@ -1,5 +1,5 @@
 import {Observable, throwError} from 'rxjs';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import {Inject} from '@angular/core';
 import {catchError} from 'rxjs/operators';
 

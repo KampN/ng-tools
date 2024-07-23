@@ -1,5 +1,10 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
+import {GadsImageComponent} from "../../../common/components/gads-image/gads-image";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {CommonModule} from "@angular/common";
+import {FallbackPipe} from "../../../common/pipes/fallback";
+import {TranslatePipe} from "../../../common/pipes/translate";
 
 export interface DisplayNativeAdRenderModel {
 	imageUrl?: string;
@@ -12,8 +17,14 @@ export interface DisplayNativeAdRenderModel {
 	selector: 'display-native-ad',
 	templateUrl: './display-native-ad.html',
 	styleUrls: ['./display-native-ad.scss'],
+	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	imports: [
+		GadsImageComponent,
+		FlexLayoutModule,
+		FallbackPipe, TranslatePipe
+	]
 })
 export class DisplayNativeAdComponent {
 	get businessName(): string {return this._data?.businessName;}

@@ -1,18 +1,18 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "12.0.0",
+	"version": "18.0.0",
 	"peerDependencies": {
-		"@angular/common": "17.x",
-		"@angular/core": "17.x",
-		"@angular/forms": "17.x",
+		"@angular/common": "18.x",
+		"@angular/core": "18.x",
+		"@angular/forms": "18.x",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"optionalDependencies": {
-		"@angular/material": "17.x",
-		"@angular/cdk": "17.x"
+		"@angular/material": "18.x",
+		"@angular/cdk": "18.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
-  "dependencies": {
-    "tslib": "^2.2.0"
-  }
+	"dependencies": {
+		"tslib": "^2.2.0"
+	}
 }

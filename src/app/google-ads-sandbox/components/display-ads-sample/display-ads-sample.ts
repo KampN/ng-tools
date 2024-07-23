@@ -1,10 +1,25 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRenderModel} from '@kamp-n/gads-preview';
+import {
+	DisplayAdsPreviewModule,
+	DisplayImageAdRenderModel,
+	DisplayNativeAdRenderModel,
+	DisplayTextAdRenderModel
+} from '@kamp-n/gads-preview';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {CommonModule} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
 	selector: 'display-ads-sample',
 	templateUrl: './display-ads-sample.html',
 	styleUrls: ['./display-ads-sample.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		MaterialModule,
+		FlexLayoutModule,
+		DisplayAdsPreviewModule
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
