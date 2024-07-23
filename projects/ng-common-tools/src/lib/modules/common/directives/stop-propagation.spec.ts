@@ -1,5 +1,5 @@
 import {Component, DebugElement} from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {StopPropagationDirective} from './stop-propagation';
 
@@ -23,9 +23,9 @@ describe('Directives : StopPropagation', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
+            imports: [StopPropagationDirective],
             declarations: [
                 TestHostComponent,
-                StopPropagationDirective,
             ],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
