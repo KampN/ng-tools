@@ -12,7 +12,7 @@ describe('Picker : PickerHeader', () => {
 			<picker-header>
 				<div class="content">content</div>
 			</picker-header>
-        `,
+        `
     })
     class TestHostComponent {
         @ViewChild(PickerHeaderComponent) underline: PickerHeaderComponent;
@@ -24,10 +24,9 @@ describe('Picker : PickerHeader', () => {
     beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
-            imports: [MatButtonModule, MatIconModule],
+            imports: [PickerHeaderComponent],
             declarations: [
-                TestHostComponent,
-                PickerHeaderComponent,
+                TestHostComponent
             ],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);

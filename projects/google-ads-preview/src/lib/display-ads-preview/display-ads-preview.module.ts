@@ -14,10 +14,11 @@ export {YoutubeVideoAdComponent, YoutubeVideoAdRenderModel} from './ads/youtube-
 @NgModule({
     imports: [
         CommonModule,
-        GoogleAdsPreviewCommonModule
+        GoogleAdsPreviewCommonModule,
+		...AdComponents
     ],
-    exports: [...AdComponents],
-    declarations: [...AdComponents],
+    exports: [AdComponents],
+    declarations: [],
     providers: [],
 })
 export class DisplayAdsPreviewModule {

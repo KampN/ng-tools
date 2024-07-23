@@ -1,18 +1,16 @@
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import {LoggerService} from './providers/logger';
 import {LoggerServiceStub} from './providers/logger.stub';
-import {LoggerModule} from './module';
+import {loggerProviders} from './logger.providers';
 import {LogLevel} from './interfaces/log';
 import {LogStream} from './providers/logStream';
 
-describe('Module : LoggerModule', () => {
+describe('Providers : Logger', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                LoggerModule.forRoot()
-            ],
             providers: [
+				loggerProviders(),
                 {provide: LoggerService, useClass: LoggerServiceStub}
             ],
         });

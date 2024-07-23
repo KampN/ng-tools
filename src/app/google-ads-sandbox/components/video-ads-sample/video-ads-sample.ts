@@ -1,12 +1,18 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {
-    YoutubeVideoAdRenderModel
-} from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/youtube-video-ad/youtube-video-ad';
+import {DisplayAdsPreviewModule, YoutubeVideoAdRenderModel} from '@kamp-n/gads-preview';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'video-ads-sample',
     templateUrl: './video-ads-sample.html',
     styleUrls: ['./video-ads-sample.scss'],
+	standalone: true,
+	imports: [
+		MaterialModule,
+		FlexLayoutModule,
+		DisplayAdsPreviewModule
+	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

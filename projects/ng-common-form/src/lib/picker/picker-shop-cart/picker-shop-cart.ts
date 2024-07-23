@@ -2,10 +2,15 @@ import {
     AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Host,
     Input, OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
 } from '@angular/core';
-import {RxCleaner} from '@kamp-n/ng-common-tools';
-import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-header/picker-header';
+import {RxCleaner, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
+import {
+	PickerHeaderDefDirective,
+	PickerHeaderOutletDirective
+} from '../picker-header/picker-header';
 import {Picker} from '../picker/picker';
 import {SelectionChange, SelectionModel} from '../../common/collections/selection';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
 
 export class PickerShopCartExceptions {
     static multipleDefaultItemDef() {
@@ -18,7 +23,8 @@ export class PickerShopCartExceptions {
 }
 
 @Directive({
-    selector: '[pickerShopCartItemDef]'
+    selector: '[pickerShopCartItemDef]',
+	standalone: true,
 })
 export class PickerShopCartItemDefDirective<T> {
 
@@ -28,19 +34,26 @@ export class PickerShopCartItemDefDirective<T> {
     constructor(public template: TemplateRef<any>) {}
 }
 
-@Directive({selector: '[pickerShopCartListOutlet]'})
+@Directive({
+	selector: '[pickerShopCartListOutlet]',
+	standalone: true,
+})
 export class PickerShopCartListOutletDirective {
     constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
 }
 
 @Directive({
-    selector: '[pickerShopCartEmptyDef]'
+    selector: '[pickerShopCartEmptyDef]',
+	standalone: true,
 })
 export class PickerShopCartEmptyDefDirective {
     constructor(public template: TemplateRef<any>) {}
 }
 
-@Directive({selector: '[pickerShopCartEmptyOutlet]'})
+@Directive({
+	selector: '[pickerShopCartEmptyOutlet]',
+	standalone: true,
+})
 export class PickerShopCartEmptyOutletDirective {
     constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
 }
@@ -49,8 +62,14 @@ export class PickerShopCartEmptyOutletDirective {
     selector: 'picker-shop-cart, [picker-shop-cart]',
     templateUrl: './picker-shop-cart.html',
     styleUrls: ['./picker-shop-cart.scss'],
+	standalone: true,
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		CommonModule, FormsModule, ReactiveFormsModule,
+		PickerHeaderOutletDirective, PickerShopCartEmptyOutletDirective, PickerShopCartListOutletDirective,
+		FlexScrollContainerComponent
+	]
 })
 export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnDestroy {
 

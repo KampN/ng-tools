@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {PickerShopCartItemComponent} from './picker-shop-cart-item';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {PickerModule} from "../picker-module";
 
 describe('Picker : PickerShopCartItem', () => {
 
@@ -13,6 +14,10 @@ describe('Picker : PickerShopCartItem', () => {
 				<div class="content">content</div>
 			</picker-shop-cart-item>
         `,
+		standalone: true,
+		imports: [
+			PickerModule
+		]
     })
     class TestHostComponent {
         @ViewChild(PickerShopCartItemComponent) underline: PickerShopCartItemComponent<any>;
@@ -26,11 +31,10 @@ describe('Picker : PickerShopCartItem', () => {
     beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
-            imports: [MatButtonModule, MatIconModule],
-            declarations: [
-                TestHostComponent,
-                PickerShopCartItemComponent,
-            ],
+            imports: [
+				TestHostComponent
+			],
+            declarations: [],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;

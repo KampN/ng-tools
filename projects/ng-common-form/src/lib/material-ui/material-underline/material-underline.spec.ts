@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {MaterialUnderlineComponent} from './material-underline';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
+import {MaterialUIModule} from "../material-module";
 
 describe('Material-UI : MaterialUnderline', () => {
 
@@ -9,6 +10,10 @@ describe('Material-UI : MaterialUnderline', () => {
 		template: `
 			<material-underline [active]="active"></material-underline>
 		`,
+		standalone: true,
+		imports: [
+			MaterialUIModule
+		]
 	})
 	class TestHostComponent {
 		@ViewChild(MaterialUnderlineComponent) underline:MaterialUnderlineComponent;
@@ -21,11 +26,8 @@ describe('Material-UI : MaterialUnderline', () => {
 	beforeEach(waitForAsync(() => {
 
 		TestBed.configureTestingModule({
-			imports: [],
-			declarations: [
-				TestHostComponent,
-				MaterialUnderlineComponent,
-			],
+			imports: [TestHostComponent, MaterialUIModule],
+			declarations: [],
 		}).compileComponents();
 		testFixture = TestBed.createComponent(TestHostComponent);
 		testComponent = testFixture.debugElement.componentInstance;

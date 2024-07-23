@@ -1,12 +1,21 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {
-    ResponsiveTextAdRenderModel
+	ResponsiveTextAdRenderModel
 } from '../../../../../projects/google-ads-preview/src/lib/display-ads-preview/ads/responsive-text-ad/responsive-text-ad';
+import {CommonModule} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
+import {DisplayAdsPreviewModule} from "@kamp-n/gads-preview";
 
 @Component({
     selector: 'text-ads-sample',
     templateUrl: './text-ads-sample.html',
     styleUrls: ['./text-ads-sample.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		MaterialModule,
+		DisplayAdsPreviewModule
+	],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

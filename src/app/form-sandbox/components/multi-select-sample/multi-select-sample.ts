@@ -1,10 +1,20 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
+import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
+import {CommonFormModule} from "@kamp-n/ng-common-form";
+import {JsonPipe} from "@angular/common";
+import {MaterialModule} from "../../../material/module";
 
 @Component({
     selector: 'multi-select-sample',
     templateUrl: './multi-select-sample.html',
     styleUrls: ['./multi-select-sample.scss'],
+	standalone: true,
+	imports: [
+		CommonFormModule,
+		ReactiveFormsModule,
+		MaterialModule,
+		JsonPipe
+	],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

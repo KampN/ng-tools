@@ -1,5 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
+import {GadsImageComponent} from "../../../common/components/gads-image/gads-image";
+import {FallbackPipe} from "../../../common/pipes/fallback";
+import {TranslatePipe} from "../../../common/pipes/translate";
 
 export interface YoutubeVideoAdRenderModel {
     imageUrl?: string;
@@ -13,8 +16,13 @@ export interface YoutubeVideoAdRenderModel {
     selector: 'youtube-video-ad',
     templateUrl: './youtube-video-ad.html',
     styleUrls: ['./youtube-video-ad.scss'],
+	standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+	imports: [
+		GadsImageComponent,
+		FallbackPipe, TranslatePipe
+	]
 })
 export class YoutubeVideoAdComponent {
 

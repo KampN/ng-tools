@@ -3,7 +3,8 @@ import {GADS_PREVIEW_TRANSLATOR, GAdsPreviewTranslator} from '../providers/trans
 
 @Pipe({
 	name: 'translate',
-	pure: true
+	pure: true,
+	standalone: true
 })
 export class TranslatePipe implements PipeTransform {
 
