@@ -36,10 +36,9 @@ describe('Directives : FormErrorHint', () => {
     beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule],
+            imports: [FormsModule, ReactiveFormsModule, ControlErrorDirective],
             declarations: [
                 TestHostComponent,
-                ControlErrorDirective
             ],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);

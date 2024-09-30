@@ -35,12 +35,15 @@ describe('Directives : FormSelect', () => {
     beforeEach(waitForAsync(() => {
 
         TestBed.configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule],
+            imports: [
+				FormsModule,
+				ReactiveFormsModule,
+				FormSelectControlCheckboxControlValueAccessorDirective,
+				FormSelectGroupDirective,
+				FormSelectControlDirective
+			],
             declarations: [
                 TestHostComponent,
-                FormSelectControlCheckboxControlValueAccessorDirective,
-                FormSelectGroupDirective,
-                FormSelectControlDirective,
             ],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);

@@ -33,7 +33,8 @@ export class ControlErrorContext {
 }
 
 @Directive({
-	selector: '[controlError]'
+	selector: '[controlError]',
+	standalone: true
 })
 export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
 	@Input() controlErrorOf:string | AbstractControl;

@@ -35,7 +35,8 @@ export abstract class FormSelectContainer<T> {
             useExisting: forwardRef(() => FormSelectControlCheckboxControlValueAccessorDirective),
             multi: true
         }
-    ]
+    ],
+	standalone: true
 })
 export class FormSelectControlCheckboxControlValueAccessorDirective implements ControlValueAccessor {
     constructor(protected renderer: Renderer2, protected ref: ElementRef) {
@@ -71,6 +72,7 @@ export class FormSelectControlCheckboxControlValueAccessorDirective implements C
             useExisting: forwardRef(() => FormSelectGroupDirective),
         }
     ],
+	standalone: true
 })
 export class FormSelectGroupDirective<T> extends FormSelectContainer<T> implements ControlValueAccessor, OnDestroy {
 
@@ -143,6 +145,7 @@ export class FormSelectGroupDirective<T> extends FormSelectContainer<T> implemen
 
 @Directive({
     selector: '[formSelectControl]',
+	standalone: true
 })
 export class FormSelectControlDirective<T> implements OnChanges, OnDestroy {
 
