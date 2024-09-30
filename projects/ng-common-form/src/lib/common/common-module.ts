@@ -11,14 +11,18 @@ export {CommonValidators} from './validators/index';
 export {MatchFnValidatorDirective} from './validators/match-fn';
 
 @NgModule({
-	imports: [CommonModule, FormsModule, ReactiveFormsModule],
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		Directives
+	],
 	exports: [
-		...Directives,
 		...ValidatorDirectives,
 		FormsModule,
 		ReactiveFormsModule,
 	],
-	declarations: [...Directives, ...ValidatorDirectives],
+	declarations: [...ValidatorDirectives],
 	providers: [],
 })
 export class CommonFormModule {

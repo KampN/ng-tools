@@ -6,11 +6,16 @@ import {
 	OnInit,
 	ViewEncapsulation
 } from '@angular/core';
-import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {
+	ReactiveFormsModule,
+	UntypedFormBuilder,
+	UntypedFormGroup,
+	Validators
+} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {delay, filter, startWith, switchMap, tap} from 'rxjs/operators';
 import {RxCleaner, StateManager} from '@kamp-n/ng-common-tools';
-import {CommonValidators} from '@kamp-n/ng-common-form';
+import {CommonValidators, ControlErrorDirective} from '@kamp-n/ng-common-form';
 import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../../../material/module";
 
@@ -28,7 +33,8 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
-		MaterialModule
+		MaterialModule,
+		ControlErrorDirective
 	],
 	encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,

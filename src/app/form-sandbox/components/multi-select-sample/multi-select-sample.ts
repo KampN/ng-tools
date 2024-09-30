@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
-import {CommonFormModule} from "@kamp-n/ng-common-form";
+import {CommonFormModule, FormSelectControlDirective, FormSelectGroupDirective} from "@kamp-n/ng-common-form";
 import {JsonPipe} from "@angular/common";
 import {MaterialModule} from "../../../material/module";
 
@@ -13,7 +13,9 @@ import {MaterialModule} from "../../../material/module";
 		CommonFormModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		JsonPipe
+		JsonPipe,
+		FormSelectGroupDirective,
+		FormSelectControlDirective
 	],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
