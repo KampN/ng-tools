@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, Directive, ElementRef, TemplateRef, ViewContainerRef, ViewEncapsulation} from '@angular/core';
 
 @Directive({
-	selector: '[pickerHeaderOutlet]',
-	standalone: true,
+    selector: '[pickerHeaderOutlet]',
+    standalone: true,
 })
 export class PickerHeaderOutletDirective {
     constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
@@ -10,7 +10,7 @@ export class PickerHeaderOutletDirective {
 
 @Directive({
     selector: '[pickerHeaderDef]',
-	standalone: true,
+    standalone: true,
 })
 export class PickerHeaderDefDirective {
     constructor(public template: TemplateRef<any>) {}
@@ -18,13 +18,11 @@ export class PickerHeaderDefDirective {
 
 @Component({
     selector: 'picker-header',
+    standalone: true,
     templateUrl: './picker-header.html',
     styleUrls: ['./picker-header.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        PickerHeaderDefDirective, PickerHeaderOutletDirective
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PickerHeaderComponent {
 }

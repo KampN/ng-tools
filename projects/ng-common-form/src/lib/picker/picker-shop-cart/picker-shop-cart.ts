@@ -60,6 +60,7 @@ export class PickerShopCartEmptyOutletDirective {
 
 @Component({
     selector: 'picker-shop-cart, [picker-shop-cart]',
+	standalone: true,
     templateUrl: './picker-shop-cart.html',
     styleUrls: ['./picker-shop-cart.scss'],
     encapsulation: ViewEncapsulation.None,

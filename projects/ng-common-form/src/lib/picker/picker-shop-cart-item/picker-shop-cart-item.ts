@@ -4,6 +4,7 @@ import {MatIconModule} from "@angular/material/icon";
 
 @Component({
     selector: 'picker-shop-cart-item, [picker-shop-cart-item]',
+	standalone: true,
     templateUrl: './picker-shop-cart-item.html',
     styleUrls: ['./picker-shop-cart-item.scss'],
     encapsulation: ViewEncapsulation.None,

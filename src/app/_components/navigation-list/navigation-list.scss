@@ -1,5 +1,6 @@
 navigation-list {
-
+	display: block;
+	width: 30rem;
 	a[mat-list-item].active {
 		position: relative;
 		background: rgba(0, 0, 0, .04);

@@ -68,6 +68,7 @@ export class PickerShopCartContext<T> {
 
 @Component({
     selector: 'picker',
+	standalone: true,
     templateUrl: './picker.html',
     styleUrls: [`./picker.scss`],
     encapsulation: ViewEncapsulation.None,
