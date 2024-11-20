@@ -7,17 +7,16 @@ import {FallbackPipe} from "../../../common/pipes/fallback";
 import {TranslatePipe} from "../../../common/pipes/translate";
 
 @Component({
-	selector: 'display-native-ad-collapsed',
-	templateUrl: './display-native-ad-collapsed.html',
-	styleUrls: ['./display-native-ad-collapsed.scss'],
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	imports: [
-		GadsImageComponent,
-		FlexLayoutModule,
-		FallbackPipe, TranslatePipe
-	]
+    selector: 'display-native-ad-collapsed',
+    templateUrl: './display-native-ad-collapsed.html',
+    styleUrls: ['./display-native-ad-collapsed.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        GadsImageComponent,
+        FlexLayoutModule,
+        FallbackPipe, TranslatePipe
+    ]
 })
 export class DisplayNativeAdCollapsedComponent {
 	get businessName(): string {return this._data?.businessName;}

@@ -7,12 +7,11 @@ import {MaterialModule} from "../../../material/module";
     selector: 'video-ads-sample',
     templateUrl: './video-ads-sample.html',
     styleUrls: ['./video-ads-sample.scss'],
-	standalone: true,
-	imports: [
-		MaterialModule,
-		FlexLayoutModule,
-		DisplayAdsPreviewModule
-	],
+    imports: [
+        MaterialModule,
+        FlexLayoutModule,
+        DisplayAdsPreviewModule
+    ],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

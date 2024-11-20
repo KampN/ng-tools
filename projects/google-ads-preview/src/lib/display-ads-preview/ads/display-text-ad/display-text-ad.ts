@@ -15,13 +15,12 @@ export interface DisplayTextAdRenderModel {
     selector: 'display-text-ad',
     templateUrl: './display-text-ad.html',
     styleUrls: ['./display-text-ad.scss'],
-	standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-	imports: [
-		FlexLayoutModule,
-		FallbackPipe, TranslatePipe
-	]
+    imports: [
+        FlexLayoutModule,
+        FallbackPipe, TranslatePipe
+    ]
 })
 export class DisplayTextAdComponent {
 

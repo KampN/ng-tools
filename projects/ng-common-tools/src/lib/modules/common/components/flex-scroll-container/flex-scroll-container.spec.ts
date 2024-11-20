@@ -6,13 +6,12 @@ import {CdkScrollable, ScrollingModule} from '@angular/cdk/scrolling';
 
 describe('Components : FlexScrollContainer', () => {
     @Component({
-        selector: 'test-inner',
-        template: 'hello world',
-		standalone: true,
-		imports: [
-			FlexScrollContainerComponent,
-		]
-    })
+    selector: 'test-inner',
+    template: 'hello world',
+    imports: [
+        FlexScrollContainerComponent,
+    ]
+})
     class TestInnerComponent {
         constructor(@Inject(FLEX_SCROLL_CONTAINER) public scrollContainer: FlexScrollContainerComponent) {}
     }
@@ -76,7 +75,7 @@ describe('Components : FlexScrollContainer', () => {
     });
 
 	@Component({
-		styles: [`
+    styles: [`
 			:host {
 				display: flex;
 				height: 300px;
@@ -92,17 +91,16 @@ describe('Components : FlexScrollContainer', () => {
 				height: 500px;
 			}
         `],
-		template: `
+    template: `
 			<div flex-scroll-container>
 				<test-inner class="content"></test-inner>
 			</div>
         `,
-		standalone: true,
-		imports: [
-			TestInnerComponent,
-			FlexScrollContainerComponent
-		]
-	})
+    imports: [
+        TestInnerComponent,
+        FlexScrollContainerComponent
+    ]
+})
 	class TestHostComponent {
 		@ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
 	}

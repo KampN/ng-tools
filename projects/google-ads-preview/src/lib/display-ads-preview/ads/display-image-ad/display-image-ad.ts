@@ -15,17 +15,16 @@ export interface DisplayImageAdRenderModel {
 }
 
 @Component({
-	selector: 'display-image-ad',
-	templateUrl: './display-image-ad.html',
-	styleUrls: ['./display-image-ad.scss'],
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	imports: [
-		CommonModule, FlexLayoutModule,
-		GadsImageComponent, GadsFabButtonComponent,
-		FallbackPipe
-	]
+    selector: 'display-image-ad',
+    templateUrl: './display-image-ad.html',
+    styleUrls: ['./display-image-ad.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        CommonModule, FlexLayoutModule,
+        GadsImageComponent, GadsFabButtonComponent,
+        FallbackPipe
+    ]
 })
 export class DisplayImageAdComponent {
 

@@ -14,17 +14,16 @@ export interface DisplayNativeAdRenderModel {
 }
 
 @Component({
-	selector: 'display-native-ad',
-	templateUrl: './display-native-ad.html',
-	styleUrls: ['./display-native-ad.scss'],
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	imports: [
-		GadsImageComponent,
-		FlexLayoutModule,
-		FallbackPipe, TranslatePipe
-	]
+    selector: 'display-native-ad',
+    templateUrl: './display-native-ad.html',
+    styleUrls: ['./display-native-ad.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        GadsImageComponent,
+        FlexLayoutModule,
+        FallbackPipe, TranslatePipe
+    ]
 })
 export class DisplayNativeAdComponent {
 	get businessName(): string {return this._data?.businessName;}

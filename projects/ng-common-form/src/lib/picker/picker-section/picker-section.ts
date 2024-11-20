@@ -6,12 +6,11 @@ import {CommonToolsModule} from "@kamp-n/ng-common-tools";
     selector: 'picker-section, [picker-section]',
     templateUrl: './picker-section.html',
     styleUrls: ['./picker-section.scss'],
-	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		CommonToolsModule, PickerHeaderOutletDirective, PickerHeaderDefDirective
-	]
+    imports: [
+        CommonToolsModule, PickerHeaderOutletDirective, PickerHeaderDefDirective
+    ]
 })
 export class PickerSectionComponent<T> implements AfterContentInit, OnDestroy {
 

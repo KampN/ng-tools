@@ -25,28 +25,27 @@ import {MatButtonModule} from "@angular/material/button";
 import {MaterialUnderlineComponent} from "../material-underline/material-underline";
 
 @Component({
-	selector: 'material-search-input',
-	templateUrl: './material-search-input.html',
-	styleUrls: ['./material-search-input.scss'],
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => MaterialSearchInputComponent),
-			multi: true
-		},
-	],
-	host: {
-		'[class.disabled]': 'disabled'
-	},
-	imports: [
-		CommonModule,
-		MatIconModule,
-		MatButtonModule,
-		MaterialUnderlineComponent,
-	]
+    selector: 'material-search-input',
+    templateUrl: './material-search-input.html',
+    styleUrls: ['./material-search-input.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MaterialSearchInputComponent),
+            multi: true
+        },
+    ],
+    host: {
+        '[class.disabled]': 'disabled'
+    },
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MaterialUnderlineComponent,
+    ]
 })
 export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 

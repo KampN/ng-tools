@@ -7,17 +7,16 @@ import {CommonModule} from "@angular/common";
 import {FallbackPipe} from "../../../common/pipes/fallback";
 
 @Component({
-	selector: 'display-image-ad-tower',
-	templateUrl: './display-image-ad-tower.html',
-	styleUrls: ['./display-image-ad-tower.scss'],
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None,
-	imports: [
-		CommonModule, FlexLayoutModule,
-		GadsImageComponent, GadsFabButtonComponent,
-		FallbackPipe
-	]
+    selector: 'display-image-ad-tower',
+    templateUrl: './display-image-ad-tower.html',
+    styleUrls: ['./display-image-ad-tower.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        CommonModule, FlexLayoutModule,
+        GadsImageComponent, GadsFabButtonComponent,
+        FallbackPipe
+    ]
 })
 export class DisplayImageAdsTowerComponent extends DisplayImageAdComponent {
 }

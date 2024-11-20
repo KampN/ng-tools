@@ -19,7 +19,7 @@ import {TestHost} from "@angular-devkit/core/src/virtual-fs/host/test";
 describe('Picker', () => {
 
 	@Component({
-		template: `
+    template: `
 			<picker [formControl]="control" [extractIdFn]="extractIdFn">
 				<div class="--section" *pickerSectionDef="let model; let length=length; let empty=empty;">
 					section
@@ -29,11 +29,10 @@ describe('Picker', () => {
 				</div>
 			</picker>
 		`,
-		standalone: true,
-		imports: [
-			PickerComponent, ReactiveFormsModule, PickerShopCartDefDirective, PickerSectionDefDirective
-		]
-	})
+    imports: [
+        PickerComponent, ReactiveFormsModule, PickerShopCartDefDirective, PickerSectionDefDirective
+    ]
+})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
 		control:UntypedFormControl = new UntypedFormControl();

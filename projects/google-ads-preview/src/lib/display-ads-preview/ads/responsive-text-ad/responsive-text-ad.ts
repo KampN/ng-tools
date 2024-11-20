@@ -15,13 +15,12 @@ export interface ResponsiveTextAdRenderModel {
     selector: 'responsive-text-ad',
     templateUrl: './responsive-text-ad.html',
     styleUrls: ['./responsive-text-ad.scss'],
-	standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-	imports: [
-		CommonModule,
-		FallbackPipe
-	]
+    imports: [
+        CommonModule,
+        FallbackPipe
+    ]
 })
 export class ResponsiveTextAdComponent {
 

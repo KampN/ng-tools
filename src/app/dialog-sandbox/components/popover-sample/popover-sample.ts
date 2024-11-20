@@ -8,15 +8,14 @@ import {MaterialModule} from "../../../material/module";
     selector: 'popover-sample',
     templateUrl: './popover-sample.html',
     styleUrls: ['./popover-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		CommonToolsModule,
-		MaterialModule,
-		FlexLayoutModule
-	],
+    imports: [
+        CommonModule,
+        CommonToolsModule,
+        MaterialModule,
+        FlexLayoutModule
+    ],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverSampleComponent implements OnDestroy {
 

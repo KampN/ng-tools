@@ -10,12 +10,11 @@ import {DisplayAdsPreviewModule} from "@kamp-n/gads-preview";
     selector: 'text-ads-sample',
     templateUrl: './text-ads-sample.html',
     styleUrls: ['./text-ads-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		MaterialModule,
-		DisplayAdsPreviewModule
-	],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        DisplayAdsPreviewModule
+    ],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

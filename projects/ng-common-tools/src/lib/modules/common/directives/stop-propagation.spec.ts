@@ -6,12 +6,13 @@ import {StopPropagationDirective} from './stop-propagation';
 describe('Directives : StopPropagation', () => {
 
     @Component({
-        template: `
+    template: `
 			<div class="container" (click)="containerClick()">
 				<div [stopPropagation]="eventName">no event propagation</div>
 			</div>
-        `
-    })
+        `,
+    standalone: false
+})
     class TestHostComponent {
         eventName: string = 'click';
 

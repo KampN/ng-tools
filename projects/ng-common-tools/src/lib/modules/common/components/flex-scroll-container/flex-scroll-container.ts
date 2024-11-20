@@ -12,9 +12,9 @@ export const FLEX_SCROLL_CONTAINER = new InjectionToken('FLEX_SCROLL_CONTAINER')
     encapsulation: ViewEncapsulation.None,
     imports: [ScrollingModule],
     providers: [{
-        useExisting: forwardRef(() => FlexScrollContainerComponent),
-        provide: FLEX_SCROLL_CONTAINER
-    }], standalone: true
+            useExisting: forwardRef(() => FlexScrollContainerComponent),
+            provide: FLEX_SCROLL_CONTAINER
+        }]
 })
 export class FlexScrollContainerComponent {
     @ViewChild(CdkScrollable, {static: true}) public cdkScrollable: CdkScrollable;

@@ -20,12 +20,11 @@ export class PickerHeaderDefDirective {
     selector: 'picker-header',
     templateUrl: './picker-header.html',
     styleUrls: ['./picker-header.scss'],
-	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		PickerHeaderDefDirective, PickerHeaderOutletDirective
-	]
+    imports: [
+        PickerHeaderDefDirective, PickerHeaderOutletDirective
+    ]
 })
 export class PickerHeaderComponent {
 }

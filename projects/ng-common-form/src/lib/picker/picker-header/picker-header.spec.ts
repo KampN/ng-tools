@@ -8,12 +8,13 @@ import {PickerHeaderComponent} from './picker-header';
 describe('Picker : PickerHeader', () => {
 
     @Component({
-        template: `
+    template: `
 			<picker-header>
 				<div class="content">content</div>
 			</picker-header>
-        `
-    })
+        `,
+    standalone: false
+})
     class TestHostComponent {
         @ViewChild(PickerHeaderComponent) underline: PickerHeaderComponent;
     }

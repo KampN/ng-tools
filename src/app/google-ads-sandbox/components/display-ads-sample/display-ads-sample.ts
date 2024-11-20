@@ -10,18 +10,17 @@ import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../../../material/module";
 
 @Component({
-	selector: 'display-ads-sample',
-	templateUrl: './display-ads-sample.html',
-	styleUrls: ['./display-ads-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		MaterialModule,
-		FlexLayoutModule,
-		DisplayAdsPreviewModule
-	],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	encapsulation: ViewEncapsulation.None
+    selector: 'display-ads-sample',
+    templateUrl: './display-ads-sample.html',
+    styleUrls: ['./display-ads-sample.scss'],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        FlexLayoutModule,
+        DisplayAdsPreviewModule
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class DisplayAdsSampleComponent {
 	imageAdModels: DisplayImageAdRenderModel[] = [{

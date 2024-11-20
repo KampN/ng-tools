@@ -28,16 +28,15 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
 @Component({
     selector: 'autocomplete-sample',
     templateUrl: './autocomplete-sample.html',
-	styleUrls: ['./autocomplete-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		ControlErrorDirective
-	],
-	encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./autocomplete-sample.scss'],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        ControlErrorDirective
+    ],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteSampleComponent implements OnInit, OnDestroy {
     form: UntypedFormGroup;
