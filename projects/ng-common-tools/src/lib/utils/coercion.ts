@@ -1,12 +1,6 @@
 import {Observable, of} from 'rxjs';
 import {Check} from './check';
 
-// @Deprecated use coerceObject instead
-export function coerceObjectData<T>(model: T): T {
-    if (console.warn) console.warn('coerceObjectData is deprecated, use coerceObject instead');
-    return coerceObject(model) as T;
-}
-
 export function coerceObject<T>(val: T): T extends Record<string, any> ? T : Record<string, undefined> {
     return !Check.isDefined(val) || typeof val !== 'object' ? {} as any : val;
 }
@@ -35,3 +29,14 @@ export function coerceValue<T>(value: T | any, allowedValues: T[], defaultValue?
     if (allowedValues.includes(value)) return value;
     return defaultValue ?? allowedValues[0];
 }
+
+export type coercionFn<T> = (value: any) => T;
+
+export function coerceEnumerableProperty<T>(value: any, values: T[], defaultValue?: T): T {
+    return values.includes(value) ? value : (defaultValue ?? values[0]);
+}
+
+export function createCoerceEnumerablePropertyFn<T>(values: T[], defaultValue?: T): coercionFn<T> {
+    return (value: any) => coerceEnumerableProperty(value, values, defaultValue);
+}
+
