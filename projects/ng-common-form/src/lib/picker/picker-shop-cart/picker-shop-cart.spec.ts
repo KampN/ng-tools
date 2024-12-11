@@ -16,7 +16,7 @@ import {PickerModule} from "../picker-module";
 describe('Picker : PickerShopCart', () => {
 
 	@Component({
-		template: `
+    template: `
 			<picker [formControl]="control">
 				<div *pickerSectionDef>picker</div>
 				<picker-shop-cart *pickerShopCartDef="let selection; let length=length; let empty=empty; let model=model">
@@ -31,12 +31,11 @@ describe('Picker : PickerShopCart', () => {
 				</picker-shop-cart>
 			</picker>
 		`,
-		standalone: true,
-		imports: [
-			ReactiveFormsModule,
-			PickerModule
-		]
-	})
+    imports: [
+        ReactiveFormsModule,
+        PickerModule
+    ]
+})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker: PickerComponent<DummyObject>;
 		control: UntypedFormControl = new UntypedFormControl();

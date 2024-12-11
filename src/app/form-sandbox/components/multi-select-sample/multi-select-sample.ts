@@ -8,15 +8,14 @@ import {MaterialModule} from "../../../material/module";
     selector: 'multi-select-sample',
     templateUrl: './multi-select-sample.html',
     styleUrls: ['./multi-select-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonFormModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		JsonPipe,
-		FormSelectGroupDirective,
-		FormSelectControlDirective
-	],
+    imports: [
+        CommonFormModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        JsonPipe,
+        FormSelectGroupDirective,
+        FormSelectControlDirective
+    ],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

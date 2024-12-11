@@ -6,7 +6,8 @@ import {NAVIGATION_ROUTES, NavigationRoutes} from '../../navigation';
     templateUrl: './app-root.html',
     styleUrls: ['./app-root.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class AppRootComponent {
     constructor(@Inject(NAVIGATION_ROUTES) readonly navigation: NavigationRoutes) {}

@@ -9,6 +9,10 @@ youtube-video-ad {
 	box-sizing: border-box;
 	position: relative;
 
+	.video-ad-layout {
+		display: flex;
+		flex-direction: column;
+	}
 
 	gads-image.ad-image {
 		display: block;

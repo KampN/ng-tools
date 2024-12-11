@@ -7,14 +7,13 @@ import {MaterialUIModule} from "../material-module";
 describe('Material-UI : MaterialUnderline', () => {
 
 	@Component({
-		template: `
+    template: `
 			<material-underline [active]="active"></material-underline>
 		`,
-		standalone: true,
-		imports: [
-			MaterialUIModule
-		]
-	})
+    imports: [
+        MaterialUIModule
+    ]
+})
 	class TestHostComponent {
 		@ViewChild(MaterialUnderlineComponent) underline:MaterialUnderlineComponent;
 		active:boolean = false;

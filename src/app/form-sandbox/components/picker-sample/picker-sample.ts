@@ -17,14 +17,13 @@ import {MaterialModule} from "../../../material/module";
     selector: 'picker-sample',
     templateUrl: './picker-sample.html',
     styleUrls: ['./picker-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		PickerModule,
-		MaterialUIModule,
-	],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        PickerModule,
+        MaterialUIModule,
+    ],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

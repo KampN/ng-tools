@@ -8,7 +8,7 @@ import {By} from '@angular/platform-browser';
 describe('Directives : FormErrorHint', () => {
 
     @Component({
-        template: `
+    template: `
 			<div [formGroup]="group">
 				<span #inside *controlError="let error of 'control'">{{error}}</span>
 			</div>
@@ -17,8 +17,9 @@ describe('Directives : FormErrorHint', () => {
 				<span class="error-name">{{error}}</span>
 				<span class="error-data">{{data}}</span>
 			</div>
-        `
-    })
+        `,
+    standalone: false
+})
     class TestHostComponent {
         @ViewChild('inside', { read: ElementRef }) inside: ElementRef;
         @ViewChild('outside', { read: ElementRef }) outside: ElementRef;

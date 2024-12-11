@@ -8,15 +8,16 @@ import {By} from '@angular/platform-browser';
 describe('Directives : FormSelect', () => {
 
     @Component({
-        template: `
+    template: `
 			<div [formGroup]="group">
 				<div formControlName="control" formSelectGroup>
 					<input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" formSelectControl="value">
 					<input type="checkbox" class="checkbox-2" formSelectControl="value2">
 				</div>
 			</div>
-        `
-    })
+        `,
+    standalone: false
+})
     class TestHostComponent {
         group: UntypedFormGroup;
         @ViewChild('checkbox') input: FormSelectControlCheckboxControlValueAccessorDirective;

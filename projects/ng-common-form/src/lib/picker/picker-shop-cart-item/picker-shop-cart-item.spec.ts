@@ -9,16 +9,15 @@ import {PickerModule} from "../picker-module";
 describe('Picker : PickerShopCartItem', () => {
 
     @Component({
-        template: `
+    template: `
 			<picker-shop-cart-item (remove)="remove($event)">
 				<div class="content">content</div>
 			</picker-shop-cart-item>
         `,
-		standalone: true,
-		imports: [
-			PickerModule
-		]
-    })
+    imports: [
+        PickerModule
+    ]
+})
     class TestHostComponent {
         @ViewChild(PickerShopCartItemComponent) underline: PickerShopCartItemComponent<any>;
 

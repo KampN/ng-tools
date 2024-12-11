@@ -14,15 +14,14 @@ describe('Material-UI : MaterialSearchInput', () => {
     const ClearButtonCSSSelector = 'button.__clear-input';
 
     @Component({
-        template: `
+    template: `
 			<material-search-input [disableClear]="disableClear" [formControl]="control" [(search)]="text"></material-search-input>
         `,
-		standalone: true,
-		imports: [
-			ReactiveFormsModule,
-			MaterialUIModule
-		]
-    })
+    imports: [
+        ReactiveFormsModule,
+        MaterialUIModule
+    ]
+})
     class TestHostComponent {
         @ViewChild(MaterialSearchInputComponent, {static: true}) search: MaterialSearchInputComponent;
         control: UntypedFormControl = new UntypedFormControl(null);

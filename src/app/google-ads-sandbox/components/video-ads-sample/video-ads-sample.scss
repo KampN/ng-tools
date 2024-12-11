@@ -13,6 +13,10 @@ video-ads-sample {
 		background: rgba(0, 0, 0, .08);
 		padding: 0 1rem 1rem;
 
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+
 		.sample-item {
 			margin-top: 1rem;
 		}

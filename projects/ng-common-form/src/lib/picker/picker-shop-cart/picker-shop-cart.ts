@@ -60,16 +60,16 @@ export class PickerShopCartEmptyOutletDirective {
 
 @Component({
     selector: 'picker-shop-cart, [picker-shop-cart]',
+	standalone: true,
     templateUrl: './picker-shop-cart.html',
     styleUrls: ['./picker-shop-cart.scss'],
-	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		CommonModule, FormsModule, ReactiveFormsModule,
-		PickerHeaderOutletDirective, PickerShopCartEmptyOutletDirective, PickerShopCartListOutletDirective,
-		FlexScrollContainerComponent
-	]
+    imports: [
+        CommonModule, FormsModule, ReactiveFormsModule,
+        PickerHeaderOutletDirective, PickerShopCartEmptyOutletDirective, PickerShopCartListOutletDirective,
+        FlexScrollContainerComponent
+    ]
 })
 export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnDestroy {
 

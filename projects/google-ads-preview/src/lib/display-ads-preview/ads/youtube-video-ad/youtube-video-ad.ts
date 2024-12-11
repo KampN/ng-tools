@@ -16,13 +16,12 @@ export interface YoutubeVideoAdRenderModel {
     selector: 'youtube-video-ad',
     templateUrl: './youtube-video-ad.html',
     styleUrls: ['./youtube-video-ad.scss'],
-	standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-	imports: [
-		GadsImageComponent,
-		FallbackPipe, TranslatePipe
-	]
+    imports: [
+        GadsImageComponent,
+        FallbackPipe, TranslatePipe
+    ]
 })
 export class YoutubeVideoAdComponent {
 

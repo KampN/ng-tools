@@ -1,11 +1,4 @@
-import {
-	APP_INITIALIZER,
-	EnvironmentProviders,
-	ErrorHandler,
-	InjectionToken,
-	makeEnvironmentProviders,
-	Provider
-} from '@angular/core';
+import { EnvironmentProviders, ErrorHandler, InjectionToken, makeEnvironmentProviders, Provider, inject, provideAppInitializer } from '@angular/core';
 import {configurationFactory, LOGGER_CONFIGURATION} from './providers/configuration';
 import {LoggerConfiguration} from './interfaces/configuration';
 import {LogDisplay} from './providers/logDisplay';
@@ -30,10 +23,8 @@ export function loggerProviders(config?: LoggerConfiguration): EnvironmentProvid
 			provide: LogDisplay,
 			deps: [LogStream, LOGGER_CONFIGURATION]
 		},
-		{
-			provide: APP_INITIALIZER, multi: true, deps: [LogDisplay], useFactory: () => {
+		provideAppInitializer((() => {
 				return () => {};
-			}
-		}
+			})(inject(LogDisplay)))
 	]);
 }

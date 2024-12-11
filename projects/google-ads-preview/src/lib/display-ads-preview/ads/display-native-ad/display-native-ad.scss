@@ -10,11 +10,21 @@ display-native-ad {
 	background: #fff;
 
 	.native-ad-layout {
+		display: flex;
 		height: $ad-height;
 		width: $ad-width;
 	}
 
+	.ad-content {
+		flex: 1 0 auto;
+	}
+
 	.side-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		flex: 1 0 auto;
+
 		padding: 4px 0 4px 13px;
 		width: 251px;
 	}
@@ -54,6 +64,7 @@ display-native-ad {
 	}
 
 	.business-block {
+		display: flex;
 		margin-bottom: $ad-gap;
 	}
 

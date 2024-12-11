@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {FallbackPipe} from "../../../common/pipes/fallback";
-import {TranslatePipe} from "../../../common/pipes/translate";
+import {FallbackPipe} from '../../../common/pipes/fallback';
+import {TranslatePipe} from '../../../common/pipes/translate';
 
 export interface DisplayTextAdRenderModel {
     headline?: string;
@@ -15,13 +14,11 @@ export interface DisplayTextAdRenderModel {
     selector: 'display-text-ad',
     templateUrl: './display-text-ad.html',
     styleUrls: ['./display-text-ad.scss'],
-	standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-	imports: [
-		FlexLayoutModule,
-		FallbackPipe, TranslatePipe
-	]
+    imports: [
+        FallbackPipe, TranslatePipe
+    ]
 })
 export class DisplayTextAdComponent {
 

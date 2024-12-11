@@ -4,7 +4,8 @@ import {Check} from '@kamp-n/ng-common-tools';
 
 @Directive({
     selector: '[matchFn]',
-    providers: [{provide: NG_VALIDATORS, useExisting: MatchFnValidatorDirective, multi: true}]
+    providers: [{ provide: NG_VALIDATORS, useExisting: MatchFnValidatorDirective, multi: true }],
+    standalone: false
 })
 export class MatchFnValidatorDirective implements Validator, OnChanges {
     @Input() matchFn: Function;

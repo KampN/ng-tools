@@ -4,15 +4,15 @@ import {MatIconModule} from "@angular/material/icon";
 
 @Component({
     selector: 'picker-shop-cart-item, [picker-shop-cart-item]',
+	standalone: true,
     templateUrl: './picker-shop-cart-item.html',
     styleUrls: ['./picker-shop-cart-item.scss'],
-	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		MatButtonModule,
-		MatIconModule
-	],
+    imports: [
+        MatButtonModule,
+        MatIconModule
+    ]
 })
 export class PickerShopCartItemComponent<T> implements OnDestroy {
     @Output() remove: EventEmitter<void> = new EventEmitter();

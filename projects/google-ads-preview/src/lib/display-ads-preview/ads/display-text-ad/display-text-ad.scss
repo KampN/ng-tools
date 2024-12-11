@@ -13,11 +13,17 @@ display-text-ad {
 	font-family: "Roboto", Roboto, Arial, sans-serif;
 
 	.text-ad-layout {
+		display: flex;
+		flex-direction: column;
 		height: $ad-height;
 		width: $ad-width;
 	}
 
 	.ad-main {
+		flex: 1 0 auto;
+		display: flex;
+		flex-direction: column;
+
 		overflow: hidden;
 		padding: 25px 18px 25px 18px;
 	}
@@ -44,6 +50,10 @@ display-text-ad {
 	}
 
 	.ad-footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
 		height: 66px;
 		background: #eee;
 	}

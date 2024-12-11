@@ -1,22 +1,19 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {CommonToolsModule, RxCleaner} from '@kamp-n/ng-common-tools';
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {CommonModule} from "@angular/common";
-import {MaterialModule} from "../../../material/module";
+import {CommonModule} from '@angular/common';
+import {MaterialModule} from '../../../material/module';
 
 @Component({
     selector: 'popover-sample',
     templateUrl: './popover-sample.html',
     styleUrls: ['./popover-sample.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		CommonToolsModule,
-		MaterialModule,
-		FlexLayoutModule
-	],
+    imports: [
+        CommonModule,
+        CommonToolsModule,
+        MaterialModule,
+    ],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverSampleComponent implements OnDestroy {
 

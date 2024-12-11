@@ -15,6 +15,10 @@ display-ads-sample {
 		.sample-item {
 			margin-top: 1rem;
 		}
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
 	}
 
 	display-image-ad, display-image-ad-tower {

@@ -12,7 +12,7 @@ import {PickerHeaderComponent} from "../picker-header/picker-header";
 describe('Picker : PickerSection', () => {
 
 	@Component({
-		template: `
+    template: `
 			<picker [formControl]="control">
 				<picker-section *pickerSectionDef>
 					<picker-header *pickerHeaderDef></picker-header>
@@ -20,12 +20,11 @@ describe('Picker : PickerSection', () => {
 				</picker-section>
 			</picker>
 		`,
-		standalone: true,
-		imports: [
-			ReactiveFormsModule,
-			PickerModule
-		]
-	})
+    imports: [
+        ReactiveFormsModule,
+        PickerModule
+    ]
+})
 	class TestHostComponent {
 		@ViewChild(PickerComponent) picker:PickerComponent<DummyObject>;
 		control:UntypedFormControl = new UntypedFormControl();

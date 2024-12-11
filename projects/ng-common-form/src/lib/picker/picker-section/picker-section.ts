@@ -1,21 +1,21 @@
 import {AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, OnDestroy, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-header/picker-header';
-import {CommonToolsModule} from "@kamp-n/ng-common-tools";
+import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 
 @Component({
     selector: 'picker-section, [picker-section]',
+    standalone: true,
     templateUrl: './picker-section.html',
     styleUrls: ['./picker-section.scss'],
-	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		CommonToolsModule, PickerHeaderOutletDirective, PickerHeaderDefDirective
-	]
+    imports: [
+        CommonToolsModule, PickerHeaderOutletDirective
+    ]
 })
 export class PickerSectionComponent<T> implements AfterContentInit, OnDestroy {
 
-    @ViewChild(PickerHeaderOutletDirective, { static: true }) headerOutlet: PickerHeaderOutletDirective;
+    @ViewChild(PickerHeaderOutletDirective, {static: true}) headerOutlet: PickerHeaderOutletDirective;
     @ContentChild(PickerHeaderDefDirective) headerDef: PickerHeaderDefDirective;
 
     ngAfterContentInit(): void {

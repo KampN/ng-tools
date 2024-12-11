@@ -68,16 +68,16 @@ export class PickerShopCartContext<T> {
 
 @Component({
     selector: 'picker',
+	standalone: true,
     templateUrl: './picker.html',
     styleUrls: [`./picker.scss`],
-	standalone: true,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		PickerBodyOutletDirective, PickerShopCartOutletDirective
-	],
+    imports: [
+        PickerBodyOutletDirective, PickerShopCartOutletDirective
+    ],
     providers: [
-        {provide: Picker, useExisting: forwardRef(() => PickerComponent)},
+        { provide: Picker, useExisting: forwardRef(() => PickerComponent) },
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => PickerComponent),
