@@ -32,7 +32,6 @@ export * from './lib/storage/datastore';
 
 export * from './lib/mock-factories/mock-factory';
 export * from './lib/mock-factories/dummy';
-export * from './lib/mock-factories/jwt';
 export * from './lib/mock-factories/hydra';
 
 export * from './lib/network/helpers/hydra';
