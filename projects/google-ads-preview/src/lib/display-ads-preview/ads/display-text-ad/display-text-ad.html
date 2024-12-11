@@ -1,5 +1,5 @@
-<div class="text-ad-layout" fxLayout="column">
-	<div class="ad-main" fxFlex="1 0 auto" fxLayout="column">
+<div class="text-ad-layout" >
+	<div class="ad-main" >
 		<div class="title-block">
 			<a [innerHTML]="headline|fallback:'headline'"></a>
 		</div>
@@ -10,7 +10,7 @@
 			<a [innerHTML]="description|fallback:'description'"></a>
 		</div>
 	</div>
-	<div class="ad-footer" fxLayout fxLayoutAlign="center center">
+	<div class="ad-footer">
 		<a class="open-button">
 			{{callToAction|fallback:('button.open'|translate)}}
 		</a>

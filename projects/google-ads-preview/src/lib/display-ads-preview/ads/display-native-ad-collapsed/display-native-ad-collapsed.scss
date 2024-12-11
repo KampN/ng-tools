@@ -10,12 +10,31 @@ display-native-ad-collapsed {
 	background: #fff;
 
 	.native-ad-layout {
+		display: flex;
 		padding: 10px;
 		height: $ad-height;
 		width: $ad-width;
 	}
 
+	.ad-content {
+		flex: 1 0 auto;
+	}
+
+	.ad-data-content {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+
+	}
+
 	.side-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		flex: 1 0 auto;
+
 		padding: 4px 0 4px 13px;
 		width: 260px;
 	}
@@ -54,6 +73,7 @@ display-native-ad-collapsed {
 	}
 
 	.business-block {
+		display: flex;
 		margin-bottom: $ad-gap;
 	}
 

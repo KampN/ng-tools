@@ -1,14 +1,14 @@
-<div class="native-ad-layout" fxLayout="row">
+<div class="native-ad-layout" >
 	<div class="image-container">
 		<gads-image class="ad-image" height="78" width="78" [image]="imageUrl"></gads-image>
 	</div>
-	<div fxLayout="column" fxLayoutAlign="start" class="side-container" fxFlex="1 0 auto">
-		<div class="ad-content" fxFlex="1 1 auto">
+	<div class="side-container" >
+		<div class="ad-content" >
 			<div class="long-headline-container">
 				<a class="long-headline" [innerHTML]="longHeadline|fallback:'long_headline'"></a>
 			</div>
-			<div fxLayout="row wrap" fxLayoutAlign="space-between center">
-				<div fxLayout="row" class="business-block">
+			<div class="ad-data-content">
+				<div  class="business-block">
 					<div class="ad-flag">{{'flag.ad'|translate}}</div>
 					<div class="business-name">
 						<a [innerHTML]="businessName|fallback:'business_name'"></a>

@@ -1,15 +1,13 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
-import {GadsImageComponent} from "../../../common/components/gads-image/gads-image";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {CommonModule} from "@angular/common";
-import {FallbackPipe} from "../../../common/pipes/fallback";
-import {TranslatePipe} from "../../../common/pipes/translate";
+import {GadsImageComponent} from '../../../common/components/gads-image/gads-image';
+import {FallbackPipe} from '../../../common/pipes/fallback';
+import {TranslatePipe} from '../../../common/pipes/translate';
 
 export interface DisplayNativeAdRenderModel {
-	imageUrl?: string;
-	longHeadline?: string;
-	businessName?: string;
+    imageUrl?: string;
+    longHeadline?: string;
+    businessName?: string;
     callToAction?: string;
 }
 
@@ -21,22 +19,21 @@ export interface DisplayNativeAdRenderModel {
     encapsulation: ViewEncapsulation.None,
     imports: [
         GadsImageComponent,
-        FlexLayoutModule,
         FallbackPipe, TranslatePipe
     ]
 })
 export class DisplayNativeAdComponent {
-	get businessName(): string {return this._data?.businessName;}
+    get businessName(): string {return this._data?.businessName;}
 
-	get longHeadline(): string {return this._data?.longHeadline;}
+    get longHeadline(): string {return this._data?.longHeadline;}
 
-	get imageUrl(): string {return this._data?.imageUrl;}
+    get imageUrl(): string {return this._data?.imageUrl;}
 
     get callToAction(): string {return this._data?.callToAction;}
 
-	protected _data: DisplayNativeAdRenderModel = null;
+    protected _data: DisplayNativeAdRenderModel = null;
 
-	get data(): DisplayNativeAdRenderModel {return this._data;}
+    get data(): DisplayNativeAdRenderModel {return this._data;}
 
-	@Input() set data(val: DisplayNativeAdRenderModel) {this._data = coerceObject(val);}
+    @Input() set data(val: DisplayNativeAdRenderModel) {this._data = coerceObject(val);}
 }

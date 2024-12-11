@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {CommonToolsModule, RxCleaner} from '@kamp-n/ng-common-tools';
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {CommonModule} from "@angular/common";
-import {MaterialModule} from "../../../material/module";
+import {CommonModule} from '@angular/common';
+import {MaterialModule} from '../../../material/module';
 
 @Component({
     selector: 'popover-sample',
@@ -12,7 +11,6 @@ import {MaterialModule} from "../../../material/module";
         CommonModule,
         CommonToolsModule,
         MaterialModule,
-        FlexLayoutModule
     ],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush

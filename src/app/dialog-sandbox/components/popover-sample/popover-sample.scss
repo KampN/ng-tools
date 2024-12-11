@@ -16,7 +16,16 @@ popover-sample {
 		}
 
 		.menu-header {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+
 			padding: .5rem 1rem;
+		}
+
+		.header-fill {
+			flex: 1 1 auto;
 		}
 
 		.notification-list {

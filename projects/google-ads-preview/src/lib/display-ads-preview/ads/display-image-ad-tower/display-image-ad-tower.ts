@@ -1,10 +1,9 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {DisplayImageAdComponent} from '../display-image-ad/display-image-ad';
-import {GadsImageComponent} from "../../../common/components/gads-image/gads-image";
-import {GadsFabButtonComponent} from "../../../common/components/gads-fab-button/gads-fab-button";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {CommonModule} from "@angular/common";
-import {FallbackPipe} from "../../../common/pipes/fallback";
+import {GadsImageComponent} from '../../../common/components/gads-image/gads-image';
+import {GadsFabButtonComponent} from '../../../common/components/gads-fab-button/gads-fab-button';
+import {CommonModule} from '@angular/common';
+import {FallbackPipe} from '../../../common/pipes/fallback';
 
 @Component({
     selector: 'display-image-ad-tower',
@@ -13,7 +12,7 @@ import {FallbackPipe} from "../../../common/pipes/fallback";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        CommonModule, FlexLayoutModule,
+        CommonModule,
         GadsImageComponent, GadsFabButtonComponent,
         FallbackPipe
     ]
