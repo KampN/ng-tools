@@ -8,9 +8,6 @@
 		"@angular/cdk": "19.x",
 		"@angular/material": "19.x"
 	},
-	"optionalDependencies": {
-		"crypto-js": "^4.2.0"
-	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
 	"dependencies": {
 		"tslib": "^2.2.0"
