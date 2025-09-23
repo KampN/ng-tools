@@ -40,7 +40,7 @@
     "@angular/cli": "^20.3.2",
     "@angular/compiler-cli": "^20.3.1",
     "@angular/language-service": "^20.3.1",
-    "@schematics/angular": "^19.0.4",
+    "@schematics/angular": "^20.3.2",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^20.17.10",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
