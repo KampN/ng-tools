@@ -1,5 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {FULLSTORY, FullStory, FullstoryProvider} from './fullstory';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 declare const window: any;
 
