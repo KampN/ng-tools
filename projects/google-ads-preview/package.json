@@ -1,15 +1,15 @@
 {
 	"name": "@kamp-n/gads-preview",
-	"version": "19.0.0",
+	"version": "20.0.0",
 	"publishConfig": {
 		"access": "public"
 	},
 	"peerDependencies": {
 		"rxjs": "^7.x",
-		"@angular/common": "19.x",
-		"@angular/core": "19.x",
-		"@angular/cdk": "19.x",
-		"@angular/material": "19.x",
+		"@angular/common": "20.x",
+		"@angular/core": "20.x",
+		"@angular/cdk": "20.x",
+		"@angular/material": "20.x",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"dependencies": {
