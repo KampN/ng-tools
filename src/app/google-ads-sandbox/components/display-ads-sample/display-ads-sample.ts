@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {
     DisplayAdsPreviewModule, DisplayImageAdRenderModel, DisplayNativeAdRenderModel, DisplayTextAdRenderModel
 } from '@kamp-n/gads-preview';
-import {CommonModule} from '@angular/common';
+
 import {MaterialModule} from '../../../material/module';
 
 @Component({
@@ -10,10 +10,9 @@ import {MaterialModule} from '../../../material/module';
     templateUrl: './display-ads-sample.html',
     styleUrls: ['./display-ads-sample.scss'],
     imports: [
-        CommonModule,
-        MaterialModule,
-        DisplayAdsPreviewModule
-    ],
+    MaterialModule,
+    DisplayAdsPreviewModule
+],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })

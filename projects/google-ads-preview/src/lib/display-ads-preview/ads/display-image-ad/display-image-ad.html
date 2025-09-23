@@ -1,19 +1,23 @@
 <div class="image-ad-layout landscape-layout">
-	<gads-image class="ad-image" height="160" width="300" [image]="imageUrl"></gads-image>
-	<div class="title-block">
-		<a [innerHTML]="headline|fallback:'headline'"></a>
-	</div>
-	<div class="bottom-container">
-		<gads-image class="ad-logo" height="45" width="45" [image]="logoUrl" *ngIf="logoUrl"></gads-image>
-		<div class="description-block" >
-			<div>
-				<a [innerHTML]="description|fallback:'description'"></a>
-			</div>
-			<div class="business-name" *ngIf="!logoUrl">
-				<a [innerHTML]="businessName|fallback:'business_name'"></a>
-			</div>
-		</div>
-		<gads-fab-button></gads-fab-button>
-	</div>
-	<div class="ad-footer"></div>
+  <gads-image class="ad-image" height="160" width="300" [image]="imageUrl"></gads-image>
+  <div class="title-block">
+    <a [innerHTML]="headline|fallback:'headline'"></a>
+  </div>
+  <div class="bottom-container">
+    @if (logoUrl) {
+      <gads-image class="ad-logo" height="45" width="45" [image]="logoUrl"></gads-image>
+    }
+    <div class="description-block" >
+      <div>
+        <a [innerHTML]="description|fallback:'description'"></a>
+      </div>
+      @if (!logoUrl) {
+        <div class="business-name">
+          <a [innerHTML]="businessName|fallback:'business_name'"></a>
+        </div>
+      }
+    </div>
+    <gads-fab-button></gads-fab-button>
+  </div>
+  <div class="ad-footer"></div>
 </div>

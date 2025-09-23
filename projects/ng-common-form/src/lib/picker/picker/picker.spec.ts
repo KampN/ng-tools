@@ -13,7 +13,7 @@ import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
 import {PickerModule} from '../picker-module';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
-import {CommonModule} from '@angular/common';
+
 import {TestHost} from "@angular-devkit/core/src/virtual-fs/host/test";
 
 describe('Picker', () => {

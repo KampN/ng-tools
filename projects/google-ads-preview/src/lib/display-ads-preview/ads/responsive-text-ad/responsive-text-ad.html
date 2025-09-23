@@ -1,25 +1,29 @@
 <div class="text-ad-layout">
-	<div class="url-section">
-		<div>
-			<span aria-hidden="true" class="badge">Ad</span>
-			<span class="punctuation">·</span>
-		</div>
-		<div class="visurl">
-			https://<span [innerHTML]="url|fallback:'url'"></span>
-		</div>
-		<div>
-			<span class="info"></span>
-		</div>
-	</div>
-	<div class="top-section">
-		<span class="headline-group">
-			<ng-container *ngFor="let headline of headlines; let isLast=last">
-				<span [innerHTML]="headline|fallback:'headline'"></span>
-				<ng-container *ngIf="!isLast">&nbsp;|&nbsp;</ng-container>
-			</ng-container>
-		</span>
-	</div>
-	<div class="description-group">
-		<span class="description" *ngFor="let description of descriptions" [innerHTML]="description|fallback:'description'"></span>
-	</div>
+  <div class="url-section">
+    <div>
+      <span aria-hidden="true" class="badge">Ad</span>
+      <span class="punctuation">·</span>
+    </div>
+    <div class="visurl">
+      https://<span [innerHTML]="url|fallback:'url'"></span>
+    </div>
+    <div>
+      <span class="info"></span>
+    </div>
+  </div>
+  <div class="top-section">
+    <span class="headline-group">
+      @for (headline of headlines; track headline; let isLast = $last) {
+        <span [innerHTML]="headline|fallback:'headline'"></span>
+        @if (!isLast) {
+          &nbsp;|&nbsp;
+        }
+      }
+    </span>
+  </div>
+  <div class="description-group">
+    @for (description of descriptions; track description) {
+      <span class="description" [innerHTML]="description|fallback:'description'"></span>
+    }
+  </div>
 </div>

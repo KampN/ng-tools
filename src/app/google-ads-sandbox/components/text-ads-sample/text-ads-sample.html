@@ -1,26 +1,30 @@
 <mat-toolbar>
-	Text Ad
+  Text Ad
 </mat-toolbar>
 
 <div class="sample-title">
-	Responsive Ad
+  Responsive Ad
 </div>
 <section class="sample-block">
-	<div *ngFor="let model of responsiveAdModels">
-		<responsive-text-ad class="sample-item" [data]="model"></responsive-text-ad>
-	</div>
+  @for (model of responsiveAdModels; track model) {
+    <div>
+      <responsive-text-ad class="sample-item" [data]="model"></responsive-text-ad>
+    </div>
+  }
 </section>
 
 <mat-divider></mat-divider>
 
 
 <div class="sample-title">
-	Responsive Ad - Mobile
+  Responsive Ad - Mobile
 </div>
 <section class="sample-block mobile-container">
-	<div *ngFor="let model of responsiveAdModels">
-		<responsive-text-ad class="sample-item" [data]="model"></responsive-text-ad>
-	</div>
+  @for (model of responsiveAdModels; track model) {
+    <div>
+      <responsive-text-ad class="sample-item" [data]="model"></responsive-text-ad>
+    </div>
+  }
 </section>
 
 <mat-divider></mat-divider>
