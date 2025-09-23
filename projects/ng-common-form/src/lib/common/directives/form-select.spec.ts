@@ -1,14 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './form-select';
 import {By} from '@angular/platform-browser';
+import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Directives : FormSelect', () => {
 
     @Component({
-    template: `
+        template: `
 			<div [formGroup]="group">
 				<div formControlName="control" formSelectGroup>
 					<input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" formSelectControl="value">
@@ -16,8 +17,8 @@ describe('Directives : FormSelect', () => {
 				</div>
 			</div>
         `,
-    standalone: false
-})
+        standalone: false
+    })
     class TestHostComponent {
         group: UntypedFormGroup;
         @ViewChild('checkbox') input: FormSelectControlCheckboxControlValueAccessorDirective;
@@ -37,12 +38,12 @@ describe('Directives : FormSelect', () => {
 
         TestBed.configureTestingModule({
             imports: [
-				FormsModule,
-				ReactiveFormsModule,
-				FormSelectControlCheckboxControlValueAccessorDirective,
-				FormSelectGroupDirective,
-				FormSelectControlDirective
-			],
+                FormsModule,
+                ReactiveFormsModule,
+                FormSelectControlCheckboxControlValueAccessorDirective,
+                FormSelectGroupDirective,
+                FormSelectControlDirective
+            ],
             declarations: [
                 TestHostComponent,
             ],

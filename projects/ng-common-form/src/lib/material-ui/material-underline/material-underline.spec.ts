@@ -3,7 +3,7 @@ import {MaterialUnderlineComponent} from './material-underline';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {MaterialUIModule} from '../material-module';
-import {expect} from 'vitest';
+import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Material-UI : MaterialUnderline', () => {
 

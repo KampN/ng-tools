@@ -1,24 +1,22 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {PickerShopCartItemComponent} from './picker-shop-cart-item';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import {PickerModule} from "../picker-module";
-import {vi} from 'vitest';
+import {PickerModule} from '../picker-module';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Picker : PickerShopCartItem', () => {
 
     @Component({
-    template: `
+        template: `
 			<picker-shop-cart-item (remove)="remove($event)">
 				<div class="content">content</div>
 			</picker-shop-cart-item>
         `,
-    imports: [
-        PickerModule
-    ]
-})
+        imports: [
+            PickerModule
+        ]
+    })
     class TestHostComponent {
         @ViewChild(PickerShopCartItemComponent) underline: PickerShopCartItemComponent<any>;
 
@@ -32,8 +30,8 @@ describe('Picker : PickerShopCartItem', () => {
 
         TestBed.configureTestingModule({
             imports: [
-				TestHostComponent
-			],
+                TestHostComponent
+            ],
             declarations: [],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
