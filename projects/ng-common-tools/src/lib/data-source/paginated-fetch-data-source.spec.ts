@@ -2,6 +2,7 @@ import {SourceStoreStub} from './source-store.stub';
 import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {PaginatedFetchedDataSource} from './paginated-fetch-data-source';
+import {afterAll, afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('DataSource : PaginatedFetchedDataSource', () => {
 
@@ -19,7 +20,7 @@ describe('DataSource : PaginatedFetchedDataSource', () => {
     it('should return only the second data page', () => {
         sourceStore.setStore(dummyFactory.sperm(15));
 
-        const spy = jasmine.createSpy('subscription');
+        const spy = vi.fn();
         const dataSource = new PaginatedFetchedDataSource(sourceStore, {pagination: {limit: 5, page: 1}});
 
         dataSource.connect(null).pipe(
@@ -33,7 +34,7 @@ describe('DataSource : PaginatedFetchedDataSource', () => {
 
         sourceStore.setDatabase(dummyFactory.sperm(10));
 
-        const spy = jasmine.createSpy('subscription');
+        const spy = vi.fn();
         const dataSource = new PaginatedFetchedDataSource(sourceStore, {pagination: {limit: 5}});
 
         dataSource.connect(null).pipe(

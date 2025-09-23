@@ -1,9 +1,9 @@
 import {Repository, UpdateCacheStrategy} from './repository';
 import {Observable, of} from 'rxjs';
 import {inject, TestBed} from '@angular/core/testing';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {DataStore} from '../interfaces/datastore';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {RepositoryCacheStore, StoreStrategy} from './repository-cache-store';
 import {first, last} from 'rxjs/operators';
 import {DataStoreStub} from '../storage/datastore.stub';
@@ -11,6 +11,7 @@ import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {RepositoryLoadQuery} from '../interfaces/repository';
 import {RxCleaner} from '../rxjs/rx-cleaner';
 import {DateTime} from 'luxon';
+import {afterAll, afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Data : Repository', () => {
 
@@ -35,9 +36,9 @@ describe('Data : Repository', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-    imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+            imports: [],
+            providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        });
     });
 
     beforeEach(() => {
@@ -58,7 +59,7 @@ describe('Data : Repository', () => {
     describe('load', () => {
 
         it('should call the queryData method with the given params through the load endpoint', () => {
-            spyOn(repository, 'queryData').and.returnValue(of([]));
+            vi.spyOn(repository, 'queryData').mockImplementation(() => of([]));
             repository.load({filters: {foo: 'bar'}}).subscribe(() => {});
             expect(repository.queryData).toHaveBeenCalledWith({filters: {foo: 'bar'}});
         });
@@ -66,7 +67,7 @@ describe('Data : Repository', () => {
         it('should return an empty array if an error occurs during the http query', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.load({ids: [1]}).subscribe((items: any[]) => {
                     expect(items).toEqual([]);
@@ -83,7 +84,7 @@ describe('Data : Repository', () => {
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
                 let i = 0;
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint/${++i}`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint/${++i}`) as Observable<any[]>);
 
                 const response1: any[] = [dummyFactory.seed({id: 1})];
                 const response2: any[] = [dummyFactory.seed({id: 2})];
@@ -119,7 +120,7 @@ describe('Data : Repository', () => {
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
                 let i = 0;
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint/${++i}`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint/${++i}`) as Observable<any[]>);
 
                 const response1: any[] = [dummyFactory.seed({id: 1})];
                 const response2: any[] = [dummyFactory.seed({id: 2})];
@@ -155,7 +156,7 @@ describe('Data : Repository', () => {
         it('should store the loaded result into the datastore', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 const client = dummyFactory.seed({id: 1});
                 const response: any[] = [client];
@@ -179,7 +180,7 @@ describe('Data : Repository', () => {
         it('should observe changes of the loaded data', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 const client = dummyFactory.seed({id: 1});
                 const response: any[] = [client];
@@ -216,9 +217,9 @@ describe('Data : Repository', () => {
         it('should clear the stored data and load the query result into the datastore', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
-                const spy = jasmine.createSpy('subscribe');
+                const spy = vi.fn();
 
                 repository.cacheItems([dummyFactory.seed({id: 3})]);
 
@@ -235,7 +236,7 @@ describe('Data : Repository', () => {
                     [client.id]: client
                 });
                 expect(spy).toHaveBeenCalledWith([
-                    jasmine.objectContaining({id: 1})
+                    expect.objectContaining({id: 1})
                 ]);
             })
         );
@@ -243,9 +244,9 @@ describe('Data : Repository', () => {
         it('should observe changes of the loaded data', inject(
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
-                const spy = jasmine.createSpy('subscribe');
+                const spy = vi.fn();
 
                 const client = dummyFactory.seed({id: 1, name: 'name'});
                 const response: any[] = [client];
@@ -263,11 +264,11 @@ describe('Data : Repository', () => {
                 });
 
                 expect(spy).toHaveBeenCalledTimes(1);
-                expect(spy).toHaveBeenCalledWith([jasmine.objectContaining({id: 1, name: 'name'})]);
+                expect(spy).toHaveBeenCalledWith([expect.objectContaining({id: 1, name: 'name'})]);
 
                 repository.updateCachedItem(client.id, {name: 'updated name'});
 
-                expect(spy).toHaveBeenCalledWith([jasmine.objectContaining({id: 1, name: 'updated name'})]);
+                expect(spy).toHaveBeenCalledWith([expect.objectContaining({id: 1, name: 'updated name'})]);
             })
         );
 
@@ -295,7 +296,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2});
 
                 store.push(storeKey, {1: client1});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.get([1, 2]).subscribe((result: any[]) => {
                     const ids = result.map(({id}) => id).sort();
@@ -312,7 +313,7 @@ describe('Data : Repository', () => {
             [HttpTestingController, HttpClient],
             (httpMock: HttpTestingController, http: HttpClient) => {
 
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.get([1, 2]).subscribe((result: any[]) => {
                     expect(result).toEqual([]);
@@ -331,7 +332,7 @@ describe('Data : Repository', () => {
                 const client = dummyFactory.seed({id: 1, expiryDate: 1});
 
                 store.push(storeKey, {1: client});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.get([1]).subscribe((result: any[]) => {
                     expect(result[0].id).toEqual(client.id);
@@ -348,7 +349,7 @@ describe('Data : Repository', () => {
             const client = dummyFactory.seed({id: 1, expiryDate: 1});
 
             store.push(storeKey, {1: client});
-            spyOn(repository, 'queryData').and.stub();
+            vi.spyOn(repository, 'queryData').mockImplementation(() => null);
 
             repository.get([1], false).subscribe((result: any[]) => {
                 expect(result[0].id).toEqual(client.id);
@@ -482,7 +483,7 @@ describe('Data : Repository', () => {
             const result: Observable<any> = repository.observe();
 
             expect(result instanceof Observable).toBeTruthy();
-            result.subscribe((cache: any[]) => expect(cache).toEqual(jasmine.arrayWithExactContents([mock[1], mock[2]])));
+            result.subscribe((cache: any[]) => expect(cache).toEqual([mock[1], mock[2]]));
 
         });
 
@@ -512,7 +513,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2, expiryDate});
 
                 store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.refresh([1, 2]).subscribe((result: any[]) => {
                     const ids = result.map(({id}) => id).sort();
@@ -537,7 +538,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2, expiryDate});
 
                 store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.refresh([1, 2]).subscribe((result: any[]) => {
                     const ids = result.map(({id}) => id).sort();
@@ -563,7 +564,7 @@ describe('Data : Repository', () => {
                 const client2 = dummyFactory.seed({id: 2, expiryDate: 1});
 
                 store.push(storeKey, {[client1.id]: client1, [client2.id]: client2});
-                spyOn(repository, 'queryData').and.callFake(() => http.get(`/fake_endpoint`) as Observable<any[]>);
+                vi.spyOn(repository, 'queryData').mockImplementation(() => http.get(`/fake_endpoint`) as Observable<any[]>);
 
                 repository.refresh().subscribe((result: any[]) => {
                     const item = result[0];
@@ -649,7 +650,7 @@ describe('Data : Repository', () => {
 
         const cache = store.pull(storeKey);
         expect(cache[client.id]).toBeUndefined();
-        expect(removed[0]).toEqual(jasmine.objectContaining(client));
+        expect(removed[0]).toEqual(expect.objectContaining(client));
     });
 
     it('should update the cached item with the given data', () => {
@@ -712,7 +713,7 @@ describe('Data : Repository', () => {
             expect(cache[client.id].id).toEqual(client.id);
             expect(cache[client.id].expiryDate).toBeGreaterThan(1);
             expect(cache[client2.id].id).toEqual(client2.id);
-            expect(cache[client2.id].expiryDate).toEqual(0, 'expiryDate overridden on unperishable data');
+            expect(cache[client2.id].expiryDate).toEqual(0);
         });
 
         it('should cache the given items replacing the current store', () => {

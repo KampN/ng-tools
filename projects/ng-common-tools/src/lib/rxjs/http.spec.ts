@@ -5,6 +5,7 @@ import {HydraCollection, HydraItem} from '../network/interfaces/hydra';
 import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {getHttpData, mapHttpData, mapHydraResponse} from './http';
 import {HydraFactory} from '../mock-factories/hydra';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Utils : Pipe', () => {
 
@@ -31,7 +32,7 @@ describe('Utils : Pipe', () => {
         describe('mapHttpData', () => {
             it('should return the mapped data', () => {
 
-                const spy = jasmine.createSpy('subscribe').and.stub();
+                const spy = vi.fn().mockImplementation(() => null);
                 httpStream.pipe(
                     first(),
                     mapHttpData((dummy: DummyObject) => dummy.id)
@@ -39,20 +40,20 @@ describe('Utils : Pipe', () => {
 
                 httpStream.next(apiResponse);
                 const ids = apiResponse.data.map((dummy: DummyObject) => dummy.id);
-                expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({data: ids}));
+                expect(spy).toHaveBeenCalledWith(expect.objectContaining({data: ids}));
 
             });
 
             it('should return a empty array if the data property is null', () => {
 
-                const spy = jasmine.createSpy('subscribe').and.stub();
+                const spy = vi.fn().mockImplementation(() => null);
                 httpStream.pipe(
                     first(),
                     mapHttpData((dummy: DummyObject) => dummy.id)
                 ).subscribe(spy);
 
                 httpStream.next({data: null} as any);
-                expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({data: []}));
+                expect(spy).toHaveBeenCalledWith(expect.objectContaining({data: []}));
             });
 
         });
@@ -120,13 +121,13 @@ describe('Utils : Pipe', () => {
                 const sub = httpStream.pipe(
                     mapHydraResponse()
                 ).subscribe((result) => {
-                    expect(result).toEqual(jasmine.objectContaining({
+                    expect(result).toEqual(expect.objectContaining({
                         count: 4,
                         total: 10,
                         data: response['hydra:member']
                     }));
                     expect(result.metadata).toBeDefined();
-                    expect(result.metadata).toEqual(jasmine.objectContaining(response['hydra:view']));
+                    expect(result.metadata).toEqual(expect.objectContaining(response['hydra:view']));
                 });
 
                 httpStream.next(response);
@@ -139,13 +140,13 @@ describe('Utils : Pipe', () => {
                 const sub = httpStream.pipe(
                     mapHydraResponse()
                 ).subscribe((result) => {
-                    expect(result).toEqual(jasmine.objectContaining({
+                    expect(result).toEqual(expect.objectContaining({
                         total: 1,
                         count: 1,
                         data: [response]
                     }));
                     expect(result.metadata).toBeDefined();
-                    expect(result.metadata).toEqual(jasmine.objectContaining({
+                    expect(result.metadata).toEqual(expect.objectContaining({
                         '@context': '/fake/contexts/dummy',
                         '@id': '/fake/dummy/1',
                         '@type': 'dummy',

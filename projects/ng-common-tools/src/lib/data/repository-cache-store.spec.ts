@@ -5,6 +5,7 @@ import {DummyMockFactory, DummyObject} from '../mock-factories/dummy';
 import {DataStoreStub} from '../storage/datastore.stub';
 import {first} from 'rxjs/operators';
 import {DateTime} from 'luxon';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Data : RepositoryCacheStore', () => {
 
@@ -40,7 +41,7 @@ describe('Data : RepositoryCacheStore', () => {
     describe('observe()', () => {
 
         it('should return an observable of empty array when empty array given', () => {
-            const spy = jasmine.createSpy('subscription');
+            const spy = vi.fn();
 
             const obs = cache.observe([]);
             expect(obs instanceof Observable).toBeTruthy();
@@ -50,7 +51,7 @@ describe('Data : RepositoryCacheStore', () => {
         });
 
         it('should return an observable of item list', () => {
-            const spy = jasmine.createSpy('subscription');
+            const spy = vi.fn();
             const mock = {
                 1: dummyFactory.seed({id: 1}),
                 2: dummyFactory.seed({id: 2})
@@ -63,7 +64,7 @@ describe('Data : RepositoryCacheStore', () => {
         });
 
         it('should trigger change only if the observed data changed', () => {
-            const spy = jasmine.createSpy('subscription');
+            const spy = vi.fn();
             const mock = {
                 1: dummyFactory.seed({id: 1}),
                 2: dummyFactory.seed({id: 2})
