@@ -14,11 +14,11 @@ executors:
   node:
     <<: *wdir
     docker:
-    - image: cimg/node:20.9
+    - image: cimg/node:24.8
   node-browsers:
     <<: *wdir
     docker:
-    - image: cimg/node:20.9-browsers
+    - image: cimg/node:24.8-browsers
 
 jobs:
   install_dependencies:
