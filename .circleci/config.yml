@@ -54,7 +54,7 @@ jobs:
         at: ~/app
     - run:
         name: Run unit tests
-        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false --code-coverage --progress=false
+        command: npm run test -- "<< parameters.project >>" --coverage
     - store_test_results:
         path: ./junit
     - store_artifacts:
