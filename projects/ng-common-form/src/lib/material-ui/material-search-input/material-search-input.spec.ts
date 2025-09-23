@@ -35,7 +35,7 @@ describe('Material-UI : MaterialSearchInput', () => {
 
     const controlFactory: FormControlMockFactory = new FormControlMockFactory();
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule, ReactiveFormsModule,
@@ -47,7 +47,7 @@ describe('Material-UI : MaterialSearchInput', () => {
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
-    }));
+    });
 
     afterEach(() => testFixture.destroy());
 

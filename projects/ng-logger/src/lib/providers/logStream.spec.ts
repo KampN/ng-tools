@@ -1,12 +1,13 @@
-import { inject, TestBed, waitForAsync } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 import {LogStream} from './logStream';
 import {LogLevel, LogMessage} from '../interfaces/log';
 import {first} from 'rxjs/operators';
 import {configurationFactory, LOGGER_CONFIGURATION} from './configuration';
+import {expect} from 'vitest';
 
 describe('Providers : LogStream', () => {
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -18,7 +19,7 @@ describe('Providers : LogStream', () => {
                 }
             ],
         });
-    }));
+    });
 
     describe('getStack()', () => {
 
@@ -28,7 +29,7 @@ describe('Providers : LogStream', () => {
 
                 logStream['logStack'] = [log];
                 expect(logStream.stackSize).toEqual(1);
-                expect(logStream.getStack()).toEqual(jasmine.arrayContaining([log]));
+                expect(logStream.getStack()).toEqual(expect.arrayContaining([log]));
             })
         );
 
@@ -45,8 +46,8 @@ describe('Providers : LogStream', () => {
                 const stack = logStream.flushStack();
 
                 expect(logStream.stackSize).toEqual(0);
-                expect(logStream.getStack()).toEqual(jasmine.arrayWithExactContents([]));
-                expect(stack).toEqual(jasmine.arrayContaining([log]));
+                expect(logStream.getStack()).toEqual([]);
+                expect(stack).toEqual(expect.arrayContaining([log]));
             })
         );
 
@@ -64,7 +65,7 @@ describe('Providers : LogStream', () => {
 
                 expect(result).toBe(log);
                 expect(logStream.stackSize).toEqual(1);
-                expect(logStream.getStack()).toEqual(jasmine.arrayContaining([log]));
+                expect(logStream.getStack()).toEqual(expect.arrayContaining([log]));
             })
         );
 

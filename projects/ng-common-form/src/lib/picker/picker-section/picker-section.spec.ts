@@ -35,7 +35,7 @@ describe('Picker : PickerSection', () => {
 	let testFixture:ComponentFixture<TestHostComponent>;
 	let testComponent:TestHostComponent;
 
-	beforeEach(waitForAsync(() => {
+	beforeEach(() => {
 
 		TestBed.configureTestingModule({
 			imports: [
@@ -48,7 +48,7 @@ describe('Picker : PickerSection', () => {
 		testFixture = TestBed.createComponent(TestHostComponent);
 		testComponent = testFixture.debugElement.componentInstance;
 
-	}));
+	});
 
 	afterEach(() => testFixture.destroy());
 

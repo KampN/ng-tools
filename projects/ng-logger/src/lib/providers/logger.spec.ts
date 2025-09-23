@@ -1,14 +1,16 @@
-import { inject, TestBed, waitForAsync } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 import {LogStream} from './logStream';
 import {LoggerService} from './logger';
 import {LogLevel, LogMessage} from '../interfaces/log';
+import {expect, vi} from 'vitest';
 
 describe('Providers : LoggerService', () => {
 
     let logStreamMock: any;
 
-    beforeEach(waitForAsync(() => {
-        logStreamMock = {push: jasmine.createSpy('push')};
+    beforeEach(() => {
+
+        logStreamMock = {push: vi.fn()};
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -17,21 +19,21 @@ describe('Providers : LoggerService', () => {
                 }
             ],
         });
-    }));
+    });
 
     describe('debug()', () => {
         it('should prepare and push a Debug log into the logStream',
             inject([LoggerService], (logger: LoggerService) => {
 
                 logger.debug('log message');
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'log message',
                     level: LogLevel.Debug,
                     data: null
                 } as LogMessage));
 
                 logger.debug('another log message', {content: 123});
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'another log message',
                     level: LogLevel.Debug,
                     data: {content: 123}
@@ -47,7 +49,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.info('log message');
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'log message',
                     level: LogLevel.Info,
                     data: null
@@ -55,7 +57,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.info('another log message', {content: 123});
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'another log message',
                     level: LogLevel.Info,
                     data: {content: 123}
@@ -71,7 +73,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.error('log message');
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'log message',
                     level: LogLevel.Error,
                     data: null
@@ -79,7 +81,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.error('another log message', {content: 123});
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'another log message',
                     level: LogLevel.Error,
                     data: {content: 123}
@@ -95,7 +97,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.warn('log message');
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'log message',
                     level: LogLevel.Warning,
                     data: null
@@ -103,7 +105,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.warn('another log message', {content: 123});
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'another log message',
                     level: LogLevel.Warning,
                     data: {content: 123}
@@ -121,7 +123,7 @@ describe('Providers : LoggerService', () => {
                 const e = new Error('log message');
                 logger.exception(e);
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'log message',
                     level: LogLevel.Error,
                     data: {exception: e}
@@ -136,7 +138,7 @@ describe('Providers : LoggerService', () => {
                 const e = new Error('error message');
                 logger.exception(e, {message: 'log message'});
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'log message',
                     level: LogLevel.Error,
                     data: {exception: e}
@@ -150,7 +152,7 @@ describe('Providers : LoggerService', () => {
 
                 logger.exception('log message' as any);
 
-                expect(logStreamMock.push).toHaveBeenCalledWith(jasmine.objectContaining({
+                expect(logStreamMock.push).toHaveBeenCalledWith(expect.objectContaining({
                     message: 'Unknown Error',
                     level: LogLevel.Error,
                     data: {exception: 'log message'}

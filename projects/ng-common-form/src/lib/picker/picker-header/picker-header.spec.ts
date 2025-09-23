@@ -1,20 +1,18 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import {PickerHeaderComponent} from './picker-header';
 
 describe('Picker : PickerHeader', () => {
 
     @Component({
-    template: `
+        template: `
 			<picker-header>
 				<div class="content">content</div>
 			</picker-header>
         `,
-    standalone: false
-})
+        standalone: false
+    })
     class TestHostComponent {
         @ViewChild(PickerHeaderComponent) underline: PickerHeaderComponent;
     }
@@ -22,7 +20,7 @@ describe('Picker : PickerHeader', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
 
         TestBed.configureTestingModule({
             imports: [PickerHeaderComponent],
@@ -33,7 +31,7 @@ describe('Picker : PickerHeader', () => {
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
 
-    }));
+    });
 
     afterEach(() => testFixture.destroy());
 

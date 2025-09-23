@@ -45,7 +45,7 @@ describe('Picker', () => {
 	let testFixture:ComponentFixture<TestHostComponent>;
 	let testComponent:TestHostComponent;
 
-	beforeEach(waitForAsync(() => {
+	beforeEach(() => {
 
 		TestBed.configureTestingModule({
 			imports: [
@@ -56,7 +56,7 @@ describe('Picker', () => {
 		testFixture = TestBed.createComponent(TestHostComponent);
 		testComponent = testFixture.debugElement.componentInstance;
 
-	}));
+	});
 
 	afterEach(() => testFixture.destroy());
 
@@ -99,7 +99,7 @@ describe('Picker', () => {
 			model.select(...dummies);
 			await testFixture.whenStable();
 
-			expect(testComponent.control.value).toEqual(jasmine.arrayWithExactContents(dummies));
+			expect(testComponent.control.value).toEqual(dummies);
 		});
 
 		it('should disable the picker', () => {
@@ -134,7 +134,7 @@ describe('Picker', () => {
 			model.toggle(dummyFactory.seed({id: 1})); // use new ref
 			testFixture.detectChanges();
 
-			expect(testComponent.control.value).toEqual(jasmine.arrayWithExactContents([]));
+			expect(testComponent.control.value).toEqual([]);
 		});
 
 		it('should index the items using the default id extractor fn', () => {
@@ -154,12 +154,12 @@ describe('Picker', () => {
 			model.toggle(dummyClone);
 			testFixture.detectChanges();
 
-			expect(testComponent.control.value).toEqual(jasmine.arrayWithExactContents([dummy, dummyClone]));
+			expect(testComponent.control.value).toEqual([dummy, dummyClone]);
 
 			model.toggle(dummy);
 			testFixture.detectChanges();
 
-			expect(testComponent.control.value).toEqual(jasmine.arrayWithExactContents([dummyClone]));
+			expect(testComponent.control.value).toEqual([dummyClone]);
 		});
 
 	});

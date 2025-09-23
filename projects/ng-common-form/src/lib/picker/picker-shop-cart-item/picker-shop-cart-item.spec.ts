@@ -5,6 +5,7 @@ import {PickerShopCartItemComponent} from './picker-shop-cart-item';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {PickerModule} from "../picker-module";
+import {vi} from 'vitest';
 
 describe('Picker : PickerShopCartItem', () => {
 
@@ -27,7 +28,7 @@ describe('Picker : PickerShopCartItem', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
 
         TestBed.configureTestingModule({
             imports: [
@@ -38,7 +39,7 @@ describe('Picker : PickerShopCartItem', () => {
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
 
-    }));
+    });
 
     afterEach(() => testFixture.destroy());
 
@@ -54,7 +55,7 @@ describe('Picker : PickerShopCartItem', () => {
 
     it('should trigger remove event', () => {
 
-        spyOn(testComponent, 'remove').and.stub();
+        vi.spyOn(testComponent, 'remove').mockImplementation(() => null);
         testFixture.detectChanges();
 
         const buttonRef = testFixture.debugElement.query(By.directive(PickerShopCartItemComponent))

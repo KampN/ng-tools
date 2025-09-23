@@ -33,7 +33,7 @@ describe('Directives : FormSelect', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
 
         TestBed.configureTestingModule({
             imports: [
@@ -50,7 +50,7 @@ describe('Directives : FormSelect', () => {
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
 
-    }));
+    });
 
     afterEach(() => testFixture.destroy());
 
