@@ -1,17 +1,18 @@
 import {Component, DebugElement, Inject, ViewChild} from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FLEX_SCROLL_CONTAINER, FlexScrollContainerComponent} from './flex-scroll-container';
 import {By} from '@angular/platform-browser';
 import {CdkScrollable, ScrollingModule} from '@angular/cdk/scrolling';
+import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Components : FlexScrollContainer', () => {
     @Component({
-    selector: 'test-inner',
-    template: 'hello world',
-    imports: [
-        FlexScrollContainerComponent,
-    ]
-})
+        selector: 'test-inner',
+        template: 'hello world',
+        imports: [
+            FlexScrollContainerComponent,
+        ]
+    })
     class TestInnerComponent {
         constructor(@Inject(FLEX_SCROLL_CONTAINER) public scrollContainer: FlexScrollContainerComponent) {}
     }
@@ -19,25 +20,25 @@ describe('Components : FlexScrollContainer', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
 
         TestBed.configureTestingModule({
             imports: [
                 ScrollingModule,
-				FlexScrollContainerComponent,
-				TestInnerComponent,
-				TestHostComponent,
-			],
+                FlexScrollContainerComponent,
+                TestInnerComponent,
+                TestHostComponent,
+            ],
             declarations: [],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
 
-    }));
+    });
 
     afterEach(() => testFixture.destroy());
 
-    it('should create a scroll-container element with a position absolute taking 100% of its container', waitForAsync(() => {
+    it('should create a scroll-container element with a position absolute taking 100% of its container', () => {
         const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
         const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
 
@@ -45,14 +46,14 @@ describe('Components : FlexScrollContainer', () => {
         const scontainerRect = scrollContainer.nativeElement.getBoundingClientRect();
         expect(containerRect.width).toEqual(scontainerRect.width);
         expect(containerRect.height).toEqual(scontainerRect.height);
-    }));
+    });
 
-    it('should add a scroll-container decorated by the cdk-scrollable directive', waitForAsync(() => {
+    it('should add a scroll-container decorated by the cdk-scrollable directive', () => {
         const container: DebugElement = testFixture.debugElement.query(By.directive(FlexScrollContainerComponent));
         const scrollContainer: DebugElement = container.query(By.directive(CdkScrollable));
 
         expect(scrollContainer).toBeDefined();
-    }));
+    });
 
     it('should expose the cdk-scrollable instance', () => {
 
@@ -74,8 +75,8 @@ describe('Components : FlexScrollContainer', () => {
         expect(childInstance.scrollContainer).toEqual(container.componentInstance);
     });
 
-	@Component({
-    styles: [`
+    @Component({
+        styles: [`
 			:host {
 				display: flex;
 				height: 300px;
@@ -91,18 +92,18 @@ describe('Components : FlexScrollContainer', () => {
 				height: 500px;
 			}
         `],
-    template: `
+        template: `
 			<div flex-scroll-container>
 				<test-inner class="content"></test-inner>
 			</div>
         `,
-    imports: [
-        TestInnerComponent,
-        FlexScrollContainerComponent
-    ]
-})
-	class TestHostComponent {
-		@ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
-	}
+        imports: [
+            TestInnerComponent,
+            FlexScrollContainerComponent
+        ]
+    })
+    class TestHostComponent {
+        @ViewChild(FlexScrollContainerComponent) container: FlexScrollContainerComponent;
+    }
 
 });

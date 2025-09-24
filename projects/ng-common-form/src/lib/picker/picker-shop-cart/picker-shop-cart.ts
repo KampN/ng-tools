@@ -10,7 +10,7 @@ import {
 import {Picker} from '../picker/picker';
 import {SelectionChange, SelectionModel} from '../../common/collections/selection';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+
 
 export class PickerShopCartExceptions {
     static multipleDefaultItemDef() {
@@ -66,10 +66,13 @@ export class PickerShopCartEmptyOutletDirective {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        CommonModule, FormsModule, ReactiveFormsModule,
-        PickerHeaderOutletDirective, PickerShopCartEmptyOutletDirective, PickerShopCartListOutletDirective,
-        FlexScrollContainerComponent
-    ]
+    FormsModule,
+    ReactiveFormsModule,
+    PickerHeaderOutletDirective,
+    PickerShopCartEmptyOutletDirective,
+    PickerShopCartListOutletDirective,
+    FlexScrollContainerComponent
+]
 })
 export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnDestroy {
 

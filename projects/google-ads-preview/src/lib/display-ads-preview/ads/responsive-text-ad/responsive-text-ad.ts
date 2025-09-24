@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {coerceObject} from '@kamp-n/ng-common-tools';
-import {CommonModule} from "@angular/common";
+
 import {FallbackPipe} from "../../../common/pipes/fallback";
 
 export interface ResponsiveTextAdRenderModel {
@@ -18,9 +18,8 @@ export interface ResponsiveTextAdRenderModel {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        CommonModule,
-        FallbackPipe
-    ]
+    FallbackPipe
+]
 })
 export class ResponsiveTextAdComponent {
 

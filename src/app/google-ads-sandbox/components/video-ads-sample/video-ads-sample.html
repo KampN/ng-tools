@@ -1,12 +1,14 @@
 <mat-toolbar>
-	Video Ad
+  Video Ad
 </mat-toolbar>
 
 <div class="sample-title">
-	Youtube Ad
+  Youtube Ad
 </div>
 <div class="sample-block" >
-	<youtube-video-ad class="sample-item" [data]="model" *ngFor="let model of youtubeAdModels"></youtube-video-ad>
+  @for (model of youtubeAdModels; track model) {
+    <youtube-video-ad class="sample-item" [data]="model"></youtube-video-ad>
+  }
 </div>
 
 <mat-divider></mat-divider>

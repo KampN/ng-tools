@@ -1,5 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {CoalescePipe} from './coalesce';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Pipe: Coalesce', () => {
     let pipe: CoalescePipe;

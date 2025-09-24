@@ -1,5 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {ShortNumberPipe} from './short-number';
+import {beforeEach, describe, expect, it} from 'vitest';
 
 describe('Pipe: ShortNumber', () => {
     let pipe: ShortNumberPipe;

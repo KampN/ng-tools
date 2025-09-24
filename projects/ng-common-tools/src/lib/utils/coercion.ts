@@ -2,7 +2,7 @@ import {Observable, of} from 'rxjs';
 import {Check} from './check';
 
 export function coerceObject<T>(val: T): T extends Record<string, any> ? T : Record<string, undefined> {
-    return !Check.isDefined(val) || typeof val !== 'object' ? {} as any : val;
+    return !Check.isDefined(val) || typeof val !== 'object' ? {} as any : val as any;
 }
 
 export function coerceNullable<T>(value?: T, defaultValue: T = null): T | null {

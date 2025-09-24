@@ -1,20 +1,22 @@
 <mat-toolbar>
-	Popover
+  Popover
 </mat-toolbar>
 
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 
 <mat-menu #menu="matMenu" class="menu-popover">
-	<div *matMenuContent class="notification-menu-content">
-		<div class="menu-header"  stopPropagation="click">
-			<div class="header-fill">Notifications</div>
-			<button mat-icon-button>
-				<mat-icon>settings</mat-icon>
-			</button>
-		</div>
-		<mat-divider></mat-divider>
-		<div class="notification-list">
-			<button mat-menu-item *ngFor="let i of items">Item 1</button>
-		</div>
-	</div>
+  <div *matMenuContent class="notification-menu-content">
+    <div class="menu-header"  stopPropagation="click">
+      <div class="header-fill">Notifications</div>
+      <button mat-icon-button>
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="notification-list">
+      @for (i of items; track i) {
+        <button mat-menu-item>Item 1</button>
+      }
+    </div>
+  </div>
 </mat-menu>

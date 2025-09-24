@@ -1,131 +1,134 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {Component, DebugElement, ViewChild} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FormControlMockFactory} from '../../mock-factories/form-control';
-import {FormSelectControlCheckboxControlValueAccessorDirective, FormSelectControlDirective, FormSelectGroupDirective} from './form-select';
-import {By} from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControlMockFactory } from '../../mock-factories/form-control';
+import {
+  FormSelectControlCheckboxControlValueAccessorDirective,
+  FormSelectControlDirective,
+  FormSelectGroupDirective
+} from './form-select';
+import { By } from '@angular/platform-browser';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 describe('Directives : FormSelect', () => {
-
-    @Component({
+  @Component({
     template: `
-			<div [formGroup]="group">
-				<div formControlName="control" formSelectGroup>
-					<input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" formSelectControl="value">
-					<input type="checkbox" class="checkbox-2" formSelectControl="value2">
-				</div>
-			</div>
-        `,
+      <div [formGroup]="group">
+        <div formControlName="control" formSelectGroup>
+          <input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" formSelectControl="value">
+          <input type="checkbox" class="checkbox-2" formSelectControl="value2">
+        </div>
+      </div>
+    `,
     standalone: false
-})
-    class TestHostComponent {
-        group: UntypedFormGroup;
-        @ViewChild('checkbox') input: FormSelectControlCheckboxControlValueAccessorDirective;
-        @ViewChild(FormSelectGroupDirective) selectGroup: FormSelectGroupDirective<any>;
-        @ViewChild(FormSelectControlDirective) selectControl: FormSelectControlDirective<any>;
+  })
+  class TestHostComponent {
+    group: UntypedFormGroup;
+    @ViewChild('checkbox') input: FormSelectControlCheckboxControlValueAccessorDirective;
+    @ViewChild(FormSelectGroupDirective) selectGroup: FormSelectGroupDirective<any>;
+    @ViewChild(FormSelectControlDirective) selectControl: FormSelectControlDirective<any>;
 
-        get control(): UntypedFormControl {
-            return this.group && this.group.contains('control') ? this.group.get('control') as UntypedFormControl : null;
-        }
+    get control(): UntypedFormControl {
+      return this.group && this.group.contains('control')
+        ? (this.group.get('control') as UntypedFormControl)
+        : null;
     }
+  }
 
-    const controlMockFactory = new FormControlMockFactory();
-    let testFixture: ComponentFixture<TestHostComponent>;
-    let testComponent: TestHostComponent;
+  const controlMockFactory = new FormControlMockFactory();
+  let testFixture: ComponentFixture<TestHostComponent>;
+  let testComponent: TestHostComponent;
 
-    beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        FormSelectControlCheckboxControlValueAccessorDirective,
+        FormSelectGroupDirective,
+        FormSelectControlDirective
+      ],
+      declarations: [TestHostComponent]
+    }).compileComponents();
 
-        TestBed.configureTestingModule({
-            imports: [
-				FormsModule,
-				ReactiveFormsModule,
-				FormSelectControlCheckboxControlValueAccessorDirective,
-				FormSelectGroupDirective,
-				FormSelectControlDirective
-			],
-            declarations: [
-                TestHostComponent,
-            ],
-        }).compileComponents();
-        testFixture = TestBed.createComponent(TestHostComponent);
-        testComponent = testFixture.debugElement.componentInstance;
+    testFixture = TestBed.createComponent(TestHostComponent);
+    testComponent = testFixture.componentInstance;
+  });
 
-    }));
+  afterEach(() => testFixture.destroy());
 
-    afterEach(() => testFixture.destroy());
+  it('should set the checked status to the formSelectControl\'s hosts', async () => {
+    testComponent.group = new UntypedFormGroup({
+      control: controlMockFactory.generate({ value: ['value'] })
+    });
 
-    it('should set the checked status to the formSelectControl\'s hosts', waitForAsync(() => {
+    testFixture.detectChanges();
+    await testFixture.whenStable();
 
-        testComponent.group = new UntypedFormGroup({
-            control: controlMockFactory.generate({value: ['value']})
-        });
+    const checkbox1El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-1'));
+    const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
 
-        testFixture.detectChanges();
+    expect(checkbox1El.nativeElement.checked).toBe(true);
+    expect(checkbox2El.nativeElement.checked).toBe(false);
+  });
 
-        const checkbox1El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-1'));
-        const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
+  it('should update the form value on checkbox interactions', async () => {
+    testComponent.group = new UntypedFormGroup({
+      control: controlMockFactory.generate({ value: [] })
+    });
 
-        expect(checkbox1El.nativeElement.checked).toBeTruthy();
-        expect(checkbox2El.nativeElement.checked).toBeFalsy();
-    }));
+    testFixture.detectChanges();
+    await testFixture.whenStable();
 
-    it('should update the form value on checkbox interactions', waitForAsync(() => {
+    const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
+    checkbox2El.nativeElement.click();
+    // Si besoin sous JSDOM :
+    // checkbox2El.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
 
-        testComponent.group = new UntypedFormGroup({
-            control: controlMockFactory.generate({value: []})
-        });
+    testFixture.detectChanges();
+    await testFixture.whenStable();
 
-        testFixture.detectChanges();
+    expect(testComponent.control.value).toEqual(['value2']);
+  });
 
-        const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
-        checkbox2El.nativeElement.click();
+  it('should update the checkbox on form update', async () => {
+    testComponent.group = new UntypedFormGroup({
+      control: controlMockFactory.generate({ value: [] })
+    });
 
-        testFixture.detectChanges();
+    testFixture.detectChanges();
+    await testFixture.whenStable();
 
-        expect(testComponent.control.value).toEqual(['value2']);
+    const checkbox1El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-1'));
+    const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
 
-    }));
+    expect(checkbox1El.nativeElement.checked).toBe(false);
+    expect(checkbox2El.nativeElement.checked).toBe(false);
 
-    it('should update the checkbox on form update', waitForAsync(() => {
+    testComponent.control.setValue(['value', 'value2']);
 
-        testComponent.group = new UntypedFormGroup({
-            control: controlMockFactory.generate({value: []})
-        });
+    testFixture.detectChanges();
+    await testFixture.whenStable();
 
-        testFixture.detectChanges();
+    expect(checkbox1El.nativeElement.checked).toBe(true);
+    expect(checkbox2El.nativeElement.checked).toBe(true);
+  });
 
-        const checkbox1El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-1'));
-        const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
+  it('should disable the value accessors', async () => {
+    testComponent.group = new UntypedFormGroup({
+      control: controlMockFactory.generate({ value: { disabled: true, value: ['value'] } })
+    });
 
-        expect(checkbox1El.nativeElement.checked).toBeFalsy();
-        expect(checkbox2El.nativeElement.checked).toBeFalsy();
+    testFixture.detectChanges();
+    await testFixture.whenStable();
 
-        testComponent.control.setValue(['value', 'value2']);
+    const checkbox1El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-1'));
+    const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
 
-        testFixture.detectChanges();
+    expect(checkbox1El.nativeElement.checked).toBe(true);
+    expect(checkbox2El.nativeElement.checked).toBe(false);
 
-        expect(checkbox1El.nativeElement.checked).toBeTruthy();
-        expect(checkbox2El.nativeElement.checked).toBeTruthy();
-
-    }));
-
-    it('should disable the value accessors', waitForAsync(() => {
-
-        testComponent.group = new UntypedFormGroup({
-            control: controlMockFactory.generate({value: {disabled: true, value: ['value']}})
-        });
-
-        testFixture.detectChanges();
-
-        const checkbox1El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-1'));
-        const checkbox2El: DebugElement = testFixture.debugElement.query(By.css('.checkbox-2'));
-
-        expect(checkbox1El.nativeElement.checked).toBeTruthy();
-        expect(checkbox2El.nativeElement.checked).toBeFalsy();
-
-        expect(checkbox1El.nativeElement.disabled).toBeTruthy();
-        expect(checkbox2El.nativeElement.disabled).toBeTruthy();
-
-    }));
-
+    expect(checkbox1El.nativeElement.disabled).toBe(true);
+    expect(checkbox2El.nativeElement.disabled).toBe(true);
+  });
 });

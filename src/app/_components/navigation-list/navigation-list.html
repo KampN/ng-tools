@@ -1,10 +1,12 @@
 <mat-list>
-	<ng-container *ngFor="let category of routes">
-		<mat-nav-list>
-			<h3 matSubheader>{{category.title|ucfirst}}</h3>
-			<a mat-list-item [routerLink]="route.route" routerLinkActive="active" *ngFor="let route of category.children">
-				{{route.title|ucfirst}}
-			</a>
-		</mat-nav-list>
-	</ng-container>
+  @for (category of routes; track category) {
+    <mat-nav-list>
+      <h3 matSubheader>{{category.title|ucfirst}}</h3>
+      @for (route of category.children; track route) {
+        <a mat-list-item [routerLink]="route.route" routerLinkActive="active">
+          {{route.title|ucfirst}}
+        </a>
+      }
+    </mat-nav-list>
+  }
 </mat-list>

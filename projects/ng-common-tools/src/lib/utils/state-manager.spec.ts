@@ -1,5 +1,6 @@
 import {StateManager} from './state-manager';
 import {Subject} from 'rxjs';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('RxJS : RxCleaner', () => {
 
@@ -45,7 +46,7 @@ describe('RxJS : RxCleaner', () => {
 
         it('should trigger a change event', () => {
 
-            const spy = jasmine.createSpy('subscribe');
+            const spy = vi.fn();
 
             sm.set('barfoo', true);
 
@@ -57,10 +58,10 @@ describe('RxJS : RxCleaner', () => {
 
             sm.set('cold', false);
 
-            const args = spy.calls.allArgs();
-            expect(args[0]).toEqual(jasmine.arrayWithExactContents([{state: 'cold', value: true}]));
-            expect(args[1]).toEqual(jasmine.arrayWithExactContents([{state: 'foobar', value: true}]));
-            expect(args[2]).toEqual(jasmine.arrayWithExactContents([{state: 'cold', value: false}]));
+            const args = spy.mock.calls;
+            expect(args[0]).toEqual([{state: 'cold', value: true}]);
+            expect(args[1]).toEqual([{state: 'foobar', value: true}]);
+            expect(args[2]).toEqual([{state: 'cold', value: false}]);
 
         });
 
@@ -137,7 +138,7 @@ describe('RxJS : RxCleaner', () => {
         describe('takeWhen()', () => {
             it('should take values when the state is active', () => {
 
-                const spy = jasmine.createSpy('subscribe');
+                const spy = vi.fn();
 
                 sm.deactive('hot');
 
@@ -159,7 +160,7 @@ describe('RxJS : RxCleaner', () => {
         describe('skipWhen()', () => {
             it('should skip values when the state is active', () => {
 
-                const spy = jasmine.createSpy('subscribe');
+                const spy = vi.fn();
 
                 sm.active('hot');
 

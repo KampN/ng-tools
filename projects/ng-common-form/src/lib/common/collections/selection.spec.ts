@@ -1,5 +1,6 @@
 import {getMultipleValuesInSingleSelectionError, SelectionModel} from './selection';
 import {DummyMockFactory} from '@kamp-n/ng-common-tools';
+import {beforeEach, describe, expect, it, Mock, vi} from 'vitest';
 
 describe('Collections : SelectionModel', () => {
     const dummyFactory: DummyMockFactory = new DummyMockFactory();
@@ -42,7 +43,7 @@ describe('Collections : SelectionModel', () => {
         beforeEach(() => model = new SelectionModel(true));
 
         it('should be able to select multiple options', () => {
-            const changedSpy = jasmine.createSpy('changed spy');
+            const changedSpy = vi.fn();
 
             model.changed.subscribe(changedSpy);
             model.select(1);
@@ -56,7 +57,7 @@ describe('Collections : SelectionModel', () => {
         });
 
         it('should be able to select multiple options at the same time', () => {
-            const changedSpy = jasmine.createSpy('changed spy');
+            const changedSpy = vi.fn();
 
             model.changed.subscribe(changedSpy);
             model.select(1, 2);
@@ -97,12 +98,12 @@ describe('Collections : SelectionModel', () => {
     describe('changed event', () => {
         it('should return the model that dispatched the event', () => {
             const model = new SelectionModel();
-            const spy = jasmine.createSpy('SelectionModel change event');
+            const spy = vi.fn();
 
             model.changed.subscribe(spy);
             model.select(1);
 
-            const event = spy.calls.mostRecent().args[0];
+            const event = spy.mock.calls[spy.mock.calls.length - 1][0];
 
             expect(spy).toHaveBeenCalled();
             expect(event.source).toBe(model);
@@ -110,7 +111,7 @@ describe('Collections : SelectionModel', () => {
 
         it('should return both the added and removed values', () => {
             const model = new SelectionModel();
-            const spy = jasmine.createSpy('SelectionModel change event');
+            const spy = vi.fn();
 
             model.select(1);
 
@@ -118,7 +119,7 @@ describe('Collections : SelectionModel', () => {
 
             model.select(2);
 
-            const event = spy.calls.mostRecent().args[0];
+            const event = spy.mock.calls[spy.mock.calls.length - 1][0];
 
             expect(spy).toHaveBeenCalled();
             expect(event.removed).toEqual([1]);
@@ -127,7 +128,7 @@ describe('Collections : SelectionModel', () => {
 
         it('should have updated the selected value before emitting the change event', () => {
             const model = new SelectionModel(true);
-            const spy = jasmine.createSpy('SelectionModel change event');
+            const spy = vi.fn();
 
             // Note: this assertion is only here to run the getter.
             expect(model.selected).toEqual([]);
@@ -140,11 +141,11 @@ describe('Collections : SelectionModel', () => {
 
         describe('selection', () => {
             let model: SelectionModel<any>;
-            let spy: jasmine.Spy;
+            let spy: Mock;
 
             beforeEach(() => {
                 model = new SelectionModel(true);
-                spy = jasmine.createSpy('SelectionModel change event');
+                spy = vi.fn();
 
                 model.changed.subscribe(spy);
             });
@@ -152,7 +153,7 @@ describe('Collections : SelectionModel', () => {
             it('should emit an event when a value is selected', () => {
                 model.select(1);
 
-                const event = spy.calls.mostRecent().args[0];
+                const event = spy.mock.calls[spy.mock.calls.length - 1][0];
 
                 expect(spy).toHaveBeenCalled();
                 expect(event.added).toEqual([1]);
@@ -168,7 +169,7 @@ describe('Collections : SelectionModel', () => {
 
             it('should not emit an event when preselecting values', () => {
                 model = new SelectionModel(false, [1]);
-                spy = jasmine.createSpy('SelectionModel initial change event');
+                spy = vi.fn();
                 model.changed.subscribe(spy);
 
                 expect(spy).not.toHaveBeenCalled();
@@ -177,11 +178,11 @@ describe('Collections : SelectionModel', () => {
 
         describe('deselection', () => {
             let model: SelectionModel<any>;
-            let spy: jasmine.Spy;
+            let spy: Mock;
 
             beforeEach(() => {
                 model = new SelectionModel(true, [1, 2, 3]);
-                spy = jasmine.createSpy('SelectionModel change event');
+                spy = vi.fn();
 
                 model.changed.subscribe(spy);
             });
@@ -189,7 +190,7 @@ describe('Collections : SelectionModel', () => {
             it('should emit an event when a value is deselected', () => {
                 model.deselect(1);
 
-                let event = spy.calls.mostRecent().args[0];
+                const event = spy.mock.calls[spy.mock.calls.length - 1][0];
 
                 expect(spy).toHaveBeenCalled();
                 expect(event.removed).toEqual([1]);
@@ -203,7 +204,7 @@ describe('Collections : SelectionModel', () => {
             it('should emit a single event when clearing all of the selected options', () => {
                 model.clear();
 
-                let event = spy.calls.mostRecent().args[0];
+                const event = spy.mock.calls[spy.mock.calls.length - 1][0];
 
                 expect(spy).toHaveBeenCalledTimes(1);
                 expect(event.removed).toEqual([1, 2, 3]);
@@ -243,14 +244,14 @@ describe('Collections : SelectionModel', () => {
             const dummies = dummyFactory.sperm(3);
             model.select(...dummies);
 
-            const spy = jasmine.createSpy('SelectionModel change event');
+            const spy = vi.fn();
             model.changed.subscribe(spy);
             model.setIsNegative(false);
 
             expect(model.isNegativeSelection()).toBe(false);
             expect(model.selected.length).toBe(0);
 
-            const event = spy.calls.mostRecent().args[0];
+            const event = spy.mock.calls[spy.mock.calls.length - 1][0];
             expect(spy).toHaveBeenCalledTimes(1);
             expect(event.negative).toBe(false);
             expect(event.removed).toEqual(dummies);

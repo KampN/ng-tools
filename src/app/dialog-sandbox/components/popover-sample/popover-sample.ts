@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {CommonToolsModule, RxCleaner} from '@kamp-n/ng-common-tools';
-import {CommonModule} from '@angular/common';
+
 import {MaterialModule} from '../../../material/module';
 
 @Component({
@@ -8,10 +8,9 @@ import {MaterialModule} from '../../../material/module';
     templateUrl: './popover-sample.html',
     styleUrls: ['./popover-sample.scss'],
     imports: [
-        CommonModule,
-        CommonToolsModule,
-        MaterialModule,
-    ],
+    CommonToolsModule,
+    MaterialModule
+],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

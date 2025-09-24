@@ -1,41 +1,47 @@
 <mat-toolbar>
-	Display Ad
+  Display Ad
 </mat-toolbar>
 
 <div class="sample-title">
-	Image Ad - Landscape display
+  Image Ad - Landscape display
 </div>
 <div class="sample-block">
-	<display-image-ad class="sample-item" [data]="model" *ngFor="let model of imageAdModels"></display-image-ad>
+  @for (model of imageAdModels; track model) {
+    <display-image-ad class="sample-item" [data]="model"></display-image-ad>
+  }
 </div>
 
 <mat-divider></mat-divider>
 
 <div class="sample-title">
-	Image Ad - Tower display
+  Image Ad - Tower display
 </div>
 <div class="sample-block">
-	<display-image-ad-tower class="sample-item" [data]="model" *ngFor="let model of imageAdModels"></display-image-ad-tower>
+  @for (model of imageAdModels; track model) {
+    <display-image-ad-tower class="sample-item" [data]="model"></display-image-ad-tower>
+  }
 </div>
 
 <mat-divider></mat-divider>
 
 <div class="sample-title">
-	Text Ad
+  Text Ad
 </div>
 <div class="sample-block">
-	<display-text-ad class="sample-item" [data]="model" *ngFor="let model of textAdModels"></display-text-ad>
+  @for (model of textAdModels; track model) {
+    <display-text-ad class="sample-item" [data]="model"></display-text-ad>
+  }
 </div>
 
 <mat-divider></mat-divider>
 
 <div class="sample-title">
-	Native Ad
+  Native Ad
 </div>
 <div class="sample-block">
 
-	<display-native-ad class="sample-item" [data]="nativeAdModels.large"></display-native-ad>
-	<display-native-ad-collapsed class="sample-item" [data]="nativeAdModels.collapsed"></display-native-ad-collapsed>
+  <display-native-ad class="sample-item" [data]="nativeAdModels.large"></display-native-ad>
+  <display-native-ad-collapsed class="sample-item" [data]="nativeAdModels.collapsed"></display-native-ad-collapsed>
 
 </div>
 

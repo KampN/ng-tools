@@ -1,5 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {PadEndPipe} from './pad-end';
+import {beforeEach, describe, expect, it} from 'vitest';
 
 describe('Pipe: PadEnd', () => {
     let pipe: PadEndPipe;

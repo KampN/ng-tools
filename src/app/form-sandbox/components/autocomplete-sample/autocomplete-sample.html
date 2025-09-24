@@ -1,23 +1,27 @@
 <mat-toolbar>
-	Autocomplete
+  Autocomplete
 </mat-toolbar>
 
 <form [formGroup]="form">
-	<mat-form-field>
-		<input type="text" placeholder="user" matInput formControlName="user" [matAutocomplete]="auto">
-		<mat-progress-spinner matSuffix diameter="16" mode="indeterminate" *ngIf="isQueryingUsers"></mat-progress-spinner>
-		<mat-error *controlError="let error of 'user'">
-			{{error}}
-		</mat-error>
-		<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-			<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-				{{option.name}}
-			</mat-option>
-		</mat-autocomplete>
-	</mat-form-field>
-	<div>
-		<div>valid : {{form.valid}}</div>
-		<pre>{{form.value|json}}</pre>
-	</div>
+  <mat-form-field>
+    <input type="text" placeholder="user" matInput formControlName="user" [matAutocomplete]="auto">
+    @if (isQueryingUsers) {
+      <mat-progress-spinner matSuffix diameter="16" mode="indeterminate"></mat-progress-spinner>
+    }
+    <mat-error *controlError="let error of 'user'">
+      {{error}}
+    </mat-error>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">
+          {{option.name}}
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  <div>
+    <div>valid : {{form.valid}}</div>
+    <pre>{{form.value|json}}</pre>
+  </div>
 </form>
 

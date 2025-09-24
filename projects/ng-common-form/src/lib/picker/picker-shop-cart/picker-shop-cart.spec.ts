@@ -1,180 +1,177 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {
-	PickerShopCartComponent,
-	PickerShopCartEmptyDefDirective,
-	PickerShopCartItemDefDirective
-} from './picker-shop-cart';
-import {FormsModule, ReactiveFormsModule, UntypedFormControl} from '@angular/forms';
-import {PickerComponent, PickerSectionDefDirective, PickerShopCartDefDirective} from '../picker/picker';
+import {PickerShopCartComponent} from './picker-shop-cart';
+import {ReactiveFormsModule, UntypedFormControl} from '@angular/forms';
+import {PickerComponent} from '../picker/picker';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
 import {DummyMockFactory, DummyObject} from '@kamp-n/ng-common-tools';
-import {PickerHeaderComponent, PickerHeaderDefDirective} from '../picker-header/picker-header';
-import {PickerModule} from "../picker-module";
+import {PickerHeaderComponent} from '../picker-header/picker-header';
+import {PickerModule} from '../picker-module';
+import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Picker : PickerShopCart', () => {
 
-	@Component({
-    template: `
+    @Component({
+        template: `
 			<picker [formControl]="control">
 				<div *pickerSectionDef>picker</div>
 				<picker-shop-cart *pickerShopCartDef="let selection; let length=length; let empty=empty; let model=model">
 					<picker-header *pickerHeaderDef></picker-header>
 					<div class="shop-cart-item --default" *pickerShopCartItemDef="let item;">
-						{{item.id}}
+						{{ item.id }}
 					</div>
 					<div class="shop-cart-item --even" *pickerShopCartItemDef="let item; when: indexEven">
-						{{item.id}}
+						{{ item.id }}
 					</div>
 					<div class="empty-block" *pickerShopCartEmptyDef>empty</div>
 				</picker-shop-cart>
 			</picker>
-		`,
-    imports: [
-        ReactiveFormsModule,
-        PickerModule
-    ]
-})
-	class TestHostComponent {
-		@ViewChild(PickerComponent) picker: PickerComponent<DummyObject>;
-		control: UntypedFormControl = new UntypedFormControl();
+        `,
+        imports: [
+            ReactiveFormsModule,
+            PickerModule
+        ]
+    })
+    class TestHostComponent {
+        @ViewChild(PickerComponent) picker: PickerComponent<DummyObject>;
+        control: UntypedFormControl = new UntypedFormControl();
 
-		indexEven(index: number, item: DummyObject) {
-			return index % 2;
-		}
-	}
+        indexEven(index: number, item: DummyObject) {
+            return index % 2;
+        }
+    }
 
-	const dummyFactory: DummyMockFactory = new DummyMockFactory();
-	const controlFactory: FormControlMockFactory = new FormControlMockFactory();
-	let testFixture: ComponentFixture<TestHostComponent>;
-	let testComponent: TestHostComponent;
+    const dummyFactory: DummyMockFactory = new DummyMockFactory();
+    const controlFactory: FormControlMockFactory = new FormControlMockFactory();
+    let testFixture: ComponentFixture<TestHostComponent>;
+    let testComponent: TestHostComponent;
 
-	beforeEach(waitForAsync(() => {
+    beforeEach(() => {
 
-		TestBed.configureTestingModule({
-			imports: [TestHostComponent],
-			declarations: [],
-		}).compileComponents();
-		testFixture = TestBed.createComponent(TestHostComponent);
-		testComponent = testFixture.debugElement.componentInstance;
+        TestBed.configureTestingModule({
+            imports: [TestHostComponent],
+            declarations: [],
+        }).compileComponents();
+        testFixture = TestBed.createComponent(TestHostComponent);
+        testComponent = testFixture.debugElement.componentInstance;
 
-	}));
+    });
 
-	afterEach(() => testFixture.destroy());
+    afterEach(() => testFixture.destroy());
 
-	describe('Transclusion', () => {
+    describe('Transclusion', () => {
 
-		it('should transclude an header', () => {
-			testFixture.detectChanges();
+        it('should transclude an header', () => {
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
-			const pickerHeaderRef = shopCartRef.query(By.directive(PickerHeaderComponent));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const pickerHeaderRef = shopCartRef.query(By.directive(PickerHeaderComponent));
 
-			expect(pickerHeaderRef).not.toBeNull();
-		});
+            expect(pickerHeaderRef).not.toBeNull();
+        });
 
-		it('should transclude an item list', () => {
+        it('should transclude an item list', () => {
 
-			testComponent.control = controlFactory.seed({}, {
-				value: dummyFactory.sperm(3)
-			});
+            testComponent.control = controlFactory.seed({}, {
+                value: dummyFactory.sperm(3)
+            });
 
-			testFixture.detectChanges();
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
-			const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
 
-			expect(itemRefs.length).toEqual(3);
-		});
+            expect(itemRefs.length).toEqual(3);
+        });
 
-		it('should transclude a placeholder used when there is no selected items', () => {
-			testFixture.detectChanges();
+        it('should transclude a placeholder used when there is no selected items', () => {
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
-			const emptyBlockRef = shopCartRef.query(By.css('.empty-block'));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const emptyBlockRef = shopCartRef.query(By.css('.empty-block'));
 
-			expect(emptyBlockRef).not.toBeNull();
-		});
+            expect(emptyBlockRef).not.toBeNull();
+        });
 
-	});
+    });
 
-	describe('ShopCartEmptyDef', () => {
+    describe('ShopCartEmptyDef', () => {
 
-		it('should toggle the empty block when the model contains some items', () => {
-			testFixture.detectChanges();
+        it('should toggle the empty block when the model contains some items', () => {
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
 
-			expect(shopCartRef.query(By.css('.empty-block'))).not.toBeNull();
+            expect(shopCartRef.query(By.css('.empty-block'))).not.toBeNull();
 
-			testComponent.control.setValue(dummyFactory.sperm(2));
-			testFixture.detectChanges();
+            testComponent.control.setValue(dummyFactory.sperm(2));
+            testFixture.detectChanges();
 
-			expect(shopCartRef.query(By.css('.empty-block'))).toBeNull();
-		});
-	});
+            expect(shopCartRef.query(By.css('.empty-block'))).toBeNull();
+        });
+    });
 
-	describe('ShopCartItem', () => {
+    describe('ShopCartItem', () => {
 
-		it('should show an empty list', () => {
-			testFixture.detectChanges();
+        it('should show an empty list', () => {
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
-			const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
 
-			expect(itemRefs.length).toEqual(0);
-		});
+            expect(itemRefs.length).toEqual(0);
+        });
 
-		it('should update the selected list', () => {
-			testFixture.detectChanges();
+        it('should update the selected list', () => {
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
 
-			testComponent.control.setValue(dummyFactory.sperm(2));
-			testFixture.detectChanges();
+            testComponent.control.setValue(dummyFactory.sperm(2));
+            testFixture.detectChanges();
 
-			expect(shopCartRef.queryAll(By.css('.shop-cart-item')).length).toEqual(2);
+            expect(shopCartRef.queryAll(By.css('.shop-cart-item')).length).toEqual(2);
 
-			testComponent.control.setValue([]);
-			testFixture.detectChanges();
+            testComponent.control.setValue([]);
+            testFixture.detectChanges();
 
-			expect(shopCartRef.queryAll(By.css('.shop-cart-item')).length).toEqual(0);
-		});
+            expect(shopCartRef.queryAll(By.css('.shop-cart-item')).length).toEqual(0);
+        });
 
-		it('should provide each item through context $implicit property', () => {
-			const dummies = dummyFactory.sperm(3);
-			testComponent.control = controlFactory.seed({}, {
-				value: dummies
-			});
+        it('should provide each item through context $implicit property', () => {
+            const dummies = dummyFactory.sperm(3);
+            testComponent.control = controlFactory.seed({}, {
+                value: dummies
+            });
 
-			testFixture.detectChanges();
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
-			const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
 
-			expect(itemRefs[0].context.$implicit).toBe(dummies[0]);
-			expect(itemRefs[1].context.$implicit).toBe(dummies[1]);
-			expect(itemRefs[2].context.$implicit).toBe(dummies[2]);
-		});
+            expect(itemRefs[0].context.$implicit).toBe(dummies[0]);
+            expect(itemRefs[1].context.$implicit).toBe(dummies[1]);
+            expect(itemRefs[2].context.$implicit).toBe(dummies[2]);
+        });
 
-		it('should use different item template based upon when fn', () => {
+        it('should use different item template based upon when fn', () => {
 
-			testComponent.control = controlFactory.seed({}, {
-				value: dummyFactory.sperm(3)
-			});
+            testComponent.control = controlFactory.seed({}, {
+                value: dummyFactory.sperm(3)
+            });
 
-			testFixture.detectChanges();
+            testFixture.detectChanges();
 
-			const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
-			const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
+            const shopCartRef = testFixture.debugElement.query(By.directive(PickerShopCartComponent));
+            const itemRefs = shopCartRef.queryAll(By.css('.shop-cart-item'));
 
-			expect(itemRefs[0].nativeElement).toHaveClass('--default');
-			expect(itemRefs[1].nativeElement).toHaveClass('--even');
-			expect(itemRefs[2].nativeElement).toHaveClass('--default');
-		});
+            expect(itemRefs[0].nativeElement).toHaveClass('--default');
+            expect(itemRefs[1].nativeElement).toHaveClass('--even');
+            expect(itemRefs[2].nativeElement).toHaveClass('--default');
+        });
 
-	});
+    });
 
 });
 

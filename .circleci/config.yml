@@ -1,7 +1,7 @@
 version: 2.1
 
 anchor_1: &wdir
-  working_directory: ~/app
+  working_directory: ~/project
 anchor_2: &workflow_branch_only_filter
   filters:
     tags:
@@ -14,11 +14,11 @@ executors:
   node:
     <<: *wdir
     docker:
-    - image: cimg/node:20.9
+    - image: cimg/node:24.8
   node-browsers:
     <<: *wdir
     docker:
-    - image: cimg/node:20.9-browsers
+    - image: cimg/node:24.8-browsers
 
 jobs:
   install_dependencies:
@@ -26,7 +26,7 @@ jobs:
     steps:
     - checkout
     - attach_workspace:
-        at: ~/app
+        at: ~/project
     - restore_cache:
         key: dependency-cache-{{ checksum "package.json" }}
     - run:
@@ -49,12 +49,12 @@ jobs:
         type: string
     steps:
     - checkout
-    - browser-tools/install-chrome
+#    - browser-tools/install-chrome
     - attach_workspace:
-        at: ~/app
+        at: ~/project
     - run:
         name: Run unit tests
-        command: npm run test -- "<< parameters.project >>" --browsers chrome_headless --watch=false --code-coverage --progress=false
+        command: npm run test -- "<< parameters.project >>" --coverage
     - store_test_results:
         path: ./junit
     - store_artifacts:
@@ -70,7 +70,7 @@ jobs:
     steps:
     - checkout
     - attach_workspace:
-        at: ~/app
+        at: ~/project
     - run:
         name: Build app
         command: npm run build -- "<< parameters.project >>"
@@ -88,10 +88,10 @@ jobs:
     steps:
     - checkout
     - attach_workspace:
-        at: ~/app
+        at: ~/project
     - run:
         name: Authenticate with registry
-        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/app/.npmrc
+        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
     - run:
         name: Publish package
         command: sh bin/npm_publish.sh << parameters.project >>

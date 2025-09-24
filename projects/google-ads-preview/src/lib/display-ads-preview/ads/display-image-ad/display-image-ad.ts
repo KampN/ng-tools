@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@ang
 import {coerceObject} from '@kamp-n/ng-common-tools';
 import {GadsImageComponent} from '../../../common/components/gads-image/gads-image';
 import {GadsFabButtonComponent} from '../../../common/components/gads-fab-button/gads-fab-button';
-import {CommonModule} from '@angular/common';
+
 import {FallbackPipe} from '../../../common/pipes/fallback';
 
 export interface DisplayImageAdRenderModel {
@@ -20,10 +20,10 @@ export interface DisplayImageAdRenderModel {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        CommonModule,
-        GadsImageComponent, GadsFabButtonComponent,
-        FallbackPipe
-    ]
+    GadsImageComponent,
+    GadsFabButtonComponent,
+    FallbackPipe
+]
 })
 export class DisplayImageAdComponent {
 

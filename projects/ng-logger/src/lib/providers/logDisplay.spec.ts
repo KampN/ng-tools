@@ -1,19 +1,20 @@
-import { inject, TestBed, waitForAsync } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 import {configurationFactory, DefaultConfiguration, LOGGER_CONFIGURATION} from './configuration';
 import {LogStream} from './logStream';
 import {LogDisplay} from './logDisplay';
 import {LogLevel, LogMessage} from '../interfaces/log';
 import {LoggerConfiguration} from '../interfaces/configuration';
+import {expect, vi} from 'vitest';
 
 describe('Providers : LogDisplay', () => {
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 {provide: LOGGER_CONFIGURATION, useValue: configurationFactory()}
             ],
         });
-    }));
+    });
 
     describe('Basic Logging', () => {
 
@@ -21,7 +22,7 @@ describe('Providers : LogDisplay', () => {
             inject([LogStream], (logStream: LogStream) => {
                 const conf: LoggerConfiguration = DefaultConfiguration;
                 const display: LogDisplay = new LogDisplay(logStream, conf);
-                spyOn(display, 'showLog');
+                vi.spyOn(display, 'showLog');
 
                 const log: LogMessage = {message: 'message', level: LogLevel.Debug, data: null};
 
@@ -35,7 +36,7 @@ describe('Providers : LogDisplay', () => {
             inject([LogStream], (logStream: LogStream) => {
                 const conf: LoggerConfiguration = DefaultConfiguration;
                 const display: LogDisplay = new LogDisplay(logStream, conf);
-                spyOn(display, 'showLog');
+                vi.spyOn(display, 'showLog');
 
                 const log: LogMessage = {message: 'message', level: LogLevel.Warning, data: 'foobar'};
 
@@ -56,7 +57,7 @@ describe('Providers : LogDisplay', () => {
                 });
 
                 const display: LogDisplay = new LogDisplay(logStream, conf);
-                spyOn(display, 'showLog');
+                vi.spyOn(display, 'showLog');
 
                 const log: LogMessage = {message: 'message', level: LogLevel.Debug, data: null};
 
@@ -72,7 +73,7 @@ describe('Providers : LogDisplay', () => {
                 });
 
                 const display: LogDisplay = new LogDisplay(logStream, conf);
-                spyOn(display, 'showLog');
+                vi.spyOn(display, 'showLog');
 
                 const debugLog: LogMessage = {message: 'debug', level: LogLevel.Debug, data: null};
                 logStream.push(debugLog);
@@ -80,7 +81,7 @@ describe('Providers : LogDisplay', () => {
                 logStream.push(log);
 
                 expect(display.showLog).toHaveBeenCalledWith('message', conf.logColors[LogLevel.Info], 'foobar');
-                expect(display.showLog).toHaveBeenCalledWith('Log Stack : ', conf.logColors[LogLevel.Info], jasmine.arrayContaining([debugLog]));
+                expect(display.showLog).toHaveBeenCalledWith('Log Stack : ', conf.logColors[LogLevel.Info], expect.arrayContaining([debugLog]));
 
                 expect(logStream.stackSize).toEqual(0);
             })

@@ -1,12 +1,12 @@
 {
 	"name": "@kamp-n/ng-common-tools",
-	"version": "19.0.1",
+	"version": "20.0.1",
 	"peerDependencies": {
 		"rxjs": "7.x",
-		"@angular/common": "19.x",
-		"@angular/core": "19.x",
-		"@angular/cdk": "19.x",
-		"@angular/material": "19.x"
+		"@angular/common": "20.x",
+		"@angular/core": "20.x",
+		"@angular/cdk": "20.x",
+		"@angular/material": "20.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
 	"dependencies": {

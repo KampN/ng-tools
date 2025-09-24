@@ -1,18 +1,22 @@
 {
-  "extends": "../tsconfig.app.json",
-  "compilerOptions": {
-    "outDir": "../out-tsc/spec",
-    "types": [
-      "jasmine",
-      "node"
-    ]
-  },
-  "files": [
-    "test.ts",
-    "polyfills.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
-  ]
+	"extends": "../tsconfig.app.json",
+	"compilerOptions": {
+		"outDir": "../out-tsc/spec",
+		"target": "es2022",
+		"types": [
+			"vitest/globals",
+			"node"
+		]
+	},
+	"files": [
+		"src/test-setup.ts",
+		"polyfills.ts"
+	],
+	"include": [
+		"**/*.spec.ts",
+		"**/*.d.ts"
+	],
+	"exclude": [
+		"**/*.stub.ts"
+	]
 }

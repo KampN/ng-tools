@@ -1,7 +1,8 @@
 import {
     coerceArray, coerceEnumerableProperty, coerceNullable, coerceObject, coerceObservable, coerceValue, createCoerceEnumerablePropertyFn
 } from './coercion';
-import {Observable, of} from 'rxjs';
+import {firstValueFrom, Observable, of} from 'rxjs';
+import {describe, expect, it} from 'vitest';
 
 describe('Utils : Coercion', () => {
 
@@ -34,25 +35,25 @@ describe('Utils : Coercion', () => {
 
     describe('coerceObservable()', () => {
 
-        it('should coerce in observable a string', (done) => {
+        it('should coerce in observable a string', async () => {
 
             const obs = coerceObservable('data');
-            expect(obs instanceof Observable).toBe(true);
-            obs.subscribe((val) => {
-                expect(val).toEqual('data');
-                done();
-            });
+
+            expect(obs).toBeInstanceOf(Observable);
+
+            const val = await firstValueFrom(obs);   // attend la 1re émission puis résout
+            expect(val).toEqual('data');
 
         });
 
-        it('should coerce an observable', (done) => {
+        it('should coerce an observable', async () => {
 
             const obs = coerceObservable(of('data'));
-            expect(obs instanceof Observable).toBe(true);
-            obs.subscribe((val) => {
-                expect(val).toEqual('data');
-                done();
-            });
+
+            expect(obs).toBeInstanceOf(Observable);
+
+            const val = await firstValueFrom(obs);   // attend la 1re émission puis résout
+            expect(val).toEqual('data');
         });
 
     });

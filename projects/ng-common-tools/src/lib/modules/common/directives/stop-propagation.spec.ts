@@ -1,18 +1,18 @@
 import {Component, DebugElement} from '@angular/core';
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {StopPropagationDirective} from './stop-propagation';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Directives : StopPropagation', () => {
-
     @Component({
-    template: `
+        template: `
 			<div class="container" (click)="containerClick()">
 				<div [stopPropagation]="eventName">no event propagation</div>
 			</div>
         `,
-    standalone: false
-})
+        standalone: false,
+    })
     class TestHostComponent {
         eventName: string = 'click';
 
@@ -22,40 +22,48 @@ describe('Directives : StopPropagation', () => {
     let testFixture: ComponentFixture<TestHostComponent>;
     let testComponent: TestHostComponent;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [StopPropagationDirective],
-            declarations: [
-                TestHostComponent,
-            ],
+            declarations: [TestHostComponent],
         }).compileComponents();
+
         testFixture = TestBed.createComponent(TestHostComponent);
-        testComponent = testFixture.debugElement.componentInstance;
-    }));
+        testComponent = testFixture.componentInstance;
+    });
 
-    afterEach(() => testFixture.destroy());
+    afterEach(() => {
+        testFixture?.destroy();
+    });
 
-    it('should stop the click propagation', waitForAsync(() => {
+    it('should stop the click propagation', async () => {
+        vi.spyOn(testComponent, 'containerClick').mockImplementation(() => null);
 
-        spyOn(testComponent, 'containerClick').and.stub();
         testFixture.detectChanges();
+        await testFixture.whenStable();
 
-        const ref: DebugElement = testFixture.debugElement.query(By.directive(StopPropagationDirective));
+        const ref: DebugElement = testFixture.debugElement.query(
+            By.directive(StopPropagationDirective),
+        );
 
         ref.nativeElement.click();
+
         expect(testComponent.containerClick).not.toHaveBeenCalled();
-    }));
+    });
 
-    it('shouldnt stop the click propagation', waitForAsync(() => {
+    it('shouldn\'t stop the click propagation', async () => {
+        vi.spyOn(testComponent, 'containerClick').mockImplementation(() => null);
 
-        spyOn(testComponent, 'containerClick').and.stub();
-        testComponent.eventName = null;
+        testComponent.eventName = null as unknown as string; // ou undefined
         testFixture.detectChanges();
+        await testFixture.whenStable();
 
-        const ref: DebugElement = testFixture.debugElement.query(By.directive(StopPropagationDirective));
+        const ref: DebugElement = testFixture.debugElement.query(
+            By.directive(StopPropagationDirective),
+        );
 
         ref.nativeElement.click();
-        expect(testComponent.containerClick).toHaveBeenCalledTimes(1);
-    }));
 
+        expect(testComponent.containerClick).toHaveBeenCalledTimes(1);
+    });
 });

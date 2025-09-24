@@ -19,7 +19,7 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {Subject} from 'rxjs';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {coerceBooleanProperty} from '@angular/cdk/coercion';
-import {CommonModule} from "@angular/common";
+
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MaterialUnderlineComponent} from "../material-underline/material-underline";
@@ -41,11 +41,10 @@ import {MaterialUnderlineComponent} from "../material-underline/material-underli
         '[class.disabled]': 'disabled'
     },
     imports: [
-        CommonModule,
-        MatIconModule,
-        MatButtonModule,
-        MaterialUnderlineComponent,
-    ]
+    MatIconModule,
+    MatButtonModule,
+    MaterialUnderlineComponent
+]
 })
 export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 

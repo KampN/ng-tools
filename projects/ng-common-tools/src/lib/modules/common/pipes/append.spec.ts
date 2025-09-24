@@ -1,5 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {AppendPipe} from './append';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 describe('Pipe: Append', () => {
     let pipe: AppendPipe;

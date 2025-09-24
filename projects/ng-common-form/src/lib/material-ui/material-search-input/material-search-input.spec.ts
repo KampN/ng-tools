@@ -1,27 +1,28 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {UntypedFormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule, UntypedFormControl} from '@angular/forms';
 import {Component, ViewChild} from '@angular/core';
 import {MaterialSearchInputComponent} from './material-search-input';
 import {MaterialUnderlineComponent} from '../material-underline/material-underline';
 import {By} from '@angular/platform-browser';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import {FormControlMockFactory} from '../../mock-factories/form-control';
-import {MaterialUIModule} from "../material-module";
+import {MaterialUIModule} from '../material-module';
+import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Material-UI : MaterialSearchInput', () => {
 
     const ClearButtonCSSSelector = 'button.__clear-input';
 
     @Component({
-    template: `
+        template: `
 			<material-search-input [disableClear]="disableClear" [formControl]="control" [(search)]="text"></material-search-input>
         `,
-    imports: [
-        ReactiveFormsModule,
-        MaterialUIModule
-    ]
-})
+        imports: [
+            ReactiveFormsModule,
+            MaterialUIModule
+        ]
+    })
     class TestHostComponent {
         @ViewChild(MaterialSearchInputComponent, {static: true}) search: MaterialSearchInputComponent;
         control: UntypedFormControl = new UntypedFormControl(null);
@@ -35,19 +36,18 @@ describe('Material-UI : MaterialSearchInput', () => {
 
     const controlFactory: FormControlMockFactory = new FormControlMockFactory();
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule, ReactiveFormsModule,
                 MatIconModule, MatButtonModule,
-				TestHostComponent, MaterialUIModule
+                TestHostComponent, MaterialUIModule
             ],
-            declarations: [
-            ],
+            declarations: [],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;
-    }));
+    });
 
     afterEach(() => testFixture.destroy());
 
