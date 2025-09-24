@@ -1,4 +1,4 @@
-import {ComponentFixture, getTestBed, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
 import {FormsModule, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ControlErrorDirective} from './control-error';
@@ -49,13 +49,13 @@ describe('Directives : FormErrorHint', () => {
 
     afterEach(() => testFixture.destroy());
 
-    it('should instantiate the template if the control has an error', waitForAsync(() => {
-
+    it('should instantiate the template if the control has an error', async () => {
         testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({validators: [Validators.required], value: 'value'})
         });
 
         testFixture.detectChanges();
+        await testFixture.whenStable();
 
         expect(testComponent.inside).toBeUndefined();
         expect(testComponent.outside).toBeUndefined();
@@ -65,17 +65,20 @@ describe('Directives : FormErrorHint', () => {
         testComponent.control.setValue(null);
 
         testFixture.detectChanges();
+        await testFixture.whenStable();
+
         expect(testComponent.inside).toBeDefined();
         expect(testComponent.outside).toBeDefined();
-    }));
+    });
 
-    it('should instantiate the template if the control has an error', waitForAsync(() => {
-
+    it('should instantiate the template if the control has an error', async () => {
         testComponent.group = new UntypedFormGroup({
             control: controlMockFactory.generate({validators: [Validators.required], value: null, dirty: true, touched: true})
         });
 
         testFixture.detectChanges();
+        await testFixture.whenStable();
+
         expect(testComponent.inside).toBeDefined();
         expect(testComponent.outside).toBeDefined();
 
@@ -88,6 +91,6 @@ describe('Directives : FormErrorHint', () => {
         expect(errorsEl.nativeElement).toHaveTextContent('{ "required": true }');
         expect(errorNameEl.nativeElement).toHaveTextContent('required');
         expect(errorDataEl.nativeElement).toHaveTextContent('true');
-    }));
+    });
 
 });

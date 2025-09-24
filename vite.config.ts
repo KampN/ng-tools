@@ -1,9 +1,18 @@
 /// <reference types="vitest" />
 import {defineConfig} from 'vite';
 import angular from '@analogjs/vite-plugin-angular';
+import {fileURLToPath} from 'node:url';
 
 export default defineConfig(({mode}) => ({
-    plugins: [angular()],
+    plugins: [
+        angular(),
+    ],
+    resolve: {
+        alias: {
+            '@kamp-n/ng-logger': fileURLToPath(new URL('./dist/ng-logger', import.meta.url)),
+            '@kamp-n/ng-common-tools': fileURLToPath(new URL('./dist/ng-common-tools', import.meta.url)),
+        },
+    },
     test: {
         globals: true,
         environment: 'jsdom',
@@ -15,7 +24,7 @@ export default defineConfig(({mode}) => ({
         'import.meta.vitest': mode !== 'production',
     },
     reporters: [
-        'dot',                              // ≈ --progress=false (sortie minimale)
+        'dot',
         ['junit', {outputFile: 'coverage/junit.xml'}], // si tu veux un XML CI
     ],
     coverage: {
