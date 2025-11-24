@@ -3,10 +3,10 @@
 	"version": "20.0.1",
 	"peerDependencies": {
 		"rxjs": "7.x",
-		"@angular/common": "20.x",
-		"@angular/core": "20.x",
-		"@angular/cdk": "20.x",
-		"@angular/material": "20.x"
+		"@angular/common": "21.x",
+		"@angular/core": "21.x",
+		"@angular/cdk": "21.x",
+		"@angular/material": "21.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
 	"dependencies": {
