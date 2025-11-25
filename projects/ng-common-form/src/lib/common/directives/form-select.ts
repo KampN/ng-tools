@@ -27,7 +27,7 @@ export abstract class FormSelectContainer<T> {
 
 @Directive({
     selector: 'input[type=checkbox][formSelectControl]',
-    host: {'(change)': 'onChange($event.target.checked)', '(blur)': 'onTouched()'},
+    host: {'(change)': 'handleChange($event)', '(blur)': 'onTouched()'},
     exportAs: 'controlValueAccessor',
     providers: [
         {
@@ -45,6 +45,10 @@ export class FormSelectControlCheckboxControlValueAccessorDirective implements C
     onChange = function(_) { };
 
     onTouched = function() { };
+
+    handleChange(event: Event) {
+        this.onChange((event.target as HTMLInputElement).checked);
+    }
 
     writeValue(value) {
         this.renderer.setProperty(this.ref.nativeElement, 'checked', value);
