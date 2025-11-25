@@ -150,13 +150,17 @@ describe('Material-UI : MaterialSearchInput', () => {
             expect(clearBtnRef).not.toBeNull();
         });
 
-        it('should show the clear button when input filled', () => {
-            testFixture.detectChanges();
-
-            testComponent.text = 'foobar';
+        it('should show the clear button when input filled', async () => {
             testFixture.detectChanges();
 
             const ref = testFixture.debugElement.query(By.directive(MaterialSearchInputComponent));
+            const inputRef = ref.query(By.css('input'));
+
+            inputRef.nativeElement.value = 'foobar';
+            inputRef.nativeElement.dispatchEvent(new Event('input'));
+            await testFixture.whenStable();
+            testFixture.detectChanges();
+
             const clearBtnRef = ref.query(By.css(ClearButtonCSSSelector));
             expect(clearBtnRef).not.toBeNull();
         });
@@ -175,13 +179,17 @@ describe('Material-UI : MaterialSearchInput', () => {
             expect(clearBtnRef).toBeNull();
         });
 
-        it('should clear the current search', () => {
-            testFixture.detectChanges();
-
-            testComponent.text = 'foobar';
+        it('should clear the current search', async () => {
             testFixture.detectChanges();
 
             const ref = testFixture.debugElement.query(By.directive(MaterialSearchInputComponent));
+            const inputRef = ref.query(By.css('input'));
+
+            inputRef.nativeElement.value = 'foobar';
+            inputRef.nativeElement.dispatchEvent(new Event('input'));
+            await testFixture.whenStable();
+            testFixture.detectChanges();
+
             const btn = ref.query(By.css(ClearButtonCSSSelector));
 
             btn.nativeElement.click();

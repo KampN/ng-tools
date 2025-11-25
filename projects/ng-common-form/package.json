@@ -1,10 +1,10 @@
 {
 	"name": "@kamp-n/ng-common-form",
-	"version": "20.0.0",
+	"version": "21.0.0",
 	"peerDependencies": {
-		"@angular/common": "20.x",
-		"@angular/core": "20.x",
-		"@angular/forms": "20.x",
+		"@angular/common": "21.x",
+		"@angular/core": "21.x",
+		"@angular/forms": "21.x",
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"optionalDependencies": {
