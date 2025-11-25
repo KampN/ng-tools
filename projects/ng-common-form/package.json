@@ -8,8 +8,8 @@
 		"@kamp-n/ng-common-tools": "latest"
 	},
 	"optionalDependencies": {
-		"@angular/material": "18.x",
-		"@angular/cdk": "18.x"
+		"@angular/material": "21.x",
+		"@angular/cdk": "21.x"
 	},
 	"author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
 	"dependencies": {
