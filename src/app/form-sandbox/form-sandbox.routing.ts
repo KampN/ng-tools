@@ -10,7 +10,7 @@ export const FORM_SANDBOX_ROUTES: Routes = [
 		loadComponent: () => import('./components/multi-select-sample/multi-select-sample').then(m => m.MultiSelectSampleComponent)
     },
     {
-        path: 'lib-picker',
+        path: 'picker',
 		loadComponent: () => import('./components/picker-sample/picker-sample').then(m => m.PickerSampleComponent)
     },
     {

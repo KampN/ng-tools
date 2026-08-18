@@ -16,7 +16,7 @@ text-ads-sample {
 		&.mobile-container > div {
 			max-width: 20rem;
 
-			lib-responsive-text-ad {
+			responsive-text-ad {
 				display: block;
 				--responsive-text-ad-width: auto;
 			}

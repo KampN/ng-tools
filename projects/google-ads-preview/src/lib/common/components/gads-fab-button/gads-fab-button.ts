@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
-	selector: 'lib-gads-fab-button',
+	selector: 'gads-fab-button',
 	template: '',
 	styleUrls: ['./gads-fab-button.scss'],
 	standalone: true,

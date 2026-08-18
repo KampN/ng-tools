@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Directive, ElementRef, TemplateRef, ViewContainerRef, ViewEncapsulation, inject } from '@angular/core';
 
 @Directive({
-    selector: '[libPickerHeaderOutlet]',
+    selector: '[pickerHeaderOutlet]',
     standalone: true,
 })
 export class PickerHeaderOutletDirective {
@@ -10,7 +10,7 @@ export class PickerHeaderOutletDirective {
 }
 
 @Directive({
-    selector: '[libPickerHeaderDef]',
+    selector: '[pickerHeaderDef]',
     standalone: true,
 })
 export class PickerHeaderDefDirective {
@@ -18,7 +18,7 @@ export class PickerHeaderDefDirective {
 }
 
 @Component({
-    selector: 'lib-picker-header',
+    selector: 'picker-header',
     standalone: true,
     templateUrl: './picker-header.html',
     styleUrls: ['./picker-header.scss'],

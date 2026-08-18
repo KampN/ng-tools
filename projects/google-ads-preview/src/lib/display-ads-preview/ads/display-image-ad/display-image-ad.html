@@ -1,11 +1,11 @@
 <div class="image-ad-layout landscape-layout">
-  <lib-gads-image class="ad-image" height="160" width="300" [image]="imageUrl"></lib-gads-image>
+  <gads-image class="ad-image" height="160" width="300" [image]="imageUrl"></gads-image>
   <div class="title-block">
     <a [innerHTML]="headline|fallback:'headline'"></a>
   </div>
   <div class="bottom-container">
     @if (logoUrl) {
-      <lib-gads-image class="ad-logo" height="45" width="45" [image]="logoUrl"></lib-gads-image>
+      <gads-image class="ad-logo" height="45" width="45" [image]="logoUrl"></gads-image>
     }
     <div class="description-block" >
       <div>
@@ -17,7 +17,7 @@
         </div>
       }
     </div>
-    <lib-gads-fab-button></lib-gads-fab-button>
+    <gads-fab-button></gads-fab-button>
   </div>
   <div class="ad-footer"></div>
 </div>

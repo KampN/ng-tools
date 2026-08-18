@@ -5,7 +5,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 export const FLEX_SCROLL_CONTAINER = new InjectionToken('FLEX_SCROLL_CONTAINER');
 
 @Component({
-    selector: 'lib-flex-scroll-container,[libFlexScrollContainer]',
+    selector: 'flex-scroll-container,[flex-scroll-container]',
     templateUrl: './flex-scroll-container.html',
     styleUrls: ['./flex-scroll-container.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

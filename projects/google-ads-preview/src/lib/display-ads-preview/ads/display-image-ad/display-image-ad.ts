@@ -14,7 +14,7 @@ export interface DisplayImageAdRenderModel {
 }
 
 @Component({
-    selector: 'lib-display-image-ad',
+    selector: 'display-image-ad',
     templateUrl: './display-image-ad.html',
     styleUrls: ['./display-image-ad.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

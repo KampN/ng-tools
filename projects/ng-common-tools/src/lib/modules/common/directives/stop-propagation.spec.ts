@@ -8,7 +8,7 @@ describe('Directives : StopPropagation', () => {
     @Component({
         template: `
 			<div class="container" (click)="containerClick()">
-				<div [libStopPropagation]="eventName">no event propagation</div>
+				<div [stopPropagation]="eventName">no event propagation</div>
 			</div>
         `,
         imports: [StopPropagationDirective],

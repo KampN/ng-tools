@@ -20,19 +20,19 @@ export class PickerShopCartExceptions {
 }
 
 @Directive({
-    selector: '[libPickerShopCartItemDef]',
+    selector: '[pickerShopCartItemDef]',
 	standalone: true,
 })
 export class PickerShopCartItemDefDirective<T> {
     template = inject<TemplateRef<any>>(TemplateRef);
 
 
-    @Input('libPickerShopCartItemDefWhen')
+    @Input('pickerShopCartItemDefWhen')
     when: (index: number, rowData: T) => boolean;
 }
 
 @Directive({
-	selector: '[libPickerShopCartListOutlet]',
+	selector: '[pickerShopCartListOutlet]',
 	standalone: true,
 })
 export class PickerShopCartListOutletDirective {
@@ -41,7 +41,7 @@ export class PickerShopCartListOutletDirective {
 }
 
 @Directive({
-    selector: '[libPickerShopCartEmptyDef]',
+    selector: '[pickerShopCartEmptyDef]',
 	standalone: true,
 })
 export class PickerShopCartEmptyDefDirective {
@@ -49,7 +49,7 @@ export class PickerShopCartEmptyDefDirective {
 }
 
 @Directive({
-	selector: '[libPickerShopCartEmptyOutlet]',
+	selector: '[pickerShopCartEmptyOutlet]',
 	standalone: true,
 })
 export class PickerShopCartEmptyOutletDirective {
@@ -58,7 +58,7 @@ export class PickerShopCartEmptyOutletDirective {
 }
 
 @Component({
-    selector: 'lib-picker-shop-cart, [libPickerShopCart]',
+    selector: 'picker-shop-cart, [picker-shop-cart]',
 	standalone: true,
     templateUrl: './picker-shop-cart.html',
     styleUrls: ['./picker-shop-cart.scss'],

@@ -14,14 +14,14 @@ describe('Picker', () => {
 
     @Component({
         template: `
-			<lib-picker [formControl]="control" [extractIdFn]="extractIdFn">
-				<div class="--section" *libPickerSectionDef="let model; let length=length; let empty=empty;">
+			<picker [formControl]="control" [extractIdFn]="extractIdFn">
+				<div class="--section" *pickerSectionDef="let model; let length=length; let empty=empty;">
 					section
 				</div>
-				<div class="--shop-cart" *libPickerShopCartDef="let selection; let length=length; let empty=empty; let model=model">
+				<div class="--shop-cart" *pickerShopCartDef="let selection; let length=length; let empty=empty; let model=model">
 					shop cart
 				</div>
-			</lib-picker>
+			</picker>
         `,
         imports: [
             PickerComponent, ReactiveFormsModule, PickerShopCartDefDirective, PickerSectionDefDirective
@@ -96,7 +96,7 @@ describe('Picker', () => {
             expect(testComponent.control.value).toEqual(dummies);
         });
 
-        it('should disable the lib-picker', () => {
+        it('should disable the picker', () => {
 
             testComponent.control = controlFactory.seed({}, {
                 value: {value: [], disabled: true}

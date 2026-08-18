@@ -1,4 +1,4 @@
-lib-material-search-input {
+material-search-input {
 	--color: black;
 	--underline-color--idle: rgba(0, 0, 0, .42);;
 	--underline-color--active: var(--color);
@@ -31,7 +31,7 @@ lib-material-search-input {
 		}
 	}
 
-	lib-material-underline {
+	material-underline {
 		--color--idle: var(--underline-color--idle);
 		--color--active: var(--underline-color--active);
 		position: absolute;

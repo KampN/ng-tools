@@ -12,9 +12,9 @@ describe('Directives : FormErrorHint', () => {
     @Component({
         template: `
 			<div [formGroup]="group">
-				<span #inside *libControlError="let error of 'control'">{{ error }}</span>
+				<span #inside *controlError="let error of 'control'">{{ error }}</span>
 			</div>
-			<div #outside *libControlError="let error of control; let errors=errors; let data=error">
+			<div #outside *controlError="let error of control; let errors=errors; let data=error">
 				<span class="errors">{{ errors|json }}</span>
 				<span class="error-name">{{ error }}</span>
 				<span class="error-data">{{ data }}</span>

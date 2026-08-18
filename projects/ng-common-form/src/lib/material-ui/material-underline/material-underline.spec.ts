@@ -9,7 +9,7 @@ describe('Material-UI : MaterialUnderline', () => {
 
     @Component({
         template: `
-			<lib-material-underline [active]="active"></lib-material-underline>
+			<material-underline [active]="active"></material-underline>
         `,
         imports: [
             MaterialUIModule

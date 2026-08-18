@@ -3,11 +3,12 @@ import {AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators} from
 import {Check} from '@kamp-n/ng-common-tools';
 
 @Directive({
-    selector: '[libMatchFn]',
+    selector: '[matchFn]',
     providers: [{ provide: NG_VALIDATORS, useExisting: MatchFnValidatorDirective, multi: true }],
 })
 export class MatchFnValidatorDirective implements Validator, OnChanges {
-    @Input('libMatchFn') matchFn: Function;
+    // The alias is redundant: the input is already named "matchFn".
+    @Input() matchFn: Function;
     private fn = Validators.nullValidator;
 
     ngOnChanges(changes: SimpleChanges): void {

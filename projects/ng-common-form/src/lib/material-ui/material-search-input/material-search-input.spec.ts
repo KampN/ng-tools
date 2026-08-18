@@ -16,7 +16,7 @@ describe('Material-UI : MaterialSearchInput', () => {
 
     @Component({
         template: `
-			<lib-material-search-input [disableClear]="disableClear" [formControl]="control" [(search)]="text"></lib-material-search-input>
+			<material-search-input [disableClear]="disableClear" [formControl]="control" [(search)]="text"></material-search-input>
         `,
         imports: [
             ReactiveFormsModule,

@@ -14,19 +14,19 @@ describe('Picker : PickerShopCart', () => {
 
     @Component({
         template: `
-			<lib-picker [formControl]="control">
-				<div *libPickerSectionDef>picker</div>
-				<lib-picker-shop-cart *libPickerShopCartDef="let selection; let length=length; let empty=empty; let model=model">
-					<lib-picker-header *libPickerHeaderDef></lib-picker-header>
-					<div class="shop-cart-item --default" *libPickerShopCartItemDef="let item;">
+			<picker [formControl]="control">
+				<div *pickerSectionDef>picker</div>
+				<picker-shop-cart *pickerShopCartDef="let selection; let length=length; let empty=empty; let model=model">
+					<picker-header *pickerHeaderDef></picker-header>
+					<div class="shop-cart-item --default" *pickerShopCartItemDef="let item;">
 						{{ item.id }}
 					</div>
-					<div class="shop-cart-item --even" *libPickerShopCartItemDef="let item; when: indexEven">
+					<div class="shop-cart-item --even" *pickerShopCartItemDef="let item; when: indexEven">
 						{{ item.id }}
 					</div>
-					<div class="empty-block" *libPickerShopCartEmptyDef>empty</div>
-				</lib-picker-shop-cart>
-			</lib-picker>
+					<div class="empty-block" *pickerShopCartEmptyDef>empty</div>
+				</picker-shop-cart>
+			</picker>
         `,
         imports: [
             ReactiveFormsModule,

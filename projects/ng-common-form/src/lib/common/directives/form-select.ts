@@ -8,7 +8,7 @@ import {filter, map} from 'rxjs/operators';
 export class FormSelectExceptions {
 
     static valueAccessorNotFound(): void {
-        throw new Error(`[libFormSelectControl] needs a ControlValueAccessor to interact with the host element`);
+        throw new Error(`[formSelectControl] needs a ControlValueAccessor to interact with the host element`);
     }
 
 }
@@ -24,7 +24,7 @@ export abstract class FormSelectContainer<T> {
 }
 
 @Directive({
-    selector: 'input[type=checkbox][libFormSelectControl]',
+    selector: 'input[type=checkbox][formSelectControl]',
     host: {'(change)': 'handleChange($event)', '(blur)': 'onTouched()'},
     exportAs: 'controlValueAccessor',
     providers: [
@@ -63,7 +63,7 @@ export class FormSelectControlCheckboxControlValueAccessorDirective implements C
 }
 
 @Directive({
-    selector: '[libFormSelectGroup]',
+    selector: '[formSelectGroup]',
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -147,14 +147,14 @@ export class FormSelectGroupDirective<T> extends FormSelectContainer<T> implemen
 }
 
 @Directive({
-    selector: '[libFormSelectControl]',
+    selector: '[formSelectControl]',
 	standalone: true
 })
 export class FormSelectControlDirective<T> implements OnChanges, OnDestroy {
     protected parent = inject<FormSelectContainer<T>>(FormSelectContainer, { optional: true, host: true, skipSelf: true });
 
 
-    @Input('libFormSelectControl') value: T;
+    @Input('formSelectControl') value: T;
     public valueAccessor: ControlValueAccessor | null;
     protected _value: boolean;
     protected initialized = false;

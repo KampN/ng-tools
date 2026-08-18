@@ -1,12 +1,12 @@
 import {Logger} from '../interfaces/logger';
-import { Injectable, inject } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LogStream} from './logStream';
 import {LogLevel} from '../interfaces/log';
 
 @Injectable({providedIn: 'root'})
 export class LoggerService implements Logger {
-    protected logStream = inject(LogStream);
 
+    constructor(protected logStream: LogStream) {}
 
     exception(e: any, data: { message?: string; [prop: string]: any } = {}) {
         let {message, ...obj} = data;

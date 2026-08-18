@@ -7,7 +7,7 @@
 </div>
 <div class="sample-block">
   @for (model of imageAdModels; track model) {
-    <lib-display-image-ad class="sample-item" [data]="model"></lib-display-image-ad>
+    <display-image-ad class="sample-item" [data]="model"></display-image-ad>
   }
 </div>
 
@@ -18,7 +18,7 @@
 </div>
 <div class="sample-block">
   @for (model of imageAdModels; track model) {
-    <lib-display-image-ad-tower class="sample-item" [data]="model"></lib-display-image-ad-tower>
+    <display-image-ad-tower class="sample-item" [data]="model"></display-image-ad-tower>
   }
 </div>
 
@@ -29,7 +29,7 @@
 </div>
 <div class="sample-block">
   @for (model of textAdModels; track model) {
-    <lib-display-text-ad class="sample-item" [data]="model"></lib-display-text-ad>
+    <display-text-ad class="sample-item" [data]="model"></display-text-ad>
   }
 </div>
 
@@ -40,8 +40,8 @@
 </div>
 <div class="sample-block">
 
-  <lib-display-native-ad class="sample-item" [data]="nativeAdModels.large"></lib-display-native-ad>
-  <lib-display-native-ad-collapsed class="sample-item" [data]="nativeAdModels.collapsed"></lib-display-native-ad-collapsed>
+  <display-native-ad class="sample-item" [data]="nativeAdModels.large"></display-native-ad>
+  <display-native-ad-collapsed class="sample-item" [data]="nativeAdModels.collapsed"></display-native-ad-collapsed>
 
 </div>
 

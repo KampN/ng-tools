@@ -1,6 +1,6 @@
 @use '../../../styles/shared';
 
-lib-display-image-ad {
+display-image-ad {
 	$ad-width: 300px;
 	$ad-height: 250px;
 	$gap-size: 6px;
@@ -50,17 +50,17 @@ lib-display-image-ad {
 		}
 	}
 
-	//lib-gads-image.ad-image {
+	//gads-image.ad-image {
 	//	--image-max-height: 160px;
 	//	--image-max-width: #{$ad-width};
 	//}
 	//
-	//lib-gads-image.ad-logo {
+	//gads-image.ad-logo {
 	//	--image-max-height: 45px;
 	//	--image-max-width: 45px;
 	//}
 
-	lib-gads-fab-button {
+	gads-fab-button {
 		--gads-fab-button-size: 37.5px;
 	}
 

@@ -1,4 +1,4 @@
-lib-youtube-video-ad {
+youtube-video-ad {
 
 	$ad-width: 320px;
 	$ad-img-height: 240px;
@@ -14,13 +14,13 @@ lib-youtube-video-ad {
 		flex-direction: column;
 	}
 
-	lib-gads-image.ad-image {
+	gads-image.ad-image {
 		display: block;
 		--image-max-height: #{$ad-img-height};
 		--image-max-width: #{$ad-width};
 	}
 
-	lib-gads-image.channel-logo {
+	gads-image.channel-logo {
 		margin: 4px;
 		--image-url: var(--default-logo-url, var(--default-image-url));
 	}

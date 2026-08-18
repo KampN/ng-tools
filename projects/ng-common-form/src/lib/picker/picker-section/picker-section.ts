@@ -3,7 +3,7 @@ import {PickerHeaderDefDirective, PickerHeaderOutletDirective} from '../picker-h
 import {CommonToolsModule} from '@kamp-n/ng-common-tools';
 
 @Component({
-    selector: 'lib-picker-section, [libPickerSection]',
+    selector: 'picker-section, [picker-section]',
     standalone: true,
     templateUrl: './picker-section.html',
     styleUrls: ['./picker-section.scss'],

@@ -14,9 +14,9 @@ describe('Directives : FormSelect', () => {
   @Component({
     template: `
       <div [formGroup]="group">
-        <div formControlName="control" libFormSelectGroup>
-          <input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" libFormSelectControl="value">
-          <input type="checkbox" class="checkbox-2" libFormSelectControl="value2">
+        <div formControlName="control" formSelectGroup>
+          <input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" formSelectControl="value">
+          <input type="checkbox" class="checkbox-2" formSelectControl="value2">
         </div>
       </div>
     `,
@@ -55,7 +55,7 @@ describe('Directives : FormSelect', () => {
 
   afterEach(() => testFixture.destroy());
 
-  it('should set the checked status to the libFormSelectControl\'s hosts', async () => {
+  it('should set the checked status to the formSelectControl\'s hosts', async () => {
     testComponent.group = new UntypedFormGroup({
       control: controlMockFactory.generate({ value: ['value'] })
     });

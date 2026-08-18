@@ -8,7 +8,7 @@
     @if (isQueryingUsers) {
       <mat-progress-spinner matSuffix diameter="16" mode="indeterminate"></mat-progress-spinner>
     }
-    <mat-error *libControlError="let error of 'user'">
+    <mat-error *controlError="let error of 'user'">
       {{error}}
     </mat-error>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">

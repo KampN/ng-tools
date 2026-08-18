@@ -11,7 +11,7 @@ export interface DisplayTextAdRenderModel {
 }
 
 @Component({
-    selector: 'lib-display-text-ad',
+    selector: 'display-text-ad',
     templateUrl: './display-text-ad.html',
     styleUrls: ['./display-text-ad.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

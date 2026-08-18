@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
-	selector: 'lib-material-underline',
+	selector: 'material-underline',
 	templateUrl: './material-underline.html',
 	styleUrls: ['./material-underline.scss'],
 	standalone: true,

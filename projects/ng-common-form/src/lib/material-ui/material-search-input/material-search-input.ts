@@ -11,7 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MaterialUnderlineComponent} from "../material-underline/material-underline";
 
 @Component({
-    selector: 'lib-material-search-input',
+    selector: 'material-search-input',
     templateUrl: './material-search-input.html',
     styleUrls: ['./material-search-input.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

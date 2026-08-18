@@ -8,9 +8,9 @@ describe('Picker : PickerHeader', () => {
 
     @Component({
         template: `
-			<lib-picker-header>
+			<picker-header>
 				<div class="content">content</div>
-			</lib-picker-header>
+			</picker-header>
         `,
         imports: [PickerHeaderComponent]
     })

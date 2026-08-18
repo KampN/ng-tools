@@ -4,7 +4,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
 
 @Directive({
-	selector: '[libPickerBodyOutlet]',
+	selector: '[pickerBodyOutlet]',
 	standalone: true,
 })
 export class PickerBodyOutletDirective {
@@ -13,7 +13,7 @@ export class PickerBodyOutletDirective {
 }
 
 @Directive({
-	selector: '[libPickerShopCartOutlet]',
+	selector: '[pickerShopCartOutlet]',
 	standalone: true,
 })
 export class PickerShopCartOutletDirective {
@@ -26,7 +26,7 @@ export abstract class Picker<T> {
 }
 
 @Directive({
-    selector: '[libPickerSectionDef]',
+    selector: '[pickerSectionDef]',
 	standalone: true,
 })
 export class PickerSectionDefDirective {
@@ -34,7 +34,7 @@ export class PickerSectionDefDirective {
 }
 
 @Directive({
-    selector: '[libPickerShopCartDef]',
+    selector: '[pickerShopCartDef]',
 	standalone: true,
 })
 export class PickerShopCartDefDirective {
@@ -66,7 +66,7 @@ export class PickerShopCartContext<T> {
 }
 
 @Component({
-    selector: 'lib-picker',
+    selector: 'picker',
 	standalone: true,
     templateUrl: './picker.html',
     styleUrls: [`./picker.scss`],

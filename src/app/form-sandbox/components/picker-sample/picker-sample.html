@@ -3,11 +3,11 @@
 </mat-toolbar>
 <div>
 	<form [formGroup]="form">
-		<lib-picker class="ggl-scrollbar" formControlName="elements" [extractIdFn]="extractIdFn">
-			<lib-picker-section *libPickerSectionDef="let model">
-				<lib-picker-header *libPickerHeaderDef>
-					<lib-material-search-input formControlName="search" placeholder="Rechercher"></lib-material-search-input>
-				</lib-picker-header>
+		<picker class="ggl-scrollbar" formControlName="elements" [extractIdFn]="extractIdFn">
+			<picker-section *pickerSectionDef="let model">
+				<picker-header *pickerHeaderDef>
+					<material-search-input formControlName="search" placeholder="Rechercher"></material-search-input>
+				</picker-header>
 				<table mat-table [dataSource]="dataSource">
 					<ng-container matColumnDef="selector">
 						<th mat-header-cell *matHeaderCellDef></th>
@@ -29,21 +29,21 @@
 						[class.selected]="model.isSelected(row)" (click)="model.toggle(row)">
 					</tr>
 				</table>
-			</lib-picker-section>
+			</picker-section>
 
-			<lib-picker-shop-cart *libPickerShopCartDef="let selection; let length=length; let model=model">
-				<ng-container *libPickerHeaderDef>
-					<lib-picker-header></lib-picker-header>
-					<lib-picker-header>{{length}} campagnes sélectionnées</lib-picker-header>
+			<picker-shop-cart *pickerShopCartDef="let selection; let length=length; let model=model">
+				<ng-container *pickerHeaderDef>
+					<picker-header></picker-header>
+					<picker-header>{{length}} campagnes sélectionnées</picker-header>
 				</ng-container>
-				<lib-picker-shop-cart-item (remove)="model.deselect(item)" *libPickerShopCartItemDef="let item">
+				<picker-shop-cart-item (remove)="model.deselect(item)" *pickerShopCartItemDef="let item">
 					{{item.name}}
-				</lib-picker-shop-cart-item>
-				<lib-picker-shop-cart-item class="even" (remove)="model.deselect(item)" *libPickerShopCartItemDef="let item; when: even">
+				</picker-shop-cart-item>
+				<picker-shop-cart-item class="even" (remove)="model.deselect(item)" *pickerShopCartItemDef="let item; when: even">
 					{{item.name}}
-				</lib-picker-shop-cart-item>
-			</lib-picker-shop-cart>
-		</lib-picker>
+				</picker-shop-cart-item>
+			</picker-shop-cart>
+		</picker>
 
 		<div>
 			<div>valid : {{form.valid}}</div>

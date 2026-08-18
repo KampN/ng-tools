@@ -2,19 +2,16 @@ import {LoggerConfiguration} from '../interfaces/configuration';
 import {filter} from 'rxjs/operators';
 import {LogLevel, LogMessage} from '../interfaces/log';
 import {LogStream} from './logStream';
-import { Injectable, inject } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {LOGGER_CONFIGURATION} from './configuration';
 
 @Injectable({providedIn: 'root'})
 export class LogDisplay {
-	protected logStream = inject(LogStream);
-	protected config = inject<LoggerConfiguration>(LOGGER_CONFIGURATION);
-
 
 	protected crossFingerEnabled: boolean;
 	protected minLevel: LogLevel | 0;
 
-	constructor() {
+	constructor(protected logStream: LogStream, @Inject(LOGGER_CONFIGURATION) protected config: LoggerConfiguration) {
 		this.crossFingerEnabled = this.config.crossFinger && this.config.crossFinger.enabled;
 		this.minLevel = this.crossFingerEnabled && this.config.crossFinger.level ? this.config.crossFinger.level : 0;
 		this.logStream.log$.pipe(

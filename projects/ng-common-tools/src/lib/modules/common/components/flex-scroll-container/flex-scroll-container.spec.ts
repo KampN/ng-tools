@@ -7,7 +7,7 @@ import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Components : FlexScrollContainer', () => {
     @Component({
-        selector: 'lib-test-inner',
+        selector: 'test-inner',
         template: 'hello world',
         imports: [
             FlexScrollContainerComponent,
@@ -83,7 +83,7 @@ describe('Components : FlexScrollContainer', () => {
 				width: 300px;
 			}
 
-			[libFlexScrollContainer] {
+			[flex-scroll-container] {
 				flex: 1 1 auto;
 			}
 
@@ -93,8 +93,8 @@ describe('Components : FlexScrollContainer', () => {
 			}
         `],
         template: `
-			<div libFlexScrollContainer>
-				<lib-test-inner class="content"></lib-test-inner>
+			<div flex-scroll-container>
+				<test-inner class="content"></test-inner>
 			</div>
         `,
         imports: [
