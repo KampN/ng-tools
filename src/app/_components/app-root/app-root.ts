@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import {NAVIGATION_ROUTES, NavigationRoutes} from '../../navigation';
 
 @Component({
@@ -10,5 +10,5 @@ import {NAVIGATION_ROUTES, NavigationRoutes} from '../../navigation';
     standalone: false
 })
 export class AppRootComponent {
-    constructor(@Inject(NAVIGATION_ROUTES) readonly navigation: NavigationRoutes) {}
+    readonly navigation = inject<NavigationRoutes>(NAVIGATION_ROUTES);
 }

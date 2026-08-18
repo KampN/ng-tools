@@ -1,6 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {DataStoreService} from './datastore';
-import * as Faker from 'faker';
+import { faker } from '@faker-js/faker';
 import {Observable} from 'rxjs';
 import {beforeEach, describe, expect, it, vi} from 'vitest';
 
@@ -20,11 +20,11 @@ describe('Storage : DataStore', () => {
     }));
 
     beforeEach(() => {
-        key = Faker.random.word();
-        data = Faker.random.arrayElement([
-            Faker.random.word(),
-            Faker.random.number(),
-            {name: Faker.name.firstName(), lastname: Faker.name.lastName()}
+        key = faker.word.sample();
+        data = faker.helpers.arrayElement([
+            faker.word.sample(),
+            faker.number.int(),
+            {name: faker.person.firstName(), lastname: faker.person.lastName()}
         ] as any[]);
     });
 

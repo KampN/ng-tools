@@ -14,13 +14,18 @@ describe('Directives : FormSelect', () => {
   @Component({
     template: `
       <div [formGroup]="group">
-        <div formControlName="control" formSelectGroup>
-          <input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" formSelectControl="value">
-          <input type="checkbox" class="checkbox-2" formSelectControl="value2">
+        <div formControlName="control" libFormSelectGroup>
+          <input type="checkbox" class="checkbox-1" #checkbox="controlValueAccessor" libFormSelectControl="value">
+          <input type="checkbox" class="checkbox-2" libFormSelectControl="value2">
         </div>
       </div>
     `,
-    standalone: false
+    imports: [
+      ReactiveFormsModule,
+      FormSelectControlCheckboxControlValueAccessorDirective,
+      FormSelectGroupDirective,
+      FormSelectControlDirective
+    ]
   })
   class TestHostComponent {
     group: UntypedFormGroup;
@@ -41,14 +46,7 @@ describe('Directives : FormSelect', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        FormSelectControlCheckboxControlValueAccessorDirective,
-        FormSelectGroupDirective,
-        FormSelectControlDirective
-      ],
-      declarations: [TestHostComponent]
+      imports: [FormsModule, TestHostComponent]
     }).compileComponents();
 
     testFixture = TestBed.createComponent(TestHostComponent);
@@ -57,7 +55,7 @@ describe('Directives : FormSelect', () => {
 
   afterEach(() => testFixture.destroy());
 
-  it('should set the checked status to the formSelectControl\'s hosts', async () => {
+  it('should set the checked status to the libFormSelectControl\'s hosts', async () => {
     testComponent.group = new UntypedFormGroup({
       control: controlMockFactory.generate({ value: ['value'] })
     });

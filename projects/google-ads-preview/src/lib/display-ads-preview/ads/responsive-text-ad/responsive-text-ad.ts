@@ -12,7 +12,7 @@ export interface ResponsiveTextAdRenderModel {
 }
 
 @Component({
-    selector: 'responsive-text-ad',
+    selector: 'lib-responsive-text-ad',
     templateUrl: './responsive-text-ad.html',
     styleUrls: ['./responsive-text-ad.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

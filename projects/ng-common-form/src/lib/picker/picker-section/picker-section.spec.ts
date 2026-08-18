@@ -14,12 +14,12 @@ describe('Picker : PickerSection', () => {
 
     @Component({
         template: `
-			<picker [formControl]="control">
-				<picker-section *pickerSectionDef>
-					<picker-header *pickerHeaderDef></picker-header>
+			<lib-picker [formControl]="control">
+				<lib-picker-section *libPickerSectionDef>
+					<lib-picker-header *libPickerHeaderDef></lib-picker-header>
 					<div class="content">content</div>
-				</picker-section>
-			</picker>
+				</lib-picker-section>
+			</lib-picker>
         `,
         imports: [
             ReactiveFormsModule,

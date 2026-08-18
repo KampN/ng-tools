@@ -11,7 +11,7 @@ export interface CacheStore<T extends Perishable> {
     [identifier: string]: any;
 }
 
-export interface RepositoryLoadQuery<> {
+export interface RepositoryLoadQuery {
     ids?: any[];
 
     [prop: string]: any;

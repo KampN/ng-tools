@@ -6,7 +6,7 @@ import {GadsFabButtonComponent} from '../../../common/components/gads-fab-button
 import {FallbackPipe} from '../../../common/pipes/fallback';
 
 @Component({
-    selector: 'display-image-ad-tower',
+    selector: 'lib-display-image-ad-tower',
     templateUrl: './display-image-ad-tower.html',
     styleUrls: ['./display-image-ad-tower.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -9,9 +9,9 @@ describe('Picker : PickerShopCartItem', () => {
 
     @Component({
         template: `
-			<picker-shop-cart-item (remove)="remove($event)">
+			<lib-picker-shop-cart-item (remove)="remove($event)">
 				<div class="content">content</div>
-			</picker-shop-cart-item>
+			</lib-picker-shop-cart-item>
         `,
         imports: [
             PickerModule

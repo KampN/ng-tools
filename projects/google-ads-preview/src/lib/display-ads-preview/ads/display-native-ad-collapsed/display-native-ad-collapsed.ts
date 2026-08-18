@@ -6,7 +6,7 @@ import {FallbackPipe} from '../../../common/pipes/fallback';
 import {TranslatePipe} from '../../../common/pipes/translate';
 
 @Component({
-    selector: 'display-native-ad-collapsed',
+    selector: 'lib-display-native-ad-collapsed',
     templateUrl: './display-native-ad-collapsed.html',
     styleUrls: ['./display-native-ad-collapsed.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,4 @@
-import {Inject, Optional, Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import {GADS_PREVIEW_TRANSLATOR, GAdsPreviewTranslator} from '../providers/translator';
 
 @Pipe({
@@ -7,8 +7,8 @@ import {GADS_PREVIEW_TRANSLATOR, GAdsPreviewTranslator} from '../providers/trans
 	standalone: true
 })
 export class TranslatePipe implements PipeTransform {
+	protected translate = inject<GAdsPreviewTranslator>(GADS_PREVIEW_TRANSLATOR, { optional: true });
 
-	constructor(@Optional() @Inject(GADS_PREVIEW_TRANSLATOR) protected translate: GAdsPreviewTranslator) {}
 
 	transform(value: string): any {
 		return this.translate ? this.translate(value) : value;

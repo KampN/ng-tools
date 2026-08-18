@@ -1,18 +1,4 @@
-import {
-	AfterViewInit,
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	Component,
-	ElementRef,
-	EventEmitter,
-	forwardRef,
-	Input,
-	OnDestroy,
-	OnInit,
-	Output,
-	ViewChild,
-	ViewEncapsulation
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation, inject } from '@angular/core';
 import {FocusMonitor, FocusOrigin} from '@angular/cdk/a11y';
 import {distinctUntilChanged, map} from 'rxjs/operators';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
@@ -25,7 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MaterialUnderlineComponent} from "../material-underline/material-underline";
 
 @Component({
-    selector: 'material-search-input',
+    selector: 'lib-material-search-input',
     templateUrl: './material-search-input.html',
     styleUrls: ['./material-search-input.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,6 +33,9 @@ import {MaterialUnderlineComponent} from "../material-underline/material-underli
 ]
 })
 export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
+	protected monitor = inject(FocusMonitor);
+	protected cdr = inject(ChangeDetectorRef);
+
 
 	@Input() search: string = '';
 	@Output() searchChange: EventEmitter<string> = new EventEmitter();
@@ -58,8 +47,6 @@ export class MaterialSearchInputComponent implements OnInit, OnDestroy, AfterVie
 
 	public focused: boolean = false;
 	protected rc: RxCleaner = new RxCleaner();
-
-	constructor(protected monitor: FocusMonitor, protected cdr: ChangeDetectorRef) { }
 
 	protected _disabled: boolean = false;
 

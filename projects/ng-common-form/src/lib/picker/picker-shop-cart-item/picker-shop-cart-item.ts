@@ -3,7 +3,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 
 @Component({
-    selector: 'picker-shop-cart-item, [picker-shop-cart-item]',
+    selector: 'lib-picker-shop-cart-item, [libPickerShopCartItem]',
 	standalone: true,
     templateUrl: './picker-shop-cart-item.html',
     styleUrls: ['./picker-shop-cart-item.scss'],

@@ -1,7 +1,4 @@
-import {
-    AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Host,
-    Input, OnDestroy, OnInit, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, ElementRef, Input, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, ViewRef, inject } from '@angular/core';
 import {RxCleaner, FlexScrollContainerComponent} from '@kamp-n/ng-common-tools';
 import {
 	PickerHeaderDefDirective,
@@ -23,43 +20,45 @@ export class PickerShopCartExceptions {
 }
 
 @Directive({
-    selector: '[pickerShopCartItemDef]',
+    selector: '[libPickerShopCartItemDef]',
 	standalone: true,
 })
 export class PickerShopCartItemDefDirective<T> {
+    template = inject<TemplateRef<any>>(TemplateRef);
 
-    @Input('pickerShopCartItemDefWhen')
+
+    @Input('libPickerShopCartItemDefWhen')
     when: (index: number, rowData: T) => boolean;
-
-    constructor(public template: TemplateRef<any>) {}
 }
 
 @Directive({
-	selector: '[pickerShopCartListOutlet]',
+	selector: '[libPickerShopCartListOutlet]',
 	standalone: true,
 })
 export class PickerShopCartListOutletDirective {
-    constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
+    viewContainer = inject(ViewContainerRef);
+    elementRef = inject(ElementRef);
 }
 
 @Directive({
-    selector: '[pickerShopCartEmptyDef]',
+    selector: '[libPickerShopCartEmptyDef]',
 	standalone: true,
 })
 export class PickerShopCartEmptyDefDirective {
-    constructor(public template: TemplateRef<any>) {}
+    template = inject<TemplateRef<any>>(TemplateRef);
 }
 
 @Directive({
-	selector: '[pickerShopCartEmptyOutlet]',
+	selector: '[libPickerShopCartEmptyOutlet]',
 	standalone: true,
 })
 export class PickerShopCartEmptyOutletDirective {
-    constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
+    viewContainer = inject(ViewContainerRef);
+    elementRef = inject(ElementRef);
 }
 
 @Component({
-    selector: 'picker-shop-cart, [picker-shop-cart]',
+    selector: 'lib-picker-shop-cart, [libPickerShopCart]',
 	standalone: true,
     templateUrl: './picker-shop-cart.html',
     styleUrls: ['./picker-shop-cart.scss'],
@@ -74,7 +73,10 @@ export class PickerShopCartEmptyOutletDirective {
     FlexScrollContainerComponent
 ]
 })
-export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnDestroy {
+export class PickerShopCartComponent<T> implements AfterContentInit, OnDestroy {
+    protected picker = inject<Picker<T>>(Picker, { optional: true, host: true });
+    protected cdr = inject(ChangeDetectorRef);
+
 
     @ViewChild(PickerHeaderOutletDirective, { static: true }) headerOutlet: PickerHeaderOutletDirective;
     @ContentChild(PickerHeaderDefDirective) headerDef: PickerHeaderDefDirective;
@@ -87,18 +89,12 @@ export class PickerShopCartComponent<T> implements OnInit, AfterContentInit, OnD
     protected renderMap: Map<T, ViewRef> = new Map();
     protected rc: RxCleaner = new RxCleaner();
 
-    constructor(@Optional() @Host() protected picker: Picker<T>, protected cdr: ChangeDetectorRef) {
-    }
-
     get model(): SelectionModel<T> {
         return this.picker.model;
     }
 
     get items(): T[] {
         return this.model ? this.model.selected : null;
-    }
-
-    ngOnInit(): void {
     }
 
     ngAfterContentInit(): void {

@@ -1,6 +1,6 @@
 @use '../../../styles/shared';
 
-display-image-ad-tower {
+lib-display-image-ad-tower {
 	$gap-size: 6px;
 	$ad-width: 160px;
 	$ad-height: 600px;
@@ -47,7 +47,7 @@ display-image-ad-tower {
 		padding: 0 $gap-size;
 	}
 
-	gads-fab-button {
+	lib-gads-fab-button {
 		--gads-fab-button-size: 56px;
 	}
 

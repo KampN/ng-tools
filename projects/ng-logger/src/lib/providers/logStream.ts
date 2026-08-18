@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {LogMessage} from '../interfaces/log';
 import {LoggerConfiguration} from '../interfaces/configuration';
@@ -6,12 +6,14 @@ import {LOGGER_CONFIGURATION} from './configuration';
 
 @Injectable({providedIn: 'root'})
 export class LogStream {
+    protected config = inject<LoggerConfiguration>(LOGGER_CONFIGURATION);
+
 
     readonly log$: Observable<LogMessage>;
     protected logStack: LogMessage[];
     protected stream: Subject<LogMessage>;
 
-    constructor(@Inject(LOGGER_CONFIGURATION) protected config: LoggerConfiguration) {
+    constructor() {
         this.stream = new Subject();
         this.log$ = this.stream.asObservable();
         this.logStack = [];

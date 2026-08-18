@@ -1,4 +1,4 @@
-import {Component, DebugElement, Inject, ViewChild} from '@angular/core';
+import {Component, DebugElement, ViewChild, inject} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FLEX_SCROLL_CONTAINER, FlexScrollContainerComponent} from './flex-scroll-container';
 import {By} from '@angular/platform-browser';
@@ -7,14 +7,14 @@ import {afterEach, beforeEach, describe, expect, it} from 'vitest';
 
 describe('Components : FlexScrollContainer', () => {
     @Component({
-        selector: 'test-inner',
+        selector: 'lib-test-inner',
         template: 'hello world',
         imports: [
             FlexScrollContainerComponent,
         ]
     })
     class TestInnerComponent {
-        constructor(@Inject(FLEX_SCROLL_CONTAINER) public scrollContainer: FlexScrollContainerComponent) {}
+        public scrollContainer = inject<FlexScrollContainerComponent>(FLEX_SCROLL_CONTAINER);
     }
 
     let testFixture: ComponentFixture<TestHostComponent>;
@@ -83,7 +83,7 @@ describe('Components : FlexScrollContainer', () => {
 				width: 300px;
 			}
 
-			[flex-scroll-container] {
+			[libFlexScrollContainer] {
 				flex: 1 1 auto;
 			}
 
@@ -93,8 +93,8 @@ describe('Components : FlexScrollContainer', () => {
 			}
         `],
         template: `
-			<div flex-scroll-container>
-				<test-inner class="content"></test-inner>
+			<div libFlexScrollContainer>
+				<lib-test-inner class="content"></lib-test-inner>
 			</div>
         `,
         imports: [

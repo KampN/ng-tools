@@ -28,8 +28,8 @@ export const NavigationRouteProvider: ValueProvider = {
                     route: ['/', 'forms', 'multi-select']
                 },
                 {
-                    title: 'picker',
-                    route: ['/', 'forms', 'picker']
+                    title: 'lib-picker',
+                    route: ['/', 'forms', 'lib-picker']
                 }
             ]
         },

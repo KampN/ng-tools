@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Angular 21 monorepo containing 5 publishable NPM libraries under `@kamp-n` organization:
+Angular 22 monorepo containing 5 publishable NPM libraries under `@kamp-n` organization:
 - **ng-logger** - Core logging framework
 - **ng-logger-fs** - Full Story integration for logger
 - **ng-common-tools** - Utilities: decorators (`@memoize`, `@memoizeStream`), repository pattern, JWT helper, storage, RxJS operators
@@ -52,7 +52,7 @@ Path aliases in tsconfig.json point to `dist/` - libraries must be built before 
 
 ## Testing
 
-- **Framework**: Vitest 4.0.13 via @analogjs/vitest-angular
+- **Framework**: Vitest 4.1.x via @analogjs/vitest-angular
 - **Config**: vite.config.ts
 - **Patterns**: `*.spec.ts`, `*.test.ts`
 - **Coverage**: V8 provider, reports in `coverage/`
@@ -61,8 +61,8 @@ Path aliases in tsconfig.json point to `dist/` - libraries must be built before 
 
 - **Components**: Standalone, OnPush change detection, SCSS, ViewEncapsulation.None
 - **Library selectors**: prefix `lib` (e.g., `lib-my-component`)
-- **TypeScript**: Strict mode enabled (strictTemplates, strictInjectionParameters)
-- **ESLint**: @angular-eslint with kebab-case selectors
+- **TypeScript**: 6.0. `strict` is explicitly `false` in tsconfig.json (TS 6 defaults it to true); Angular strictness is on (strictTemplates, strictInjectionParameters)
+- **ESLint**: angular-eslint 22 with flat config (`eslint.config.js`), kebab-case selectors
 
 ## CI/CD
 

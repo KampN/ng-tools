@@ -15,14 +15,14 @@ export {MatchFnValidatorDirective} from './validators/match-fn';
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		Directives
+		Directives,
+		...ValidatorDirectives,
 	],
 	exports: [
 		...ValidatorDirectives,
 		FormsModule,
 		ReactiveFormsModule,
 	],
-	declarations: [...ValidatorDirectives],
 	providers: [],
 })
 export class CommonFormModule {

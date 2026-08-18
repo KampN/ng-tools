@@ -1,25 +1,24 @@
-import {
-    AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, forwardRef, HostBinding, Input, OnChanges,
-    OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, forwardRef, HostBinding, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, inject } from '@angular/core';
 import {Check, RxCleaner} from '@kamp-n/ng-common-tools';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ExtractIdFn, SelectionModel} from '../../common/collections/selection';
 
 @Directive({
-	selector: '[pickerBodyOutlet]',
+	selector: '[libPickerBodyOutlet]',
 	standalone: true,
 })
 export class PickerBodyOutletDirective {
-    constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
+    viewContainer = inject(ViewContainerRef);
+    elementRef = inject(ElementRef);
 }
 
 @Directive({
-	selector: '[pickerShopCartOutlet]',
+	selector: '[libPickerShopCartOutlet]',
 	standalone: true,
 })
 export class PickerShopCartOutletDirective {
-    constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
+    viewContainer = inject(ViewContainerRef);
+    elementRef = inject(ElementRef);
 }
 
 export abstract class Picker<T> {
@@ -27,19 +26,19 @@ export abstract class Picker<T> {
 }
 
 @Directive({
-    selector: '[pickerSectionDef]',
+    selector: '[libPickerSectionDef]',
 	standalone: true,
 })
 export class PickerSectionDefDirective {
-    constructor(public template: TemplateRef<any>) {}
+    template = inject<TemplateRef<any>>(TemplateRef);
 }
 
 @Directive({
-    selector: '[pickerShopCartDef]',
+    selector: '[libPickerShopCartDef]',
 	standalone: true,
 })
 export class PickerShopCartDefDirective {
-    constructor(public template: TemplateRef<any>) {}
+    template = inject<TemplateRef<any>>(TemplateRef);
 }
 
 export class PickerBodyContext<T> {
@@ -67,7 +66,7 @@ export class PickerShopCartContext<T> {
 }
 
 @Component({
-    selector: 'picker',
+    selector: 'lib-picker',
 	standalone: true,
     templateUrl: './picker.html',
     styleUrls: [`./picker.scss`],

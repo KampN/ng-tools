@@ -1,3 +1,4 @@
+import {JsonPipe} from '@angular/common';
 import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
 import {FormsModule, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
@@ -11,15 +12,15 @@ describe('Directives : FormErrorHint', () => {
     @Component({
         template: `
 			<div [formGroup]="group">
-				<span #inside *controlError="let error of 'control'">{{ error }}</span>
+				<span #inside *libControlError="let error of 'control'">{{ error }}</span>
 			</div>
-			<div #outside *controlError="let error of control; let errors=errors; let data=error">
+			<div #outside *libControlError="let error of control; let errors=errors; let data=error">
 				<span class="errors">{{ errors|json }}</span>
 				<span class="error-name">{{ error }}</span>
 				<span class="error-data">{{ data }}</span>
 			</div>
         `,
-        standalone: false
+        imports: [JsonPipe, ReactiveFormsModule, ControlErrorDirective]
     })
     class TestHostComponent {
         @ViewChild('inside', {read: ElementRef}) inside: ElementRef;
@@ -37,10 +38,7 @@ describe('Directives : FormErrorHint', () => {
 
     beforeEach(() => {
         getTestBed().configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule, ControlErrorDirective],
-            declarations: [
-                TestHostComponent,
-            ],
+            imports: [FormsModule, TestHostComponent],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;

@@ -13,7 +13,7 @@ export interface YoutubeVideoAdRenderModel {
 }
 
 @Component({
-    selector: 'youtube-video-ad',
+    selector: 'lib-youtube-video-ad',
     templateUrl: './youtube-video-ad.html',
     styleUrls: ['./youtube-video-ad.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

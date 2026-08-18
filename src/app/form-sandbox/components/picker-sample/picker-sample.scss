@@ -22,19 +22,19 @@ picker-sample {
 
 	}
 
-	picker-shop-cart-item.even {
+	lib-picker-shop-cart-item.even {
 		background-color: gold;
 	}
 
-	picker {
+	lib-picker {
 		width: 40rem;
 		height: 20rem;
 
-		material-search-input {
+		lib-material-search-input {
 			width: 100%;
 		}
 
-		picker-section {
+		lib-picker-section {
 
 			.mat-table {
 				min-width: 100%;

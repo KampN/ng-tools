@@ -1,4 +1,4 @@
-import {Directive, Host, Input, OnChanges, OnDestroy, OnInit, Optional, SkipSelf, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Directive, Input, OnChanges, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import {
 	AbstractControl, AbstractFormGroupDirective, ControlContainer, UntypedFormArray, FormArrayName, UntypedFormControl, UntypedFormGroup, FormGroupDirective,
 	FormGroupName
@@ -10,16 +10,16 @@ import {RxCleaner} from '@kamp-n/ng-common-tools';
 export class ControlErrorDirectiveExceptions {
 
 	static controlNotFound(controlName?:string):Error {
-		return new Error(`*controlError must be used with a valid FormControl. Control "${controlName}" not found.`);
+		return new Error(`*libControlError must be used with a valid FormControl. Control "${controlName}" not found.`);
 	}
 
 	static controlParentNotFound():Error {
-		return new Error(`*controlError must be used with a parent formGroup directive when using control name as parameter.  You'll want to add a formGroup
+		return new Error(`*libControlError must be used with a parent formGroup directive when using control name as parameter.  You'll want to add a formGroup
        directive and pass it an existing FormGroup instance (you can create one in your class).`);
 	}
 
 	static ngModelGroup():Error {
-		return new Error(`*controlError cannot be used with an ngModelGroup parent when using control name as parameter. It is only compatible with parents
+		return new Error(`*libControlError cannot be used with an ngModelGroup parent when using control name as parameter. It is only compatible with parents
        that also have a "form" prefix: formGroupName, formArrayName, or formGroup.`);
 	}
 }
@@ -33,19 +33,19 @@ export class ControlErrorContext {
 }
 
 @Directive({
-	selector: '[controlError]',
+	selector: '[libControlError]',
 	standalone: true
 })
 export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
-	@Input() controlErrorOf:string | AbstractControl;
+	protected vContainer = inject(ViewContainerRef);
+	protected template = inject<TemplateRef<ControlErrorContext>>(TemplateRef);
+	protected parent = inject(ControlContainer, { optional: true, host: true, skipSelf: true });
+
+	@Input() libControlErrorOf:string | AbstractControl;
 	protected control:AbstractControl;
 
 	protected errorStream:ReplaySubject<any> = new ReplaySubject(1);
 	protected rc:RxCleaner = new RxCleaner();
-
-	constructor(protected vContainer:ViewContainerRef, protected template:TemplateRef<ControlErrorContext>,
-	            @Optional() @Host() @SkipSelf() protected parent:ControlContainer) {
-	}
 
 	ngOnInit():void {
 		this.errorStream.pipe(
@@ -86,14 +86,14 @@ export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
 	}
 
 	protected setUpControl() {
-		if(!this.controlErrorOf) return null;
+		if(!this.libControlErrorOf) return null;
 		let control = null;
 
-		if(this.isFormControl(this.controlErrorOf)) control = this.controlErrorOf as AbstractControl;
-		else if(typeof this.controlErrorOf === 'string') {
+		if(this.isFormControl(this.libControlErrorOf)) control = this.libControlErrorOf as AbstractControl;
+		else if(typeof this.libControlErrorOf === 'string') {
 			this.checkParentType();
-			if(this.parent) control = (this.parent as FormGroupDirective).control.get(this.controlErrorOf);
-			if(!control) throw ControlErrorDirectiveExceptions.controlNotFound(this.controlErrorOf);
+			if(this.parent) control = (this.parent as FormGroupDirective).control.get(this.libControlErrorOf);
+			if(!control) throw ControlErrorDirectiveExceptions.controlNotFound(this.libControlErrorOf);
 		}
 
 		this.control = control;

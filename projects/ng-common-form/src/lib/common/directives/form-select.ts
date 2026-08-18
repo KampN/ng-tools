@@ -1,8 +1,6 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {ReplaySubject} from 'rxjs';
-import {
-    Directive, ElementRef, forwardRef, Host, Inject, Input, OnChanges, OnDestroy, Optional, Renderer2, Self, SimpleChanges, SkipSelf
-} from '@angular/core';
+import { Directive, ElementRef, forwardRef, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges, inject } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Check, RxCleaner} from '@kamp-n/ng-common-tools';
 import {filter, map} from 'rxjs/operators';
@@ -10,7 +8,7 @@ import {filter, map} from 'rxjs/operators';
 export class FormSelectExceptions {
 
     static valueAccessorNotFound(): void {
-        throw new Error(`[formSelectControl] needs a ControlValueAccessor to interact with the host element`);
+        throw new Error(`[libFormSelectControl] needs a ControlValueAccessor to interact with the host element`);
     }
 
 }
@@ -26,7 +24,7 @@ export abstract class FormSelectContainer<T> {
 }
 
 @Directive({
-    selector: 'input[type=checkbox][formSelectControl]',
+    selector: 'input[type=checkbox][libFormSelectControl]',
     host: {'(change)': 'handleChange($event)', '(blur)': 'onTouched()'},
     exportAs: 'controlValueAccessor',
     providers: [
@@ -39,8 +37,9 @@ export abstract class FormSelectContainer<T> {
 	standalone: true
 })
 export class FormSelectControlCheckboxControlValueAccessorDirective implements ControlValueAccessor {
-    constructor(protected renderer: Renderer2, protected ref: ElementRef) {
-    }
+    protected renderer = inject(Renderer2);
+    protected ref = inject(ElementRef);
+
 
     onChange = function(_) { };
 
@@ -64,7 +63,7 @@ export class FormSelectControlCheckboxControlValueAccessorDirective implements C
 }
 
 @Directive({
-    selector: '[formSelectGroup]',
+    selector: '[libFormSelectGroup]',
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -148,19 +147,22 @@ export class FormSelectGroupDirective<T> extends FormSelectContainer<T> implemen
 }
 
 @Directive({
-    selector: '[formSelectControl]',
+    selector: '[libFormSelectControl]',
 	standalone: true
 })
 export class FormSelectControlDirective<T> implements OnChanges, OnDestroy {
+    protected parent = inject<FormSelectContainer<T>>(FormSelectContainer, { optional: true, host: true, skipSelf: true });
 
-    @Input('formSelectControl') value: T;
+
+    @Input('libFormSelectControl') value: T;
     public valueAccessor: ControlValueAccessor | null;
     protected _value: boolean;
     protected initialized = false;
     protected rc: RxCleaner = new RxCleaner();
 
-    constructor(@Optional() @Host() @SkipSelf() protected parent: FormSelectContainer<T>,
-                @Optional() @Self() @Inject(NG_VALUE_ACCESSOR) valueAccessors: ControlValueAccessor[]) {
+    constructor() {
+        const valueAccessors = inject(NG_VALUE_ACCESSOR, { optional: true, self: true });
+
         if (!valueAccessors || valueAccessors.length === 0) FormSelectExceptions.valueAccessorNotFound();
         this.valueAccessor = (valueAccessors || [])[0];
     }

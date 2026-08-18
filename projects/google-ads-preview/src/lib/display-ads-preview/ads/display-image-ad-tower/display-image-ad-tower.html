@@ -1,5 +1,5 @@
 <div class="image-ad-layout column-layout" >
-  <gads-image class="ad-image" height="83.5" width="160" [image]="imageUrl"></gads-image>
+  <lib-gads-image class="ad-image" height="83.5" width="160" [image]="imageUrl"></lib-gads-image>
   <div class="ad-spacer"></div>
   <div  class="tower-content" >
     <div class="title-block">
@@ -7,14 +7,14 @@
     </div>
     <div class="ad-spacer"></div>
     @if (logoUrl) {
-      <gads-image class="ad-logo" height="60" width="60" [image]="logoUrl"></gads-image>
+      <lib-gads-image class="ad-logo" height="60" width="60" [image]="logoUrl"></lib-gads-image>
       <div class="ad-spacer-2"></div>
     }
     <div class="description-block">
       <a [innerHTML]="description|fallback:'description'"></a>
     </div>
     <div class="ad-spacer-3"></div>
-    <gads-fab-button></gads-fab-button>
+    <lib-gads-fab-button></lib-gads-fab-button>
     @if (!logoUrl) {
       <div class="ad-spacer-3"></div>
       <div class="business-name">

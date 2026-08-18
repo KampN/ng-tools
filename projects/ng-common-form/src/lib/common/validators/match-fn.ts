@@ -3,12 +3,11 @@ import {AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators} from
 import {Check} from '@kamp-n/ng-common-tools';
 
 @Directive({
-    selector: '[matchFn]',
+    selector: '[libMatchFn]',
     providers: [{ provide: NG_VALIDATORS, useExisting: MatchFnValidatorDirective, multi: true }],
-    standalone: false
 })
 export class MatchFnValidatorDirective implements Validator, OnChanges {
-    @Input() matchFn: Function;
+    @Input('libMatchFn') matchFn: Function;
     private fn = Validators.nullValidator;
 
     ngOnChanges(changes: SimpleChanges): void {

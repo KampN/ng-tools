@@ -1,7 +1,7 @@
 <div class="input-container">
   <label>
     <input [disabled]="disabled" type="text" [value]="search" (input)="handleValueChange($event)" #input [placeholder]="placeholder">
-    <material-underline [active]="focused"></material-underline>
+    <lib-material-underline [active]="focused"></lib-material-underline>
   </label>
   @if (!showClearBtn) {
     <button mat-icon-button disableRipple class="noop">

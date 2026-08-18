@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@ang
 import {coerceNumberProperty} from '@angular/cdk/coercion';
 
 @Component({
-	selector: 'gads-image',
+	selector: 'lib-gads-image',
 	templateUrl: './gads-image.html',
 	styleUrls: ['./gads-image.scss'],
 	standalone: true,

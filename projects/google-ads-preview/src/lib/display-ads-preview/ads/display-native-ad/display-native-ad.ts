@@ -12,7 +12,7 @@ export interface DisplayNativeAdRenderModel {
 }
 
 @Component({
-    selector: 'display-native-ad',
+    selector: 'lib-display-native-ad',
     templateUrl: './display-native-ad.html',
     styleUrls: ['./display-native-ad.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

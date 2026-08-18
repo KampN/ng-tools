@@ -1,10 +1,10 @@
-picker-section, [picker-section] {
+lib-picker-section, [libPickerSection] {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	width: 100%;
 
-	[flex-scroll-container] {
+	[libFlexScrollContainer] {
 		flex: 1 1 auto;
 	}
 }
