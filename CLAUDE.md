@@ -60,9 +60,9 @@ Path aliases in tsconfig.json point to `dist/` - libraries must be built before 
 ## Code Standards
 
 - **Components**: Standalone, OnPush change detection, SCSS, ViewEncapsulation.None
-- **Library selectors**: prefix `lib` (e.g., `lib-my-component`)
+- **Library selectors**: the existing ones are **not** prefixed (`picker`, `display-text-ad`, `[stopPropagation]`). They are the published API of the libraries: renaming one breaks every consumer template and, because components use `ViewEncapsulation.None`, every consumer CSS override. Never rename one during an upgrade. `component-selector` and `directive-selector` are therefore scoped off for `projects/**` in `eslint.config.js`; the `lib` prefix applies to code outside `projects/` only.
 - **TypeScript**: 6.0. `strict` is explicitly `false` in tsconfig.json (TS 6 defaults it to true); Angular strictness is on (strictTemplates, strictInjectionParameters)
-- **ESLint**: angular-eslint 22 with flat config (`eslint.config.js`), kebab-case selectors
+- **ESLint**: angular-eslint 22 with flat config (`eslint.config.js`). The previous `.eslintrc.json` set `ignorePatterns: ["projects/**/*"]`, so the libraries were never linted; they are now, minus the rules that would force a published-API change. `prefer-inject` is off for `ng-logger` and `ng-logger-fs`: `LogDisplay` is an extension point (`FSLogDisplay extends LogDisplay`) and its constructor is part of the API.
 
 ## CI/CD
 
