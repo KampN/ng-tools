@@ -170,6 +170,13 @@ workflows:
         requires:
         - "build [ng-common-tools]"
         - install_dependencies
+    - unit_test:
+        <<: *workflow_branch_only_filter
+        name: "test [google-ads-preview]"
+        project: google-ads-preview
+        requires:
+        - "build [ng-common-tools]"
+        - install_dependencies
 
     - publish:
         <<: *workflow_publish_filter
@@ -209,4 +216,5 @@ workflows:
         name: "publish [google-ads-preview]"
         project: google-ads-preview
         requires:
+        - "test [google-ads-preview]"
         - "build [google-ads-preview]"
