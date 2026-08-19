@@ -12,7 +12,7 @@ describe('Picker : PickerHeader', () => {
 				<div class="content">content</div>
 			</picker-header>
         `,
-        standalone: false
+        imports: [PickerHeaderComponent]
     })
     class TestHostComponent {
         @ViewChild(PickerHeaderComponent) underline: PickerHeaderComponent;
@@ -24,10 +24,7 @@ describe('Picker : PickerHeader', () => {
     beforeEach(() => {
 
         TestBed.configureTestingModule({
-            imports: [PickerHeaderComponent],
-            declarations: [
-                TestHostComponent
-            ],
+            imports: [TestHostComponent],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;

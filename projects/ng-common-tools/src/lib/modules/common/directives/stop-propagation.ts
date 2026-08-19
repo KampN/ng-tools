@@ -1,14 +1,14 @@
-import {Directive, ElementRef, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges} from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges, inject } from '@angular/core';
 
 @Directive({
     selector: '[stopPropagation]', standalone: true
 })
 export class StopPropagationDirective implements OnChanges, OnDestroy {
+    protected ref = inject(ElementRef);
+    protected render = inject(Renderer2);
+
     @Input('stopPropagation') eventName: string = 'click';
     protected _listener: () => void;
-
-    constructor(protected ref: ElementRef, protected render: Renderer2) {
-    }
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('eventName' in changes) this.lockPropagation();

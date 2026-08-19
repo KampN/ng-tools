@@ -1,7 +1,7 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-    "baseUrl": "./",
+    "strict": false,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -12,28 +12,28 @@
     "target": "ES2022",
     "module": "es2020",
     "typeRoots": [
-      "node_modules/@types"
+      "./node_modules/@types"
     ],
     "paths": {
       "@kamp-n/gads-preview": [
-        "dist/google-ads-preview/google-ads-preview",
-        "dist/google-ads-preview"
+        "./dist/google-ads-preview/google-ads-preview",
+        "./dist/google-ads-preview"
       ],
       "@kamp-n/ng-logger": [
-        "dist/ng-logger/ng-logger",
-        "dist/ng-logger"
+        "./dist/ng-logger/ng-logger",
+        "./dist/ng-logger"
       ],
       "@kamp-n/ng-common-tools": [
-        "dist/ng-common-tools/ng-common-tools",
-        "dist/ng-common-tools"
+        "./dist/ng-common-tools/ng-common-tools",
+        "./dist/ng-common-tools"
       ],
       "@kamp-n/ng-common-form": [
-        "dist/ng-common-form/ng-common-form",
-        "dist/ng-common-form"
+        "./dist/ng-common-form/ng-common-form",
+        "./dist/ng-common-form"
       ],
       "@kamp-n/ng-logger-fs": [
-        "dist/ng-logger-fs/ng-logger-fs",
-        "dist/ng-logger-fs"
+        "./dist/ng-logger-fs/ng-logger-fs",
+        "./dist/ng-logger-fs"
       ]
     },
     "useDefineForClassFields": false

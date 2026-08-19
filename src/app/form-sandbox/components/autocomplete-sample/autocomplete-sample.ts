@@ -1,11 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	Component,
-	OnDestroy,
-	OnInit,
-	ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import {
 	ReactiveFormsModule,
 	UntypedFormBuilder,
@@ -39,6 +32,9 @@ const isUserValidator = CommonValidators.matchFn((data) => typeof data === 'obje
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteSampleComponent implements OnInit, OnDestroy {
+    protected fb = inject(UntypedFormBuilder);
+    protected cdr = inject(ChangeDetectorRef);
+
     form: UntypedFormGroup;
     options: User[] = [
         {name: 'Mary'},
@@ -50,8 +46,6 @@ export class AutocompleteSampleComponent implements OnInit, OnDestroy {
     filteredOptions: Observable<User[]>;
     protected rc: RxCleaner = new RxCleaner();
     protected states: StateManager = new StateManager();
-
-    constructor(protected fb: UntypedFormBuilder, protected cdr: ChangeDetectorRef) { }
 
     get isQueryingUsers(): boolean {
         return this.states.is('loading');

@@ -7,6 +7,13 @@ anchor_2: &workflow_branch_only_filter
     tags:
       ignore: /.*/
 
+anchor_3: &workflow_publish_filter
+  filters:
+    branches:
+      only: master
+    tags:
+      ignore: /.*/
+
 orbs:
   browser-tools: circleci/browser-tools@1.4.6
 
@@ -14,11 +21,11 @@ executors:
   node:
     <<: *wdir
     docker:
-    - image: cimg/node:24.8
+    - image: cimg/node:24.19
   node-browsers:
     <<: *wdir
     docker:
-    - image: cimg/node:24.8-browsers
+    - image: cimg/node:24.19-browsers
 
 jobs:
   install_dependencies:
@@ -90,11 +97,22 @@ jobs:
     - attach_workspace:
         at: ~/project
     - run:
-        name: Authenticate with registry
-        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+        name: Ensure npm supports trusted publishing
+        command: |
+          required=11.5.1
+          current=$(npm --version)
+          echo "node $(node --version), npm $current"
+          if [ "$(printf '%s\n%s\n' "$required" "$current" | sort -V | head -1)" != "$required" ];
+          then
+            echo "npm $current predates $required, which trusted publishing requires. Upgrading."
+            npm install -g npm@latest
+            npm --version
+          fi
     - run:
         name: Publish package
-        command: sh bin/npm_publish.sh << parameters.project >>
+        command: |
+          export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+          sh bin/npm_publish.sh << parameters.project >>
 
 workflows:
 
@@ -163,9 +181,16 @@ workflows:
         requires:
         - "build [ng-common-tools]"
         - install_dependencies
+    - unit_test:
+        <<: *workflow_branch_only_filter
+        name: "test [google-ads-preview]"
+        project: google-ads-preview
+        requires:
+        - "build [ng-common-tools]"
+        - install_dependencies
 
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-common-tools]"
         project: ng-common-tools
@@ -173,7 +198,7 @@ workflows:
         - "test [ng-common-tools]"
         - "build [ng-common-tools]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-logger]"
         project: ng-logger
@@ -181,7 +206,7 @@ workflows:
         - "test [ng-logger]"
         - "build [ng-logger]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-logger-fs]"
         project: ng-logger-fs
@@ -189,7 +214,7 @@ workflows:
         - "test [ng-logger-fs]"
         - "build [ng-logger-fs]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-common-form]"
         project: ng-common-form
@@ -197,9 +222,10 @@ workflows:
         - "test [ng-common-form]"
         - "build [ng-common-form]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [google-ads-preview]"
         project: google-ads-preview
         requires:
+        - "test [google-ads-preview]"
         - "build [google-ads-preview]"

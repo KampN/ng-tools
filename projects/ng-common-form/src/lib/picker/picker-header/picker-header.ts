@@ -1,11 +1,12 @@
-import {ChangeDetectionStrategy, Component, Directive, ElementRef, TemplateRef, ViewContainerRef, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, ElementRef, TemplateRef, ViewContainerRef, ViewEncapsulation, inject } from '@angular/core';
 
 @Directive({
     selector: '[pickerHeaderOutlet]',
     standalone: true,
 })
 export class PickerHeaderOutletDirective {
-    constructor(public viewContainer: ViewContainerRef, public elementRef: ElementRef) { }
+    viewContainer = inject(ViewContainerRef);
+    elementRef = inject(ElementRef);
 }
 
 @Directive({
@@ -13,7 +14,7 @@ export class PickerHeaderOutletDirective {
     standalone: true,
 })
 export class PickerHeaderDefDirective {
-    constructor(public template: TemplateRef<any>) {}
+    template = inject<TemplateRef<any>>(TemplateRef);
 }
 
 @Component({

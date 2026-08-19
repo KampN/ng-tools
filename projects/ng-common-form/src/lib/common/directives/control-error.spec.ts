@@ -1,3 +1,4 @@
+import {JsonPipe} from '@angular/common';
 import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 import {Component, DebugElement, ElementRef, ViewChild} from '@angular/core';
 import {FormsModule, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
@@ -19,7 +20,7 @@ describe('Directives : FormErrorHint', () => {
 				<span class="error-data">{{ data }}</span>
 			</div>
         `,
-        standalone: false
+        imports: [JsonPipe, ReactiveFormsModule, ControlErrorDirective]
     })
     class TestHostComponent {
         @ViewChild('inside', {read: ElementRef}) inside: ElementRef;
@@ -37,10 +38,7 @@ describe('Directives : FormErrorHint', () => {
 
     beforeEach(() => {
         getTestBed().configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule, ControlErrorDirective],
-            declarations: [
-                TestHostComponent,
-            ],
+            imports: [FormsModule, TestHostComponent],
         }).compileComponents();
         testFixture = TestBed.createComponent(TestHostComponent);
         testComponent = testFixture.debugElement.componentInstance;

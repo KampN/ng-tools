@@ -1,11 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	Component,
-	OnDestroy,
-	OnInit,
-	ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {RxCleaner} from '@kamp-n/ng-common-tools';
 import {MatTableDataSource} from '@angular/material/table';
@@ -28,6 +21,9 @@ import {MaterialModule} from "../../../material/module";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PickerSampleComponent implements OnInit, OnDestroy {
+    protected fb = inject(UntypedFormBuilder);
+    protected cdr = inject(ChangeDetectorRef);
+
     form: UntypedFormGroup;
     displayedColumns: string[] = ['selector', 'name'];
     dataSource = new MatTableDataSource([
@@ -44,9 +40,6 @@ export class PickerSampleComponent implements OnInit, OnDestroy {
         {id: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
     ]);
     protected rc: RxCleaner = new RxCleaner();
-
-    constructor(protected fb: UntypedFormBuilder, protected cdr: ChangeDetectorRef) {
-    }
 
     extractIdFn: ExtractIdFn = (v: any) => v.id;
 

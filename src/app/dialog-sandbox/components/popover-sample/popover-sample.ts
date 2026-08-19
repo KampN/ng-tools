@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation, inject } from '@angular/core';
 import {CommonToolsModule, RxCleaner} from '@kamp-n/ng-common-tools';
 
 import {MaterialModule} from '../../../material/module';
@@ -15,11 +15,11 @@ import {MaterialModule} from '../../../material/module';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverSampleComponent implements OnDestroy {
+    protected cdr = inject(ChangeDetectorRef);
+
 
     items: number[] = (new Array(10)).fill(null).map((_, index) => index);
     protected rc: RxCleaner = new RxCleaner();
-
-    constructor(protected cdr: ChangeDetectorRef) { }
 
     ngOnDestroy(): void {
         this.rc.complete();

@@ -11,7 +11,7 @@ describe('Directives : StopPropagation', () => {
 				<div [stopPropagation]="eventName">no event propagation</div>
 			</div>
         `,
-        standalone: false,
+        imports: [StopPropagationDirective],
     })
     class TestHostComponent {
         eventName: string = 'click';
@@ -24,8 +24,7 @@ describe('Directives : StopPropagation', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [StopPropagationDirective],
-            declarations: [TestHostComponent],
+            imports: [TestHostComponent],
         }).compileComponents();
 
         testFixture = TestBed.createComponent(TestHostComponent);

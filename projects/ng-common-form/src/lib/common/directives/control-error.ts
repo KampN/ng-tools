@@ -1,4 +1,4 @@
-import {Directive, Host, Input, OnChanges, OnDestroy, OnInit, Optional, SkipSelf, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Directive, Input, OnChanges, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import {
 	AbstractControl, AbstractFormGroupDirective, ControlContainer, UntypedFormArray, FormArrayName, UntypedFormControl, UntypedFormGroup, FormGroupDirective,
 	FormGroupName
@@ -37,15 +37,15 @@ export class ControlErrorContext {
 	standalone: true
 })
 export class ControlErrorDirective implements OnInit, OnChanges, OnDestroy {
+	protected vContainer = inject(ViewContainerRef);
+	protected template = inject<TemplateRef<ControlErrorContext>>(TemplateRef);
+	protected parent = inject(ControlContainer, { optional: true, host: true, skipSelf: true });
+
 	@Input() controlErrorOf:string | AbstractControl;
 	protected control:AbstractControl;
 
 	protected errorStream:ReplaySubject<any> = new ReplaySubject(1);
 	protected rc:RxCleaner = new RxCleaner();
-
-	constructor(protected vContainer:ViewContainerRef, protected template:TemplateRef<ControlErrorContext>,
-	            @Optional() @Host() @SkipSelf() protected parent:ControlContainer) {
-	}
 
 	ngOnInit():void {
 		this.errorStream.pipe(

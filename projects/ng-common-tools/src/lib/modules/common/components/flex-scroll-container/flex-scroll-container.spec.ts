@@ -1,4 +1,4 @@
-import {Component, DebugElement, Inject, ViewChild} from '@angular/core';
+import {Component, DebugElement, ViewChild, inject} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FLEX_SCROLL_CONTAINER, FlexScrollContainerComponent} from './flex-scroll-container';
 import {By} from '@angular/platform-browser';
@@ -14,7 +14,7 @@ describe('Components : FlexScrollContainer', () => {
         ]
     })
     class TestInnerComponent {
-        constructor(@Inject(FLEX_SCROLL_CONTAINER) public scrollContainer: FlexScrollContainerComponent) {}
+        public scrollContainer = inject<FlexScrollContainerComponent>(FLEX_SCROLL_CONTAINER);
     }
 
     let testFixture: ComponentFixture<TestHostComponent>;
