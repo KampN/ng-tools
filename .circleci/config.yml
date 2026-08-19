@@ -7,6 +7,13 @@ anchor_2: &workflow_branch_only_filter
     tags:
       ignore: /.*/
 
+anchor_3: &workflow_publish_filter
+  filters:
+    branches:
+      only: master
+    tags:
+      ignore: /.*/
+
 orbs:
   browser-tools: circleci/browser-tools@1.4.6
 
@@ -165,7 +172,7 @@ workflows:
         - install_dependencies
 
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-common-tools]"
         project: ng-common-tools
@@ -173,7 +180,7 @@ workflows:
         - "test [ng-common-tools]"
         - "build [ng-common-tools]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-logger]"
         project: ng-logger
@@ -181,7 +188,7 @@ workflows:
         - "test [ng-logger]"
         - "build [ng-logger]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-logger-fs]"
         project: ng-logger-fs
@@ -189,7 +196,7 @@ workflows:
         - "test [ng-logger-fs]"
         - "build [ng-logger-fs]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [ng-common-form]"
         project: ng-common-form
@@ -197,7 +204,7 @@ workflows:
         - "test [ng-common-form]"
         - "build [ng-common-form]"
     - publish:
-        <<: *workflow_branch_only_filter
+        <<: *workflow_publish_filter
         context: "open source"
         name: "publish [google-ads-preview]"
         project: google-ads-preview
