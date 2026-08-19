@@ -97,11 +97,22 @@ jobs:
     - attach_workspace:
         at: ~/project
     - run:
-        name: Authenticate with registry
-        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+        name: Ensure npm supports trusted publishing
+        command: |
+          required=11.5.1
+          current=$(npm --version)
+          echo "node $(node --version), npm $current"
+          if [ "$(printf '%s\n%s\n' "$required" "$current" | sort -V | head -1)" != "$required" ];
+          then
+            echo "npm $current predates $required, which trusted publishing requires. Upgrading."
+            npm install -g npm@latest
+            npm --version
+          fi
     - run:
         name: Publish package
-        command: sh bin/npm_publish.sh << parameters.project >>
+        command: |
+          export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+          sh bin/npm_publish.sh << parameters.project >>
 
 workflows:
 
